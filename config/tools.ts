@@ -89,6 +89,14 @@ export const TOOLS: Tool[] = [
     category: 'Code & Schemas',
   },
   {
+    id: 'color-picker',
+    name: 'Color Picker',
+    description: 'Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK',
+    route: '/tools/color-picker',
+    icon: '🎨',
+    category: 'Code & Schemas',
+  },
+  {
     id: 'jwt-decoder',
     name: 'JWT Decoder',
     description: 'Decode and inspect JWT tokens',

@@ -24,6 +24,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **JSON to TypeScript:** Convert JSON to TypeScript interfaces
 *   **JSON to C#:** Convert JSON to C# classes
 *   **JSON to Swift:** Convert JSON to Swift structs
+*   **Color Picker:** Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats
 
 ### Security
 *   **JWT Decoder:** Decode and inspect JWT tokens
