@@ -12,6 +12,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **Sentiment Analysis:** Analyze emotional tone of text using AI
 *   **Zero-Shot Classification:** Classify text into custom categories without training using AI
 *   **Text Embedding & Similarity:** Generate embeddings and find semantic similarity between texts using AI
+*   **Question Answering:** Answer questions based on provided context using AI
 
 ### Formatting
 *   **JSON Prettifier:** Format and validate JSON data

@@ -41,6 +41,14 @@ export const TOOLS: Tool[] = [
     category: 'AI Tools',
   },
   {
+    id: 'question-answering',
+    name: 'Question Answering',
+    description: 'Answer questions based on provided context using AI',
+    route: '/tools/question-answering',
+    icon: '❓',
+    category: 'AI Tools',
+  },
+  {
     id: 'json-prettifier',
     name: 'JSON Prettifier',
     description: 'Format and validate JSON data',
