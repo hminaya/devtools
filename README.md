@@ -11,6 +11,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **JS Tokenizers:** Tokenize text using various AI tokenizers
 *   **Sentiment Analysis:** Analyze emotional tone of text using AI
 *   **Zero-Shot Classification:** Classify text into custom categories without training using AI
+*   **Text Embedding & Similarity:** Generate embeddings and find semantic similarity between texts using AI
 
 ### Formatting
 *   **JSON Prettifier:** Format and validate JSON data

@@ -33,6 +33,14 @@ export const TOOLS: Tool[] = [
     category: 'AI Tools',
   },
   {
+    id: 'text-embedding',
+    name: 'Text Embedding & Similarity',
+    description: 'Generate embeddings and find semantic similarity between texts using AI',
+    route: '/tools/text-embedding',
+    icon: '🔍',
+    category: 'AI Tools',
+  },
+  {
     id: 'json-prettifier',
     name: 'JSON Prettifier',
     description: 'Format and validate JSON data',
