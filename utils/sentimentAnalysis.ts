@@ -127,87 +127,12 @@ function analyzeLexicon(text: string): SentimentResult {
 }
 
 /**
- * AI-based sentiment analysis using Transformers.js
- */
-async function analyzeTransformers(text: string): Promise<SentimentResult> {
-  try {
-    if (!text.trim()) {
-      return { success: false, error: 'Please enter some text to analyze' };
-    }
-
-    // Dynamic import to avoid SSR issues
-    let pipeline, env;
-    try {
-      const transformers = await import('@xenova/transformers');
-      pipeline = transformers.pipeline;
-      env = transformers.env;
-    } catch (importError) {
-      throw new Error('Failed to load AI model library. Please try Fast Mode instead.');
-    }
-
-    // Configure for browser environment
-    env.allowLocalModels = false;
-    env.allowRemoteModels = true;
-
-    // Create sentiment analysis pipeline
-    const classifier = await pipeline(
-      'sentiment-analysis',
-      'Xenova/distilbert-base-uncased-finetuned-sst-2-english'
-    );
-
-    // Analyze sentiment
-    const result = await classifier(text);
-
-    if (!result || !Array.isArray(result) || result.length === 0) {
-      throw new Error('Invalid response from sentiment model');
-    }
-
-    const prediction = result[0] as { label: string; score: number };
-
-    if (!prediction || !prediction.label || typeof prediction.score !== 'number') {
-      throw new Error('Invalid prediction format from sentiment model');
-    }
-
-    // Extract simple positive/negative words for display
-    // (This is approximate since the model doesn't return this)
-    const words = text.toLowerCase().split(/\s+/);
-    const positive: string[] = [];
-    const negative: string[] = [];
-
-    words.forEach(word => {
-      const cleanWord = word.replace(/[^\w]/g, '');
-      if (POSITIVE_WORDS.includes(cleanWord)) {
-        positive.push(cleanWord);
-      } else if (NEGATIVE_WORDS.includes(cleanWord)) {
-        negative.push(cleanWord);
-      }
-    });
-
-    return {
-      success: true,
-      label: prediction.label as 'POSITIVE' | 'NEGATIVE',
-      score: prediction.score,
-      positive,
-      negative,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Failed to analyze sentiment with AI model',
-    };
-  }
-}
-
-/**
- * Main sentiment analysis function
+ * Main sentiment analysis function (lexicon-based only)
+ * AI-based analysis is handled directly in the component
  */
 export async function analyzeSentiment(
   text: string,
   method: AnalysisMethod
 ): Promise<SentimentResult> {
-  if (method === 'lexicon') {
-    return analyzeLexicon(text);
-  } else {
-    return analyzeTransformers(text);
-  }
+  return analyzeLexicon(text);
 }

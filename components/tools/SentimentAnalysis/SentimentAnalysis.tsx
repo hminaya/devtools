@@ -5,6 +5,7 @@ import ToolLayout from '../ToolLayout';
 import TextArea from '../../shared/TextArea';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
+import CodeDisplay from '../../shared/CodeDisplay';
 import { analyzeSentiment, type AnalysisMethod, type SentimentResult } from '../../../utils/sentimentAnalysis';
 
 function SentimentAnalysis() {
@@ -171,7 +172,7 @@ function SentimentAnalysis() {
             className="px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="lexicon">Fast Mode (Lexicon-Based)</option>
-            <option value="transformers">AI Mode (Advanced ML Model)</option>
+            <option value="transformers">AI Mode (Xenova/distilbert-base-uncased-finetuned-sst-2-english)</option>
           </select>
 
           {method === 'transformers' && !aiModelReady && (
@@ -298,6 +299,21 @@ function SentimentAnalysis() {
               ) : null}
             </div>
 
+            {/* Raw JSON Results */}
+            <div>
+              <CodeDisplay
+                code={JSON.stringify({
+                  text: input,
+                  sentiment: result.label,
+                  confidence: result.score,
+                  score: result.comparative,
+                  method,
+                }, null, 2)}
+                language="json"
+                label="Raw JSON Results"
+              />
+            </div>
+
             {/* Copy Results */}
             <div className="flex justify-end">
               <CopyButton
@@ -310,15 +326,6 @@ function SentimentAnalysis() {
                 }, null, 2)}
                 label="Copy Results as JSON"
               />
-            </div>
-
-            {/* Additional Info */}
-            <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
-              <p className="text-slate-700 text-sm">
-                <strong>How it works:</strong> {method === 'lexicon'
-                  ? 'The fast mode analyzes your text by counting positive and negative words from a predefined dictionary. Modifiers like "very" and "not" are taken into account to adjust the score.'
-                  : 'The AI mode uses a state-of-the-art BERT model trained on sentiment classification. It understands context, sarcasm, and complex language patterns better than simple word counting.'}
-              </p>
             </div>
           </div>
         )}
