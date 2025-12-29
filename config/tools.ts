@@ -33,10 +33,10 @@ export const TOOLS: Tool[] = [
     category: 'AI Tools',
   },
   {
-    id: 'text-embedding',
-    name: 'Text Embedding & Similarity',
+    id: 'sentence-similarity',
+    name: 'Sentence Similarity',
     description: 'Generate embeddings and find semantic similarity between texts using AI',
-    route: '/tools/text-embedding',
+    route: '/tools/sentence-similarity',
     icon: '🔍',
     category: 'AI Tools',
   },

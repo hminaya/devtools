@@ -249,7 +249,7 @@ Dark mode toggle not working`,
 
   return (
     <ToolLayout
-      title="Text Embedding & Similarity"
+      title="Sentence Similarity"
       description="Generate embeddings and find semantic similarity between texts using AI"
       fullWidth
     >
