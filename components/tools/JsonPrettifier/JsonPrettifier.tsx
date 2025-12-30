@@ -6,11 +6,14 @@ import TextArea from '../../shared/TextArea';
 import CodeDisplay from '../../shared/CodeDisplay';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
+import { parseAndFormatJson, minifyJson } from '../../../utils/json';
 
 function JsonPrettifier() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState('');
+  const [suggestion, setSuggestion] = useState('');
+  const [autoFixed, setAutoFixed] = useState(false);
 
   const generateRandomJson = () => {
     const randomData = {
@@ -39,29 +42,39 @@ function JsonPrettifier() {
     setInput(minified);
     setOutput('');
     setError('');
+    setSuggestion('');
+    setAutoFixed(false);
   };
 
   const prettify = () => {
-    try {
-      const parsed = JSON.parse(input);
-      const formatted = JSON.stringify(parsed, null, 2);
-      setOutput(formatted);
+    const result = parseAndFormatJson(input, 2, true);
+
+    if (result.success && result.output) {
+      setOutput(result.output);
       setError('');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Invalid JSON');
+      setSuggestion(result.suggestion || '');
+      setAutoFixed(result.autoFixed || false);
+    } else {
+      setError(result.error || 'Invalid JSON');
+      setSuggestion(result.suggestion || '');
       setOutput('');
+      setAutoFixed(false);
     }
   };
 
   const minify = () => {
-    try {
-      const parsed = JSON.parse(input);
-      const minified = JSON.stringify(parsed);
-      setOutput(minified);
+    const result = minifyJson(input);
+
+    if (result.success && result.output) {
+      setOutput(result.output);
       setError('');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Invalid JSON');
+      setSuggestion('');
+      setAutoFixed(false);
+    } else {
+      setError(result.error || 'Invalid JSON');
+      setSuggestion(result.suggestion || '');
       setOutput('');
+      setAutoFixed(false);
     }
   };
 
@@ -69,6 +82,8 @@ function JsonPrettifier() {
     setInput('');
     setOutput('');
     setError('');
+    setSuggestion('');
+    setAutoFixed(false);
   };
 
   return (
@@ -86,11 +101,24 @@ function JsonPrettifier() {
           <Button label="Clear" onClick={clear} variant="secondary" />
         </div>
 
-        {/* Error Message */}
+        {/* Auto-fix Success Message */}
+        {autoFixed && suggestion && (
+          <div className="bg-green-50 border border-green-200 rounded-md p-4">
+            <p className="text-green-700 font-medium">✓ {suggestion}</p>
+          </div>
+        )}
+
+        {/* Error Message with Suggestion */}
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
-            <p className="text-red-600 text-sm">{error}</p>
+            <p className="text-red-600 text-sm mb-2">{error}</p>
+            {suggestion && (
+              <div className="mt-3 pt-3 border-t border-red-200">
+                <p className="text-red-700 font-medium text-sm">💡 Suggestion:</p>
+                <p className="text-red-600 text-sm">{suggestion}</p>
+              </div>
+            )}
           </div>
         )}
 
