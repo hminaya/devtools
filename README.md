@@ -18,6 +18,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **Sentence Similarity:** Generate embeddings and find semantic similarity between texts using AI
 *   **Question Answering:** Answer questions based on provided context using AI
 *   **Fill-Mask Text Completion:** Complete sentences and predict missing words using AI
+*   **Text Summarization:** Summarize long text into concise overviews using AI
 
 ### Formatting
 *   **JSON Prettifier:** Format and validate JSON data

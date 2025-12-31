@@ -57,6 +57,14 @@ export const TOOLS: Tool[] = [
     category: 'AI Tools',
   },
   {
+    id: 'text-summarization',
+    name: 'Text Summarization',
+    description: 'Summarize long text into concise overviews using AI',
+    route: '/tools/text-summarization',
+    icon: '📝',
+    category: 'AI Tools',
+  },
+  {
     id: 'json-prettifier',
     name: 'JSON Prettifier',
     description: 'Format and validate JSON data',
