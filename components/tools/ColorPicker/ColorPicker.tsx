@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, type MouseEvent } from 'react';
 import ToolLayout from '../ToolLayout';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
-import { getAllFormats, hsvToRgb, rgbToHex, generateAllPalettes, type ColorFormats, type ColorPalette } from '../../../utils/colorConversion';
+import { getAllFormats, hsvToRgb, rgbToHex, hexToRgb, rgbToHsv, generateAllPalettes, type ColorFormats, type ColorPalette } from '../../../utils/colorConversion';
 
 function ColorPicker() {
   const [hue, setHue] = useState(330);
@@ -14,6 +14,8 @@ function ColorPicker() {
   const [palettes, setPalettes] = useState<ColorPalette[]>([]);
   const [isDraggingGradient, setIsDraggingGradient] = useState(false);
   const [isDraggingHue, setIsDraggingHue] = useState(false);
+  const [hexInput, setHexInput] = useState('#d44382');
+  const [isValidHex, setIsValidHex] = useState(true);
 
   const gradientRef = useRef<HTMLDivElement>(null);
   const hueSliderRef = useRef<HTMLDivElement>(null);
@@ -27,10 +29,61 @@ function ColorPicker() {
     const hex = rgbToHex(rgb);
     const formats = getAllFormats(hex);
     setColorFormats(formats);
+    setHexInput(hex);
+    setIsValidHex(true);
 
     // Generate color palettes
     const generatedPalettes = generateAllPalettes(hex);
     setPalettes(generatedPalettes);
+  };
+
+  const validateAndApplyHex = (hex: string) => {
+    // Normalize hex input (allow with or without #)
+    const normalizedHex = hex.startsWith('#') ? hex : `#${hex}`;
+
+    // Validate hex format (3 or 6 digit hex)
+    const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+
+    if (hexRegex.test(normalizedHex)) {
+      // Convert 3-digit hex to 6-digit
+      let fullHex = normalizedHex;
+      if (normalizedHex.length === 4) {
+        fullHex = `#${normalizedHex[1]}${normalizedHex[1]}${normalizedHex[2]}${normalizedHex[2]}${normalizedHex[3]}${normalizedHex[3]}`;
+      }
+
+      // Convert to HSV and update sliders
+      const rgb = hexToRgb(fullHex);
+      const hsv = rgbToHsv(rgb);
+
+      setHue(hsv.h);
+      setSaturation(hsv.s);
+      setBrightness(hsv.v);
+      setHexInput(fullHex);
+      setIsValidHex(true);
+    } else {
+      setIsValidHex(false);
+    }
+  };
+
+  const handleHexInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setHexInput(value);
+
+    // Only validate and apply if it looks complete (3 or 6 hex digits)
+    const cleanValue = value.replace('#', '');
+    if (cleanValue.length === 3 || cleanValue.length === 6) {
+      validateAndApplyHex(value);
+    } else if (cleanValue.length > 6) {
+      setIsValidHex(false);
+    } else {
+      // Still typing, don't mark as invalid yet
+      setIsValidHex(true);
+    }
+  };
+
+  const handleHexInputBlur = () => {
+    // Validate on blur
+    validateAndApplyHex(hexInput);
   };
 
   const handleGradientMouseDown = (e: MouseEvent<HTMLDivElement>) => {
@@ -133,14 +186,23 @@ function ColorPicker() {
                 background: colorFormats.hex,
               }}
             />
-            <div>
-              <div className="text-sm font-medium text-slate-500 mb-1">Current Color</div>
+            <div className="flex-1">
+              <div className="text-sm font-medium text-slate-500 mb-1">Current Color - Type to change</div>
               <input
                 type="text"
-                value={colorFormats.hex}
-                readOnly
-                className="font-mono text-2xl font-bold text-slate-900 bg-transparent outline-none uppercase"
+                value={hexInput}
+                onChange={handleHexInputChange}
+                onBlur={handleHexInputBlur}
+                placeholder="#000000"
+                className={`w-full font-mono text-2xl font-bold text-slate-900 bg-white px-3 py-2 rounded-md border-2 uppercase transition-colors ${
+                  isValidHex
+                    ? 'border-slate-300 focus:border-blue-500 focus:outline-none'
+                    : 'border-red-500 focus:border-red-600 focus:outline-none'
+                }`}
               />
+              {!isValidHex && (
+                <p className="text-red-600 text-sm mt-1">Invalid hex color. Use format: #RRGGBB or #RGB</p>
+              )}
             </div>
           </div>
         )}
