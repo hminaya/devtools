@@ -25,6 +25,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **XML Prettifier:** Format and validate XML data
 *   **Stacktrace Formatter:** Format and beautify stack traces from multiple programming languages
 *   **Base64 Encoder/Decoder:** Encode and decode Base64 strings
+*   **File Size Converter:** Convert file sizes between decimal (SI) and binary (IEC) units
 
 ### Generators
 *   **Password Generator:** Generate secure random passwords

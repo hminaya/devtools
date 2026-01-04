@@ -98,6 +98,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'file-size-converter',
+    name: 'File Size Converter',
+    description: 'Convert file sizes between decimal (SI) and binary (IEC) units',
+    route: '/tools/file-size-converter',
+    icon: '💾',
+    category: 'Formatting',
+  },
+  {
     id: 'password-generator',
     name: 'Password Generator',
     description: 'Generate secure random passwords',
