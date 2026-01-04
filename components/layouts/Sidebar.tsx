@@ -48,7 +48,7 @@ function Sidebar() {
   }, {} as Record<string, typeof TOOLS>);
 
   // Define category order
-  const categoryOrder = ['AI Tools', 'Formatting', 'Generators', 'Code & Schemas', 'Networking', 'Security'];
+  const categoryOrder = ['AI Tools', 'Formatting', 'Generators', 'Code & Schemas', 'Networking', 'Security', 'Data'];
 
   return (
     <div className="w-64 bg-slate-800 h-screen flex flex-col overflow-y-auto">
@@ -95,10 +95,23 @@ function Sidebar() {
               </div>
               <div className="space-y-1">
                 {tools.map((tool) => (
-                  <Link key={tool.id} href={tool.route} className={linkClass(tool.route)}>
-                    <span className="text-lg">{tool.icon}</span>
-                    <span className="font-medium">{tool.name}</span>
-                  </Link>
+                  tool.external ? (
+                    <a
+                      key={tool.id}
+                      href={tool.route}
+                      className={linkClass(tool.route)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="text-lg">{tool.icon}</span>
+                      <span className="font-medium">{tool.name}</span>
+                    </a>
+                  ) : (
+                    <Link key={tool.id} href={tool.route} className={linkClass(tool.route)}>
+                      <span className="text-lg">{tool.icon}</span>
+                      <span className="font-medium">{tool.name}</span>
+                    </Link>
+                  )
                 ))}
               </div>
             </div>

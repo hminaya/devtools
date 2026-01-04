@@ -15,6 +15,10 @@ export default function Dashboard() {
     }
   };
 
+  // Separate OSS Data from other tools
+  const ossDataTool = TOOLS.find((tool) => tool.id === 'oss-data');
+  const otherTools = TOOLS.filter((tool) => tool.id !== 'oss-data');
+
   return (
     <div className="p-8">
       <div className="max-w-6xl mx-auto">
@@ -32,14 +36,37 @@ export default function Dashboard() {
             onClick={handleRandomTool}
           />
 
+          {/* OSS Data Tool - positioned after Random Tool */}
+          {ossDataTool && (
+            <Card
+              key={ossDataTool.id}
+              icon={ossDataTool.icon}
+              title={ossDataTool.name}
+              description={ossDataTool.description}
+              onClick={() => {
+                if (ossDataTool.external) {
+                  window.open(ossDataTool.route, '_blank', 'noopener,noreferrer');
+                } else {
+                  router.push(ossDataTool.route);
+                }
+              }}
+            />
+          )}
+
           {/* All Other Tools */}
-          {TOOLS.map((tool) => (
+          {otherTools.map((tool) => (
             <Card
               key={tool.id}
               icon={tool.icon}
               title={tool.name}
               description={tool.description}
-              onClick={() => router.push(tool.route)}
+              onClick={() => {
+                if (tool.external) {
+                  window.open(tool.route, '_blank', 'noopener,noreferrer');
+                } else {
+                  router.push(tool.route);
+                }
+              }}
             />
           ))}
         </div>

@@ -5,6 +5,7 @@ export interface Tool {
   route: string;
   icon: string;
   category: string;
+  external?: boolean; // If true, opens in new tab
 }
 
 export const TOOLS: Tool[] = [
@@ -223,5 +224,14 @@ export const TOOLS: Tool[] = [
     route: '/tools/api-tester',
     icon: '🌐',
     category: 'Networking',
+  },
+  {
+    id: 'oss-data',
+    name: 'OSS Data',
+    description: 'Open-source data tools for developers',
+    route: 'https://data.developers.do',
+    icon: '📊',
+    category: 'Data',
+    external: true,
   },
 ];
