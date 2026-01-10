@@ -138,6 +138,14 @@ export const TOOLS: Tool[] = [
     category: 'Generators',
   },
   {
+    id: 'qr-code-generator',
+    name: 'QR Code Generator',
+    description: 'Generate QR codes from text, URLs, or any data',
+    route: '/tools/qr-code-generator',
+    icon: '📱',
+    category: 'Generators',
+  },
+  {
     id: 'json-to-typescript',
     name: 'JSON to TypeScript',
     description: 'Convert JSON to TypeScript interfaces',
