@@ -48,7 +48,7 @@ function Sidebar() {
   }, {} as Record<string, typeof TOOLS>);
 
   // Define category order
-  const categoryOrder = ['AI Tools', 'Formatting', 'Generators', 'Code & Schemas', 'Networking', 'Security', 'Data'];
+  const categoryOrder = ['AI Tools', 'Formatting', 'Generators', 'Code & Schemas', 'Networking', 'Security', 'Data', 'Apps'];
 
   return (
     <div className="w-64 bg-slate-800 h-screen flex flex-col overflow-y-auto">

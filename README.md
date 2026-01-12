@@ -54,6 +54,9 @@ No backend. No data collection. Everything runs locally in your browser.
 ### Data
 *   **OSS Data:** Open-source data tools for developers
 
+### Apps
+*   **Terremoto:** iOS app for tracking earthquakes in real-time
+
 ## View Live
 
 Explore the live version of this DevTools suite at [https://www.developers.do](https://www.developers.do).

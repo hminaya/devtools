@@ -258,4 +258,13 @@ export const TOOLS: Tool[] = [
     category: 'Data',
     external: true,
   },
+  {
+    id: 'terremoto',
+    name: 'Terremoto',
+    description: 'iOS app for tracking earthquakes in real-time',
+    route: 'https://terremoto.developers.do',
+    icon: '🌍',
+    category: 'Apps',
+    external: true,
+  },
 ];
