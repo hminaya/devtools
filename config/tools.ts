@@ -74,6 +74,14 @@ export const TOOLS: Tool[] = [
     category: 'AI Tools',
   },
   {
+    id: 'text-extractor',
+    name: 'Text Extractor',
+    description: 'Extract emails, URLs, IPs, dates, and patterns from text',
+    route: '/tools/text-extractor',
+    icon: '🔎',
+    category: 'AI Tools',
+  },
+  {
     id: 'json-prettifier',
     name: 'JSON Prettifier',
     description: 'Format and validate JSON data',
