@@ -10,7 +10,7 @@ import {
   exportAsJson,
   exportAsCsv,
   getUniqueValues,
-  SAMPLE_TEXT,
+  getRandomSampleText,
 } from '../../../utils/textExtractor';
 import type { ExtractedEntity } from '../../../utils/textExtractor';
 
@@ -43,7 +43,7 @@ function TextExtractor() {
   };
 
   const handleLoadSample = () => {
-    setInput(SAMPLE_TEXT);
+    setInput(getRandomSampleText());
     setEntities([]);
     setSummary({});
     setHasExtracted(false);
@@ -147,12 +147,11 @@ function TextExtractor() {
             <label className="block text-sm font-medium text-slate-700">
               Input Text
             </label>
-            <button
+            <Button
+              label="Load Sample"
               onClick={handleLoadSample}
-              className="text-xs text-blue-600 hover:text-blue-800"
-            >
-              Load Sample
-            </button>
+              variant="secondary"
+            />
           </div>
           <textarea
             value={input}

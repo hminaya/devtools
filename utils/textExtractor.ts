@@ -185,7 +185,8 @@ export function getUniqueValues(entities: ExtractedEntity[]): Record<string, str
   return result;
 }
 
-export const SAMPLE_TEXT = `Here's a sample log file with various data types:
+const SAMPLE_TEXTS = [
+  `Here's a sample log file with various data types:
 
 User john.doe@example.com logged in from 192.168.1.100 at 2024-03-15 14:30:00
 Request ID: 550e8400-e29b-41d4-a716-446655440000
@@ -204,4 +205,154 @@ Mentions: @alice @bob @charlie
 JWT: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 Meeting scheduled for 09:30 AM on 12/25/2024
-File uploaded: C:\\Users\\Admin\\Documents\\report.pdf`;
+File uploaded: C:\\Users\\Admin\\Documents\\report.pdf`,
+
+  `Server deployment notes - Production Environment
+
+Deployed by: devops@techcorp.io on 2024-08-22 at 18:45:30
+Server IPs: 172.16.0.10, 172.16.0.11, 172.16.0.12
+Load balancer: https://lb.techcorp.io/health
+
+Network interfaces:
+- eth0: 00:50:56:A1:B2:C3 (primary)
+- eth1: 00:50:56:D4:E5:F6 (backup)
+
+Release: v3.14.159-rc.1
+Config path: /etc/myapp/config.yaml
+Backup location: /mnt/backups/2024-08-22/
+
+Contact: @sysadmin @devops_lead
+Emergency: +1-800-555-0199
+Docs: https://docs.techcorp.io/deployment#production
+
+Session token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZGVwbG95Ym90IiwiZXhwIjoxNzI0MzYwMDAwfQ.mock_signature_here
+
+#deployment #production #release`,
+
+  `Bug Report #4521 - User Authentication Issue
+
+Reported by: sarah.miller@bugtracker.net
+Date: 01/15/2025 at 10:22 AM
+
+Description:
+Users from subnet 10.20.30.0/24 experiencing login failures.
+Affected endpoint: https://auth.myservice.com/api/v2/login
+
+Reproduction steps:
+1. Connect from IP range 10.20.30.1 - 10.20.30.254
+2. Attempt login at 08:00 AM EST
+3. Observe 503 error
+
+Related commits:
+- a1b2c3d4-e5f6-7890-abcd-ef1234567890
+- 98765432-10fe-dcba-0987-654321fedcba
+
+Slack: @frontend_team @backend_team
+Labels: #bug #authentication #urgent #p0
+
+Device MAC: AC:DE:48:00:11:22
+App version: v1.2.3
+OS: Windows path C:\\Program Files\\MyApp\\logs\\auth.log`,
+
+  `E-commerce Order Summary
+
+Order ID: 7f3d2e1c-9a8b-4c5d-6e7f-8a9b0c1d2e3f
+Customer: orders@shopper.example
+Phone: (555) 867-5309
+
+Billing Details:
+Card: 4532015112830366 (Visa)
+Transaction time: 2024-12-01 23:59:59
+
+Shipping to:
+Address file: /home/warehouse/orders/pending.csv
+
+Product links:
+- https://shop.example/products/item-001?color=blue&size=lg
+- https://shop.example/products/item-002?ref=cart
+
+Promo codes used: #SAVE20 #FREESHIP
+Customer service: help@shopper.example or +1.555.234.5678
+
+Internal tracking:
+Gateway response: eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJvcmRlciI6IjEyMzQ1Iiwic3RhdHVzIjoicGFpZCJ9.mock_payment_signature
+
+Palette used: #FF5733, #33FF57, #3357FF, #F0F
+Fulfillment version: v4.0.0-stable
+Timestamp: 11:30 PM on 12/01/2024`,
+
+  `Network Security Audit Report
+
+Auditor: security.audit@cyberdefense.org
+Date: 2025-01-10 09:00:00
+
+Scanned Assets:
+External: 203.0.113.50, 203.0.113.51
+Internal: 192.168.100.1 - 192.168.100.254
+IPv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+
+Discovered Services:
+- https://vpn.company.net:8443/login
+- https://mail.company.net/owa
+
+Endpoints checked:
+/var/log/secure
+/etc/ssh/sshd_config
+C:\\Windows\\System32\\config\\SAM
+
+Device inventory:
+Router: 00:11:22:33:44:55
+Switch: 66:77:88:99:AA:BB
+Firewall: CC:DD:EE:FF:00:11
+
+Finding IDs:
+- 12345678-1234-5678-1234-567812345678
+- abcdef01-2345-6789-abcd-ef0123456789
+
+Report by @security_team @compliance
+Tags: #audit #security #compliance #quarterly
+Version: v2.5.0-audit
+
+Contact: +1 (555) 999-0000 or incident@cyberdefense.org`,
+
+  `Social Media Analytics Dashboard
+
+Report generated: 03/20/2024 at 16:45:00
+Analyst: analytics@socialmetrics.io
+
+Top performing posts:
+1. https://twitter.com/brand/status/1234567890
+   Mentions: @influencer1 @brand_ambassador
+   Tags: #viral #trending #marketing
+
+2. https://instagram.com/p/AbCdEfGhIjK/
+   Colors used: #E1306C, #F77737, #FCAF45
+
+Audience IPs (anonymized sample):
+- 98.76.54.32
+- 123.45.67.89
+- 111.222.33.44
+
+Campaign tracking:
+ID: c0ffee00-dead-beef-cafe-123456789abc
+API: https://api.analytics.io/v3/metrics?campaign=spring2024
+
+Export: /reports/2024/Q1/social_metrics.json
+Backup: C:\\Analytics\\Exports\\march_2024.csv
+
+Team contacts:
+- social.manager@company.co (+1-555-321-0987)
+- content.lead@company.co
+Slack: @social_team @marketing
+
+Auth token: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJhbmFseXRpY3MiLCJzY29wZSI6InJlYWQifQ.mock_es256_sig
+Platform version: v5.2.1`,
+];
+
+export function getRandomSampleText(): string {
+  const index = Math.floor(Math.random() * SAMPLE_TEXTS.length);
+  return SAMPLE_TEXTS[index] ?? SAMPLE_TEXTS[0] ?? '';
+}
+
+// Keep for backwards compatibility
+export const SAMPLE_TEXT = SAMPLE_TEXTS[0] ?? '';
