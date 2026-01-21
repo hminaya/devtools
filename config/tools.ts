@@ -275,4 +275,13 @@ export const TOOLS: Tool[] = [
     category: 'Apps',
     external: true,
   },
+  {
+    id: 'fedpulse',
+    name: 'FedPulse',
+    description: 'iOS app to search, save, and track federal government jobs',
+    route: 'https://fedpulse.developers.do',
+    icon: '🏛️',
+    category: 'Apps',
+    external: true,
+  },
 ];

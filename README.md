@@ -57,6 +57,7 @@ No backend. No data collection. Everything runs locally in your browser.
 
 ### Apps
 *   **Terremoto:** iOS app for tracking earthquakes in real-time
+*   **FedPulse:** iOS app to search, save, and track federal government jobs
 
 ## View Live
 
