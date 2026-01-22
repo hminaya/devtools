@@ -56,6 +56,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **OSS Data:** Open-source data tools for developers
 
 ### Apps
+*   **iOS App Lookup:** Look up iOS app metadata from the App Store using bundle ID
 *   **Terremoto:** iOS app for tracking earthquakes in real-time
 *   **FedPulse:** iOS app to search, save, and track federal government jobs
 
