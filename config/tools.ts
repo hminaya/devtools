@@ -252,6 +252,14 @@ export const TOOLS: Tool[] = [
     category: 'Code & Schemas',
   },
   {
+    id: 'secrets-scanner',
+    name: 'Secrets Scanner',
+    description: 'Scan text, logs, or configs for leaked keys and tokens',
+    route: '/tools/secrets-scanner',
+    icon: '🛡️',
+    category: 'Security',
+  },
+  {
     id: 'jwt-decoder',
     name: 'JWT Decoder',
     description: 'Decode and inspect JWT tokens',

@@ -45,6 +45,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **Color Picker:** Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats
 
 ### Security
+*   **Secrets Scanner:** Scan text, logs, or configs for leaked keys and tokens
 *   **JWT Decoder:** Decode and inspect JWT tokens
 *   **MD5 Hash:** Generate MD5 hashes from text
 *   **SHA-1 Hash:** Generate SHA-1 hashes from text
