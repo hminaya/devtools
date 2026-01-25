@@ -49,6 +49,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **JWT Decoder:** Decode and inspect JWT tokens
 *   **MD5 Hash:** Generate MD5 hashes from text
 *   **SHA-1 Hash:** Generate SHA-1 hashes from text
+*   **SHA-256/512 Hash:** Generate secure SHA-256 or SHA-512 hashes from text
 
 ### Networking
 *   **API Tester:** Test and view API responses

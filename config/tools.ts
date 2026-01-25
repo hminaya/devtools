@@ -284,6 +284,14 @@ export const TOOLS: Tool[] = [
     category: 'Security',
   },
   {
+    id: 'sha256-generator',
+    name: 'SHA-256/512 Hash',
+    description: 'Generate secure SHA-256 or SHA-512 hashes from text',
+    route: '/tools/sha256-generator',
+    icon: '🔒',
+    category: 'Security',
+  },
+  {
     id: 'api-tester',
     name: 'API Tester',
     description: 'Test and view API responses',
