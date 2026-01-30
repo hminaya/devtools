@@ -122,6 +122,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'string-similarity',
+    name: 'String Similarity',
+    description: 'Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms',
+    route: '/tools/string-similarity',
+    icon: '🔀',
+    category: 'Algorithms',
+  },
+  {
     id: 'ios-app-lookup',
     name: 'iOS App Lookup',
     description: 'Look up iOS app metadata from the App Store using bundle ID',
