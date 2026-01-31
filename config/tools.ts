@@ -318,6 +318,14 @@ export const TOOLS: Tool[] = [
     category: 'Security',
   },
   {
+    id: 'clawdbot-security-scanner',
+    name: 'Clawdbot Security Scanner',
+    description: 'Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities',
+    route: '/tools/clawdbot-security-scanner',
+    icon: '🤖',
+    category: 'Security',
+  },
+  {
     id: 'api-tester',
     name: 'API Tester',
     description: 'Test and view API responses',
