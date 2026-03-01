@@ -106,6 +106,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'hl7-to-fhir',
+    name: 'HL7 to FHIR Converter',
+    description: 'Convert HL7 v2 messages to FHIR R4 Bundles',
+    route: '/tools/hl7-to-fhir',
+    icon: '🔄',
+    category: 'Formatting',
+  },
+  {
     id: 'stacktrace-formatter',
     name: 'Stacktrace Formatter',
     description: 'Format and beautify stack traces from multiple programming languages',
