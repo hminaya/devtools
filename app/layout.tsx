@@ -66,7 +66,7 @@ export default function RootLayout({
               </div>
               <footer className="border-t border-slate-200 text-slate-500 text-sm px-8 py-4">
                 <div className="max-w-6xl mx-auto flex flex-wrap items-center gap-3">
-                  <span>© 2025 Mushin Code</span>
+                  <span>© 2026 Mushin Code</span>
                   <span aria-hidden="true">•</span>
                   <Link className="hover:text-slate-800" href="/privacy-policy">Privacy Policy</Link>
                   <span aria-hidden="true">•</span>
