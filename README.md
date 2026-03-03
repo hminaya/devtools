@@ -127,6 +127,31 @@ In the project directory, you can run:
 *   `bun run build`: Builds the application for production.
 *   `bun run start`: Starts the production server (after building).
 
+## Docker
+
+You can build and run the app locally using Docker — no Bun or Node.js installation required.
+
+### Build the image
+
+```bash
+docker build -t developers-do .
+```
+
+### Run the container
+
+```bash
+docker run -p 8080:80 developers-do
+```
+
+The app will be available at `http://localhost:8080`.
+
+### How it works
+
+The Docker build uses a two-stage process:
+
+1. **Builder** — installs dependencies with Bun and runs `bun run build`, producing static HTML/CSS/JS in the `out/` directory.
+2. **Runner** — copies the static files into an nginx image for serving. No Node.js or Bun is needed at runtime.
+
 ## License
 
 This project is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE).

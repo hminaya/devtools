@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+dist
+
+# Environment files
+.env.local
+.env*.local
+
+# Dev/editor
+.git
+.claude
+.cursor
+.DS_Store
+
+# Misc
+tsconfig.tsbuildinfo
+tool_suggestion.md
+docs
