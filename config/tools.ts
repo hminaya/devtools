@@ -114,6 +114,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'diff-compare',
+    name: 'Diff / Text Compare',
+    description: 'Compare two texts and see color-coded differences',
+    route: '/tools/diff-compare',
+    icon: '📊',
+    category: 'Formatting',
+  },
+  {
     id: 'stacktrace-formatter',
     name: 'Stacktrace Formatter',
     description: 'Format and beautify stack traces from multiple programming languages',
