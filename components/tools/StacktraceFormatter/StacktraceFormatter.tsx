@@ -8,6 +8,7 @@ import CopyButton from '../../shared/CopyButton';
 import {
   formatStackTrace,
   generateSampleTrace,
+  getSampleCount,
   validateStackTrace,
   getLanguageName,
   detectLanguage,
@@ -24,6 +25,7 @@ function StacktraceFormatter() {
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('unknown');
   const [removeSensitiveData, setRemoveSensitiveData] = useState(false);
   const [highlightedParts, setHighlightedParts] = useState<HighlightedPart[]>([]);
+  const [sampleIndex, setSampleIndex] = useState(0);
 
   useEffect(() => {
     if (input.trim()) {
@@ -66,8 +68,11 @@ function StacktraceFormatter() {
 
   const generateSample = () => {
     const language = selectedLanguage === 'unknown' ? 'javascript' : selectedLanguage;
-    const sample = generateSampleTrace(language);
+    const count = getSampleCount(language);
+    const nextIndex = (sampleIndex + 1) % count;
+    const sample = generateSampleTrace(language, nextIndex);
     setInput(sample);
+    setSampleIndex(nextIndex);
     setOutput('');
     setError('');
     setHighlightedParts([]);
@@ -81,6 +86,7 @@ function StacktraceFormatter() {
     setSelectedLanguage('unknown');
     setRemoveSensitiveData(false);
     setHighlightedParts([]);
+    setSampleIndex(0);
   };
 
   return (
@@ -92,7 +98,7 @@ function StacktraceFormatter() {
       <div className="space-y-4">
         <div className="flex flex-wrap gap-3 items-center">
           <Button label="Format" onClick={formatTrace} variant="primary" />
-          <Button label="Generate Sample" onClick={generateSample} variant="secondary" />
+          <Button label="Next Example" onClick={generateSample} variant="secondary" />
           <Button label="Clear" onClick={clear} variant="secondary" />
           {output && <CopyButton text={output} label="Copy Output" />}
 
