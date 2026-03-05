@@ -315,6 +315,15 @@ iOS app for US citizenship naturalization test preparation. Features:
 - Audio pronunciation of questions and answers
 - Track your study progress
 
+### ClawPet
+**URL**: https://clawpet.clawpantry.com
+
+iOS virtual desktop pet that visualizes bot activity in real-time. Features:
+- Real-time state sync via WebSocket with sub-second latency
+- Dual transport with WebSocket and HTTP polling automatic failover
+- Five distinct mood states with unique animations
+- Private by default with no account or cloud required
+
 ---
 
 ## Privacy Commitment

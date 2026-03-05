@@ -206,6 +206,15 @@ export const TOOLS: Tool[] = [
     external: true,
   },
   {
+    id: 'clawpet',
+    name: 'ClawPet',
+    description: 'iOS virtual desktop pet that visualizes bot activity in real-time',
+    route: 'https://clawpet.clawpantry.com',
+    icon: '🦀',
+    category: 'Apps',
+    external: true,
+  },
+  {
     id: 'password-generator',
     name: 'Password Generator',
     description: 'Generate secure random passwords',

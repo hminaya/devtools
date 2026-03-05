@@ -53,3 +53,4 @@ DevTools provides essential utilities for developers including hash generators, 
 - [FedPulse](https://fedpulse.developers.do): iOS app to search, save, and track federal government jobs
 - [FAA Part 107 Quiz Prep](https://part107.developers.do): iOS app for FAA Part 107 drone pilot certification exam preparation
 - [Citizenship Test Prep](https://citizenshiptest.developers.do): iOS app for US citizenship naturalization test preparation
+- [ClawPet](https://clawpet.clawpantry.com): iOS virtual desktop pet that visualizes bot activity in real-time

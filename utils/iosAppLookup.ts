@@ -246,6 +246,7 @@ export const sampleBundleIds = [
   { bundleId: 'com.hminaya.terremoto', name: 'Terremoto' },
   { bundleId: 'com.hminaya.part-107-quiz-prep', name: 'FAA Part 107 Quiz Prep' },
   { bundleId: 'com.hminaya.citizenshiptest', name: 'Citizenship Test Prep' },
+  { bundleId: 'com.hminaya.petclaw', name: 'ClawPet' },
   { bundleId: 'com.apple.Pages', name: 'Pages' },
   { bundleId: 'com.spotify.client', name: 'Spotify' },
   { bundleId: 'com.burbn.instagram', name: 'Instagram' },

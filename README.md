@@ -64,6 +64,7 @@ No backend. No data collection. Everything runs locally in your browser.
 *   **FedPulse:** iOS app to search, save, and track federal government jobs
 *   **FAA Part 107 Quiz Prep:** iOS app for FAA Part 107 drone pilot certification exam preparation
 *   **Citizenship Test Prep:** iOS app for US citizenship naturalization test preparation
+*   **ClawPet:** iOS virtual desktop pet that visualizes bot activity in real-time
 
 ## View Live
 
