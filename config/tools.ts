@@ -130,6 +130,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'stacktrace-analyzer',
+    name: 'Stack Trace Analyzer',
+    description: 'Analyze stack traces to identify root causes, explain errors, and separate app from framework code',
+    route: '/tools/stacktrace-analyzer',
+    icon: '🔬',
+    category: 'Formatting',
+  },
+  {
     id: 'base64-encoder',
     name: 'Base64 Encoder/Decoder',
     description: 'Encode and decode Base64 strings',
