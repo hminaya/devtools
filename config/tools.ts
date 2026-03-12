@@ -391,6 +391,14 @@ export const TOOLS: Tool[] = [
     category: 'Security',
   },
   {
+    id: 'csr-decoder',
+    name: 'CSR Decoder',
+    description: 'Decode PKCS#10 CSRs and inspect subjects, SANs, extensions, and key details',
+    route: '/tools/csr-decoder',
+    icon: '📄',
+    category: 'Security',
+  },
+  {
     id: 'saml-builder',
     name: 'SAML Assertion Builder',
     description: 'Generate test SAML Responses, AuthnRequests, and LogoutRequests',
