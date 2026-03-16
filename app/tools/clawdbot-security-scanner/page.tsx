@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Scan Clawdbot, Moltbot, and OpenClaw configurations for security vulnerabilities. Detect exposed APIs, insecure permissions, prompt injection risks, and more. Free, private, browser-based security audit.',
   keywords:
-    'clawdbot security, moltbot audit, openclaw security, ai agent security, configuration scanner, prompt injection, mcp security, shell access audit',
+    'clawdbot security, moltbot audit, openclaw security, ai agent security, configuration scanner, prompt injection, mcp security, shell access audit, how to audit ai agent config, mcp security check, clawdbot configuration review, openclaw security audit',
   openGraph: {
     url: 'https://developers.do/tools/clawdbot-security-scanner',
     title: 'Clawdbot Security Scanner - Free AI Agent Configuration Audit',

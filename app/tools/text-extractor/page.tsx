@@ -4,7 +4,7 @@ import TextExtractor from '../../../components/tools/TextExtractor/TextExtractor
 export const metadata: Metadata = {
   title: 'Text Extractor - Extract Emails, URLs, IPs & More from Text',
   description: 'Free text extraction tool. Extract emails, URLs, IP addresses, phone numbers, dates, UUIDs, and more from any text using regex patterns. No AI model required - instant results.',
-  keywords: 'text extractor, extract emails, extract urls, extract ip addresses, regex extraction, data extraction, parse text, extract phone numbers, extract dates, developer tools',
+  keywords: 'text extractor, extract emails, extract urls, extract ip addresses, regex extraction, data extraction, parse text, extract phone numbers, extract dates, developer tools, how to extract emails from text, pull urls from document, find all ip addresses in text, parse data from logs',
   openGraph: {
     url: 'https://developers.do/tools/text-extractor',
     title: 'Text Extractor - Extract Emails, URLs, IPs & More',

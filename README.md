@@ -5,7 +5,7 @@
 # DevTools
 
 A collection of essential developer tools built with privacy in mind.
-No backend. No data collection. Everything runs locally in your browser.
+No backend. Tool data never leaves your browser. Anonymized analytics help improve the site.
 
 ![DevTools Dashboard Screenshot](./docs/dashboard-screenshot.png)
 

@@ -3,24 +3,31 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-/**
- * Google Analytics tracker component
- * Sends pageview events on route changes
- */
+const GA_ID = 'G-M9WYKE9S07';
+
 function Analytics() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Check if gtag is available (it should be loaded from layout)
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      // Send pageview event to Google Analytics
-      window.gtag('config', 'G-M9WYKE9S07', {
-        page_path: pathname,
-      });
-    }
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('config', GA_ID, { page_path: pathname });
   }, [pathname]);
 
-  // This component doesn't render anything
+  useEffect(() => {
+    const handleConsentChange = (e: Event) => {
+      const value = (e as CustomEvent<string>).detail;
+      if (typeof window.gtag !== 'function') return;
+      if (value === 'full') {
+        window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      } else {
+        window.gtag('consent', 'update', { analytics_storage: 'denied' });
+      }
+    };
+
+    window.addEventListener('cookie_consent_changed', handleConsentChange);
+    return () => window.removeEventListener('cookie_consent_changed', handleConsentChange);
+  }, []);
+
   return null;
 }
 

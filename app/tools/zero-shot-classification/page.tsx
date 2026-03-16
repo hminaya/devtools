@@ -4,7 +4,7 @@ import ZeroShotClassification from '../../../components/tools/ZeroShotClassifica
 export const metadata: Metadata = {
   title: 'Zero-Shot Classification - AI Text Classifier',
   description: 'Free AI-powered zero-shot text classification tool. Classify text into custom categories without training. Perfect for categorizing bug reports, support tickets, feedback, and more. Runs locally in your browser.',
-  keywords: 'zero-shot classification, text classification, AI classifier, NLP, machine learning, text categorization, bug report classification, support ticket classification, feedback analysis, transformers.js',
+  keywords: 'zero-shot classification, text classification, AI classifier, NLP, machine learning, text categorization, bug report classification, support ticket classification, feedback analysis, transformers.js, how to classify text without training, categorize text with ai, automatic text labeling, classify emails or tickets',
   openGraph: {
     url: 'https://developers.do/tools/zero-shot-classification',
     title: 'Zero-Shot Classification - Free AI Text Classifier',

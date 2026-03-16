@@ -4,7 +4,7 @@ import CsrDecoder from '../../../components/tools/CsrDecoder/CsrDecoder';
 export const metadata: Metadata = {
   title: 'CSR Decoder - PKCS#10 Certificate Signing Request Inspector',
   description: 'Free client-side CSR decoder. Inspect PKCS#10 certificate signing requests, including subject fields, SANs, requested extensions, algorithms, and fingerprints.',
-  keywords: 'csr decoder, csr inspector, pkcs10 decoder, certificate signing request viewer, x509 csr parser, pem csr tool, openssl csr viewer',
+  keywords: 'csr decoder, csr inspector, pkcs10 decoder, certificate signing request viewer, x509 csr parser, pem csr tool, openssl csr viewer, how to read a csr file, inspect certificate signing request, view pem csr details, openssl csr viewer online',
   openGraph: {
     url: 'https://developers.do/tools/csr-decoder',
     title: 'CSR Decoder - Certificate Signing Request Inspector',

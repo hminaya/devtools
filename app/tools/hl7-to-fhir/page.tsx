@@ -4,7 +4,7 @@ import HL7ToFhirConverter from '../../../components/tools/HL7ToFhirConverter/HL7
 export const metadata: Metadata = {
   title: 'HL7 to FHIR Converter - Convert HL7 v2 to FHIR R4 Bundles',
   description: 'Free online HL7 to FHIR converter. Transform HL7 v2 messages (ADT, ORU, ORM, VXU, SIU) into FHIR R4 Bundles with Patient, Encounter, Observation, and more. All processing happens in your browser.',
-  keywords: 'hl7 to fhir, hl7 fhir converter, hl7 v2 to fhir r4, fhir bundle, adt to fhir, oru to fhir, healthcare interoperability, fhir converter',
+  keywords: 'hl7 to fhir, hl7 fhir converter, hl7 v2 to fhir r4, fhir bundle, adt to fhir, oru to fhir, healthcare interoperability, fhir converter, how to convert hl7 to fhir, hl7 v2 fhir r4 mapping, adt to fhir patient, hl7 interoperability tool',
   openGraph: {
     url: 'https://developers.do/tools/hl7-to-fhir',
     title: 'HL7 to FHIR Converter - Free Online HL7 v2 to FHIR R4 Converter',

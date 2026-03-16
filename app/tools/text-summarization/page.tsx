@@ -4,7 +4,7 @@ import TextSummarization from '../../../components/tools/TextSummarization/TextS
 export const metadata: Metadata = {
   title: 'Text Summarization - AI Article Summarizer',
   description: 'Free AI-powered text summarization tool. Quickly summarize long articles, documents, and any text into concise overviews. Perfect for researchers, students, and content creators. Runs locally in your browser.',
-  keywords: 'text summarization, AI summarizer, article summarizer, document summary, automatic summarization, NLP, machine learning, text analysis, transformers.js, distilbart, abstractive summarization',
+  keywords: 'text summarization, AI summarizer, article summarizer, document summary, automatic summarization, NLP, machine learning, text analysis, transformers.js, distilbart, abstractive summarization, how to summarize a long article, ai article summarizer free, shorten document online, tldr generator',
   openGraph: {
     url: 'https://developers.do/tools/text-summarization',
     title: 'Text Summarization - Free AI Article Summarizer',

@@ -4,7 +4,7 @@ import SamlDecoder from '../../../components/tools/SamlDecoder/SamlDecoder';
 export const metadata: Metadata = {
   title: 'SAML Decoder - Decode & Inspect SAML Requests/Responses',
   description: 'Free client-side SAML decoder. Decode Base64-encoded SAML Requests and Responses, auto-detect deflate compression, extract key fields like Issuer, NameID, Conditions, and Attributes. All processing happens in your browser.',
-  keywords: 'saml decoder, saml response decoder, saml request decoder, saml debugger, saml base64, saml xml, saml inspector, saml tool, sso debugger',
+  keywords: 'saml decoder, saml response decoder, saml request decoder, saml debugger, saml base64, saml xml, saml inspector, saml tool, sso debugger, how to decode saml response, saml sso debugging, read saml assertion, base64 decode saml',
   openGraph: {
     url: 'https://developers.do/tools/saml-decoder',
     title: 'SAML Decoder - Free SAML Request/Response Inspector',

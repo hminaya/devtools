@@ -1,6 +1,6 @@
 # DevTools by developers.do - Complete Documentation
 
-> A privacy-focused collection of free developer tools that run 100% client-side in your browser. No backend, no data collection, no tracking. All processing happens locally on the user's device.
+> A collection of free developer tools that run 100% client-side in your browser. No backend. All tool processing happens locally on the user's device. Anonymized analytics are used to improve the site.
 
 ## About DevTools
 
@@ -8,7 +8,7 @@ DevTools is a suite of essential utilities for software developers built with pr
 
 - **100% Client-Side**: All tools run entirely in the browser using JavaScript, WebAssembly, and Web APIs
 - **No Data Collection**: User input is never transmitted to any server
-- **No Tracking**: No analytics, cookies for tracking, or fingerprinting
+- **Anonymized Analytics**: Google Analytics is used with consent controls. No tracking cookies without user consent.
 - **Works Offline**: After initial page load, most tools work without internet
 - **Open Source**: Built with Next.js, React, TypeScript, and Tailwind CSS
 
@@ -66,6 +66,54 @@ Scan text, logs, configuration files, or code for accidentally leaked secrets in
 - Database connection strings
 - Generic API keys and tokens
 
+### SAML Decoder
+**URL**: https://developers.do/tools/saml-decoder
+
+Decode Base64-encoded SAML Requests and Responses, with auto-detection of deflate compression. Extracts key fields: Issuer, NameID, Conditions, Attributes, and more. Useful for:
+- Debugging SSO login flows
+- Inspecting what an IdP or SP is sending
+- Troubleshooting SAML authentication errors
+
+### SAML Metadata Parser
+**URL**: https://developers.do/tools/saml-metadata-parser
+
+Parse SAML Metadata XML from any IdP or SP (Okta, Azure AD, ADFS, etc.) and extract Entity ID, SSO/ACS endpoints, X.509 certificates, NameID formats, and organization info. Useful for:
+- Setting up SSO integrations
+- Verifying metadata before deployment
+- Extracting certificate details from federation metadata
+
+### SAML Certificate Inspector
+**URL**: https://developers.do/tools/saml-cert-inspector
+
+Inspect X.509 certificates from SAML metadata, SAML responses, or raw PEM/DER. View subject, issuer, validity period, fingerprints (SHA-1, SHA-256), key usage, and SANs. Useful for:
+- Checking SAML signing certificate expiry
+- Validating certificate identity before configuring SSO
+- Comparing certificates between environments
+
+### SAML Assertion Builder
+**URL**: https://developers.do/tools/saml-builder
+
+Generate test SAML Responses, AuthnRequests, and LogoutRequests from form fields. Output as raw XML, Base64, or Base64+Deflate. Useful for:
+- Creating test fixtures for SSO integration tests
+- Simulating IdP responses in development
+- Mocking SAML authentication flows
+
+### CSR Decoder
+**URL**: https://developers.do/tools/csr-decoder
+
+Decode PKCS#10 Certificate Signing Requests (CSRs) and inspect all fields: subject (CN, O, OU, C), SANs, requested extensions, signature algorithm, public key details, and fingerprints. Accepts PEM format. Useful for:
+- Verifying CSR contents before submitting to a CA
+- Checking SANs and subject fields
+- Auditing certificate requests
+
+### Clawdbot Security Scanner
+**URL**: https://developers.do/tools/clawdbot-security-scanner
+
+Audit Clawdbot, Moltbot, and OpenClaw AI agent configurations for security vulnerabilities. Detects exposed gateway APIs, unsafe shell access, credential leaks in config, prompt injection risks, and overly permissive MCP settings. Useful for:
+- Security review of AI agent deployments
+- Pre-production configuration audits
+- Identifying misconfigured permissions
+
 ### Password Generator
 **URL**: https://developers.do/tools/password-generator
 
@@ -102,6 +150,45 @@ Read and parse HL7 v2 healthcare messages into structured JSON. Features:
 - Repetition/component/subcomponent parsing
 - Message metadata extraction (type, trigger, version, control ID)
 - Client-side processing (no server transmission)
+
+### HL7 to FHIR Converter
+**URL**: https://developers.do/tools/hl7-to-fhir
+
+Convert HL7 v2 messages (ADT, ORU, ORM, VXU, SIU) to FHIR R4 Bundles. Maps segments to Patient, Encounter, Observation, and other FHIR resources. Useful for:
+- Healthcare interoperability projects
+- FHIR migration from legacy HL7 v2 systems
+- Testing FHIR pipelines with real HL7 data
+
+### Diff / Text Compare
+**URL**: https://developers.do/tools/diff-compare
+
+Compare two texts side by side with color-coded line-by-line diffs. Highlights added, removed, and unchanged lines. Useful for:
+- Comparing config file versions
+- Reviewing text changes before committing
+- Spotting differences in API responses or log outputs
+
+### Stack Trace Analyzer
+**URL**: https://developers.do/tools/stacktrace-analyzer
+
+Analyze stack traces to identify root cause frames, explain error types, and suggest fixes. Separates application code from framework internals. Supports JavaScript, Python, Java, C#, Go, PHP, and Ruby. Useful for:
+- Understanding unfamiliar exceptions quickly
+- Identifying the exact line causing an error
+- Debugging production errors from logs
+
+### String Similarity
+**URL**: https://developers.do/tools/string-similarity
+
+Compare two strings using multiple algorithms: Jaro-Winkler, Levenshtein distance, Dice coefficient, and Hamming distance. Useful for:
+- Fuzzy string matching
+- Detecting near-duplicate records
+- Evaluating string comparison algorithm behavior
+
+### JSON to JSDoc
+**URL**: https://developers.do/tools/json-to-jsdoc
+
+Convert JSON objects to JSDoc @typedef comments for JavaScript type hints without TypeScript. Supports optional field detection and nested objects. Useful for:
+- Adding type hints to plain JavaScript projects
+- Documenting API response shapes in JSDoc
 
 ### Base64 Encoder/Decoder
 **URL**: https://developers.do/tools/base64-encoder
@@ -330,8 +417,8 @@ iOS virtual desktop pet that visualizes bot activity in real-time. Features:
 
 DevTools is built on a strict privacy-first philosophy:
 
-1. **No Analytics**: We don't use Google Analytics, Mixpanel, or any tracking service
-2. **No Cookies**: No tracking cookies. Only functional cookies for preferences if needed
+1. **Anonymized Analytics**: We use Google Analytics with consent controls. Analytics default to anonymized mode (no cookies, no personal data). Users can accept full analytics, keep anonymized, or reject all tracking.
+2. **No Tracking Cookies by Default**: Tracking cookies are only set if the user explicitly accepts full analytics
 3. **No Server Processing**: All tool operations happen in your browser
 4. **No Data Retention**: We don't store any user input or output
 5. **No Account Required**: Use all tools without signing up

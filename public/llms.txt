@@ -1,8 +1,8 @@
 # DevTools by developers.do
 
-> A privacy-focused collection of free developer tools that run 100% client-side in your browser. No backend, no data collection, no tracking. All processing happens locally.
+> A collection of free developer tools that run 100% client-side in your browser. No backend. All processing happens locally. Anonymized analytics used to improve the site.
 
-DevTools provides essential utilities for developers including hash generators, JSON formatters, code converters, AI-powered text analysis, and security tools. Every tool works offline after initial page load and never transmits user data.
+DevTools provides essential utilities for developers including hash generators, JSON formatters, code converters, AI-powered text analysis, and security tools. Every tool works offline after initial page load and never transmits user-entered data to any server.
 
 ## Tools
 
@@ -11,13 +11,25 @@ DevTools provides essential utilities for developers including hash generators, 
 - [MD5 Hash Generator](https://developers.do/tools/md5-generator): Generate MD5 hashes from text
 - [JWT Decoder](https://developers.do/tools/jwt-decoder): Decode and inspect JWT tokens without sending data to a server
 - [Secrets Scanner](https://developers.do/tools/secrets-scanner): Scan text, logs, or configs for leaked API keys and tokens
+- [SAML Decoder](https://developers.do/tools/saml-decoder): Decode and inspect SAML Requests and Responses
+- [SAML Metadata Parser](https://developers.do/tools/saml-metadata-parser): Parse SAML Metadata XML and extract IdP/SP configuration
+- [SAML Certificate Inspector](https://developers.do/tools/saml-cert-inspector): Inspect X.509 certificates from SAML metadata or PEM
+- [SAML Assertion Builder](https://developers.do/tools/saml-builder): Generate test SAML Responses, AuthnRequests, and LogoutRequests
+- [CSR Decoder](https://developers.do/tools/csr-decoder): Decode PKCS#10 certificate signing requests and inspect subjects, SANs, and extensions
+- [Clawdbot Security Scanner](https://developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
+- [String Similarity](https://developers.do/tools/string-similarity): Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
 - [Password Generator](https://developers.do/tools/password-generator): Generate secure random passwords with customizable options
 - [UUID Generator](https://developers.do/tools/uuid-generator): Generate UUIDs (v4) for unique identifiers
 - [JSON Prettifier](https://developers.do/tools/json-prettifier): Format and validate JSON data
 - [XML Prettifier](https://developers.do/tools/xml-prettifier): Format and validate XML data
 - [HL7 Parser](https://developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
+- [HL7 to FHIR Converter](https://developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
+- [Diff / Text Compare](https://developers.do/tools/diff-compare): Compare two texts and see color-coded line-by-line differences
+- [Stacktrace Formatter](https://developers.do/tools/stacktrace-formatter): Format and beautify stack traces from multiple languages
+- [Stack Trace Analyzer](https://developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes and explain errors
 - [Base64 Encoder/Decoder](https://developers.do/tools/base64-encoder): Encode and decode Base64 strings
 - [JSON to TypeScript](https://developers.do/tools/json-to-typescript): Convert JSON to TypeScript interfaces
+- [JSON to JSDoc](https://developers.do/tools/json-to-jsdoc): Convert JSON to JSDoc type definitions for JavaScript
 - [JSON to C#](https://developers.do/tools/json-to-csharp): Convert JSON to C# classes
 - [JSON to Swift](https://developers.do/tools/json-to-swift): Convert JSON to Swift structs
 - [JSON to Kotlin](https://developers.do/tools/json-to-kotlin): Convert JSON to Kotlin data classes

@@ -4,7 +4,7 @@ import ColorPicker from '../../../components/tools/ColorPicker/ColorPicker';
 export const metadata: Metadata = {
   title: 'Color Picker - HEX, RGB, HSL, HSV, CMYK Converter',
   description: 'Free color picker tool to select colors and convert between HEX, RGB, HSL, HSV, and CMYK formats. Perfect for designers and developers.',
-  keywords: 'color picker, hex to rgb, color converter, hsl to rgb, hsv converter, cmyk converter, color tool, design tool',
+  keywords: 'color picker, hex to rgb, color converter, hsl to rgb, hsv converter, cmyk converter, color tool, design tool, how to convert hex to rgb, color format converter online, what color is this hex code, rgb to hex converter free, free online tool, browser-based, no install required',
   openGraph: {
     url: 'https://developers.do/tools/color-picker',
     title: 'Color Picker - Free Color Converter Tool',

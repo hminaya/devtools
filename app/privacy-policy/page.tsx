@@ -30,21 +30,25 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">Analytics</h2>
             <p>
-              We use Google Analytics to understand aggregate usage of the site. Google Analytics
-              may collect data such as IP address, device information, and usage events through
-              cookies or similar technologies. This data is processed by Google in accordance with
-              their privacy policy.
+              We use Google Analytics to understand aggregate usage of the site. Analytics are
+              controlled by your consent choice:
             </p>
+            <ul className="mt-3 space-y-2 list-disc list-inside">
+              <li><strong>Accept All</strong> — full analytics with cookies for cross-session tracking.</li>
+              <li><strong>Keep Anonymized</strong> — cookieless, anonymized analytics. No personal data or cookies are set. Aggregate usage data is collected.</li>
+              <li><strong>Reject All</strong> — analytics storage is denied. No cookies are set.</li>
+            </ul>
             <p className="mt-3">
-              You can learn more or opt out using Google&apos;s tools:
-              {' '}
+              You can change your preference at any time using the{' '}
+              <strong>Cookie Preferences</strong> link in the footer. Analytics data is processed
+              by Google in accordance with their{' '}
               <a
                 className="text-slate-900 underline"
-                href="https://tools.google.com/dlpage/gaoptout"
+                href="https://policies.google.com/privacy"
                 rel="noreferrer"
                 target="_blank"
               >
-                Google Analytics Opt-out Browser Add-on
+                privacy policy
               </a>
               .
             </p>
@@ -53,8 +57,9 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">Cookies</h2>
             <p>
-              Google Analytics may set cookies to measure site usage. The tools themselves do not
-              require cookies to function.
+              Google Analytics cookies are only set if you choose <strong>Accept All</strong>.
+              Your consent preference is stored in <code>localStorage</code> on your device.
+              The developer tools themselves do not require cookies to function.
             </p>
           </section>
 
