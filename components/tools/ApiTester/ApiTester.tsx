@@ -6,17 +6,120 @@ import ToolLayout from '../ToolLayout';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
 import { testApi } from '../../../utils/apiTester';
-import type { ApiResponse } from '../../../utils/apiTester';
+import type { ApiResponse, HttpMethod } from '../../../utils/apiTester';
 
 type LanguageOption = 'typescript' | 'jsdoc' | 'csharp' | 'swift' | 'kotlin' | 'go' | 'rust';
+type KeyValuePair = { key: string; value: string };
+type RequestTab = 'params' | 'headers' | 'body';
+type BodyType = 'json' | 'text' | 'form-urlencoded';
+
+function KeyValueEditor({
+  pairs,
+  onChange,
+  keyPlaceholder = 'Key',
+  valuePlaceholder = 'Value',
+}: {
+  pairs: KeyValuePair[];
+  onChange: (pairs: KeyValuePair[]) => void;
+  keyPlaceholder?: string;
+  valuePlaceholder?: string;
+}) {
+  const updatePair = (index: number, field: 'key' | 'value', val: string) => {
+    const updated = pairs.map((p, i) => (i === index ? { ...p, [field]: val } : p));
+    onChange(updated);
+  };
+
+  const removePair = (index: number) => {
+    onChange(pairs.filter((_, i) => i !== index));
+  };
+
+  const addPair = () => {
+    onChange([...pairs, { key: '', value: '' }]);
+  };
+
+  return (
+    <div className="space-y-2">
+      {pairs.map((pair, i) => (
+        <div key={i} className="flex gap-2 items-center">
+          <input
+            type="text"
+            value={pair.key}
+            onChange={(e) => updatePair(i, 'key', e.target.value)}
+            placeholder={keyPlaceholder}
+            className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            value={pair.value}
+            onChange={(e) => updatePair(i, 'value', e.target.value)}
+            placeholder={valuePlaceholder}
+            className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={() => removePair(i)}
+            className="px-2 py-1.5 text-slate-400 hover:text-red-500 transition-colors"
+            title="Remove"
+          >
+            &times;
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={addPair}
+        className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+      >
+        + Add Row
+      </button>
+    </div>
+  );
+}
 
 function ApiTester() {
   const router = useRouter();
   const [url, setUrl] = useState('');
-  const [method, setMethod] = useState<'GET' | 'POST'>('GET');
+  const [method, setMethod] = useState<HttpMethod>('GET');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageOption>('typescript');
+
+  const [activeTab, setActiveTab] = useState<RequestTab>('params');
+  const [params, setParams] = useState<KeyValuePair[]>([{ key: '', value: '' }]);
+  const [requestHeaders, setRequestHeaders] = useState<KeyValuePair[]>([{ key: '', value: '' }]);
+  const [requestBody, setRequestBody] = useState('');
+  const [bodyType, setBodyType] = useState<BodyType>('json');
+
+  const supportsBody = ['POST', 'PUT', 'PATCH'].includes(method);
+
+  const buildUrl = (): string => {
+    const filledParams = params.filter((p) => p.key.trim());
+    if (filledParams.length === 0) return url;
+
+    const separator = url.includes('?') ? '&' : '?';
+    const queryString = filledParams
+      .map((p) => `${encodeURIComponent(p.key)}=${encodeURIComponent(p.value)}`)
+      .join('&');
+    return `${url}${separator}${queryString}`;
+  };
+
+  const buildHeaders = (): Record<string, string> => {
+    const headers: Record<string, string> = {};
+    for (const h of requestHeaders) {
+      if (h.key.trim()) {
+        headers[h.key.trim()] = h.value;
+      }
+    }
+    if (supportsBody && requestBody.trim()) {
+      const contentTypes: Record<BodyType, string> = {
+        'json': 'application/json',
+        'text': 'text/plain',
+        'form-urlencoded': 'application/x-www-form-urlencoded',
+      };
+      if (!headers['Content-Type'] && !headers['content-type']) {
+        headers['Content-Type'] = contentTypes[bodyType];
+      }
+    }
+    return headers;
+  };
 
   const sendRequest = async () => {
     if (!url.trim()) {
@@ -30,7 +133,11 @@ function ApiTester() {
     setLoading(true);
     setResponse(null);
 
-    const result = await testApi(url, method);
+    const finalUrl = buildUrl();
+    const customHeaders = buildHeaders();
+    const body = supportsBody && requestBody.trim() ? requestBody : undefined;
+
+    const result = await testApi(finalUrl, method, customHeaders, body);
     setResponse(result);
     setLoading(false);
   };
@@ -39,16 +146,44 @@ function ApiTester() {
     setUrl('');
     setMethod('GET');
     setResponse(null);
+    setParams([{ key: '', value: '' }]);
+    setRequestHeaders([{ key: '', value: '' }]);
+    setRequestBody('');
+    setBodyType('json');
   };
 
   const loadSampleApi = () => {
     const resources = ['posts', 'comments', 'albums', 'photos', 'todos', 'users'];
     const randomResource = resources[Math.floor(Math.random() * resources.length)];
-    const randomId = Math.floor(Math.random() * 10) + 1; // IDs 1-10 for variety
+    const randomId = Math.floor(Math.random() * 10) + 1;
 
-    setUrl(`https://jsonplaceholder.typicode.com/${randomResource}/${randomId}`);
-    setMethod('GET');
+    const sampleBody = JSON.stringify({ title: 'Sample Title', body: 'Sample body content', userId: 1 }, null, 2);
+
+    const samples: { url: string; method: HttpMethod; headers: KeyValuePair[]; body: string; bodyType: BodyType; params: KeyValuePair[] }[] = [
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}/${randomId}`, method: 'GET', headers: [{ key: '', value: '' }], body: '', bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}`, method: 'POST', headers: [{ key: 'Content-Type', value: 'application/json' }], body: sampleBody, bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}/${randomId}`, method: 'PUT', headers: [{ key: 'Content-Type', value: 'application/json' }], body: sampleBody, bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}/${randomId}`, method: 'PATCH', headers: [{ key: 'Content-Type', value: 'application/json' }], body: JSON.stringify({ title: 'Updated Title' }, null, 2), bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}/${randomId}`, method: 'DELETE', headers: [{ key: '', value: '' }], body: '', bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}`, method: 'HEAD', headers: [{ key: '', value: '' }], body: '', bodyType: 'json', params: [{ key: '', value: '' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}`, method: 'GET', headers: [{ key: '', value: '' }], body: '', bodyType: 'json', params: [{ key: '_limit', value: '5' }, { key: '_page', value: '1' }] },
+      { url: `https://jsonplaceholder.typicode.com/${randomResource}`, method: 'OPTIONS', headers: [{ key: '', value: '' }], body: '', bodyType: 'json', params: [{ key: '', value: '' }] },
+    ];
+
+    const sample = samples[Math.floor(Math.random() * samples.length)]!;
+    setUrl(sample.url);
+    setMethod(sample.method);
+    setRequestHeaders(sample.headers);
+    setRequestBody(sample.body);
+    setBodyType(sample.bodyType);
+    setParams(sample.params);
     setResponse(null);
+
+    if (sample.body) {
+      setActiveTab('body');
+    } else if (sample.params.some((p) => p.key.trim())) {
+      setActiveTab('params');
+    }
   };
 
   const languageRoutes: Record<LanguageOption, string> = {
@@ -82,6 +217,15 @@ function ApiTester() {
       alert(`Response is not valid JSON. ${languageNames[selectedLanguage]} code can only be generated from JSON responses.`);
     }
   };
+
+  const filledParamsCount = params.filter((p) => p.key.trim()).length;
+  const filledHeadersCount = requestHeaders.filter((h) => h.key.trim()).length;
+
+  const tabs: { id: RequestTab; label: string; badge?: number; disabled?: boolean }[] = [
+    { id: 'params', label: 'Params', badge: filledParamsCount || undefined },
+    { id: 'headers', label: 'Headers', badge: filledHeadersCount || undefined },
+    { id: 'body', label: 'Body', disabled: !supportsBody },
+  ];
 
   return (
     <ToolLayout
@@ -117,12 +261,102 @@ function ApiTester() {
               </label>
               <select
                 value={method}
-                onChange={(e) => setMethod(e.target.value as 'GET' | 'POST')}
-                className="px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setMethod(e.target.value as HttpMethod)}
+                className={`px-4 py-2 border border-slate-300 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  method === 'GET' ? 'text-green-600' :
+                  method === 'DELETE' ? 'text-red-600' :
+                  method === 'HEAD' || method === 'OPTIONS' ? 'text-slate-600' :
+                  'text-blue-600'
+                }`}
               >
-                <option value="GET">GET</option>
-                <option value="POST">POST</option>
+                <option value="GET" className="text-green-600">GET</option>
+                <option value="POST" className="text-blue-600">POST</option>
+                <option value="PUT" className="text-blue-600">PUT</option>
+                <option value="PATCH" className="text-blue-600">PATCH</option>
+                <option value="DELETE" className="text-red-600">DELETE</option>
+                <option value="HEAD" className="text-slate-600">HEAD</option>
+                <option value="OPTIONS" className="text-slate-600">OPTIONS</option>
               </select>
+            </div>
+          </div>
+
+          {/* Tabs: Params / Headers / Body */}
+          <div className="border border-slate-200 rounded-md">
+            <div className="flex border-b border-slate-200">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => !tab.disabled && setActiveTab(tab.id)}
+                  disabled={tab.disabled}
+                  className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    tab.disabled
+                      ? 'text-slate-300 cursor-not-allowed'
+                      : activeTab === tab.id
+                        ? 'text-blue-600 border-b-2 border-blue-600 -mb-px'
+                        : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  {tab.label}
+                  {tab.badge ? (
+                    <span className="ml-1.5 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">
+                      {tab.badge}
+                    </span>
+                  ) : null}
+                </button>
+              ))}
+            </div>
+
+            <div className="p-4">
+              {activeTab === 'params' && (
+                <KeyValueEditor
+                  pairs={params}
+                  onChange={setParams}
+                  keyPlaceholder="Parameter name"
+                  valuePlaceholder="Value"
+                />
+              )}
+
+              {activeTab === 'headers' && (
+                <KeyValueEditor
+                  pairs={requestHeaders}
+                  onChange={setRequestHeaders}
+                  keyPlaceholder="Header name"
+                  valuePlaceholder="Value"
+                />
+              )}
+
+              {activeTab === 'body' && supportsBody && (
+                <div className="space-y-3">
+                  <div className="flex gap-3 items-center">
+                    <label className="text-sm font-medium text-slate-700">Content Type:</label>
+                    {(['json', 'text', 'form-urlencoded'] as BodyType[]).map((type) => (
+                      <label key={type} className="flex items-center gap-1.5 text-sm text-slate-600">
+                        <input
+                          type="radio"
+                          name="bodyType"
+                          value={type}
+                          checked={bodyType === type}
+                          onChange={() => setBodyType(type)}
+                          className="accent-blue-600"
+                        />
+                        {type === 'json' ? 'JSON' : type === 'text' ? 'Text' : 'Form URL-Encoded'}
+                      </label>
+                    ))}
+                  </div>
+                  <textarea
+                    value={requestBody}
+                    onChange={(e) => setRequestBody(e.target.value)}
+                    placeholder={
+                      bodyType === 'json'
+                        ? '{\n  "key": "value"\n}'
+                        : bodyType === 'form-urlencoded'
+                          ? 'key1=value1&key2=value2'
+                          : 'Request body...'
+                    }
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[120px] resize-y"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
