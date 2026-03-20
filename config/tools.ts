@@ -162,6 +162,14 @@ export const TOOLS: Tool[] = [
     category: 'Algorithms',
   },
   {
+    id: 'regex-tester',
+    name: 'Regex Tester',
+    description: 'Test regular expressions with match highlighting, capture groups, and string replacement',
+    route: '/tools/regex-tester',
+    icon: '🔍',
+    category: 'Algorithms',
+  },
+  {
     id: 'ios-app-lookup',
     name: 'iOS App Lookup',
     description: 'Look up iOS app metadata from the App Store using bundle ID',
