@@ -51,6 +51,26 @@ export default function RegexTester() {
     setReplaceResult('');
   };
 
+  // Load pattern pre-selected from Regex Library
+  useEffect(() => {
+    const stored = sessionStorage.getItem('regexLibraryPattern');
+    if (stored) {
+      try {
+        const { pattern: p, flags: f, testString: t } = JSON.parse(stored) as {
+          pattern: string;
+          flags: string;
+          testString: string;
+        };
+        setPattern(p);
+        setFlags(new Set(f.split('').filter(Boolean)));
+        setTestString(t);
+      } catch {
+        // ignore malformed data
+      }
+      sessionStorage.removeItem('regexLibraryPattern');
+    }
+  }, []);
+
   useEffect(() => {
     if (!pattern) {
       setMatches([]);

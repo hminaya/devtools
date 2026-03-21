@@ -170,6 +170,14 @@ export const TOOLS: Tool[] = [
     category: 'Algorithms',
   },
   {
+    id: 'regex-library',
+    name: 'Regex Library',
+    description: 'Browse and copy common regular expressions for validation, extraction, and text processing',
+    route: '/tools/regex-library',
+    icon: '📚',
+    category: 'Algorithms',
+  },
+  {
     id: 'ios-app-lookup',
     name: 'iOS App Lookup',
     description: 'Look up iOS app metadata from the App Store using bundle ID',
