@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import PasswordGenerator from '../../../components/tools/PasswordGenerator/PasswordGenerator';
 
 export const metadata: Metadata = {
-  title: 'Password Generator - Create Secure Random Passwords',
-  description: 'Free secure password generator. Create strong random passwords with customizable length, uppercase, lowercase, numbers, and special characters. Generate multiple passwords instantly.',
-  keywords: 'password generator, secure password, random password, strong password generator, password creator, generate password, secure password tool, how to create a strong password, generate secure password online, random password maker, what makes a password secure',
+  title: 'Password Generator - Secure Random Passwords & Passphrases',
+  description: 'Free secure password and passphrase generator with strength meter. Create strong random passwords or memorable passphrases with entropy calculation and crack time estimates. Runs entirely in your browser.',
+  keywords: 'password generator, passphrase generator, secure password, random password, strong password generator, memorable password, password strength checker, password entropy, how strong is my password, generate passphrase online, random word password, diceware passphrase, password crack time, what makes a password secure, how to create a strong password',
   openGraph: {
     url: 'https://developers.do/tools/password-generator',
-    title: 'Password Generator - Free Secure Random Password Creator',
-    description: 'Generate strong, secure random passwords with custom settings. Free password generator with uppercase, lowercase, numbers, and special characters.',
+    title: 'Password & Passphrase Generator - Free with Strength Meter',
+    description: 'Generate strong random passwords or memorable passphrases. Includes entropy calculation and crack time estimates. Free and runs in your browser.',
     images: [{ url: 'https://developers.do/favicon.png' }],
   },
 };
