@@ -130,6 +130,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'beautify-stack-trace',
+    name: 'Beautify Stack Trace',
+    description: 'Clean up and beautify messy error stack traces for readability',
+    route: '/tools/beautify-stack-trace',
+    icon: '✨',
+    category: 'Formatting',
+  },
+  {
     id: 'stacktrace-analyzer',
     name: 'Stack Trace Analyzer',
     description: 'Analyze stack traces to identify root causes, explain errors, and separate app from framework code',
@@ -348,6 +356,14 @@ export const TOOLS: Tool[] = [
     description: 'Convert JSON to Kotlin data classes',
     route: '/tools/json-to-kotlin',
     icon: '🟣',
+    category: 'Code & Schemas',
+  },
+  {
+    id: 'json-to-python',
+    name: 'JSON to Python',
+    description: 'Convert JSON to Python dataclasses or Pydantic models',
+    route: '/tools/json-to-python',
+    icon: '🐍',
     category: 'Code & Schemas',
   },
   {

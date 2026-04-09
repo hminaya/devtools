@@ -7,9 +7,9 @@ import CookieConsent from '../components/CookieConsent';
 import CookiePreferencesLink from '../components/CookiePreferencesLink';
 
 export const metadata: Metadata = {
-  title: 'Developer Tools Dashboard - 14 Free Online Tools for Developers | JSON, API Testing, Code Generators & More',
-  description: 'Free online developer tools dashboard featuring essential utilities: AI tokenizers (GPT-4, GPT-3.5), JSON/XML formatters with syntax highlighting, code generators (TypeScript, C#, Swift), API tester, JWT decoder, password generator, UUID generator, Base64 encoder, MD5/SHA-1 hash generators, and Lorem Ipsum generator. All tools run locally in your browser.',
-  keywords: 'developer tools, json formatter, json prettifier, xml formatter, xml prettifier, syntax highlighting, json to typescript, json to csharp, json to swift, code generator, api tester, rest api, jwt decoder, jwt token, password generator, secure password, uuid generator, uuid v4, base64 encoder, base64 decoder, md5 hash, md5 generator, sha1 hash, sha-1 generator, lorem ipsum generator, placeholder text, js tokenizer, gpt tokenizer, gpt-4 tokenizer, gpt-3.5 tokenizer, tiktoken, ai tokenizer, token counter, free developer tools, online tools, offline tools, privacy-focused tools, no data collection, web developer utilities, frontend tools, backend tools',
+  title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers | JSON, API Testing, Code Generators & More',
+  description: 'Free online developer tools dashboard with 50+ utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, hash generators, AI tools (sentiment analysis, text summarization), and more. All tools run locally in your browser.',
+  keywords: 'developer tools, json formatter, json prettifier, xml formatter, json to typescript, json to python, json to pydantic, json to csharp, json to kotlin, json to swift, json to go, json to rust, code generator, api tester, rest api, jwt decoder, password generator, uuid generator, base64 encoder, md5 hash, sha256 hash, stacktrace formatter, beautify stack trace, stack trace beautifier, regex tester, sql formatter, saml decoder, yaml to json, unix timestamp converter, sentiment analysis, text summarization, string similarity, color picker, qr code generator, free developer tools, online tools, privacy-focused tools, web developer utilities',
   authors: [{ name: 'Developer Tools Dashboard' }],
   icons: {
     icon: '/favicon.svg',
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: 'https://developers.do',
-    title: 'Developer Tools Dashboard - 14 Free Online Tools for Developers',
-    description: 'Essential developer utilities: AI tokenizers (GPT-4, GPT-3.5), JSON/XML formatters with syntax highlighting, JSON to TypeScript/C#/Swift converters, API tester, JWT decoder, password & UUID generators, hash tools (MD5, SHA-1), Base64 encoder, and Lorem Ipsum generator. All tools are free and run locally in your browser.',
+    title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers',
+    description: '50+ free developer utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, AI tools, and more. All tools run locally in your browser.',
     siteName: 'Developer Tools Dashboard',
     images: [
       {
