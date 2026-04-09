@@ -26,21 +26,38 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **JSON Prettifier:** Format and validate JSON data
 *   **XML Prettifier:** Format and validate XML data
 *   **HL7 Parser:** Read and parse HL7 v2 messages into structured JSON
+*   **HL7 to FHIR Converter:** Convert HL7 v2 messages to FHIR R4 Bundles
+*   **Diff / Text Compare:** Compare two texts and see color-coded differences
 *   **Stacktrace Formatter:** Format and beautify stack traces from multiple programming languages
+*   **Beautify Stack Trace:** Clean up and beautify messy error stack traces for readability
+*   **Stack Trace Analyzer:** Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 *   **Base64 Encoder/Decoder:** Encode and decode Base64 strings
 *   **File Size Converter:** Convert file sizes between decimal (SI) and binary (IEC) units
+*   **Unix Timestamp Converter:** Convert between Unix epoch timestamps and human-readable dates with timezone support
+*   **URL Encoder / Decoder:** Encode and decode URLs using encodeURIComponent and encodeURI
+*   **YAML ↔ JSON Converter:** Convert between YAML and JSON with auto-detection of input format
+*   **SQL Formatter:** Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
+
+### Algorithms
+*   **String Similarity:** Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
+*   **Regex Tester:** Test regular expressions with match highlighting, capture groups, and string replacement
+*   **Regex Library:** Browse and copy common regular expressions for validation, extraction, and text processing
+*   **Number Base Converter:** Convert numbers between binary, octal, decimal, and hex with two's complement
 
 ### Generators
 *   **Password Generator:** Generate secure random passwords
 *   **UUID Generator:** Generate UUIDs (v4)
 *   **Lorem Ipsum Generator:** Generate placeholder text for designs
 *   **Random Number Generator:** Generate random numbers and see code samples in multiple languages
+*   **QR Code Generator:** Generate QR codes from text, URLs, or any data
 
 ### Code & Schemas
 *   **JSON to TypeScript:** Convert JSON to TypeScript interfaces
+*   **JSON to JSDoc:** Convert JSON to JSDoc type definitions
 *   **JSON to C#:** Convert JSON to C# classes
 *   **JSON to Swift:** Convert JSON to Swift structs
 *   **JSON to Kotlin:** Convert JSON to Kotlin data classes
+*   **JSON to Python:** Convert JSON to Python dataclasses or Pydantic models
 *   **JSON to Go:** Convert JSON to Go structs
 *   **JSON to Rust:** Convert JSON to Rust structs
 *   **Color Picker:** Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats
@@ -51,9 +68,16 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **MD5 Hash:** Generate MD5 hashes from text
 *   **SHA-1 Hash:** Generate SHA-1 hashes from text
 *   **SHA-256/512 Hash:** Generate secure SHA-256 or SHA-512 hashes from text
+*   **Clawdbot Security Scanner:** Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
+*   **SAML Decoder:** Decode SAML Requests/Responses from Base64 to readable XML
+*   **SAML Metadata Parser:** Parse SAML Metadata XML and extract IdP/SP configuration
+*   **SAML Certificate Inspector:** Inspect X.509 certificates from SAML metadata, responses, or PEM
+*   **CSR Decoder:** Decode PKCS#10 CSRs and inspect subjects, SANs, extensions, and key details
+*   **SAML Assertion Builder:** Generate test SAML Responses, AuthnRequests, and LogoutRequests
 
 ### Networking
 *   **API Tester:** Test and view API responses
+*   **HTTP Status Code Reference:** Searchable reference of all HTTP status codes with descriptions and use cases
 
 ### Data
 *   **OSS Data:** Open-source data tools for developers
