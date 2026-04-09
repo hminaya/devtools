@@ -26,16 +26,26 @@ DevTools provides essential utilities for developers including hash generators, 
 - [HL7 to FHIR Converter](https://developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
 - [Diff / Text Compare](https://developers.do/tools/diff-compare): Compare two texts and see color-coded line-by-line differences
 - [Stacktrace Formatter](https://developers.do/tools/stacktrace-formatter): Format and beautify stack traces from multiple languages
+- [Beautify Stack Trace](https://developers.do/tools/beautify-stack-trace): Clean up and beautify messy error stack traces for readability
 - [Stack Trace Analyzer](https://developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes and explain errors
 - [Base64 Encoder/Decoder](https://developers.do/tools/base64-encoder): Encode and decode Base64 strings
+- [Unix Timestamp Converter](https://developers.do/tools/unix-timestamp): Convert between Unix epoch timestamps and human-readable dates
+- [URL Encoder / Decoder](https://developers.do/tools/url-encoder): Encode and decode URLs using encodeURIComponent and encodeURI
+- [YAML ↔ JSON Converter](https://developers.do/tools/yaml-json-converter): Convert between YAML and JSON with auto-detection
+- [SQL Formatter](https://developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
+- [Regex Tester](https://developers.do/tools/regex-tester): Test regular expressions with match highlighting, capture groups, and replacement
+- [Regex Library](https://developers.do/tools/regex-library): Browse and copy common regular expressions for validation and extraction
+- [Number Base Converter](https://developers.do/tools/number-base-converter): Convert numbers between binary, octal, decimal, and hex
 - [JSON to TypeScript](https://developers.do/tools/json-to-typescript): Convert JSON to TypeScript interfaces
 - [JSON to JSDoc](https://developers.do/tools/json-to-jsdoc): Convert JSON to JSDoc type definitions for JavaScript
 - [JSON to C#](https://developers.do/tools/json-to-csharp): Convert JSON to C# classes
 - [JSON to Swift](https://developers.do/tools/json-to-swift): Convert JSON to Swift structs
 - [JSON to Kotlin](https://developers.do/tools/json-to-kotlin): Convert JSON to Kotlin data classes
+- [JSON to Python](https://developers.do/tools/json-to-python): Convert JSON to Python dataclasses or Pydantic models
 - [JSON to Go](https://developers.do/tools/json-to-go): Convert JSON to Go structs
 - [JSON to Rust](https://developers.do/tools/json-to-rust): Convert JSON to Rust structs
 - [Color Picker](https://developers.do/tools/color-picker): Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
+- [HTTP Status Code Reference](https://developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions
 
 ## AI Tools
 
@@ -55,7 +65,6 @@ DevTools provides essential utilities for developers including hash generators, 
 - [Lorem Ipsum Generator](https://developers.do/tools/lorem-ipsum-generator): Generate placeholder text for designs
 - [Random Number Generator](https://developers.do/tools/random-number-generator): Generate random numbers with code samples
 - [File Size Converter](https://developers.do/tools/file-size-converter): Convert file sizes between SI and IEC units
-- [Stacktrace Formatter](https://developers.do/tools/stacktrace-formatter): Format stack traces from multiple languages
 - [API Tester](https://developers.do/tools/api-tester): Test and view API responses
 - [iOS App Lookup](https://developers.do/tools/ios-app-lookup): Look up iOS app metadata by bundle ID
 
