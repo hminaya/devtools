@@ -39,6 +39,7 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **URL Encoder / Decoder:** Encode and decode URLs using encodeURIComponent and encodeURI
 *   **YAML ↔ JSON Converter:** Convert between YAML and JSON with auto-detection of input format
 *   **CSV ↔ JSON Converter:** Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
+*   **CSV Viewer / Table Explorer:** Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 *   **SQL Formatter:** Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 
 ### Algorithms

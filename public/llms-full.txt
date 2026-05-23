@@ -266,6 +266,14 @@ Convert between CSV and JSON with auto-detection of input format. Handles quoted
 - Flattening nested JSON into CSV for spreadsheets
 - Cleaning up and re-typing tabular data
 
+### CSV Viewer / Table Explorer
+**URL**: https://developers.do/tools/csv-viewer
+
+Paste CSV and explore it as a sortable, searchable table with sticky headers and type-aware column sorting. Auto-detects the delimiter (comma, semicolon, tab, pipe) and handles quoted fields. Useful for:
+- Quickly inspecting a CSV without opening a spreadsheet
+- Sorting and filtering rows to find specific records
+- Sanity-checking exports and data dumps
+
 ### SQL Formatter
 **URL**: https://developers.do/tools/sql-formatter
 

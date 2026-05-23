@@ -210,6 +210,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'csv-viewer',
+    name: 'CSV Viewer / Table Explorer',
+    description: 'Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required',
+    route: '/tools/csv-viewer',
+    icon: '🔍',
+    category: 'Formatting',
+  },
+  {
     id: 'sql-formatter',
     name: 'SQL Formatter',
     description: 'Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more',
