@@ -34,6 +34,7 @@ DevTools provides essential utilities for developers including hash generators, 
 - [Cron Expression Generator](https://developers.do/tools/cron-generator): Build cron expressions visually with field controls — no syntax knowledge required
 - [URL Encoder / Decoder](https://developers.do/tools/url-encoder): Encode and decode URLs using encodeURIComponent and encodeURI
 - [YAML ↔ JSON Converter](https://developers.do/tools/yaml-json-converter): Convert between YAML and JSON with auto-detection
+- [CSV ↔ JSON Converter](https://developers.do/tools/csv-json-converter): Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 - [SQL Formatter](https://developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 - [Regex Tester](https://developers.do/tools/regex-tester): Test regular expressions with match highlighting, capture groups, and replacement
 - [Regex Library](https://developers.do/tools/regex-library): Browse and copy common regular expressions for validation and extraction

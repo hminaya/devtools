@@ -202,6 +202,14 @@ export const TOOLS: Tool[] = [
     category: 'Formatting',
   },
   {
+    id: 'csv-json-converter',
+    name: 'CSV ↔ JSON Converter',
+    description: 'Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening',
+    route: '/tools/csv-json-converter',
+    icon: '🔄',
+    category: 'Formatting',
+  },
+  {
     id: 'sql-formatter',
     name: 'SQL Formatter',
     description: 'Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more',

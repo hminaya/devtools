@@ -258,6 +258,14 @@ Convert between YAML and JSON with auto-detection of input format. Useful for:
 - Transforming CI/CD pipeline configs
 - Working with APIs that accept JSON from YAML sources
 
+### CSV ↔ JSON Converter
+**URL**: https://developers.do/tools/csv-json-converter
+
+Convert between CSV and JSON with auto-detection of input format. Handles quoted fields, custom delimiters (comma, semicolon, tab, pipe), type inference, and nested-object flattening. Useful for:
+- Turning spreadsheet exports into JSON for APIs
+- Flattening nested JSON into CSV for spreadsheets
+- Cleaning up and re-typing tabular data
+
 ### SQL Formatter
 **URL**: https://developers.do/tools/sql-formatter
 
