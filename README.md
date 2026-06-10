@@ -78,6 +78,7 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **SAML Certificate Inspector:** Inspect X.509 certificates from SAML metadata, responses, or PEM
 *   **CSR Decoder:** Decode PKCS#10 CSRs and inspect subjects, SANs, extensions, and key details
 *   **SAML Assertion Builder:** Generate test SAML Responses, AuthnRequests, and LogoutRequests
+*   **SAML Metadata Generator:** Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
 
 ### Networking
 *   **API Tester:** Test and view API responses

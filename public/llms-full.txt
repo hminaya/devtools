@@ -98,6 +98,14 @@ Generate test SAML Responses, AuthnRequests, and LogoutRequests from form fields
 - Simulating IdP responses in development
 - Mocking SAML authentication flows
 
+### SAML Metadata Generator
+**URL**: https://developers.do/tools/saml-metadata-generator
+
+Generate SAML 2.0 EntityDescriptor metadata XML for Service Providers and Identity Providers from form fields: Entity ID, ACS/SSO/SLO endpoints with bindings, X.509 signing/encryption certificates, NameID formats, signing flags, organization and contact info. Copy or download as .xml. Useful for:
+- Creating SP metadata to register an app with an IdP (Okta, Azure AD, Keycloak, ADFS)
+- Generating metadata for homegrown SAML implementations that don't auto-publish it
+- Rebuilding malformed or incomplete metadata files
+
 ### CSR Decoder
 **URL**: https://developers.do/tools/csr-decoder
 

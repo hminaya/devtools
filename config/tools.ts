@@ -511,6 +511,14 @@ export const TOOLS: Tool[] = [
     category: 'Security',
   },
   {
+    id: 'saml-metadata-generator',
+    name: 'SAML Metadata Generator',
+    description: 'Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs',
+    route: '/tools/saml-metadata-generator',
+    icon: '🪪',
+    category: 'Security',
+  },
+  {
     id: 'api-tester',
     name: 'API Tester',
     description: 'Test and view API responses',

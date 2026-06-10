@@ -15,6 +15,7 @@ DevTools provides essential utilities for developers including hash generators, 
 - [SAML Metadata Parser](https://developers.do/tools/saml-metadata-parser): Parse SAML Metadata XML and extract IdP/SP configuration
 - [SAML Certificate Inspector](https://developers.do/tools/saml-cert-inspector): Inspect X.509 certificates from SAML metadata or PEM
 - [SAML Assertion Builder](https://developers.do/tools/saml-builder): Generate test SAML Responses, AuthnRequests, and LogoutRequests
+- [SAML Metadata Generator](https://developers.do/tools/saml-metadata-generator): Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
 - [CSR Decoder](https://developers.do/tools/csr-decoder): Decode PKCS#10 certificate signing requests and inspect subjects, SANs, and extensions
 - [Clawdbot Security Scanner](https://developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 - [String Similarity](https://developers.do/tools/string-similarity): Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
