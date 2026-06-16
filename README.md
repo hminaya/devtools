@@ -76,9 +76,10 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **SAML Decoder:** Decode SAML Requests/Responses from Base64 to readable XML
 *   **SAML Metadata Parser:** Parse SAML Metadata XML and extract IdP/SP configuration
 *   **SAML Certificate Inspector:** Inspect X.509 certificates from SAML metadata, responses, or PEM
-*   **CSR Decoder:** Decode PKCS#10 CSRs and inspect subjects, SANs, extensions, and key details
+*   **Certificate & CSR Decoder:** Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 *   **SAML Assertion Builder:** Generate test SAML Responses, AuthnRequests, and LogoutRequests
 *   **SAML Metadata Generator:** Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
+*   **SAML Response Validator:** Debug a SAML Response — check status, timing, audience, recipient, and signature presence to find why SSO is failing
 
 ### Networking
 *   **API Tester:** Test and view API responses
@@ -120,7 +121,7 @@ Follow these steps to get the application up and running on your local machine.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/hminaya/devtools/devtools.git
+git clone https://github.com/hminaya/devtools.git
 cd devtools
 ```
 

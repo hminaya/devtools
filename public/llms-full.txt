@@ -106,13 +106,21 @@ Generate SAML 2.0 EntityDescriptor metadata XML for Service Providers and Identi
 - Generating metadata for homegrown SAML implementations that don't auto-publish it
 - Rebuilding malformed or incomplete metadata files
 
-### CSR Decoder
+### SAML Response Validator
+**URL**: https://developers.do/tools/saml-validator
+
+Validate and debug a SAML Response to find why an SSO login is being rejected. Decodes the response (Base64 or raw XML) and runs a plain-English checklist on the most common real-world failure causes: Status code, NotBefore/NotOnOrAfter timing (with clock-skew tolerance), AudienceRestriction, SubjectConfirmation Recipient, Destination, InResponseTo, Issuer, and signature presence/coverage plus embedded certificate expiry. Optionally provide expected Audience/Destination/Issuer/InResponseTo for exact matching. Does not cryptographically verify the XML signature (that requires canonicalization). Useful for:
+- Debugging "SAML response invalid" / login rejected errors
+- Diagnosing expired assertions and IdP/SP clock skew
+- Catching audience, recipient, and InResponseTo mismatches
+
+### Certificate & CSR Decoder
 **URL**: https://developers.do/tools/csr-decoder
 
-Decode PKCS#10 Certificate Signing Requests (CSRs) and inspect all fields: subject (CN, O, OU, C), SANs, requested extensions, signature algorithm, public key details, and fingerprints. Accepts PEM format. Useful for:
+Decode X.509 certificates and PKCS#10 Certificate Signing Requests in one tool — auto-detects which you pasted. For certificates: subject, issuer, serial number, validity period with expiry status, SANs, key usage, extended key usage, CA flag, public key details, and SHA-1/SHA-256 fingerprints; supports certificate chains. For CSRs: subject, SANs, requested extensions, challenge password, signature algorithm, public key, and fingerprints. Accepts PEM or Base64 DER. Useful for:
+- Checking certificate expiry, issuer, and SANs before deployment
 - Verifying CSR contents before submitting to a CA
-- Checking SANs and subject fields
-- Auditing certificate requests
+- Inspecting a certificate chain or any PEM/DER blob without OpenSSL
 
 ### Clawdbot Security Scanner
 **URL**: https://developers.do/tools/clawdbot-security-scanner
