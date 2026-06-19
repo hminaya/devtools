@@ -5,11 +5,18 @@ export const metadata: Metadata = {
   title: 'File Size Converter - Convert Between B, KB, MB, GB, TB, and Binary Units',
   description: 'Free file size converter tool to convert between bytes, kilobytes, megabytes, gigabytes, terabytes, and binary units (KiB, MiB, GiB, TiB). Supports both decimal (SI) and binary (IEC) standards. Perfect for developers and system administrators.',
   keywords: 'file size converter, bytes to kb, kb to mb, mb to gb, gb to tb, binary units, kibibyte, mebibyte, gibibyte, tebibyte, SI units, IEC units, file size calculator, storage converter, how to convert bytes to megabytes, kb to mb converter, what is a kibibyte, binary vs decimal file size',
+  alternates: {
+    canonical: '/tools/file-size-converter',
+  },
   openGraph: {
     url: 'https://developers.do/tools/file-size-converter',
     title: 'File Size Converter - Free Decimal & Binary Unit Converter',
     description: 'Convert file sizes between decimal (SI) and binary (IEC) units instantly. Supports B, KB, MB, GB, TB, KiB, MiB, GiB, TiB, and more.',
-    images: [{ url: 'https://developers.do/favicon.png' }],
+    images: [{ url: '/og/tools/file-size-converter.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og/tools/file-size-converter.png'],
   },
 };
 

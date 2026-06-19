@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { TOOLS } from '../../config/tools';
+import { TOOL_CATEGORIES, getCategorySlug } from '../../config/seo';
 import Logo from '../shared/Logo';
 
 function Sidebar() {
@@ -47,8 +48,7 @@ function Sidebar() {
     return acc;
   }, {} as Record<string, typeof TOOLS>);
 
-  // Define category order
-  const categoryOrder = ['AI Tools', 'Algorithms', 'Formatting', 'Generators', 'Code & Schemas', 'Networking', 'SAML', 'Security', 'Data', 'Apps'];
+  const categoryOrder = TOOL_CATEGORIES.map((category) => category.name);
 
   return (
     <div className="w-64 bg-slate-800 h-screen flex flex-col overflow-y-auto">
@@ -90,9 +90,12 @@ function Sidebar() {
 
           return (
             <div key={category} className="mt-6">
-              <div className="px-4 py-2 text-slate-400 text-xs font-semibold uppercase tracking-wider">
+              <Link
+                href={`/tools/${getCategorySlug(category)}`}
+                className="block px-4 py-2 text-slate-400 text-xs font-semibold uppercase tracking-wider hover:text-slate-200"
+              >
                 {category}
-              </div>
+              </Link>
               <div className="space-y-1">
                 {tools.map((tool) => (
                   tool.external ? (

@@ -5,7 +5,9 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "tsc --noEmit",
+    "generate:og": "node scripts/generate-og-images.cjs",
+    "generate:llms": "node scripts/generate-llms.cjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

@@ -3,11 +3,14 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy - Developer Tools Dashboard',
   description: 'Privacy policy for the Developer Tools Dashboard.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
   openGraph: {
     url: 'https://developers.do/privacy-policy',
     title: 'Privacy Policy - Developer Tools Dashboard',
     description: 'Privacy policy for the Developer Tools Dashboard.',
-    images: [{ url: 'https://developers.do/favicon.png' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
   },
 };
 

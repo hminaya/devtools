@@ -1,575 +1,389 @@
 # DevTools by developers.do - Complete Documentation
 
-> A collection of free developer tools that run 100% client-side in your browser. No backend. All tool processing happens locally on the user's device. Anonymized analytics are used to improve the site.
+> A collection of free developer tools that run 100% client-side in your browser. No backend. All tool processing happens locally on the user device. Anonymized analytics are used to improve the site.
 
 ## About DevTools
 
-DevTools is a suite of essential utilities for software developers built with privacy as the core principle. Key characteristics:
-
-- **100% Client-Side**: All tools run entirely in the browser using JavaScript, WebAssembly, and Web APIs
-- **No Data Collection**: User input is never transmitted to any server
-- **Anonymized Analytics**: Google Analytics is used with consent controls. No tracking cookies without user consent.
-- **Works Offline**: After initial page load, most tools work without internet
-- **Open Source**: Built with Next.js, React, TypeScript, and Tailwind CSS
+DevTools is a suite of browser-based utilities for software developers built with privacy as a core principle.
 
-Website: https://developers.do
-
----
+- 100% client-side: tools run in the browser using JavaScript, WebAssembly, and Web APIs.
+- No upload required: tool input is not transmitted to a backend.
+- Open source: built with Next.js, React, TypeScript, and Tailwind CSS.
+- Website: https://developers.do
 
-## Security Tools
+## Tool Categories
 
-### SHA-256/512 Hash Generator
-**URL**: https://developers.do/tools/sha256-generator
+### AI Tools
 
-Generate cryptographically secure hashes using SHA-256 (64 characters) or SHA-512 (128 characters). Uses the Web Crypto API for reliable, fast hashing. Ideal for:
-- File integrity verification
-- Password hashing (with proper salting)
-- Digital signatures
-- Data deduplication
+Category URL: https://developers.do/tools/ai-tools
 
-### SHA-1 Hash Generator
-**URL**: https://developers.do/tools/sha1-generator
-
-Generate SHA-1 hashes (40 characters). Note: SHA-1 is no longer considered cryptographically secure. Use only for:
-- Checksums
-- Cache busting
-- Non-security-critical deduplication
-- Legacy system compatibility
+#### JS Tokenizers
+URL: https://developers.do/tools/js-tokenizer
 
-### MD5 Hash Generator
-**URL**: https://developers.do/tools/md5-generator
-
-Generate MD5 hashes (32 characters). Note: MD5 is cryptographically broken. Use only for:
-- Checksums
-- Cache keys
-- Non-security purposes
+Tokenize text using various AI tokenizers
 
-### JWT Decoder
-**URL**: https://developers.do/tools/jwt-decoder
+#### RAG Chunker
+URL: https://developers.do/tools/rag-chunker
 
-Decode and inspect JSON Web Tokens without sending them to a server. Displays:
-- Header (algorithm, type)
-- Payload (claims, expiration, issuer)
-- Signature (for inspection, not verification)
+Split text into retrieval-friendly chunks with overlap and token counts
 
-Useful for debugging authentication flows and understanding token contents.
+#### Sentiment Analysis
+URL: https://developers.do/tools/sentiment-analysis
 
-### Secrets Scanner
-**URL**: https://developers.do/tools/secrets-scanner
+Analyze emotional tone of text using AI
 
-Scan text, logs, configuration files, or code for accidentally leaked secrets including:
-- AWS access keys and secret keys
-- GitHub tokens
-- Stripe API keys
-- Google API keys
-- Private keys (RSA, SSH)
-- Database connection strings
-- Generic API keys and tokens
+#### Zero-Shot Classification
+URL: https://developers.do/tools/zero-shot-classification
 
-### SAML Decoder
-**URL**: https://developers.do/tools/saml-decoder
+Classify text into custom categories without training using AI
 
-Decode Base64-encoded SAML Requests and Responses, with auto-detection of deflate compression. Extracts key fields: Issuer, NameID, Conditions, Attributes, and more. Useful for:
-- Debugging SSO login flows
-- Inspecting what an IdP or SP is sending
-- Troubleshooting SAML authentication errors
+#### Sentence Similarity
+URL: https://developers.do/tools/sentence-similarity
 
-### SAML Metadata Parser
-**URL**: https://developers.do/tools/saml-metadata-parser
+Generate embeddings and find semantic similarity between texts using AI
 
-Parse SAML Metadata XML from any IdP or SP (Okta, Azure AD, ADFS, etc.) and extract Entity ID, SSO/ACS endpoints, X.509 certificates, NameID formats, and organization info. Useful for:
-- Setting up SSO integrations
-- Verifying metadata before deployment
-- Extracting certificate details from federation metadata
+#### Question Answering
+URL: https://developers.do/tools/question-answering
 
-### SAML Certificate Inspector
-**URL**: https://developers.do/tools/saml-cert-inspector
+Answer questions based on provided context using AI
 
-Inspect X.509 certificates from SAML metadata, SAML responses, or raw PEM/DER. View subject, issuer, validity period, fingerprints (SHA-1, SHA-256), key usage, and SANs. Useful for:
-- Checking SAML signing certificate expiry
-- Validating certificate identity before configuring SSO
-- Comparing certificates between environments
+#### Fill-Mask Text Completion
+URL: https://developers.do/tools/fill-mask
 
-### SAML Assertion Builder
-**URL**: https://developers.do/tools/saml-builder
+Complete sentences and predict missing words using AI
 
-Generate test SAML Responses, AuthnRequests, and LogoutRequests from form fields. Output as raw XML, Base64, or Base64+Deflate. Useful for:
-- Creating test fixtures for SSO integration tests
-- Simulating IdP responses in development
-- Mocking SAML authentication flows
+#### Text Summarization
+URL: https://developers.do/tools/text-summarization
 
-### SAML Metadata Generator
-**URL**: https://developers.do/tools/saml-metadata-generator
+Summarize long text into concise overviews using AI
 
-Generate SAML 2.0 EntityDescriptor metadata XML for Service Providers and Identity Providers from form fields: Entity ID, ACS/SSO/SLO endpoints with bindings, X.509 signing/encryption certificates, NameID formats, signing flags, organization and contact info. Copy or download as .xml. Useful for:
-- Creating SP metadata to register an app with an IdP (Okta, Azure AD, Keycloak, ADFS)
-- Generating metadata for homegrown SAML implementations that don't auto-publish it
-- Rebuilding malformed or incomplete metadata files
+#### Text Extractor
+URL: https://developers.do/tools/text-extractor
 
-### SAML Response Validator
-**URL**: https://developers.do/tools/saml-validator
+Extract emails, URLs, IPs, dates, and patterns from text
 
-Validate and debug a SAML Response to find why an SSO login is being rejected. Decodes the response (Base64 or raw XML) and runs a plain-English checklist on the most common real-world failure causes: Status code, NotBefore/NotOnOrAfter timing (with clock-skew tolerance), AudienceRestriction, SubjectConfirmation Recipient, Destination, InResponseTo, Issuer, and signature presence/coverage plus embedded certificate expiry. Optionally provide expected Audience/Destination/Issuer/InResponseTo for exact matching. Does not cryptographically verify the XML signature (that requires canonicalization). Useful for:
-- Debugging "SAML response invalid" / login rejected errors
-- Diagnosing expired assertions and IdP/SP clock skew
-- Catching audience, recipient, and InResponseTo mismatches
+### Formatting
 
-### Certificate & CSR Decoder
-**URL**: https://developers.do/tools/csr-decoder
+Category URL: https://developers.do/tools/formatting
 
-Decode X.509 certificates and PKCS#10 Certificate Signing Requests in one tool — auto-detects which you pasted. For certificates: subject, issuer, serial number, validity period with expiry status, SANs, key usage, extended key usage, CA flag, public key details, and SHA-1/SHA-256 fingerprints; supports certificate chains. For CSRs: subject, SANs, requested extensions, challenge password, signature algorithm, public key, and fingerprints. Accepts PEM or Base64 DER. Useful for:
-- Checking certificate expiry, issuer, and SANs before deployment
-- Verifying CSR contents before submitting to a CA
-- Inspecting a certificate chain or any PEM/DER blob without OpenSSL
+#### JSON Prettifier
+URL: https://developers.do/tools/json-prettifier
 
-### Clawdbot Security Scanner
-**URL**: https://developers.do/tools/clawdbot-security-scanner
+Format and validate JSON data
 
-Audit Clawdbot, Moltbot, and OpenClaw AI agent configurations for security vulnerabilities. Detects exposed gateway APIs, unsafe shell access, credential leaks in config, prompt injection risks, and overly permissive MCP settings. Useful for:
-- Security review of AI agent deployments
-- Pre-production configuration audits
-- Identifying misconfigured permissions
+#### XML Prettifier
+URL: https://developers.do/tools/xml-prettifier
 
-### Password Generator
-**URL**: https://developers.do/tools/password-generator
+Format and validate XML data
 
-Generate cryptographically secure random passwords using `crypto.getRandomValues()`. Options include:
-- Password length
-- Uppercase/lowercase letters
-- Numbers
-- Special characters
-- Multiple passwords at once
+#### HL7 Parser
+URL: https://developers.do/tools/hl7-parser
 
----
+Read and parse HL7 v2 messages into structured JSON
 
-## Formatting Tools
+#### HL7 to FHIR Converter
+URL: https://developers.do/tools/hl7-to-fhir
 
-### JSON Prettifier
-**URL**: https://developers.do/tools/json-prettifier
+Convert HL7 v2 messages to FHIR R4 Bundles
 
-Format, validate, and beautify JSON data. Features:
-- Syntax highlighting
-- Error detection with line numbers
-- Minify option
-- Copy formatted output
+#### Diff / Text Compare
+URL: https://developers.do/tools/diff-compare
 
-### XML Prettifier
-**URL**: https://developers.do/tools/xml-prettifier
+Compare two texts and see color-coded differences
 
-Format and validate XML data with proper indentation and syntax highlighting.
+#### Stacktrace Formatter
+URL: https://developers.do/tools/stacktrace-formatter
 
-### HL7 Parser
-**URL**: https://developers.do/tools/hl7-parser
+Format and beautify stack traces from multiple programming languages
 
-Read and parse HL7 v2 healthcare messages into structured JSON. Features:
-- Segment and field breakdown
-- Repetition/component/subcomponent parsing
-- Message metadata extraction (type, trigger, version, control ID)
-- Client-side processing (no server transmission)
+#### Beautify Stack Trace
+URL: https://developers.do/tools/beautify-stack-trace
 
-### HL7 to FHIR Converter
-**URL**: https://developers.do/tools/hl7-to-fhir
+Clean up and beautify messy error stack traces for readability
 
-Convert HL7 v2 messages (ADT, ORU, ORM, VXU, SIU) to FHIR R4 Bundles. Maps segments to Patient, Encounter, Observation, and other FHIR resources. Useful for:
-- Healthcare interoperability projects
-- FHIR migration from legacy HL7 v2 systems
-- Testing FHIR pipelines with real HL7 data
+#### Stack Trace Analyzer
+URL: https://developers.do/tools/stacktrace-analyzer
 
-### Diff / Text Compare
-**URL**: https://developers.do/tools/diff-compare
+Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 
-Compare two texts side by side with color-coded line-by-line diffs. Highlights added, removed, and unchanged lines. Useful for:
-- Comparing config file versions
-- Reviewing text changes before committing
-- Spotting differences in API responses or log outputs
+#### Base64 Encoder/Decoder
+URL: https://developers.do/tools/base64-encoder
 
-### Stack Trace Analyzer
-**URL**: https://developers.do/tools/stacktrace-analyzer
+Encode and decode Base64 strings
 
-Analyze stack traces to identify root cause frames, explain error types, and suggest fixes. Separates application code from framework internals. Supports JavaScript, Python, Java, C#, Go, PHP, and Ruby. Useful for:
-- Understanding unfamiliar exceptions quickly
-- Identifying the exact line causing an error
-- Debugging production errors from logs
+#### File Size Converter
+URL: https://developers.do/tools/file-size-converter
 
-### String Similarity
-**URL**: https://developers.do/tools/string-similarity
+Convert file sizes between decimal (SI) and binary (IEC) units
 
-Compare two strings using multiple algorithms: Jaro-Winkler, Levenshtein distance, Dice coefficient, and Hamming distance. Useful for:
-- Fuzzy string matching
-- Detecting near-duplicate records
-- Evaluating string comparison algorithm behavior
+#### Unix Timestamp Converter
+URL: https://developers.do/tools/unix-timestamp
 
-### JSON to JSDoc
-**URL**: https://developers.do/tools/json-to-jsdoc
+Convert between Unix epoch timestamps and human-readable dates with timezone support
 
-Convert JSON objects to JSDoc @typedef comments for JavaScript type hints without TypeScript. Supports optional field detection and nested objects. Useful for:
-- Adding type hints to plain JavaScript projects
-- Documenting API response shapes in JSDoc
+#### Cron Expression Tester
+URL: https://developers.do/tools/cron-tester
 
-### Base64 Encoder/Decoder
-**URL**: https://developers.do/tools/base64-encoder
+Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
 
-Encode text to Base64 or decode Base64 strings. Useful for:
-- Data URLs
-- Basic authentication headers
-- Email attachments (MIME)
-- Embedding binary data in JSON/XML
+#### Cron Expression Generator
+URL: https://developers.do/tools/cron-generator
 
-### Stacktrace Formatter
-**URL**: https://developers.do/tools/stacktrace-formatter
+Build cron expressions visually with field controls — no syntax knowledge required
 
-Format and beautify stack traces from multiple programming languages for easier debugging.
+#### URL Encoder / Decoder
+URL: https://developers.do/tools/url-encoder
 
-### Beautify Stack Trace
-**URL**: https://developers.do/tools/beautify-stack-trace
+Encode and decode URLs using encodeURIComponent and encodeURI
 
-Clean up and beautify messy error stack traces for readability. Supports JavaScript, Python, Java, C#, Go, PHP, and Ruby. Features syntax highlighting, auto-detection, and sensitive data removal. Useful for:
-- Making messy error logs readable
-- Cleaning up stack traces from production logs
-- Sharing formatted traces with teammates
+#### YAML ↔ JSON Converter
+URL: https://developers.do/tools/yaml-json-converter
 
-### File Size Converter
-**URL**: https://developers.do/tools/file-size-converter
+Convert between YAML and JSON with auto-detection of input format
 
-Convert file sizes between decimal (SI: KB, MB, GB) and binary (IEC: KiB, MiB, GiB) units.
+#### CSV ↔ JSON Converter
+URL: https://developers.do/tools/csv-json-converter
 
-### Unix Timestamp Converter
-**URL**: https://developers.do/tools/unix-timestamp
+Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 
-Convert between Unix epoch timestamps and human-readable dates with timezone support. Useful for:
-- Debugging timestamps in logs and APIs
-- Converting between epoch seconds/milliseconds and dates
-- Comparing timestamps across timezones
+#### CSV Viewer / Table Explorer
+URL: https://developers.do/tools/csv-viewer
 
-### Cron Expression Tester
-**URL**: https://developers.do/tools/cron-tester
+Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 
-Test and parse cron expressions, see them explained in plain English, and preview upcoming run times in any timezone. Supports standard 5-field syntax (minute, hour, day-of-month, month, day-of-week), ranges, lists, steps, month/weekday names, and macros (@hourly, @daily, @weekly, @monthly, @yearly, @midnight). Useful for:
-- Validating cron expressions before deploying
-- Understanding unfamiliar cron schedules in CI/CD configs
-- Verifying when a job will fire across timezones
-- Quickly checking common patterns
+#### SQL Formatter
+URL: https://developers.do/tools/sql-formatter
 
-### Cron Expression Generator
-**URL**: https://developers.do/tools/cron-generator
+Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 
-Build cron expressions visually with per-field controls (mode tabs, value chips, range inputs) — no need to memorize cron syntax. Pick how each field behaves (every value, every N, specific values, or a range) and the cron string is generated as you click. Live plain-English description and next-run preview included. Useful for:
-- Creating cron schedules without learning syntax
-- Producing expressions for CI/CD, schedulers, or infrastructure-as-code
-- Sharing schedules with non-technical teammates by working from intent rather than text
+### Algorithms
 
-### URL Encoder / Decoder
-**URL**: https://developers.do/tools/url-encoder
+Category URL: https://developers.do/tools/algorithms
 
-Encode and decode URLs using encodeURIComponent and encodeURI. Useful for:
-- Encoding query parameters
-- Debugging URL encoding issues
-- Preparing strings for URL inclusion
+#### String Similarity
+URL: https://developers.do/tools/string-similarity
 
-### YAML ↔ JSON Converter
-**URL**: https://developers.do/tools/yaml-json-converter
+Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
 
-Convert between YAML and JSON with auto-detection of input format. Useful for:
-- Converting Kubernetes configs between formats
-- Transforming CI/CD pipeline configs
-- Working with APIs that accept JSON from YAML sources
+#### Regex Tester
+URL: https://developers.do/tools/regex-tester
 
-### CSV ↔ JSON Converter
-**URL**: https://developers.do/tools/csv-json-converter
+Test regular expressions with match highlighting, capture groups, and string replacement
 
-Convert between CSV and JSON with auto-detection of input format. Handles quoted fields, custom delimiters (comma, semicolon, tab, pipe), type inference, and nested-object flattening. Useful for:
-- Turning spreadsheet exports into JSON for APIs
-- Flattening nested JSON into CSV for spreadsheets
-- Cleaning up and re-typing tabular data
+#### Regex Library
+URL: https://developers.do/tools/regex-library
 
-### CSV Viewer / Table Explorer
-**URL**: https://developers.do/tools/csv-viewer
+Browse and copy common regular expressions for validation, extraction, and text processing
 
-Paste CSV and explore it as a sortable, searchable table with sticky headers and type-aware column sorting. Auto-detects the delimiter (comma, semicolon, tab, pipe) and handles quoted fields. Useful for:
-- Quickly inspecting a CSV without opening a spreadsheet
-- Sorting and filtering rows to find specific records
-- Sanity-checking exports and data dumps
+#### Number Base Converter
+URL: https://developers.do/tools/number-base-converter
 
-### SQL Formatter
-**URL**: https://developers.do/tools/sql-formatter
+Convert numbers between binary, octal, decimal, and hex with two's complement
 
-Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more. Useful for:
-- Making complex queries readable
-- Standardizing SQL formatting in teams
-- Preparing queries for code reviews
+### Apps
 
-### Regex Tester
-**URL**: https://developers.do/tools/regex-tester
+Category URL: https://developers.do/tools/apps
 
-Test regular expressions with real-time match highlighting, capture groups, and string replacement. Useful for:
-- Building and debugging regex patterns
-- Testing patterns against sample text
-- Understanding capture group behavior
+#### iOS App Lookup
+URL: https://developers.do/tools/ios-app-lookup
 
-### Regex Library
-**URL**: https://developers.do/tools/regex-library
+Look up iOS app metadata from the App Store using bundle ID
 
-Browse and copy common regular expressions for validation, extraction, and text processing. Includes patterns for emails, URLs, IPs, dates, and more.
+#### Terremoto
+URL: https://terremoto.developers.do
 
-### Number Base Converter
-**URL**: https://developers.do/tools/number-base-converter
+iOS app for tracking earthquakes in real-time
 
-Convert numbers between binary, octal, decimal, and hexadecimal with two's complement support. Useful for:
-- Low-level programming and debugging
-- Understanding binary representations
-- Working with hex color codes or memory addresses
+#### FedPulse
+URL: https://fedpulse.developers.do
 
----
+iOS app to search, save, and track federal government jobs
 
-## Code Generators & Converters
+#### FAA Part 107 Quiz Prep
+URL: https://part107.developers.do
 
-### JSON to TypeScript
-**URL**: https://developers.do/tools/json-to-typescript
+iOS app for FAA Part 107 drone pilot certification exam preparation
 
-Convert JSON objects to TypeScript interfaces. Automatically infers types and generates properly typed interfaces.
+#### Citizenship Test Prep
+URL: https://citizenshiptest.developers.do
 
-### JSON to C#
-**URL**: https://developers.do/tools/json-to-csharp
+iOS app for US citizenship naturalization test preparation
 
-Convert JSON to C# classes with proper property types and attributes.
+#### ClawPet
+URL: https://clawpet.clawpantry.com
 
-### JSON to Swift
-**URL**: https://developers.do/tools/json-to-swift
+iOS virtual desktop pet that visualizes bot activity in real-time
 
-Convert JSON to Swift structs with Codable conformance.
+### Generators
 
-### JSON to Kotlin
-**URL**: https://developers.do/tools/json-to-kotlin
+Category URL: https://developers.do/tools/generators
 
-Convert JSON to Kotlin data classes.
+#### Password Generator
+URL: https://developers.do/tools/password-generator
 
-### JSON to Python
-**URL**: https://developers.do/tools/json-to-python
+Generate secure random passwords
 
-Convert JSON to Python dataclasses or Pydantic BaseModel classes. Features:
-- Two output styles: Python dataclasses and Pydantic models
-- Auto-converts camelCase keys to snake_case
-- Pydantic mode adds Field(alias=...) when keys differ from snake_case
-- Multiple JSON sample support for detecting Optional fields
-- Usage example generation
+#### UUID Generator
+URL: https://developers.do/tools/uuid-generator
 
-Useful for:
-- Building Python APIs from JSON response schemas
-- Generating Pydantic models for FastAPI
-- Creating dataclasses for data processing pipelines
+Generate UUIDs (v4)
 
-### JSON to Go
-**URL**: https://developers.do/tools/json-to-go
+#### Lorem Ipsum Generator
+URL: https://developers.do/tools/lorem-ipsum-generator
 
-Convert JSON to Go structs with proper json tags.
+Generate placeholder text for designs
 
-### JSON to Rust
-**URL**: https://developers.do/tools/json-to-rust
+#### Random Number Generator
+URL: https://developers.do/tools/random-number-generator
 
-Convert JSON to Rust structs with serde derive macros.
+Generate random numbers and see code samples in multiple languages
 
-### JSON to JSDoc
-**URL**: https://developers.do/tools/json-to-jsdoc
+#### QR Code Generator
+URL: https://developers.do/tools/qr-code-generator
 
-Convert JSON to JSDoc type definitions for JavaScript documentation.
+Generate QR codes from text, URLs, or any data
 
----
+### Code & Schemas
 
-## Generators
+Category URL: https://developers.do/tools/code-and-schemas
 
-### UUID Generator
-**URL**: https://developers.do/tools/uuid-generator
+#### JSON to TypeScript
+URL: https://developers.do/tools/json-to-typescript
 
-Generate UUID v4 (random) identifiers. Uses `crypto.randomUUID()` or `crypto.getRandomValues()` for cryptographic randomness.
+Convert JSON to TypeScript interfaces
 
-### QR Code Generator
-**URL**: https://developers.do/tools/qr-code-generator
+#### JSON to JSDoc
+URL: https://developers.do/tools/json-to-jsdoc
 
-Generate QR codes from text, URLs, or any data. Uses Canvas API for rendering.
+Convert JSON to JSDoc type definitions
 
-### Lorem Ipsum Generator
-**URL**: https://developers.do/tools/lorem-ipsum-generator
+#### JSON to C#
+URL: https://developers.do/tools/json-to-csharp
 
-Generate placeholder text for designs. Options for paragraphs, sentences, or words.
+Convert JSON to C# classes
 
-### Random Number Generator
-**URL**: https://developers.do/tools/random-number-generator
+#### JSON to Swift
+URL: https://developers.do/tools/json-to-swift
 
-Generate random numbers with configurable range. Includes code samples in multiple programming languages.
+Convert JSON to Swift structs
 
----
+#### JSON to Kotlin
+URL: https://developers.do/tools/json-to-kotlin
 
-## AI-Powered Tools
+Convert JSON to Kotlin data classes
 
-All AI tools run models directly in the browser using Transformers.js (WebAssembly/WebGPU). No data is sent to external AI services.
+#### JSON to Python
+URL: https://developers.do/tools/json-to-python
 
-### JS Tokenizers
-**URL**: https://developers.do/tools/js-tokenizer
+Convert JSON to Python dataclasses or Pydantic models
 
-Tokenize text using various AI model tokenizers. Useful for:
-- Estimating token counts for API pricing
-- Understanding how models see your text
-- Debugging prompt engineering
+#### JSON to Go
+URL: https://developers.do/tools/json-to-go
 
-### RAG Chunker
-**URL**: https://developers.do/tools/rag-chunker
+Convert JSON to Go structs
 
-Split text into retrieval-friendly chunks with configurable overlap and token counts. Essential for building RAG (Retrieval-Augmented Generation) applications.
+#### JSON to Rust
+URL: https://developers.do/tools/json-to-rust
 
-### Sentiment Analysis
-**URL**: https://developers.do/tools/sentiment-analysis
+Convert JSON to Rust structs
 
-Analyze the emotional tone of text (positive, negative, neutral) using in-browser AI models.
+#### Color Picker
+URL: https://developers.do/tools/color-picker
 
-### Zero-Shot Classification
-**URL**: https://developers.do/tools/zero-shot-classification
+Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
 
-Classify text into custom categories without training. Define your own labels and classify text instantly.
+### Security
 
-### Sentence Similarity
-**URL**: https://developers.do/tools/sentence-similarity
+Category URL: https://developers.do/tools/security
 
-Generate text embeddings and calculate semantic similarity between sentences or documents.
+#### Secrets Scanner
+URL: https://developers.do/tools/secrets-scanner
 
-### Question Answering
-**URL**: https://developers.do/tools/question-answering
+Scan text, logs, or configs for leaked keys and tokens
 
-Extract answers from a given context passage. Provide context and ask questions about it.
+#### JWT Decoder
+URL: https://developers.do/tools/jwt-decoder
 
-### Fill-Mask Text Completion
-**URL**: https://developers.do/tools/fill-mask
+Decode and inspect JWT tokens
 
-Predict missing words in sentences using masked language models.
+#### MD5 Hash
+URL: https://developers.do/tools/md5-generator
 
-### Text Summarization
-**URL**: https://developers.do/tools/text-summarization
+Generate MD5 hashes from text
 
-Summarize long text into concise overviews using AI.
+#### SHA-1 Hash
+URL: https://developers.do/tools/sha1-generator
 
-### Text Extractor
-**URL**: https://developers.do/tools/text-extractor
+Generate SHA-1 hashes from text
 
-Extract structured data from unstructured text:
-- Email addresses
-- URLs
-- IP addresses
-- Dates
-- Phone numbers
-- Custom patterns (regex)
+#### SHA-256/512 Hash
+URL: https://developers.do/tools/sha256-generator
 
----
+Generate secure SHA-256 or SHA-512 hashes from text
 
-## Utility Tools
+#### Clawdbot Security Scanner
+URL: https://developers.do/tools/clawdbot-security-scanner
 
-### Color Picker
-**URL**: https://developers.do/tools/color-picker
+Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 
-Pick colors and convert between formats:
-- HEX (#RRGGBB)
-- RGB (red, green, blue)
-- HSL (hue, saturation, lightness)
-- HSV (hue, saturation, value)
-- CMYK (cyan, magenta, yellow, black)
+#### Certificate & CSR Decoder
+URL: https://developers.do/tools/csr-decoder
 
-### API Tester
-**URL**: https://developers.do/tools/api-tester
+Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 
-Test REST API endpoints and view responses. Supports:
-- GET, POST, PUT, DELETE, PATCH methods
-- Custom headers
-- Request body
-- Response inspection
+### SAML
 
-Note: This is the only tool that makes external HTTP requests, and only to URLs explicitly provided by the user.
+Category URL: https://developers.do/tools/saml
 
-### HTTP Status Code Reference
-**URL**: https://developers.do/tools/http-status-codes
+#### SAML Decoder
+URL: https://developers.do/tools/saml-decoder
 
-Searchable reference of all HTTP status codes with descriptions and use cases. Covers 1xx through 5xx ranges. Useful for:
-- Looking up unfamiliar status codes
-- Understanding proper status code usage for APIs
-- Debugging HTTP response codes
+Decode SAML Requests/Responses from Base64 to readable XML
 
-### iOS App Lookup
-**URL**: https://developers.do/tools/ios-app-lookup
+#### SAML Metadata Parser
+URL: https://developers.do/tools/saml-metadata-parser
 
-Look up iOS app metadata from the App Store using bundle ID. Returns app name, description, version, ratings, and more.
+Parse SAML Metadata XML and extract IdP/SP configuration
 
----
+#### SAML Certificate Inspector
+URL: https://developers.do/tools/saml-cert-inspector
 
-## iOS Apps
+Inspect X.509 certificates from SAML metadata, responses, or PEM
 
-### Terremoto
-**URL**: https://terremoto.developers.do
+#### SAML Assertion Builder
+URL: https://developers.do/tools/saml-builder
 
-iOS app for tracking earthquakes in real-time. Features:
-- Real-time earthquake alerts
-- Interactive map with earthquake locations
-- Historical earthquake data
-- Customizable notification settings
+Generate test SAML Responses, AuthnRequests, and LogoutRequests
 
-### FedPulse
-**URL**: https://fedpulse.developers.do
+#### SAML Metadata Generator
+URL: https://developers.do/tools/saml-metadata-generator
 
-iOS app to search, save, and track federal government jobs. Features:
-- Search USAJobs listings
-- Save and track favorite positions
-- Job alerts and notifications
-- Filter by agency, location, and salary
+Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
 
-### FAA Part 107 Quiz Prep
-**URL**: https://part107.developers.do
+#### SAML Response Validator
+URL: https://developers.do/tools/saml-validator
 
-iOS app for FAA Part 107 drone pilot certification exam preparation. Features:
-- Practice questions for the FAA Part 107 exam
-- Study mode and test simulation
-- Track your progress
-- Comprehensive coverage of drone regulations
+Debug a SAML Response and find out why SSO login is failing
 
-### Citizenship Test Prep
-**URL**: https://citizenshiptest.developers.do
+### Networking
 
-iOS app for US citizenship naturalization test preparation. Features:
-- All 100 civics test questions
-- Practice tests and flashcards
-- Audio pronunciation of questions and answers
-- Track your study progress
+Category URL: https://developers.do/tools/networking
 
-### ClawPet
-**URL**: https://clawpet.clawpantry.com
+#### API Tester
+URL: https://developers.do/tools/api-tester
 
-iOS virtual desktop pet that visualizes bot activity in real-time. Features:
-- Real-time state sync via WebSocket with sub-second latency
-- Dual transport with WebSocket and HTTP polling automatic failover
-- Five distinct mood states with unique animations
-- Private by default with no account or cloud required
+Test and view API responses
 
----
+#### HTTP Status Code Reference
+URL: https://developers.do/tools/http-status-codes
 
-## Privacy Commitment
+Searchable reference of all HTTP status codes with descriptions and use cases
 
-DevTools is built on a strict privacy-first philosophy:
+### Data
 
-1. **Anonymized Analytics**: We use Google Analytics with consent controls. Analytics default to anonymized mode (no cookies, no personal data). Users can accept full analytics, keep anonymized, or reject all tracking.
-2. **No Tracking Cookies by Default**: Tracking cookies are only set if the user explicitly accepts full analytics
-3. **No Server Processing**: All tool operations happen in your browser
-4. **No Data Retention**: We don't store any user input or output
-5. **No Account Required**: Use all tools without signing up
-6. **Open Source**: Verify our claims by reviewing the code
+Category URL: https://developers.do/tools/data
 
----
+#### OSS Data
+URL: https://data.developers.do
 
-## Technical Stack
-
-- **Framework**: Next.js 16.1.1 (Static Export)
-- **UI**: React 19.2.3, Tailwind CSS 4.1.18
-- **Language**: TypeScript 5.9.3
-- **AI Runtime**: Transformers.js (WASM/WebGPU)
-- **Crypto**: Web Crypto API
-- **Package Manager**: Bun
-
----
-
-## Contact
-
-Website: https://developers.do
+Open-source data tools for developers

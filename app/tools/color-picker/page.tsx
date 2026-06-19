@@ -5,11 +5,18 @@ export const metadata: Metadata = {
   title: 'Color Picker - HEX, RGB, HSL, HSV, CMYK Converter',
   description: 'Free color picker tool to select colors and convert between HEX, RGB, HSL, HSV, and CMYK formats. Perfect for designers and developers.',
   keywords: 'color picker, hex to rgb, color converter, hsl to rgb, hsv converter, cmyk converter, color tool, design tool, how to convert hex to rgb, color format converter online, what color is this hex code, rgb to hex converter free, free online tool, browser-based, no install required',
+  alternates: {
+    canonical: '/tools/color-picker',
+  },
   openGraph: {
     url: 'https://developers.do/tools/color-picker',
     title: 'Color Picker - Free Color Converter Tool',
     description: 'Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats instantly.',
-    images: [{ url: 'https://developers.do/favicon.png' }],
+    images: [{ url: '/og/tools/color-picker.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og/tools/color-picker.png'],
   },
 };
 

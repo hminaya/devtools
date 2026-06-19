@@ -5,8 +5,10 @@ import Sidebar from '../components/layouts/Sidebar';
 import Analytics from '../components/Analytics';
 import CookieConsent from '../components/CookieConsent';
 import CookiePreferencesLink from '../components/CookiePreferencesLink';
+import { BASE_URL, DEFAULT_OG_IMAGE } from '../config/seo';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers | JSON, API Testing, Code Generators & More',
   description: 'Free online developer tools dashboard with 50+ utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, hash generators, AI tools (sentiment analysis, text summarization), and more. All tools run locally in your browser.',
   keywords: 'developer tools, json formatter, json prettifier, xml formatter, json to typescript, json to python, json to pydantic, json to csharp, json to kotlin, json to swift, json to go, json to rust, code generator, api tester, rest api, jwt decoder, password generator, uuid generator, base64 encoder, md5 hash, sha256 hash, stacktrace formatter, beautify stack trace, stack trace beautifier, regex tester, sql formatter, saml decoder, yaml to json, unix timestamp converter, sentiment analysis, text summarization, string similarity, color picker, qr code generator, free developer tools, online tools, privacy-focused tools, web developer utilities',
@@ -16,21 +18,22 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://developers.do',
+    url: '/',
     title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers',
     description: '50+ free developer utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, AI tools, and more. All tools run locally in your browser.',
     siteName: 'Developer Tools Dashboard',
     images: [
       {
-        url: 'https://developers.do/favicon.png',
-        width: 512,
-        height: 512,
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
         alt: 'Developer Tools Dashboard',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
@@ -51,23 +54,18 @@ export default function RootLayout({
               '@graph': [
                 {
                   '@type': 'Organization',
-                  '@id': 'https://developers.do/#organization',
+                  '@id': `${BASE_URL}/#organization`,
                   name: 'developers.do',
-                  url: 'https://developers.do',
-                  logo: 'https://developers.do/favicon.png',
+                  url: BASE_URL,
+                  logo: `${BASE_URL}/favicon.png`,
                 },
                 {
                   '@type': 'WebSite',
-                  '@id': 'https://developers.do/#website',
-                  url: 'https://developers.do',
+                  '@id': `${BASE_URL}/#website`,
+                  url: BASE_URL,
                   name: 'Developer Tools Dashboard',
                   description: 'Free developer tools that run locally in your browser',
                   publisher: { '@id': 'https://developers.do/#organization' },
-                  potentialAction: {
-                    '@type': 'SearchAction',
-                    target: { '@type': 'EntryPoint', urlTemplate: 'https://developers.do/?q={search_term_string}' },
-                    'query-input': 'required name=search_term_string',
-                  },
                 },
               ],
             }),

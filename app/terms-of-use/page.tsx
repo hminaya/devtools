@@ -3,11 +3,14 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Use - Developer Tools Dashboard',
   description: 'Terms of use for the Developer Tools Dashboard.',
+  alternates: {
+    canonical: '/terms-of-use',
+  },
   openGraph: {
     url: 'https://developers.do/terms-of-use',
     title: 'Terms of Use - Developer Tools Dashboard',
     description: 'Terms of use for the Developer Tools Dashboard.',
-    images: [{ url: 'https://developers.do/favicon.png' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
   },
 };
 
