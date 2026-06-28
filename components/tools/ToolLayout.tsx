@@ -1,9 +1,11 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TOOLS } from '../../config/tools';
+import { copyToClipboard } from '../../utils/clipboard';
 
 const BASE_URL = 'https://developers.do';
 
@@ -20,6 +22,42 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
   const relatedTools = currentTool
     ? TOOLS.filter((tool) => tool.category === currentTool.category && tool.route !== currentTool.route).slice(0, 5)
     : [];
+  const [copied, setCopied] = useState(false);
+  const toolUrl = `${BASE_URL}${pathname}`;
+  const shareText = `${title} - ${description}`;
+  const encodedUrl = encodeURIComponent(toolUrl);
+  const encodedText = encodeURIComponent(shareText);
+  const shareLinks = [
+    {
+      name: 'X',
+      href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+    },
+    {
+      name: 'LinkedIn',
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    },
+    {
+      name: 'Facebook',
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    },
+    {
+      name: 'WhatsApp',
+      href: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${toolUrl}`)}`,
+    },
+    {
+      name: 'Reddit',
+      href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedText}`,
+    },
+  ];
+
+  const handleCopyLink = async () => {
+    const success = await copyToClipboard(toolUrl);
+
+    if (success) {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -55,6 +93,36 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
         <div className="bg-white rounded-lg shadow-md p-6">
           {children}
         </div>
+
+        <section
+          className="mt-4 flex flex-col gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+          aria-label={`Share ${title}`}
+        >
+          <div>
+            <h2 className="text-sm font-semibold text-slate-900">Share this tool</h2>
+            <p className="text-sm text-slate-500">Send the direct link or post it to your network.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {shareLinks.map((link) => (
+              <a
+                key={link.name}
+                className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.name}
+              </a>
+            ))}
+            <button
+              type="button"
+              className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              onClick={handleCopyLink}
+            >
+              {copied ? 'Copied' : 'Copy link'}
+            </button>
+          </div>
+        </section>
 
         {relatedTools.length > 0 && (
           <section className="mt-8" aria-labelledby="related-tools-heading">

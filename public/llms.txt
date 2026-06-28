@@ -17,6 +17,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [Fill-Mask Text Completion](https://developers.do/tools/fill-mask): Complete sentences and predict missing words using AI
 - [Text Summarization](https://developers.do/tools/text-summarization): Summarize long text into concise overviews using AI
 - [Text Extractor](https://developers.do/tools/text-extractor): Extract emails, URLs, IPs, dates, and patterns from text
+- [Vibe Check](https://developers.do/tools/vibe-check): Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
 
 ### Formatting
 

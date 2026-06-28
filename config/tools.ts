@@ -5,6 +5,7 @@ export interface Tool {
   route: string;
   icon: string;
   category: string;
+  updatedAt: string;
   external?: boolean; // If true, opens in new tab
 }
 
@@ -16,6 +17,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/js-tokenizer',
     icon: '🤖',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'rag-chunker',
@@ -24,6 +26,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/rag-chunker',
     icon: '🧩',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'sentiment-analysis',
@@ -32,6 +35,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sentiment-analysis',
     icon: '😊',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'zero-shot-classification',
@@ -40,6 +44,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/zero-shot-classification',
     icon: '🎯',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'sentence-similarity',
@@ -48,6 +53,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sentence-similarity',
     icon: '🔍',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'question-answering',
@@ -56,6 +62,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/question-answering',
     icon: '❓',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'fill-mask',
@@ -64,6 +71,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/fill-mask',
     icon: '✨',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'text-summarization',
@@ -72,6 +80,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/text-summarization',
     icon: '📝',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'text-extractor',
@@ -80,6 +89,16 @@ export const TOOLS: Tool[] = [
     route: '/tools/text-extractor',
     icon: '🔎',
     category: 'AI Tools',
+    updatedAt: '2026-06-28',
+  },
+  {
+    id: 'vibe-check',
+    name: 'Vibe Check',
+    description: 'Generate AI code review, test plan, and production readiness prompts for vibe-coded apps',
+    route: '/tools/vibe-check',
+    icon: '🧪',
+    category: 'AI Tools',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-prettifier',
@@ -88,6 +107,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-prettifier',
     icon: '{}',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'xml-prettifier',
@@ -96,6 +116,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/xml-prettifier',
     icon: '📄',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'hl7-parser',
@@ -104,6 +125,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/hl7-parser',
     icon: '🏥',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'hl7-to-fhir',
@@ -112,6 +134,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/hl7-to-fhir',
     icon: '🔄',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'diff-compare',
@@ -120,6 +143,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/diff-compare',
     icon: '📊',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'stacktrace-formatter',
@@ -128,6 +152,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/stacktrace-formatter',
     icon: '📋',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'beautify-stack-trace',
@@ -136,6 +161,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/beautify-stack-trace',
     icon: '✨',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'stacktrace-analyzer',
@@ -144,6 +170,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/stacktrace-analyzer',
     icon: '🔬',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'base64-encoder',
@@ -152,6 +179,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/base64-encoder',
     icon: '🔤',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'file-size-converter',
@@ -160,6 +188,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/file-size-converter',
     icon: '💾',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'unix-timestamp',
@@ -168,6 +197,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/unix-timestamp',
     icon: '⏱️',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'cron-tester',
@@ -176,6 +206,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/cron-tester',
     icon: '⏰',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'cron-generator',
@@ -184,6 +215,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/cron-generator',
     icon: '🛠️',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'url-encoder',
@@ -192,6 +224,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/url-encoder',
     icon: '🔗',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'yaml-json-converter',
@@ -200,6 +233,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/yaml-json-converter',
     icon: '🔄',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'csv-json-converter',
@@ -208,6 +242,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/csv-json-converter',
     icon: '🔄',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'csv-viewer',
@@ -216,6 +251,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/csv-viewer',
     icon: '🔍',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'sql-formatter',
@@ -224,6 +260,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sql-formatter',
     icon: '🗄️',
     category: 'Formatting',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'string-similarity',
@@ -232,6 +269,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/string-similarity',
     icon: '🔀',
     category: 'Algorithms',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'regex-tester',
@@ -240,6 +278,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/regex-tester',
     icon: '🔍',
     category: 'Algorithms',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'regex-library',
@@ -248,6 +287,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/regex-library',
     icon: '📚',
     category: 'Algorithms',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'number-base-converter',
@@ -256,6 +296,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/number-base-converter',
     icon: '🔢',
     category: 'Algorithms',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'ios-app-lookup',
@@ -264,6 +305,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/ios-app-lookup',
     icon: '🍎',
     category: 'Apps',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'terremoto',
@@ -272,6 +314,7 @@ export const TOOLS: Tool[] = [
     route: 'https://terremoto.developers.do',
     icon: '🌍',
     category: 'Apps',
+    updatedAt: '2026-06-28',
     external: true,
   },
   {
@@ -281,6 +324,7 @@ export const TOOLS: Tool[] = [
     route: 'https://fedpulse.developers.do',
     icon: '🏛️',
     category: 'Apps',
+    updatedAt: '2026-06-28',
     external: true,
   },
   {
@@ -290,6 +334,7 @@ export const TOOLS: Tool[] = [
     route: 'https://part107.developers.do',
     icon: '🚁',
     category: 'Apps',
+    updatedAt: '2026-06-28',
     external: true,
   },
   {
@@ -299,6 +344,7 @@ export const TOOLS: Tool[] = [
     route: 'https://citizenshiptest.developers.do',
     icon: '🇺🇸',
     category: 'Apps',
+    updatedAt: '2026-06-28',
     external: true,
   },
   {
@@ -308,6 +354,7 @@ export const TOOLS: Tool[] = [
     route: 'https://clawpet.clawpantry.com',
     icon: '🦀',
     category: 'Apps',
+    updatedAt: '2026-06-28',
     external: true,
   },
   {
@@ -317,6 +364,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/password-generator',
     icon: '🔑',
     category: 'Generators',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'uuid-generator',
@@ -325,6 +373,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/uuid-generator',
     icon: '🆔',
     category: 'Generators',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'lorem-ipsum-generator',
@@ -333,6 +382,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/lorem-ipsum-generator',
     icon: '📄',
     category: 'Generators',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'random-number-generator',
@@ -341,6 +391,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/random-number-generator',
     icon: '🎲',
     category: 'Generators',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'qr-code-generator',
@@ -349,6 +400,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/qr-code-generator',
     icon: '📱',
     category: 'Generators',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-typescript',
@@ -357,6 +409,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-typescript',
     icon: '📝',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-jsdoc',
@@ -365,6 +418,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-jsdoc',
     icon: '📜',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-csharp',
@@ -373,6 +427,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-csharp',
     icon: '💎',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-swift',
@@ -381,6 +436,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-swift',
     icon: '🍎',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-kotlin',
@@ -389,6 +445,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-kotlin',
     icon: '🟣',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-python',
@@ -397,6 +454,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-python',
     icon: '🐍',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-go',
@@ -405,6 +463,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-go',
     icon: '🐹',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'json-to-rust',
@@ -413,6 +472,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-to-rust',
     icon: '🦀',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'color-picker',
@@ -421,6 +481,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/color-picker',
     icon: '🎨',
     category: 'Code & Schemas',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'secrets-scanner',
@@ -429,6 +490,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/secrets-scanner',
     icon: '🛡️',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'jwt-decoder',
@@ -437,6 +499,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/jwt-decoder',
     icon: '🔓',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'md5-generator',
@@ -445,6 +508,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/md5-generator',
     icon: '#️⃣',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'sha1-generator',
@@ -453,6 +517,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sha1-generator',
     icon: '🔐',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'sha256-generator',
@@ -461,6 +526,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sha256-generator',
     icon: '🔒',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'clawdbot-security-scanner',
@@ -469,6 +535,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/clawdbot-security-scanner',
     icon: '🤖',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-decoder',
@@ -477,6 +544,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-decoder',
     icon: '🔏',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-metadata-parser',
@@ -485,6 +553,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-metadata-parser',
     icon: '📋',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-cert-inspector',
@@ -493,6 +562,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-cert-inspector',
     icon: '📜',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'csr-decoder',
@@ -501,6 +571,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/csr-decoder',
     icon: '📄',
     category: 'Security',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-builder',
@@ -509,6 +580,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-builder',
     icon: '🏗️',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-metadata-generator',
@@ -517,6 +589,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-metadata-generator',
     icon: '🪪',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'saml-validator',
@@ -525,6 +598,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-validator',
     icon: '🚦',
     category: 'SAML',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'api-tester',
@@ -533,6 +607,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/api-tester',
     icon: '🌐',
     category: 'Networking',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'http-status-codes',
@@ -541,6 +616,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/http-status-codes',
     icon: '📡',
     category: 'Networking',
+    updatedAt: '2026-06-28',
   },
   {
     id: 'oss-data',
@@ -549,6 +625,7 @@ export const TOOLS: Tool[] = [
     route: 'https://data.developers.do',
     icon: '📊',
     category: 'Data',
+    updatedAt: '2026-06-28',
     external: true,
   },
 ];
