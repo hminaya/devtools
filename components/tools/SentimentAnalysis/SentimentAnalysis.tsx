@@ -22,7 +22,7 @@ function SentimentAnalysis() {
     if (method === 'transformers' && !classifierRef.current && !aiModelReady) {
       setModelDownloading(true);
 
-      import('@xenova/transformers').then(async ({ pipeline, env }) => {
+      import('@huggingface/transformers').then(async ({ pipeline, env }) => {
         try {
           // Configure for browser environment
           env.allowLocalModels = false;

@@ -11,9 +11,32 @@ function Base64EncoderDecoder() {
   const [output, setOutput] = useState('');
   const [error, setError] = useState('');
 
+  const bytesToBase64 = (bytes: Uint8Array) => {
+    let binary = '';
+    const chunkSize = 0x8000;
+
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      const chunk = bytes.subarray(i, i + chunkSize);
+      binary += String.fromCharCode(...chunk);
+    }
+
+    return btoa(binary);
+  };
+
+  const base64ToBytes = (base64: string) => {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+
+    return bytes;
+  };
+
   const encode = () => {
     try {
-      const encoded = btoa(input);
+      const encoded = bytesToBase64(new TextEncoder().encode(input));
       setOutput(encoded);
       setError('');
     } catch (err) {
@@ -24,11 +47,11 @@ function Base64EncoderDecoder() {
 
   const decode = () => {
     try {
-      const decoded = atob(input);
+      const decoded = new TextDecoder('utf-8', { fatal: true }).decode(base64ToBytes(input));
       setOutput(decoded);
       setError('');
     } catch (err) {
-      setError('Invalid Base64 string. Please check your input.');
+      setError('Invalid Base64 string or decoded data is not valid UTF-8 text. Please check your input.');
       setOutput('');
     }
   };
@@ -40,7 +63,7 @@ function Base64EncoderDecoder() {
   };
 
   const generateSample = () => {
-    const sample = 'Hello, World! This is a sample text for Base64 encoding.';
+    const sample = 'Hello, World! Base64 supports Unicode text like café, こんにちは, and 🚀.';
     setInput(sample);
     setOutput('');
     setError('');

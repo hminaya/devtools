@@ -55,7 +55,7 @@ function QuestionAnswering() {
     setModelDownloading(true);
     setError('');
 
-    import('@xenova/transformers').then(async ({ pipeline, env }) => {
+    import('@huggingface/transformers').then(async ({ pipeline, env }) => {
       try {
         // Configure for browser environment
         env.allowLocalModels = false;

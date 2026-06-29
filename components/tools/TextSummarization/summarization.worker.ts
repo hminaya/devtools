@@ -1,4 +1,4 @@
-import { pipeline, SummarizationPipeline as SummarizationPipelineType } from '@xenova/transformers';
+import { pipeline, SummarizationPipeline as SummarizationPipelineType } from '@huggingface/transformers';
 
 console.log('Summarization worker initialized');
 
