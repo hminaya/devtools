@@ -308,6 +308,16 @@ export const TOOLS: Tool[] = [
     updatedAt: '2026-06-28',
   },
   {
+    id: 'gamewobble',
+    name: 'GameWobble',
+    description: 'Free bite-sized browser games you can play instantly with no downloads or signup',
+    route: 'https://gamewobble.com',
+    icon: '🎮',
+    category: 'Apps',
+    updatedAt: '2026-06-29',
+    external: true,
+  },
+  {
     id: 'terremoto',
     name: 'Terremoto',
     description: 'iOS app for tracking earthquakes in real-time',
