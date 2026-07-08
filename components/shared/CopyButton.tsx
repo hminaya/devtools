@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { copyToClipboard } from '../../utils/clipboard';
+import { getToolIdFromPath, trackToolEvent } from '../../utils/analytics';
 
 interface CopyButtonProps {
   text: string;
@@ -10,10 +12,15 @@ interface CopyButtonProps {
 
 function CopyButton({ text, label = 'Copy' }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
+  const pathname = usePathname();
 
   const handleCopy = async () => {
     const success = await copyToClipboard(text);
     if (success) {
+      trackToolEvent('tool_copy', {
+        tool_id: getToolIdFromPath(pathname),
+        action: label || 'Copy',
+      });
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

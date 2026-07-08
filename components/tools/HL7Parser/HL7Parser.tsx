@@ -13,6 +13,7 @@ import {
   getFieldLabel,
   getComponentLabel,
 } from '../../../utils/hl7';
+import { trackToolEvent } from '../../../utils/analytics';
 import type { ParsedHl7Message, Hl7Field } from '../../../utils/hl7';
 
 function HL7Parser() {
@@ -30,10 +31,21 @@ function HL7Parser() {
     const result = parseHl7Message(input);
 
     if (result.success && result.data) {
+      trackToolEvent('tool_success', {
+        tool_id: 'hl7-parser',
+        action: 'Parse HL7 message',
+        method: result.data.messageType || 'unknown',
+        value: result.data.segments.length,
+      });
       setParsed(result.data);
       setError('');
       setWarnings(result.warnings || []);
     } else {
+      trackToolEvent('tool_error', {
+        tool_id: 'hl7-parser',
+        action: 'Parse HL7 message',
+        label: result.error || 'Failed to parse HL7 message',
+      });
       setParsed(null);
       setError(result.error || 'Failed to parse HL7 message');
       setWarnings([]);

@@ -11,19 +11,24 @@ export interface ToolCategory {
 }
 
 export const TOOL_CATEGORY_ORDER = [
+  'SAML',
   'AI Tools',
   'Algorithms',
   'Formatting',
   'Generators',
   'Code & Schemas',
   'Networking',
-  'SAML',
   'Security',
   'Data',
   'Apps',
 ] as const;
 
 export const TOOL_CATEGORIES: ToolCategory[] = [
+  {
+    name: 'SAML',
+    slug: 'saml',
+    description: 'Decode, inspect, validate, generate, and troubleshoot SAML assertions, metadata, certificates, and SSO flows.',
+  },
   {
     name: 'AI Tools',
     slug: 'ai-tools',
@@ -53,11 +58,6 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     name: 'Networking',
     slug: 'networking',
     description: 'Test APIs and look up HTTP status codes with practical developer-focused networking utilities.',
-  },
-  {
-    name: 'SAML',
-    slug: 'saml',
-    description: 'Decode, inspect, validate, generate, and troubleshoot SAML assertions, metadata, certificates, and SSO flows.',
   },
   {
     name: 'Security',

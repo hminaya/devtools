@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TOOLS } from '../../config/tools';
 import { copyToClipboard } from '../../utils/clipboard';
+import { getCategorySlug } from '../../config/seo';
+import { getToolIdFromPath, trackToolEvent } from '../../utils/analytics';
 
 const BASE_URL = 'https://developers.do';
 
@@ -24,6 +26,7 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
     : [];
   const [copied, setCopied] = useState(false);
   const toolUrl = `${BASE_URL}${pathname}`;
+  const toolId = getToolIdFromPath(pathname);
   const shareText = `${title} - ${description}`;
   const encodedUrl = encodeURIComponent(toolUrl);
   const encodedText = encodeURIComponent(shareText);
@@ -54,29 +57,73 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
     const success = await copyToClipboard(toolUrl);
 
     if (success) {
+      trackToolEvent('tool_copy', {
+        tool_id: toolId,
+        action: 'Copy link',
+      });
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     }
   };
 
+  const handleShareClick = (network: string) => {
+    trackToolEvent('tool_action', {
+      tool_id: toolId,
+      action: 'Share tool',
+      label: network,
+    });
+  };
+
+  const categorySlug = currentTool ? getCategorySlug(currentTool.category) : undefined;
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: title,
-    description,
-    applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'Web',
-    url: `${BASE_URL}${pathname}`,
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'developers.do',
-      url: BASE_URL,
-    },
+    '@graph': [
+      {
+        '@type': 'SoftwareApplication',
+        name: title,
+        description,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Web',
+        url: `${BASE_URL}${pathname}`,
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        provider: {
+          '@type': 'Organization',
+          name: 'developers.do',
+          url: BASE_URL,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Developer Tools',
+            item: BASE_URL,
+          },
+          ...(currentTool && categorySlug
+            ? [
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: currentTool.category,
+                  item: `${BASE_URL}/tools/${categorySlug}`,
+                },
+              ]
+            : []),
+          {
+            '@type': 'ListItem',
+            position: currentTool && categorySlug ? 3 : 2,
+            name: title,
+            item: `${BASE_URL}${pathname}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -110,6 +157,7 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleShareClick(link.name)}
               >
                 {link.name}
               </a>

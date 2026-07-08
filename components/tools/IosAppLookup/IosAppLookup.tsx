@@ -15,6 +15,7 @@ import {
   type LookupResult,
   type AppMetadata,
 } from '../../../utils/iosAppLookup';
+import { trackToolEvent } from '../../../utils/analytics';
 
 function IosAppLookup() {
   const [bundleId, setBundleId] = useState('');
@@ -26,8 +27,19 @@ function IosAppLookup() {
     setResult(null);
     try {
       const lookupResult = await lookupAppByBundleId(bundleId);
+      trackToolEvent(lookupResult.success ? 'tool_success' : 'tool_error', {
+        tool_id: 'ios-app-lookup',
+        action: 'Lookup app',
+        label: lookupResult.success ? lookupResult.app?.bundleId || bundleId : lookupResult.error,
+        value: lookupResult.responseTime,
+      });
       setResult(lookupResult);
     } catch (err) {
+      trackToolEvent('tool_error', {
+        tool_id: 'ios-app-lookup',
+        action: 'Lookup app',
+        label: err instanceof Error ? err.message : 'An unexpected error occurred',
+      });
       setResult({
         success: false,
         error: err instanceof Error ? err.message : 'An unexpected error occurred',

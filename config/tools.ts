@@ -147,8 +147,8 @@ export const TOOLS: Tool[] = [
   },
   {
     id: 'stacktrace-formatter',
-    name: 'Stacktrace Formatter',
-    description: 'Format and beautify stack traces from multiple programming languages',
+    name: 'Stack Trace Formatter',
+    description: 'Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces',
     route: '/tools/stacktrace-formatter',
     icon: '📋',
     category: 'Formatting',

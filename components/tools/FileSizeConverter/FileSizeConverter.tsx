@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ToolLayout from '../ToolLayout';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
 import { convertFileSize, getAllUnits, type FileSizeUnit, type FileSizeConversions } from '../../../utils/fileSizeConversion';
+import { trackToolEvent } from '../../../utils/analytics';
 
 interface CommonFileSize {
   name: string;
@@ -38,6 +39,7 @@ function FileSizeConverter() {
   const [unit, setUnit] = useState<FileSizeUnit>('MB');
   const [conversions, setConversions] = useState<FileSizeConversions | null>(null);
   const [selectedObject, setSelectedObject] = useState<CommonFileSize | null>(null);
+  const lastTrackedInput = useRef('');
 
   const units = getAllUnits();
 
@@ -46,8 +48,26 @@ function FileSizeConverter() {
     const numValue = parseFloat(value);
     if (!isNaN(numValue) && numValue >= 0) {
       const result = convertFileSize(numValue, unit);
+      const eventKey = `${value}:${unit}`;
+      if (eventKey !== lastTrackedInput.current) {
+        trackToolEvent('tool_success', {
+          tool_id: 'file-size-converter',
+          action: 'Convert file size',
+          method: unit,
+        });
+        lastTrackedInput.current = eventKey;
+      }
       setConversions(result);
     } else {
+      if (value.trim() !== '' && lastTrackedInput.current !== `invalid:${value}`) {
+        trackToolEvent('tool_error', {
+          tool_id: 'file-size-converter',
+          action: 'Convert file size',
+          method: unit,
+          label: 'Invalid file size',
+        });
+        lastTrackedInput.current = `invalid:${value}`;
+      }
       setConversions(null);
     }
   }, [value, unit]);

@@ -13,6 +13,7 @@ import {
   SAMPLE_SP_METADATA,
 } from '../../../utils/samlMetadata';
 import { getExpiryStatus } from '../../../utils/x509';
+import { trackToolEvent } from '../../../utils/analytics';
 import type { ParsedMetadata } from '../../../utils/samlMetadata';
 
 function expiryBadge(status: string): string {
@@ -52,13 +53,28 @@ function SamlMetadataParser() {
     try {
       const result = await parseMetadata(input);
       if (result.success && result.data) {
+        trackToolEvent('tool_success', {
+          tool_id: 'saml-metadata-parser',
+          action: 'Parse SAML metadata',
+          method: result.data.type,
+        });
         setParsed(result.data);
         setError('');
       } else {
+        trackToolEvent('tool_error', {
+          tool_id: 'saml-metadata-parser',
+          action: 'Parse SAML metadata',
+          label: result.error || 'Failed to parse metadata',
+        });
         setError(result.error || 'Failed to parse metadata');
         setParsed(null);
       }
     } catch (e) {
+      trackToolEvent('tool_error', {
+        tool_id: 'saml-metadata-parser',
+        action: 'Parse SAML metadata',
+        label: e instanceof Error ? e.message : 'Unexpected error',
+      });
       setError(e instanceof Error ? e.message : 'Unexpected error');
       setParsed(null);
     }

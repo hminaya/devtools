@@ -16,6 +16,7 @@ import {
   type FormatOptions,
   type HighlightedPart,
 } from '../../../utils/stacktrace';
+import { trackToolEvent } from '../../../utils/analytics';
 
 function StacktraceFormatter() {
   const [input, setInput] = useState('');
@@ -41,6 +42,11 @@ function StacktraceFormatter() {
     const validation = validateStackTrace(input);
 
     if (!validation.isValid) {
+      trackToolEvent('tool_error', {
+        tool_id: 'stacktrace-formatter',
+        action: 'Format stack trace',
+        label: validation.error || 'Invalid stack trace',
+      });
       setError(validation.error || 'Invalid stack trace');
       setOutput('');
       setHighlightedParts([]);
@@ -56,10 +62,21 @@ function StacktraceFormatter() {
     const result = formatStackTrace(input, options);
 
     if (result.success && result.output) {
+      trackToolEvent('tool_success', {
+        tool_id: 'stacktrace-formatter',
+        action: 'Format stack trace',
+        method: selectedLanguage,
+      });
       setOutput(result.output);
       setHighlightedParts(result.output.split('\n').map(line => ({ text: line, type: 'normal' as const })));
       setError('');
     } else {
+      trackToolEvent('tool_error', {
+        tool_id: 'stacktrace-formatter',
+        action: 'Format stack trace',
+        method: selectedLanguage,
+        label: result.error || 'Failed to format stack trace',
+      });
       setError(result.error || 'Failed to format stack trace');
       setOutput('');
       setHighlightedParts([]);
@@ -91,8 +108,8 @@ function StacktraceFormatter() {
 
   return (
     <ToolLayout
-      title="Stacktrace Formatter"
-      description="Format and beautify stack traces from multiple programming languages"
+      title="Stack Trace Formatter"
+      description="Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces"
       fullWidth
     >
       <div className="space-y-4">

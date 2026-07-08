@@ -7,6 +7,7 @@ import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
 import CodeDisplay from '../../shared/CodeDisplay';
 import { analyzeSentiment, type AnalysisMethod, type SentimentResult } from '../../../utils/sentimentAnalysis';
+import { trackToolEvent } from '../../../utils/analytics';
 
 function SentimentAnalysis() {
   const [input, setInput] = useState('');
@@ -50,6 +51,12 @@ function SentimentAnalysis() {
 
   const analyze = async () => {
     if (!input.trim()) {
+      trackToolEvent('tool_error', {
+        tool_id: 'sentiment-analysis',
+        action: 'Analyze sentiment',
+        method,
+        label: 'Empty input',
+      });
       setResult({ success: false, error: 'Please enter some text to analyze' });
       return;
     }
@@ -92,6 +99,14 @@ function SentimentAnalysis() {
             else if (NEGATIVE_WORDS.includes(cleanWord)) negative.push(cleanWord);
           });
 
+          trackToolEvent('tool_success', {
+            tool_id: 'sentiment-analysis',
+            action: 'Analyze sentiment',
+            method,
+            label: prediction.label,
+            value: Math.round(prediction.score * 100),
+          });
+
           setResult({
             success: true,
             label: prediction.label as 'POSITIVE' | 'NEGATIVE',
@@ -100,6 +115,12 @@ function SentimentAnalysis() {
             negative,
           });
         } catch (aiError) {
+          trackToolEvent('tool_error', {
+            tool_id: 'sentiment-analysis',
+            action: 'Analyze sentiment',
+            method,
+            label: aiError instanceof Error ? aiError.message : 'Failed to analyze with AI model',
+          });
           setResult({
             success: false,
             error: aiError instanceof Error ? aiError.message : 'Failed to analyze with AI model',
@@ -108,9 +129,22 @@ function SentimentAnalysis() {
       } else {
         // Use lexicon-based analysis
         const sentimentResult = await analyzeSentiment(input, method);
+        trackToolEvent(sentimentResult.success ? 'tool_success' : 'tool_error', {
+          tool_id: 'sentiment-analysis',
+          action: 'Analyze sentiment',
+          method,
+          label: sentimentResult.success ? sentimentResult.label : sentimentResult.error,
+          value: sentimentResult.score ? Math.round(sentimentResult.score * 100) : undefined,
+        });
         setResult(sentimentResult);
       }
     } catch (error) {
+      trackToolEvent('tool_error', {
+        tool_id: 'sentiment-analysis',
+        action: 'Analyze sentiment',
+        method,
+        label: error instanceof Error ? error.message : 'Failed to analyze sentiment',
+      });
       setResult({
         success: false,
         error: error instanceof Error ? error.message : 'Failed to analyze sentiment',
