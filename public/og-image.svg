@@ -1,25 +1,8 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0f172a"/>
-  <rect x="72" y="72" width="1056" height="486" rx="32" fill="#f8fafc"/>
-  <path d="M164 185L220 150L276 185V255L220 290L164 255V185Z" stroke="#2563eb" stroke-width="14" stroke-linejoin="round"/>
-  <path d="M204 204L184 220L204 236" stroke="#7c3aed" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M236 204L256 220L236 236" stroke="#7c3aed" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="220" cy="220" r="8" fill="#f59e0b"/>
-  <text x="336" y="216" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">developers.do</text>
-  <text x="336" y="284" fill="#334155" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600">Free developer tools that run in your browser</text>
-  <g fill="#e2e8f0">
-    <rect x="164" y="374" width="172" height="54" rx="12"/>
-    <rect x="356" y="374" width="192" height="54" rx="12"/>
-    <rect x="568" y="374" width="154" height="54" rx="12"/>
-    <rect x="742" y="374" width="176" height="54" rx="12"/>
-    <rect x="938" y="374" width="98" height="54" rx="12"/>
-  </g>
-  <g fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">
-    <text x="196" y="409">JSON</text>
-    <text x="392" y="409">API Testing</text>
-    <text x="601" y="409">SAML</text>
-    <text x="776" y="409">Security</text>
-    <text x="967" y="409">AI</text>
-  </g>
-  <text x="164" y="500" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">Formatters, converters, generators, debuggers, and security utilities.</text>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect x="120" y="219" width="128" height="128" rx="32" fill="#2563EB"/>
+  <path d="M151 257L177 283L151 309" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 309H220" stroke="white" stroke-width="11" stroke-linecap="round"/>
+  <text x="296" y="276" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">developers.do</text>
+  <text x="298" y="332" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="500">Fast browser-based developer tools. No signup.</text>
 </svg>

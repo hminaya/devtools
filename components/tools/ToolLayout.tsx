@@ -127,72 +127,111 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
+    <div className="px-4 py-5 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className={fullWidth ? 'mx-auto' : 'max-w-4xl mx-auto'}>
+      <div className={fullWidth ? 'mx-auto max-w-[1500px]' : 'mx-auto max-w-5xl'}>
         {currentTool && categorySlug && (
-          <nav className="mb-5 text-sm text-slate-500" aria-label="Breadcrumb">
-            <Link className="hover:text-slate-800" href="/">Developer Tools</Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <Link className="hover:text-slate-800" href={`/tools/${categorySlug}`}>
+          <nav className="mb-5 flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500" aria-label="Breadcrumb">
+            <Link className="hover:text-slate-900" href="/" prefetch={false}>Home</Link>
+            <span className="text-slate-300" aria-hidden="true">/</span>
+            <Link className="hover:text-slate-900" href={`/tools/${categorySlug}`} prefetch={false}>
               {currentTool.category}
             </Link>
-            <span className="mx-2" aria-hidden="true">/</span>
-            <span aria-current="page">{title}</span>
+            <span className="text-slate-300" aria-hidden="true">/</span>
+            <span className="text-slate-700" aria-current="page">{title}</span>
           </nav>
         )}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">{title}</h1>
-          <p className="text-slate-600">{description}</p>
+
+        <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-3xl font-black tracking-[-0.03em] text-slate-950 sm:text-4xl">{title}</h1>
+            <p className="mt-2 max-w-3xl leading-7 text-slate-500">{description}</p>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-2 sm:pt-1">
+            <button
+              type="button"
+              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+              onClick={handleCopyLink}
+            >
+              {copied ? 'Copied!' : 'Copy link'}
+            </button>
+            <details className="relative">
+              <summary className="cursor-pointer list-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100 [&::-webkit-details-marker]:hidden">
+                Share <span aria-hidden="true">⌄</span>
+              </summary>
+              <div className="absolute right-0 z-30 mt-2 w-40 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl">
+                {shareLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-950"
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => handleShareClick(link.name)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </details>
+          </div>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+
+        <div className="rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
           {children}
         </div>
 
         {seoContent && (
-          <article className="mt-8 space-y-8 rounded-lg border border-slate-200 bg-white p-5 sm:p-7">
+          <article className="mx-auto mt-12 max-w-4xl space-y-10 border-t border-slate-200 py-10">
             <section aria-labelledby="about-this-tool-heading">
-              <h2 id="about-this-tool-heading" className="text-2xl font-bold text-slate-900">
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-600">Guide</p>
+              <h2 id="about-this-tool-heading" className="text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
                 About this {title.toLowerCase()}
               </h2>
-              <p className="mt-3 leading-7 text-slate-700">{seoContent.overview}</p>
+              <p className="mt-4 text-base leading-8 text-slate-600">{seoContent.overview}</p>
             </section>
 
             <section aria-labelledby="how-to-use-heading">
-              <h2 id="how-to-use-heading" className="text-2xl font-bold text-slate-900">
+              <h2 id="how-to-use-heading" className="text-2xl font-black tracking-tight text-slate-950">
                 How to use the {title.toLowerCase()}
               </h2>
-              <ol className="mt-3 list-decimal space-y-2 pl-6 leading-7 text-slate-700">
-                {seoContent.steps.map((step) => <li key={step}>{step}</li>)}
+              <ol className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+                {seoContent.steps.map((step, index) => (
+                  <li key={step} className="flex gap-3 py-4 leading-7 text-slate-600">
+                    <span className="w-5 shrink-0 text-sm font-bold text-slate-400">{index + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
               </ol>
             </section>
 
             <section aria-labelledby="important-details-heading">
-              <h2 id="important-details-heading" className="text-2xl font-bold text-slate-900">
+              <h2 id="important-details-heading" className="text-2xl font-black tracking-tight text-slate-950">
                 Important details
               </h2>
-              <div className="mt-4 grid gap-5 md:grid-cols-2">
+              <div className="mt-5 grid gap-8 md:grid-cols-2">
                 {seoContent.details.map((detail) => (
                   <div key={detail.title}>
-                    <h3 className="text-lg font-semibold text-slate-900">{detail.title}</h3>
-                    <p className="mt-2 leading-7 text-slate-700">{detail.body}</p>
+                    <h3 className="text-lg font-bold text-slate-950">{detail.title}</h3>
+                    <p className="mt-2 leading-7 text-slate-600">{detail.body}</p>
                   </div>
                 ))}
               </div>
             </section>
 
             <section aria-labelledby="frequently-asked-questions-heading">
-              <h2 id="frequently-asked-questions-heading" className="text-2xl font-bold text-slate-900">
+              <h2 id="frequently-asked-questions-heading" className="text-2xl font-black tracking-tight text-slate-950">
                 Frequently asked questions
               </h2>
-              <div className="mt-4 space-y-5">
+              <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
                 {seoContent.faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <h3 className="font-semibold text-slate-900">{faq.question}</h3>
-                    <p className="mt-1 leading-7 text-slate-700">{faq.answer}</p>
+                  <div key={faq.question} className="py-5">
+                    <h3 className="font-bold text-slate-950">{faq.question}</h3>
+                    <p className="mt-2 leading-7 text-slate-600">{faq.answer}</p>
                   </div>
                 ))}
               </div>
@@ -214,50 +253,19 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
           </article>
         )}
 
-        <section
-          className="mt-4 flex flex-col gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-          aria-label={`Share ${title}`}
-        >
-          <div>
-            <h2 className="text-sm font-semibold text-slate-900">Share this tool</h2>
-            <p className="text-sm text-slate-500">Send the direct link or post it to your network.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {shareLinks.map((link) => (
-              <a
-                key={link.name}
-                className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => handleShareClick(link.name)}
-              >
-                {link.name}
-              </a>
-            ))}
-            <button
-              type="button"
-              className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              onClick={handleCopyLink}
-            >
-              {copied ? 'Copied' : 'Copy link'}
-            </button>
-          </div>
-        </section>
-
         {relatedTools.length > 0 && (
-          <section className="mt-8" aria-labelledby="related-tools-heading">
-            <h2 id="related-tools-heading" className="text-xl font-bold text-slate-900 mb-4">
+          <section className="mx-auto mt-12 max-w-5xl" aria-labelledby="related-tools-heading">
+            <h2 id="related-tools-heading" className="mb-5 text-2xl font-black tracking-tight text-slate-950">
               Related tools
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {relatedTools.map((tool) => {
                 const content = (
                   <>
-                    <div className="text-2xl">{tool.icon}</div>
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-slate-100 text-xl">{tool.icon}</div>
                     <div>
-                      <h3 className="font-semibold text-slate-900">{tool.name}</h3>
-                      <p className="text-sm text-slate-500 line-clamp-2">{tool.description}</p>
+                      <h3 className="font-bold text-slate-900">{tool.name}</h3>
+                      <p className="mt-1 line-clamp-2 text-sm leading-6 text-slate-500">{tool.description}</p>
                     </div>
                   </>
                 );
@@ -266,7 +274,7 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
                   return (
                     <a
                       key={tool.id}
-                      className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-300 hover:shadow-sm"
+                      className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
                       href={tool.route}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -279,7 +287,8 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
                 return (
                   <Link
                     key={tool.id}
-                    className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-300 hover:shadow-sm"
+                    prefetch={false}
+                    className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
                     href={tool.route}
                   >
                     {content}

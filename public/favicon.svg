@@ -1,28 +1,5 @@
-<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Outer hexagon - representing tools/structure -->
-  <path d="M50 5 L85 27.5 L85 72.5 L50 95 L15 72.5 L15 27.5 Z" stroke="url(#gradient1)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-
-  <!-- Inner code brackets < > - representing code/development -->
-  <path d="M35 35 L25 50 L35 65" stroke="url(#gradient2)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M65 35 L75 50 L65 65" stroke="url(#gradient2)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Center AI sparkle -->
-  <circle cx="50" cy="50" r="5" fill="url(#gradient3)"/>
-  <path d="M50 40 L50 60 M40 50 L60 50" stroke="url(#gradient3)" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- Gradients - Much brighter and more saturated for dark backgrounds -->
-  <defs>
-    <linearGradient id="gradient1" x1="15" y1="5" x2="85" y2="95">
-      <stop offset="0%" stop-color="#60a5fa"/>
-      <stop offset="100%" stop-color="#c084fc"/>
-    </linearGradient>
-    <linearGradient id="gradient2" x1="25" y1="35" x2="75" y2="65">
-      <stop offset="0%" stop-color="#93c5fd"/>
-      <stop offset="100%" stop-color="#d8b4fe"/>
-    </linearGradient>
-    <linearGradient id="gradient3" x1="42" y1="42" x2="58" y2="58">
-      <stop offset="0%" stop-color="#fde047"/>
-      <stop offset="100%" stop-color="#fbbf24"/>
-    </linearGradient>
-  </defs>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="28" height="28" rx="8" fill="#2563EB"/>
+  <path d="M9 10.5 14.5 16 9 21.5" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17 21.5h6" stroke="white" stroke-width="2.25" stroke-linecap="round"/>
 </svg>

@@ -36,8 +36,8 @@ interface CodeDisplayProps {
 function CodeDisplay({ code, language, label, showLineNumbers = false }: CodeDisplayProps) {
   return (
     <div className="flex flex-col gap-2">
-      {label && <label className="text-sm font-medium text-slate-700">{label}</label>}
-      <div className="border border-slate-300 rounded-md overflow-hidden bg-white">
+      {label && <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">{label}</span>}
+      <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
         {language === 'text' ? (
           <pre className="m-0 max-h-[720px] overflow-auto whitespace-pre-wrap break-words bg-white p-4 font-mono text-sm leading-6 text-slate-900">
             {code || ''}

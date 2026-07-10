@@ -57,7 +57,7 @@ export default function RootLayout({
                   name: 'Mushin Code',
                   alternateName: 'developers.do',
                   url: BASE_URL,
-                  logo: `${BASE_URL}/favicon.png`,
+                  logo: `${BASE_URL}/favicon.svg`,
                 },
                 {
                   '@type': 'WebSite',
@@ -98,32 +98,28 @@ export default function RootLayout({
               <div className="flex-1">
                 {children}
               </div>
-              <footer className="border-t border-slate-200 text-slate-500 text-sm px-8 py-4">
-                <div className="max-w-6xl mx-auto flex flex-wrap items-center gap-3">
+              <footer className="border-t border-slate-200 bg-white/60 px-5 py-6 text-sm text-slate-500 sm:px-8">
+                <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="font-medium text-slate-700">developers.do</span>
                   <span>© 2026 Mushin Code</span>
-                  <span aria-hidden="true">•</span>
-                  <Link className="hover:text-slate-800" href="/privacy-policy">Privacy Policy</Link>
-                  <span aria-hidden="true">•</span>
+                  <Link className="hover:text-slate-900" href="/privacy-policy" prefetch={false}>Privacy</Link>
                   <CookiePreferencesLink />
-                  <span aria-hidden="true">•</span>
-                  <Link className="hover:text-slate-800" href="/terms-of-use">Terms of Use</Link>
-                  <span aria-hidden="true">•</span>
+                  <Link className="hover:text-slate-900" href="/terms-of-use" prefetch={false}>Terms</Link>
                   <a
-                    className="hover:text-slate-800"
+                    className="hover:text-slate-900"
                     href="https://github.com/hminaya/devtools/blob/main/LICENSE"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    CC BY-NC-SA 4.0
+                    License ↗
                   </a>
-                  <span aria-hidden="true">•</span>
                   <a
-                    className="hover:text-slate-800"
+                    className="ml-auto hover:text-slate-900"
                     href="https://github.com/hminaya/devtools"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Source Code
+                    Source code ↗
                   </a>
                 </div>
               </footer>

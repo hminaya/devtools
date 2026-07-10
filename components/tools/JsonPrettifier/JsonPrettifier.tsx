@@ -14,6 +14,7 @@ function JsonPrettifier() {
   const [error, setError] = useState('');
   const [suggestion, setSuggestion] = useState('');
   const [autoFixed, setAutoFixed] = useState(false);
+  const [mobilePane, setMobilePane] = useState<'input' | 'output'>('input');
 
   const generateRandomJson = () => {
     const randomData = {
@@ -44,6 +45,7 @@ function JsonPrettifier() {
     setError('');
     setSuggestion('');
     setAutoFixed(false);
+    setMobilePane('input');
   };
 
   const prettify = () => {
@@ -54,6 +56,7 @@ function JsonPrettifier() {
       setError('');
       setSuggestion(result.suggestion || '');
       setAutoFixed(result.autoFixed || false);
+      setMobilePane('output');
     } else {
       setError(result.error || 'Invalid JSON');
       setSuggestion(result.suggestion || '');
@@ -70,6 +73,7 @@ function JsonPrettifier() {
       setError('');
       setSuggestion('');
       setAutoFixed(false);
+      setMobilePane('output');
     } else {
       setError(result.error || 'Invalid JSON');
       setSuggestion(result.suggestion || '');
@@ -84,6 +88,7 @@ function JsonPrettifier() {
     setError('');
     setSuggestion('');
     setAutoFixed(false);
+    setMobilePane('input');
   };
 
   return (
@@ -92,51 +97,73 @@ function JsonPrettifier() {
       description="Format, validate, and minify JSON data"
       fullWidth
     >
-      <div className="space-y-4">
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-3">
-          <Button label="Prettify" onClick={prettify} variant="primary" />
-          <Button label="Minify" onClick={minify} variant="primary" />
-          <Button label="Generate Sample" onClick={generateRandomJson} variant="secondary" />
-          <Button label="Clear" onClick={clear} variant="secondary" />
+      <div>
+        <div className="sticky top-16 z-20 -mx-4 -mt-4 mb-5 flex flex-wrap items-center justify-between gap-3 rounded-t-2xl border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:-mt-6 sm:px-6 lg:top-0">
+          <div className="flex flex-wrap gap-2">
+            <Button label="Prettify" onClick={prettify} variant="primary" />
+            <Button label="Minify" onClick={minify} variant="secondary" />
+            <Button label="Sample" onClick={generateRandomJson} variant="secondary" />
+          </div>
+          <button type="button" className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-900" onClick={clear}>
+            Clear
+          </button>
         </div>
 
-        {/* Auto-fix Success Message */}
         {autoFixed && suggestion && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4">
-            <p className="text-green-700 font-medium">✓ {suggestion}</p>
+          <div className="mb-4 flex items-start gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3.5">
+            <span className="text-emerald-600" aria-hidden="true">✓</span>
+            <p className="text-sm font-medium text-emerald-800">{suggestion}</p>
           </div>
         )}
 
-        {/* Error Message with Suggestion */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
-            <p className="text-red-700 font-medium">Error:</p>
-            <p className="text-red-600 text-sm mb-2">{error}</p>
+          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4" role="alert">
+            <p className="font-bold text-red-800">Invalid JSON</p>
+            <p className="mt-1 text-sm leading-6 text-red-700">{error}</p>
             {suggestion && (
-              <div className="mt-3 pt-3 border-t border-red-200">
-                <p className="text-red-700 font-medium text-sm">💡 Suggestion:</p>
-                <p className="text-red-600 text-sm">{suggestion}</p>
+              <div className="mt-3 border-t border-red-200 pt-3">
+                <p className="text-sm font-semibold text-red-800">Try this</p>
+                <p className="mt-1 text-sm leading-6 text-red-700">{suggestion}</p>
               </div>
             )}
           </div>
         )}
 
-        {/* Side by Side Input/Output */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Input Column */}
-          <div className="space-y-2">
+        <div className="mb-4 grid grid-cols-2 rounded-xl bg-slate-100 p-1 lg:hidden" role="tablist" aria-label="JSON workspace">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mobilePane === 'input'}
+            className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${mobilePane === 'input' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500'}`}
+            onClick={() => setMobilePane('input')}
+          >
+            Input <span className="ml-1 text-xs font-normal text-slate-400">{input.length.toLocaleString()}</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mobilePane === 'output'}
+            className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${mobilePane === 'output' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500'}`}
+            onClick={() => setMobilePane('output')}
+          >
+            Output <span className="ml-1 text-xs font-normal text-slate-400">{output.length.toLocaleString()}</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className={mobilePane === 'input' ? 'block' : 'hidden lg:block'} role="tabpanel">
             <TextArea
               value={input}
               onChange={setInput}
               label="Input JSON"
               placeholder='{"example": "paste your JSON here"}'
-              rows={30}
+              rows={18}
+              className="min-h-80 lg:min-h-[520px]"
             />
+            <p className="mt-2 text-right text-xs tabular-nums text-slate-400">{input.length.toLocaleString()} characters</p>
           </div>
 
-          {/* Output Column */}
-          <div className="space-y-2">
+          <div className={`${mobilePane === 'output' ? 'block' : 'hidden lg:block'} space-y-2`} role="tabpanel">
             {output ? (
               <>
                 <CodeDisplay
@@ -148,9 +175,13 @@ function JsonPrettifier() {
               </>
             ) : (
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-slate-700">Output</label>
-                <div className="border border-slate-300 rounded-md bg-slate-50 h-[720px] flex items-center justify-center">
-                  <p className="text-slate-400 text-sm">Formatted JSON will appear here</p>
+                <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Output</span>
+                <div className="flex h-80 items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 lg:h-[520px]">
+                  <div className="max-w-xs px-6 text-center">
+                    <span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-white font-mono text-slate-400 shadow-sm" aria-hidden="true">{'{}'}</span>
+                    <p className="mt-3 text-sm font-semibold text-slate-600">Your formatted JSON appears here</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">Paste JSON, then choose Prettify or Minify.</p>
+                  </div>
                 </div>
               </div>
             )}

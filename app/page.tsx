@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import RandomToolCard from '../components/home/RandomToolCard';
+import ToolSearchButton from '../components/home/ToolSearchButton';
 import Card from '../components/shared/Card';
-import { TOOLS } from '../config/tools';
-import { TOOL_CATEGORIES } from '../config/seo';
+import { POPULAR_TOOL_IDS, TOOLS } from '../config/tools';
 
 export const metadata: Metadata = {
   alternates: {
@@ -12,58 +10,55 @@ export const metadata: Metadata = {
 };
 
 export default function Dashboard() {
+  const popularToolIds = new Set<string>(POPULAR_TOOL_IDS);
+  const popularTools = POPULAR_TOOL_IDS
+    .map((id) => TOOLS.find((tool) => tool.id === id))
+    .filter((tool): tool is (typeof TOOLS)[number] => Boolean(tool));
+  const remainingTools = TOOLS.filter((tool) => !popularToolIds.has(tool.id));
+
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8 max-w-4xl">
-          <h1 className="text-4xl font-bold text-slate-900 mb-3">Free developer tools that work in your browser</h1>
-          <p className="text-slate-600 text-lg leading-8">
-            Format data, test patterns and APIs, inspect authentication payloads, and generate code without creating an account.
-            Most tools process pasted data locally; tools that retrieve external data make requests only when you run them.
-          </p>
-        </div>
-
-        <div className="mb-8 flex flex-wrap gap-2">
-          {TOOL_CATEGORIES.map((category) => (
-            <Link
-              key={category.slug}
-              className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:border-slate-300 hover:text-slate-950"
-              href={`/tools/${category.slug}`}
-            >
-              {category.name}
-            </Link>
-          ))}
-        </div>
-
-        <section className="mb-10 grid gap-4 md:grid-cols-3" aria-label="Why use developers.do">
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h2 className="font-bold text-slate-900">Privacy-conscious by design</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Formatting, conversion, generation, and inspection happen in the browser wherever the tool supports local processing.</p>
+    <div className="px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+      <div className="mx-auto max-w-7xl">
+        <header className="max-w-2xl">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-950">Developer tools</h1>
+          <p className="mt-1 text-sm text-slate-500">Fast browser utilities. No signup.</p>
+          <div className="mt-5">
+            <ToolSearchButton />
           </div>
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h2 className="font-bold text-slate-900">Useful without signup</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Open a tool, paste or generate input, and copy the result. There is no account wall around core functionality.</p>
-          </div>
-          <div className="rounded-lg border border-slate-200 bg-white p-5">
-            <h2 className="font-bold text-slate-900">Built for debugging</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">Actionable errors, samples, format controls, and related utilities help you move from an invalid input to a usable result.</p>
+        </header>
+
+        <section className="mt-9" aria-labelledby="popular-tools-heading">
+          <h2 id="popular-tools-heading" className="mb-3 text-sm font-semibold text-slate-900">Popular</h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6">
+            {popularTools.map((tool) => (
+              <Card
+                key={tool.id}
+                icon={tool.icon}
+                title={tool.name}
+                description={tool.description}
+                href={tool.route}
+                compact
+              />
+            ))}
           </div>
         </section>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-          <RandomToolCard />
-
-          {TOOLS.map((tool) => (
-            <Card
-              key={tool.id}
-              icon={tool.icon}
-              title={tool.name}
-              description={tool.description}
-              href={tool.route}
-              external={tool.external}
-            />
-          ))}
-        </div>
+        <section className="mt-9" aria-labelledby="all-tools-heading">
+          <h2 id="all-tools-heading" className="mb-3 text-sm font-semibold text-slate-900">All tools</h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6">
+            {remainingTools.map((tool) => (
+              <Card
+                key={tool.id}
+                icon={tool.icon}
+                title={tool.name}
+                description={tool.description}
+                href={tool.route}
+                external={tool.external}
+                compact
+              />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -28,8 +28,9 @@ function CopyButton({ text, label = 'Copy' }: CopyButtonProps) {
 
   return (
     <button
+      type="button"
       onClick={handleCopy}
-      className="px-4 py-2 bg-slate-200 text-slate-700 rounded-md font-medium hover:bg-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400"
+      className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-100"
     >
       {copied ? '✓ Copied!' : label}
     </button>

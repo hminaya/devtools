@@ -23,40 +23,59 @@ function parseTools(source) {
   return blocks.map((block) => {
     const id = readField(block, 'id');
     const name = readField(block, 'name');
-    const description = readField(block, 'description');
     const route = readField(block, 'route');
-    const icon = readField(block, 'icon');
     const category = readField(block, 'category');
 
-    if (!id || !name || !description || !route || !icon || !category) {
+    if (!id || !name || !route || !category) {
       return undefined;
     }
 
-    return { id, name, description, route, icon, category };
+    return { id, name, route, category };
   }).filter((tool) => tool && tool.route.startsWith('/'));
 }
 
-function truncate(value, maxLength) {
-  return value.length > maxLength ? `${value.slice(0, maxLength - 1)}...` : value;
+function wrapText(value, maxLineLength, maxLines = 2) {
+  const words = value.split(/\s+/);
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    const candidate = currentLine ? `${currentLine} ${word}` : word;
+    if (candidate.length <= maxLineLength || !currentLine) {
+      currentLine = candidate;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+
+  if (currentLine) lines.push(currentLine);
+  if (lines.length <= maxLines) return lines;
+
+  const visibleLines = lines.slice(0, maxLines);
+  visibleLines[maxLines - 1] = `${visibleLines[maxLines - 1].slice(0, maxLineLength - 1)}…`;
+  return visibleLines;
 }
 
 function createSvg(tool) {
-  const title = escapeHtml(truncate(tool.name, 34));
-  const description = escapeHtml(truncate(tool.description, 82));
+  const titleLines = wrapText(tool.name, 27).map(escapeHtml);
   const category = escapeHtml(tool.category);
   const route = escapeHtml(`developers.do${tool.route}`);
+  const titleStartY = titleLines.length === 1 ? 286 : 252;
+  const titleMarkup = titleLines
+    .map((line, index) => `<tspan x="296" y="${titleStartY + index * 68}">${line}</tspan>`)
+    .join('');
+  const subtitleY = titleLines.length === 1 ? 338 : 382;
 
   return `<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0f172a"/>
-  <rect x="72" y="72" width="1056" height="486" rx="32" fill="#f8fafc"/>
-  <rect x="164" y="150" width="132" height="132" rx="28" fill="#dbeafe"/>
-  <text x="230" y="237" text-anchor="middle" fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">${escapeHtml(tool.icon)}</text>
-  <text x="336" y="180" fill="#2563eb" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">${category}</text>
-  <text x="336" y="250" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="800">${title}</text>
-  <text x="336" y="318" fill="#334155" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="600">${description}</text>
-  <rect x="164" y="408" width="872" height="70" rx="16" fill="#e2e8f0"/>
-  <text x="196" y="453" fill="#1e293b" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">${route}</text>
-  <text x="164" y="528" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">Free browser-based developer tool. No upload required.</text>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect x="120" y="219" width="128" height="128" rx="32" fill="#2563EB"/>
+  <path d="M151 257L177 283L151 309" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 309H220" stroke="white" stroke-width="11" stroke-linecap="round"/>
+  <text x="296" y="196" fill="#60A5FA" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">${category}</text>
+  <text fill="white" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="800">${titleMarkup}</text>
+  <text x="298" y="${subtitleY}" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">Free browser-based developer tool. No signup.</text>
+  <text x="120" y="536" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="500">${route}</text>
 </svg>`;
 }
 

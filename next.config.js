@@ -1,10 +1,16 @@
 const path = require('path');
+const os = require('os');
 
 /** @type {import('next').NextConfig} */
 const emptyModulePath = path.resolve(__dirname, 'utils/emptyModule.js');
+const localDevelopmentHosts = Object.values(os.networkInterfaces())
+  .flat()
+  .filter((network) => network && network.family === 'IPv4' && !network.internal)
+  .map((network) => network.address);
 
 const nextConfig = {
   output: 'export',
+  allowedDevOrigins: ['localhost', '127.0.0.1', ...localDevelopmentHosts],
   // Disable image optimization for static export
   images: {
     unoptimized: true,

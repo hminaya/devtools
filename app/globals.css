@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: #f8fafc;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #0f172a;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #bfdbfe;
+  color: #172554;
+}
+
+button,
+a,
+input,
+textarea,
+select,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

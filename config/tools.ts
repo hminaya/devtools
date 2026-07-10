@@ -9,6 +9,17 @@ export interface Tool {
   external?: boolean; // If true, opens in new tab
 }
 
+// Ordered from recent organic landing-page performance. Keep this list small so
+// the homepage and command palette highlight the same genuinely popular tools.
+export const POPULAR_TOOL_IDS = [
+  'saml-metadata-parser',
+  'stacktrace-formatter',
+  'file-size-converter',
+  'ios-app-lookup',
+  'beautify-stack-trace',
+  'random-number-generator',
+] as const;
+
 export const TOOLS: Tool[] = [
   {
     id: 'js-tokenizer',

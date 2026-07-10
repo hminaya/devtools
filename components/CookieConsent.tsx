@@ -30,29 +30,28 @@ function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 shadow-lg">
-      <div className="max-w-6xl mx-auto px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <p className="flex-1 text-sm text-slate-600">
-          We use analytics to improve this site. By default, analytics are anonymized — no cookies, no personal data.
-          You can accept full analytics or reject all tracking.{' '}
-          <a href="/privacy-policy" className="underline hover:text-slate-800">Learn more</a>.
+    <div className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white/95 shadow-2xl shadow-slate-950/15 backdrop-blur sm:bottom-5">
+      <div className="flex flex-col gap-3 px-4 py-3.5 sm:flex-row sm:items-center sm:px-5">
+        <p className="flex-1 text-sm leading-6 text-slate-600">
+          Analytics are anonymized by default—no cookies or personal data.{' '}
+          <a href="/privacy-policy" className="font-medium underline decoration-slate-300 underline-offset-2 hover:text-slate-900">Details</a>
         </p>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex shrink-0 flex-wrap items-center gap-2">
           <button
             onClick={() => handleConsent('rejected')}
-            className="text-sm text-slate-500 hover:text-slate-700 px-3 py-2 transition-colors"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800"
           >
             Reject All
           </button>
           <button
             onClick={() => handleConsent('anonymized')}
-            className="px-4 py-2 rounded-md text-sm font-medium bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors"
+            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
             Keep Anonymized
           </button>
           <button
             onClick={() => handleConsent('full')}
-            className="px-4 py-2 rounded-md text-sm font-medium bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+            className="rounded-lg bg-slate-950 px-3 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
           >
             Accept All
           </button>

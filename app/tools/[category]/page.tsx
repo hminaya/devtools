@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Card from '../../../components/shared/Card';
 import {
   BASE_URL,
   DEFAULT_OG_IMAGE,
@@ -110,7 +109,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
+    <div className="px-5 py-10 sm:px-8 lg:px-12 lg:py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -119,29 +118,44 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
       />
-      <div className="max-w-6xl mx-auto">
-        <nav className="mb-6 text-sm text-slate-500" aria-label="Breadcrumb">
-          <Link className="hover:text-slate-800" href="/">Developer Tools</Link>
-          <span className="mx-2" aria-hidden="true">/</span>
-          <span>{category.name}</span>
+      <div className="mx-auto max-w-5xl">
+        <nav className="mb-6 flex items-center gap-2 text-xs font-medium text-slate-500" aria-label="Breadcrumb">
+          <Link className="hover:text-slate-900" href="/" prefetch={false}>Home</Link>
+          <span className="text-slate-300" aria-hidden="true">/</span>
+          <span className="text-slate-700">{category.name}</span>
         </nav>
 
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">{category.name} Developer Tools</h1>
-          <p className="text-slate-600 text-lg max-w-3xl">{category.description}</p>
+        <div className="mb-10">
+          <div className="flex items-baseline gap-3">
+            <h1 className="text-4xl font-black tracking-[-0.04em] text-slate-950">{category.name} tools</h1>
+            <span className="text-sm tabular-nums text-slate-400">{tools.length}</span>
+          </div>
+          <p className="mt-3 max-w-3xl leading-7 text-slate-500">{category.description}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-          {tools.map((tool) => (
-            <Card
-              key={tool.id}
-              icon={tool.icon}
-              title={tool.name}
-              description={tool.description}
-              href={tool.route}
-              external={tool.external}
-            />
-          ))}
+        <div className="grid border-t border-slate-200 sm:grid-cols-2 sm:gap-x-8">
+          {tools.map((tool) => {
+            const content = (
+              <>
+                <span className="w-7 shrink-0 text-center text-lg" aria-hidden="true">{tool.icon}</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-semibold text-slate-800 group-hover:text-slate-950">{tool.name}</span>
+                  <span className="mt-0.5 block truncate text-sm text-slate-500">{tool.description}</span>
+                </span>
+                <span className="text-slate-300 group-hover:text-slate-600" aria-hidden="true">{tool.external ? '↗' : '→'}</span>
+              </>
+            );
+
+            return tool.external ? (
+              <a key={tool.id} href={tool.route} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 border-b border-slate-200 py-4">
+                {content}
+              </a>
+            ) : (
+              <Link key={tool.id} href={tool.route} prefetch={false} className="group flex items-center gap-3 border-b border-slate-200 py-4">
+                {content}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
