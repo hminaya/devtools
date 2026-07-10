@@ -9,188 +9,188 @@ DevTools is a suite of browser-based utilities for software developers built wit
 - 100% client-side: tools run in the browser using JavaScript, WebAssembly, and Web APIs.
 - No upload required: tool input is not transmitted to a backend.
 - Open source: built with Next.js, React, TypeScript, and Tailwind CSS.
-- Website: https://developers.do
+- Website: https://www.developers.do
 
 ## Tool Categories
 
 ### AI Tools
 
-Category URL: https://developers.do/tools/ai-tools
+Category URL: https://www.developers.do/tools/ai-tools
 
 #### JS Tokenizers
-URL: https://developers.do/tools/js-tokenizer
+URL: https://www.developers.do/tools/js-tokenizer
 
 Tokenize text using various AI tokenizers
 
 #### RAG Chunker
-URL: https://developers.do/tools/rag-chunker
+URL: https://www.developers.do/tools/rag-chunker
 
 Split text into retrieval-friendly chunks with overlap and token counts
 
 #### Sentiment Analysis
-URL: https://developers.do/tools/sentiment-analysis
+URL: https://www.developers.do/tools/sentiment-analysis
 
 Analyze emotional tone of text using AI
 
 #### Zero-Shot Classification
-URL: https://developers.do/tools/zero-shot-classification
+URL: https://www.developers.do/tools/zero-shot-classification
 
 Classify text into custom categories without training using AI
 
 #### Sentence Similarity
-URL: https://developers.do/tools/sentence-similarity
+URL: https://www.developers.do/tools/sentence-similarity
 
 Generate embeddings and find semantic similarity between texts using AI
 
 #### Question Answering
-URL: https://developers.do/tools/question-answering
+URL: https://www.developers.do/tools/question-answering
 
 Answer questions based on provided context using AI
 
 #### Fill-Mask Text Completion
-URL: https://developers.do/tools/fill-mask
+URL: https://www.developers.do/tools/fill-mask
 
 Complete sentences and predict missing words using AI
 
 #### Text Summarization
-URL: https://developers.do/tools/text-summarization
+URL: https://www.developers.do/tools/text-summarization
 
 Summarize long text into concise overviews using AI
 
 #### Text Extractor
-URL: https://developers.do/tools/text-extractor
+URL: https://www.developers.do/tools/text-extractor
 
 Extract emails, URLs, IPs, dates, and patterns from text
 
 #### Vibe Check
-URL: https://developers.do/tools/vibe-check
+URL: https://www.developers.do/tools/vibe-check
 
 Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
 
 ### Formatting
 
-Category URL: https://developers.do/tools/formatting
+Category URL: https://www.developers.do/tools/formatting
 
 #### JSON Prettifier
-URL: https://developers.do/tools/json-prettifier
+URL: https://www.developers.do/tools/json-prettifier
 
 Format and validate JSON data
 
 #### XML Prettifier
-URL: https://developers.do/tools/xml-prettifier
+URL: https://www.developers.do/tools/xml-prettifier
 
 Format and validate XML data
 
 #### HL7 Parser
-URL: https://developers.do/tools/hl7-parser
+URL: https://www.developers.do/tools/hl7-parser
 
 Read and parse HL7 v2 messages into structured JSON
 
 #### HL7 to FHIR Converter
-URL: https://developers.do/tools/hl7-to-fhir
+URL: https://www.developers.do/tools/hl7-to-fhir
 
 Convert HL7 v2 messages to FHIR R4 Bundles
 
 #### Diff / Text Compare
-URL: https://developers.do/tools/diff-compare
+URL: https://www.developers.do/tools/diff-compare
 
 Compare two texts and see color-coded differences
 
 #### Stacktrace Formatter
-URL: https://developers.do/tools/stacktrace-formatter
+URL: https://www.developers.do/tools/stacktrace-formatter
 
 Format and beautify stack traces from multiple programming languages
 
 #### Beautify Stack Trace
-URL: https://developers.do/tools/beautify-stack-trace
+URL: https://www.developers.do/tools/beautify-stack-trace
 
 Clean up and beautify messy error stack traces for readability
 
 #### Stack Trace Analyzer
-URL: https://developers.do/tools/stacktrace-analyzer
+URL: https://www.developers.do/tools/stacktrace-analyzer
 
 Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 
 #### Base64 Encoder/Decoder
-URL: https://developers.do/tools/base64-encoder
+URL: https://www.developers.do/tools/base64-encoder
 
 Encode and decode Base64 strings
 
 #### File Size Converter
-URL: https://developers.do/tools/file-size-converter
+URL: https://www.developers.do/tools/file-size-converter
 
 Convert file sizes between decimal (SI) and binary (IEC) units
 
 #### Unix Timestamp Converter
-URL: https://developers.do/tools/unix-timestamp
+URL: https://www.developers.do/tools/unix-timestamp
 
 Convert between Unix epoch timestamps and human-readable dates with timezone support
 
 #### Cron Expression Tester
-URL: https://developers.do/tools/cron-tester
+URL: https://www.developers.do/tools/cron-tester
 
 Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
 
 #### Cron Expression Generator
-URL: https://developers.do/tools/cron-generator
+URL: https://www.developers.do/tools/cron-generator
 
 Build cron expressions visually with field controls — no syntax knowledge required
 
 #### URL Encoder / Decoder
-URL: https://developers.do/tools/url-encoder
+URL: https://www.developers.do/tools/url-encoder
 
 Encode and decode URLs using encodeURIComponent and encodeURI
 
 #### YAML ↔ JSON Converter
-URL: https://developers.do/tools/yaml-json-converter
+URL: https://www.developers.do/tools/yaml-json-converter
 
 Convert between YAML and JSON with auto-detection of input format
 
 #### CSV ↔ JSON Converter
-URL: https://developers.do/tools/csv-json-converter
+URL: https://www.developers.do/tools/csv-json-converter
 
 Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 
 #### CSV Viewer / Table Explorer
-URL: https://developers.do/tools/csv-viewer
+URL: https://www.developers.do/tools/csv-viewer
 
 Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 
 #### SQL Formatter
-URL: https://developers.do/tools/sql-formatter
+URL: https://www.developers.do/tools/sql-formatter
 
 Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 
 ### Algorithms
 
-Category URL: https://developers.do/tools/algorithms
+Category URL: https://www.developers.do/tools/algorithms
 
 #### String Similarity
-URL: https://developers.do/tools/string-similarity
+URL: https://www.developers.do/tools/string-similarity
 
 Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
 
 #### Regex Tester
-URL: https://developers.do/tools/regex-tester
+URL: https://www.developers.do/tools/regex-tester
 
 Test regular expressions with match highlighting, capture groups, and string replacement
 
 #### Regex Library
-URL: https://developers.do/tools/regex-library
+URL: https://www.developers.do/tools/regex-library
 
 Browse and copy common regular expressions for validation, extraction, and text processing
 
 #### Number Base Converter
-URL: https://developers.do/tools/number-base-converter
+URL: https://www.developers.do/tools/number-base-converter
 
 Convert numbers between binary, octal, decimal, and hex with two's complement
 
 ### Apps
 
-Category URL: https://developers.do/tools/apps
+Category URL: https://www.developers.do/tools/apps
 
 #### iOS App Lookup
-URL: https://developers.do/tools/ios-app-lookup
+URL: https://www.developers.do/tools/ios-app-lookup
 
 Look up iOS app metadata from the App Store using bundle ID
 
@@ -226,172 +226,172 @@ iOS virtual desktop pet that visualizes bot activity in real-time
 
 ### Generators
 
-Category URL: https://developers.do/tools/generators
+Category URL: https://www.developers.do/tools/generators
 
 #### Password Generator
-URL: https://developers.do/tools/password-generator
+URL: https://www.developers.do/tools/password-generator
 
 Generate secure random passwords
 
 #### UUID Generator
-URL: https://developers.do/tools/uuid-generator
+URL: https://www.developers.do/tools/uuid-generator
 
 Generate UUIDs (v4)
 
 #### Lorem Ipsum Generator
-URL: https://developers.do/tools/lorem-ipsum-generator
+URL: https://www.developers.do/tools/lorem-ipsum-generator
 
 Generate placeholder text for designs
 
 #### Random Number Generator
-URL: https://developers.do/tools/random-number-generator
+URL: https://www.developers.do/tools/random-number-generator
 
 Generate random numbers and see code samples in multiple languages
 
 #### QR Code Generator
-URL: https://developers.do/tools/qr-code-generator
+URL: https://www.developers.do/tools/qr-code-generator
 
 Generate QR codes from text, URLs, or any data
 
 ### Code & Schemas
 
-Category URL: https://developers.do/tools/code-and-schemas
+Category URL: https://www.developers.do/tools/code-and-schemas
 
 #### JSON to TypeScript
-URL: https://developers.do/tools/json-to-typescript
+URL: https://www.developers.do/tools/json-to-typescript
 
 Convert JSON to TypeScript interfaces
 
 #### JSON to JSDoc
-URL: https://developers.do/tools/json-to-jsdoc
+URL: https://www.developers.do/tools/json-to-jsdoc
 
 Convert JSON to JSDoc type definitions
 
 #### JSON to C#
-URL: https://developers.do/tools/json-to-csharp
+URL: https://www.developers.do/tools/json-to-csharp
 
 Convert JSON to C# classes
 
 #### JSON to Swift
-URL: https://developers.do/tools/json-to-swift
+URL: https://www.developers.do/tools/json-to-swift
 
 Convert JSON to Swift structs
 
 #### JSON to Kotlin
-URL: https://developers.do/tools/json-to-kotlin
+URL: https://www.developers.do/tools/json-to-kotlin
 
 Convert JSON to Kotlin data classes
 
 #### JSON to Python
-URL: https://developers.do/tools/json-to-python
+URL: https://www.developers.do/tools/json-to-python
 
 Convert JSON to Python dataclasses or Pydantic models
 
 #### JSON to Go
-URL: https://developers.do/tools/json-to-go
+URL: https://www.developers.do/tools/json-to-go
 
 Convert JSON to Go structs
 
 #### JSON to Rust
-URL: https://developers.do/tools/json-to-rust
+URL: https://www.developers.do/tools/json-to-rust
 
 Convert JSON to Rust structs
 
 #### Color Picker
-URL: https://developers.do/tools/color-picker
+URL: https://www.developers.do/tools/color-picker
 
 Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
 
 ### Security
 
-Category URL: https://developers.do/tools/security
+Category URL: https://www.developers.do/tools/security
 
 #### Secrets Scanner
-URL: https://developers.do/tools/secrets-scanner
+URL: https://www.developers.do/tools/secrets-scanner
 
 Scan text, logs, or configs for leaked keys and tokens
 
 #### JWT Decoder
-URL: https://developers.do/tools/jwt-decoder
+URL: https://www.developers.do/tools/jwt-decoder
 
 Decode and inspect JWT tokens
 
 #### MD5 Hash
-URL: https://developers.do/tools/md5-generator
+URL: https://www.developers.do/tools/md5-generator
 
 Generate MD5 hashes from text
 
 #### SHA-1 Hash
-URL: https://developers.do/tools/sha1-generator
+URL: https://www.developers.do/tools/sha1-generator
 
 Generate SHA-1 hashes from text
 
 #### SHA-256/512 Hash
-URL: https://developers.do/tools/sha256-generator
+URL: https://www.developers.do/tools/sha256-generator
 
 Generate secure SHA-256 or SHA-512 hashes from text
 
 #### Clawdbot Security Scanner
-URL: https://developers.do/tools/clawdbot-security-scanner
+URL: https://www.developers.do/tools/clawdbot-security-scanner
 
 Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 
 #### Certificate & CSR Decoder
-URL: https://developers.do/tools/csr-decoder
+URL: https://www.developers.do/tools/csr-decoder
 
 Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 
 ### SAML
 
-Category URL: https://developers.do/tools/saml
+Category URL: https://www.developers.do/tools/saml
 
 #### SAML Decoder
-URL: https://developers.do/tools/saml-decoder
+URL: https://www.developers.do/tools/saml-decoder
 
 Decode SAML Requests/Responses from Base64 to readable XML
 
 #### SAML Metadata Parser
-URL: https://developers.do/tools/saml-metadata-parser
+URL: https://www.developers.do/tools/saml-metadata-parser
 
 Parse SAML Metadata XML and extract IdP/SP configuration
 
 #### SAML Certificate Inspector
-URL: https://developers.do/tools/saml-cert-inspector
+URL: https://www.developers.do/tools/saml-cert-inspector
 
 Inspect X.509 certificates from SAML metadata, responses, or PEM
 
 #### SAML Assertion Builder
-URL: https://developers.do/tools/saml-builder
+URL: https://www.developers.do/tools/saml-builder
 
 Generate test SAML Responses, AuthnRequests, and LogoutRequests
 
 #### SAML Metadata Generator
-URL: https://developers.do/tools/saml-metadata-generator
+URL: https://www.developers.do/tools/saml-metadata-generator
 
 Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
 
 #### SAML Response Validator
-URL: https://developers.do/tools/saml-validator
+URL: https://www.developers.do/tools/saml-validator
 
 Debug a SAML Response and find out why SSO login is failing
 
 ### Networking
 
-Category URL: https://developers.do/tools/networking
+Category URL: https://www.developers.do/tools/networking
 
 #### API Tester
-URL: https://developers.do/tools/api-tester
+URL: https://www.developers.do/tools/api-tester
 
 Test and view API responses
 
 #### HTTP Status Code Reference
-URL: https://developers.do/tools/http-status-codes
+URL: https://www.developers.do/tools/http-status-codes
 
 Searchable reference of all HTTP status codes with descriptions and use cases
 
 ### Data
 
-Category URL: https://developers.do/tools/data
+Category URL: https://www.developers.do/tools/data
 
 #### OSS Data
 URL: https://data.developers.do

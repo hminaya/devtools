@@ -4,12 +4,11 @@ import SentimentAnalysis from '../../../components/tools/SentimentAnalysis/Senti
 export const metadata: Metadata = {
   title: 'Sentiment Analysis Tool - Detect Positive, Negative or Neutral Text',
   description: 'Analyze reviews, feedback, and social posts for positive, negative, or neutral sentiment using fast lexicon scoring or an in-browser AI model.',
-  keywords: 'sentiment analysis, emotion detection, text analysis, AI sentiment, positive negative neutral, review analysis, feedback analysis, NLP, natural language processing, transformers.js, BERT model, client-side AI, how to analyze text sentiment, is this review positive or negative, detect emotion in text, sentiment score online',
   alternates: {
     canonical: '/tools/sentiment-analysis',
   },
   openGraph: {
-    url: 'https://developers.do/tools/sentiment-analysis',
+    url: 'https://www.developers.do/tools/sentiment-analysis',
     title: 'Sentiment Analysis Tool - Free Text Sentiment Detector',
     description: 'Detect positive, negative, or neutral sentiment in reviews, feedback, and social posts using fast scoring or in-browser AI.',
     images: [{ url: '/og/tools/sentiment-analysis.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

@@ -9,19 +9,18 @@ import { BASE_URL, DEFAULT_OG_IMAGE } from '../config/seo';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers | JSON, API Testing, Code Generators & More',
-  description: 'Free online developer tools dashboard with 50+ utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, hash generators, AI tools (sentiment analysis, text summarization), and more. All tools run locally in your browser.',
-  keywords: 'developer tools, json formatter, json prettifier, xml formatter, json to typescript, json to python, json to pydantic, json to csharp, json to kotlin, json to swift, json to go, json to rust, code generator, api tester, rest api, jwt decoder, password generator, uuid generator, base64 encoder, md5 hash, sha256 hash, stacktrace formatter, beautify stack trace, stack trace beautifier, regex tester, sql formatter, saml decoder, yaml to json, unix timestamp converter, sentiment analysis, text summarization, string similarity, color picker, qr code generator, free developer tools, online tools, privacy-focused tools, web developer utilities',
-  authors: [{ name: 'Developer Tools Dashboard' }],
+  title: 'developers.do - Free Browser-Based Developer Tools',
+  description: 'Free browser-based tools for formatting JSON, testing APIs and regex, decoding SAML and JWTs, generating code, and more. No signup required.',
+  authors: [{ name: 'Mushin Code' }],
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Developer Tools Dashboard - 50+ Free Online Tools for Developers',
-    description: '50+ free developer utilities: JSON/XML formatters, code generators (TypeScript, Python, C#, Kotlin, Swift, Go, Rust), stack trace formatter, API tester, regex tester, SQL formatter, JWT decoder, SAML tools, AI tools, and more. All tools run locally in your browser.',
-    siteName: 'Developer Tools Dashboard',
+    title: 'developers.do - Free Browser-Based Developer Tools',
+    description: 'Free, privacy-focused developer utilities for JSON, APIs, regex, SAML, JWTs, SQL, code generation, and more.',
+    siteName: 'developers.do',
     images: [
       {
         url: DEFAULT_OG_IMAGE,
@@ -55,7 +54,8 @@ export default function RootLayout({
                 {
                   '@type': 'Organization',
                   '@id': `${BASE_URL}/#organization`,
-                  name: 'developers.do',
+                  name: 'Mushin Code',
+                  alternateName: 'developers.do',
                   url: BASE_URL,
                   logo: `${BASE_URL}/favicon.png`,
                 },
@@ -63,9 +63,10 @@ export default function RootLayout({
                   '@type': 'WebSite',
                   '@id': `${BASE_URL}/#website`,
                   url: BASE_URL,
-                  name: 'Developer Tools Dashboard',
+                  name: 'developers.do',
+                  alternateName: 'Developer Tools',
                   description: 'Free developer tools that run locally in your browser',
-                  publisher: { '@id': 'https://developers.do/#organization' },
+                  publisher: { '@id': 'https://www.developers.do/#organization' },
                 },
               ],
             }),
@@ -90,9 +91,9 @@ export default function RootLayout({
       <body className="antialiased">
         <Analytics />
         <CookieConsent />
-        <div className="flex h-screen">
+        <div className="min-h-screen lg:flex lg:h-screen">
           <Sidebar />
-          <main className="flex-1 bg-slate-50 overflow-auto">
+          <main className="min-w-0 flex-1 bg-slate-50 pt-16 lg:overflow-auto lg:pt-0">
             <div className="min-h-full flex flex-col">
               <div className="flex-1">
                 {children}

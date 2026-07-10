@@ -107,7 +107,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/json-prettifier',
     icon: '{}',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'xml-prettifier',
@@ -179,7 +179,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/base64-encoder',
     icon: '🔤',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'file-size-converter',
@@ -197,7 +197,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/unix-timestamp',
     icon: '⏱️',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'cron-tester',
@@ -206,7 +206,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/cron-tester',
     icon: '⏰',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'cron-generator',
@@ -260,7 +260,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/sql-formatter',
     icon: '🗄️',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'string-similarity',
@@ -278,7 +278,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/regex-tester',
     icon: '🔍',
     category: 'Algorithms',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'regex-library',
@@ -383,7 +383,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/uuid-generator',
     icon: '🆔',
     category: 'Generators',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'lorem-ipsum-generator',
@@ -509,7 +509,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/jwt-decoder',
     icon: '🔓',
     category: 'Security',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'md5-generator',
@@ -554,7 +554,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-decoder',
     icon: '🔏',
     category: 'SAML',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-10',
   },
   {
     id: 'saml-metadata-parser',

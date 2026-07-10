@@ -5,13 +5,11 @@ export const metadata: Metadata = {
   title: 'Vibe Check - AI Code Review Prompt Builder',
   description:
     'Generate copy-ready prompts for reviewing vibe-coded apps. Build AI prompts for security review, production readiness, testing, refactoring, threat modeling, and hidden assumptions.',
-  keywords:
-    'vibe coding, vibe code review, AI code review prompt, production readiness prompt, threat model prompt, test plan prompt, Codex prompt, Cursor prompt, Claude prompt, AI generated code audit, vibe check tool',
   alternates: {
     canonical: '/tools/vibe-check',
   },
   openGraph: {
-    url: 'https://developers.do/tools/vibe-check',
+    url: 'https://www.developers.do/tools/vibe-check',
     title: 'Vibe Check - AI Code Review Prompt Builder',
     description:
       'Create practical prompts for checking security, tests, maintainability, and production readiness in vibe-coded apps.',

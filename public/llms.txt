@@ -8,48 +8,48 @@ DevTools provides utilities for developers including formatters, converters, gen
 
 ### AI Tools
 
-- [JS Tokenizers](https://developers.do/tools/js-tokenizer): Tokenize text using various AI tokenizers
-- [RAG Chunker](https://developers.do/tools/rag-chunker): Split text into retrieval-friendly chunks with overlap and token counts
-- [Sentiment Analysis](https://developers.do/tools/sentiment-analysis): Analyze emotional tone of text using AI
-- [Zero-Shot Classification](https://developers.do/tools/zero-shot-classification): Classify text into custom categories without training using AI
-- [Sentence Similarity](https://developers.do/tools/sentence-similarity): Generate embeddings and find semantic similarity between texts using AI
-- [Question Answering](https://developers.do/tools/question-answering): Answer questions based on provided context using AI
-- [Fill-Mask Text Completion](https://developers.do/tools/fill-mask): Complete sentences and predict missing words using AI
-- [Text Summarization](https://developers.do/tools/text-summarization): Summarize long text into concise overviews using AI
-- [Text Extractor](https://developers.do/tools/text-extractor): Extract emails, URLs, IPs, dates, and patterns from text
-- [Vibe Check](https://developers.do/tools/vibe-check): Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
+- [JS Tokenizers](https://www.developers.do/tools/js-tokenizer): Tokenize text using various AI tokenizers
+- [RAG Chunker](https://www.developers.do/tools/rag-chunker): Split text into retrieval-friendly chunks with overlap and token counts
+- [Sentiment Analysis](https://www.developers.do/tools/sentiment-analysis): Analyze emotional tone of text using AI
+- [Zero-Shot Classification](https://www.developers.do/tools/zero-shot-classification): Classify text into custom categories without training using AI
+- [Sentence Similarity](https://www.developers.do/tools/sentence-similarity): Generate embeddings and find semantic similarity between texts using AI
+- [Question Answering](https://www.developers.do/tools/question-answering): Answer questions based on provided context using AI
+- [Fill-Mask Text Completion](https://www.developers.do/tools/fill-mask): Complete sentences and predict missing words using AI
+- [Text Summarization](https://www.developers.do/tools/text-summarization): Summarize long text into concise overviews using AI
+- [Text Extractor](https://www.developers.do/tools/text-extractor): Extract emails, URLs, IPs, dates, and patterns from text
+- [Vibe Check](https://www.developers.do/tools/vibe-check): Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
 
 ### Formatting
 
-- [JSON Prettifier](https://developers.do/tools/json-prettifier): Format and validate JSON data
-- [XML Prettifier](https://developers.do/tools/xml-prettifier): Format and validate XML data
-- [HL7 Parser](https://developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
-- [HL7 to FHIR Converter](https://developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
-- [Diff / Text Compare](https://developers.do/tools/diff-compare): Compare two texts and see color-coded differences
-- [Stacktrace Formatter](https://developers.do/tools/stacktrace-formatter): Format and beautify stack traces from multiple programming languages
-- [Beautify Stack Trace](https://developers.do/tools/beautify-stack-trace): Clean up and beautify messy error stack traces for readability
-- [Stack Trace Analyzer](https://developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes, explain errors, and separate app from framework code
-- [Base64 Encoder/Decoder](https://developers.do/tools/base64-encoder): Encode and decode Base64 strings
-- [File Size Converter](https://developers.do/tools/file-size-converter): Convert file sizes between decimal (SI) and binary (IEC) units
-- [Unix Timestamp Converter](https://developers.do/tools/unix-timestamp): Convert between Unix epoch timestamps and human-readable dates with timezone support
-- [Cron Expression Tester](https://developers.do/tools/cron-tester): Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
-- [Cron Expression Generator](https://developers.do/tools/cron-generator): Build cron expressions visually with field controls — no syntax knowledge required
-- [URL Encoder / Decoder](https://developers.do/tools/url-encoder): Encode and decode URLs using encodeURIComponent and encodeURI
-- [YAML ↔ JSON Converter](https://developers.do/tools/yaml-json-converter): Convert between YAML and JSON with auto-detection of input format
-- [CSV ↔ JSON Converter](https://developers.do/tools/csv-json-converter): Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
-- [CSV Viewer / Table Explorer](https://developers.do/tools/csv-viewer): Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
-- [SQL Formatter](https://developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
+- [JSON Prettifier](https://www.developers.do/tools/json-prettifier): Format and validate JSON data
+- [XML Prettifier](https://www.developers.do/tools/xml-prettifier): Format and validate XML data
+- [HL7 Parser](https://www.developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
+- [HL7 to FHIR Converter](https://www.developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
+- [Diff / Text Compare](https://www.developers.do/tools/diff-compare): Compare two texts and see color-coded differences
+- [Stacktrace Formatter](https://www.developers.do/tools/stacktrace-formatter): Format and beautify stack traces from multiple programming languages
+- [Beautify Stack Trace](https://www.developers.do/tools/beautify-stack-trace): Clean up and beautify messy error stack traces for readability
+- [Stack Trace Analyzer](https://www.developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes, explain errors, and separate app from framework code
+- [Base64 Encoder/Decoder](https://www.developers.do/tools/base64-encoder): Encode and decode Base64 strings
+- [File Size Converter](https://www.developers.do/tools/file-size-converter): Convert file sizes between decimal (SI) and binary (IEC) units
+- [Unix Timestamp Converter](https://www.developers.do/tools/unix-timestamp): Convert between Unix epoch timestamps and human-readable dates with timezone support
+- [Cron Expression Tester](https://www.developers.do/tools/cron-tester): Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
+- [Cron Expression Generator](https://www.developers.do/tools/cron-generator): Build cron expressions visually with field controls — no syntax knowledge required
+- [URL Encoder / Decoder](https://www.developers.do/tools/url-encoder): Encode and decode URLs using encodeURIComponent and encodeURI
+- [YAML ↔ JSON Converter](https://www.developers.do/tools/yaml-json-converter): Convert between YAML and JSON with auto-detection of input format
+- [CSV ↔ JSON Converter](https://www.developers.do/tools/csv-json-converter): Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
+- [CSV Viewer / Table Explorer](https://www.developers.do/tools/csv-viewer): Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
+- [SQL Formatter](https://www.developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 
 ### Algorithms
 
-- [String Similarity](https://developers.do/tools/string-similarity): Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
-- [Regex Tester](https://developers.do/tools/regex-tester): Test regular expressions with match highlighting, capture groups, and string replacement
-- [Regex Library](https://developers.do/tools/regex-library): Browse and copy common regular expressions for validation, extraction, and text processing
-- [Number Base Converter](https://developers.do/tools/number-base-converter): Convert numbers between binary, octal, decimal, and hex with two's complement
+- [String Similarity](https://www.developers.do/tools/string-similarity): Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
+- [Regex Tester](https://www.developers.do/tools/regex-tester): Test regular expressions with match highlighting, capture groups, and string replacement
+- [Regex Library](https://www.developers.do/tools/regex-library): Browse and copy common regular expressions for validation, extraction, and text processing
+- [Number Base Converter](https://www.developers.do/tools/number-base-converter): Convert numbers between binary, octal, decimal, and hex with two's complement
 
 ### Apps
 
-- [iOS App Lookup](https://developers.do/tools/ios-app-lookup): Look up iOS app metadata from the App Store using bundle ID
+- [iOS App Lookup](https://www.developers.do/tools/ios-app-lookup): Look up iOS app metadata from the App Store using bundle ID
 - [GameWobble](https://gamewobble.com): Free bite-sized browser games you can play instantly with no downloads or signup
 - [Terremoto](https://terremoto.developers.do): iOS app for tracking earthquakes in real-time
 - [FedPulse](https://fedpulse.developers.do): iOS app to search, save, and track federal government jobs
@@ -59,47 +59,47 @@ DevTools provides utilities for developers including formatters, converters, gen
 
 ### Generators
 
-- [Password Generator](https://developers.do/tools/password-generator): Generate secure random passwords
-- [UUID Generator](https://developers.do/tools/uuid-generator): Generate UUIDs (v4)
-- [Lorem Ipsum Generator](https://developers.do/tools/lorem-ipsum-generator): Generate placeholder text for designs
-- [Random Number Generator](https://developers.do/tools/random-number-generator): Generate random numbers and see code samples in multiple languages
-- [QR Code Generator](https://developers.do/tools/qr-code-generator): Generate QR codes from text, URLs, or any data
+- [Password Generator](https://www.developers.do/tools/password-generator): Generate secure random passwords
+- [UUID Generator](https://www.developers.do/tools/uuid-generator): Generate UUIDs (v4)
+- [Lorem Ipsum Generator](https://www.developers.do/tools/lorem-ipsum-generator): Generate placeholder text for designs
+- [Random Number Generator](https://www.developers.do/tools/random-number-generator): Generate random numbers and see code samples in multiple languages
+- [QR Code Generator](https://www.developers.do/tools/qr-code-generator): Generate QR codes from text, URLs, or any data
 
 ### Code & Schemas
 
-- [JSON to TypeScript](https://developers.do/tools/json-to-typescript): Convert JSON to TypeScript interfaces
-- [JSON to JSDoc](https://developers.do/tools/json-to-jsdoc): Convert JSON to JSDoc type definitions
-- [JSON to C#](https://developers.do/tools/json-to-csharp): Convert JSON to C# classes
-- [JSON to Swift](https://developers.do/tools/json-to-swift): Convert JSON to Swift structs
-- [JSON to Kotlin](https://developers.do/tools/json-to-kotlin): Convert JSON to Kotlin data classes
-- [JSON to Python](https://developers.do/tools/json-to-python): Convert JSON to Python dataclasses or Pydantic models
-- [JSON to Go](https://developers.do/tools/json-to-go): Convert JSON to Go structs
-- [JSON to Rust](https://developers.do/tools/json-to-rust): Convert JSON to Rust structs
-- [Color Picker](https://developers.do/tools/color-picker): Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
+- [JSON to TypeScript](https://www.developers.do/tools/json-to-typescript): Convert JSON to TypeScript interfaces
+- [JSON to JSDoc](https://www.developers.do/tools/json-to-jsdoc): Convert JSON to JSDoc type definitions
+- [JSON to C#](https://www.developers.do/tools/json-to-csharp): Convert JSON to C# classes
+- [JSON to Swift](https://www.developers.do/tools/json-to-swift): Convert JSON to Swift structs
+- [JSON to Kotlin](https://www.developers.do/tools/json-to-kotlin): Convert JSON to Kotlin data classes
+- [JSON to Python](https://www.developers.do/tools/json-to-python): Convert JSON to Python dataclasses or Pydantic models
+- [JSON to Go](https://www.developers.do/tools/json-to-go): Convert JSON to Go structs
+- [JSON to Rust](https://www.developers.do/tools/json-to-rust): Convert JSON to Rust structs
+- [Color Picker](https://www.developers.do/tools/color-picker): Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
 
 ### Security
 
-- [Secrets Scanner](https://developers.do/tools/secrets-scanner): Scan text, logs, or configs for leaked keys and tokens
-- [JWT Decoder](https://developers.do/tools/jwt-decoder): Decode and inspect JWT tokens
-- [MD5 Hash](https://developers.do/tools/md5-generator): Generate MD5 hashes from text
-- [SHA-1 Hash](https://developers.do/tools/sha1-generator): Generate SHA-1 hashes from text
-- [SHA-256/512 Hash](https://developers.do/tools/sha256-generator): Generate secure SHA-256 or SHA-512 hashes from text
-- [Clawdbot Security Scanner](https://developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
-- [Certificate & CSR Decoder](https://developers.do/tools/csr-decoder): Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
+- [Secrets Scanner](https://www.developers.do/tools/secrets-scanner): Scan text, logs, or configs for leaked keys and tokens
+- [JWT Decoder](https://www.developers.do/tools/jwt-decoder): Decode and inspect JWT tokens
+- [MD5 Hash](https://www.developers.do/tools/md5-generator): Generate MD5 hashes from text
+- [SHA-1 Hash](https://www.developers.do/tools/sha1-generator): Generate SHA-1 hashes from text
+- [SHA-256/512 Hash](https://www.developers.do/tools/sha256-generator): Generate secure SHA-256 or SHA-512 hashes from text
+- [Clawdbot Security Scanner](https://www.developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
+- [Certificate & CSR Decoder](https://www.developers.do/tools/csr-decoder): Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 
 ### SAML
 
-- [SAML Decoder](https://developers.do/tools/saml-decoder): Decode SAML Requests/Responses from Base64 to readable XML
-- [SAML Metadata Parser](https://developers.do/tools/saml-metadata-parser): Parse SAML Metadata XML and extract IdP/SP configuration
-- [SAML Certificate Inspector](https://developers.do/tools/saml-cert-inspector): Inspect X.509 certificates from SAML metadata, responses, or PEM
-- [SAML Assertion Builder](https://developers.do/tools/saml-builder): Generate test SAML Responses, AuthnRequests, and LogoutRequests
-- [SAML Metadata Generator](https://developers.do/tools/saml-metadata-generator): Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
-- [SAML Response Validator](https://developers.do/tools/saml-validator): Debug a SAML Response and find out why SSO login is failing
+- [SAML Decoder](https://www.developers.do/tools/saml-decoder): Decode SAML Requests/Responses from Base64 to readable XML
+- [SAML Metadata Parser](https://www.developers.do/tools/saml-metadata-parser): Parse SAML Metadata XML and extract IdP/SP configuration
+- [SAML Certificate Inspector](https://www.developers.do/tools/saml-cert-inspector): Inspect X.509 certificates from SAML metadata, responses, or PEM
+- [SAML Assertion Builder](https://www.developers.do/tools/saml-builder): Generate test SAML Responses, AuthnRequests, and LogoutRequests
+- [SAML Metadata Generator](https://www.developers.do/tools/saml-metadata-generator): Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
+- [SAML Response Validator](https://www.developers.do/tools/saml-validator): Debug a SAML Response and find out why SSO login is failing
 
 ### Networking
 
-- [API Tester](https://developers.do/tools/api-tester): Test and view API responses
-- [HTTP Status Code Reference](https://developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
+- [API Tester](https://www.developers.do/tools/api-tester): Test and view API responses
+- [HTTP Status Code Reference](https://www.developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
 
 ### Data
 

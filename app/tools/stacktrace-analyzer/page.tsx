@@ -4,12 +4,11 @@ import StacktraceAnalyzer from '../../../components/tools/StacktraceAnalyzer/Sta
 export const metadata: Metadata = {
   title: 'Stack Trace Analyzer - Identify Root Causes & Explain Errors',
   description: 'Free online stack trace analyzer for JavaScript, Python, Java, C#, Go, PHP, and Ruby. Identifies root cause frames, explains error types, suggests fixes, and separates application code from framework internals.',
-  keywords: 'stack trace analyzer, error analyzer, root cause analysis, debug stack trace, error explainer, javascript error, python traceback, java exception, stack trace debugger, how to find root cause in stack trace, explain java exception, debug python traceback, understand error message',
   alternates: {
     canonical: '/tools/stacktrace-analyzer',
   },
   openGraph: {
-    url: 'https://developers.do/tools/stacktrace-analyzer',
+    url: 'https://www.developers.do/tools/stacktrace-analyzer',
     title: 'Stack Trace Analyzer - Root Cause & Error Explanation Tool',
     description: 'Analyze stack traces to identify root causes, understand error types, and get suggested fixes. Supports JavaScript, Python, Java, C#, Go, PHP, and Ruby.',
     images: [{ url: '/og/tools/stacktrace-analyzer.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

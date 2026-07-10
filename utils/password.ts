@@ -35,9 +35,8 @@ export function generatePassword(options: PasswordOptions): string {
   return password;
 }
 
-// EFF long wordlist (top 200 common words for passphrases)
-// In production you'd use the full 7776-word EFF list, but this subset
-// provides ~7.6 bits of entropy per word which is sufficient for strong passphrases
+// A compact 200-word list for locally generated passphrases.
+// This provides about 7.6 bits of entropy per independently selected word.
 const WORDLIST = [
   'abandon', 'ability', 'absorb', 'abstract', 'academy', 'access', 'account', 'achieve',
   'acid', 'across', 'action', 'adapt', 'address', 'adjust', 'admit', 'adult',

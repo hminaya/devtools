@@ -104,8 +104,8 @@ Explore the live version of this DevTools suite at [https://www.developers.do](h
 
 This site supports the [llms.txt](https://llmstxt.org/) standard for AI discoverability:
 
-- [`/llms.txt`](https://developers.do/llms.txt) - Concise overview of all tools
-- [`/llms-full.txt`](https://developers.do/llms-full.txt) - Detailed documentation for AI consumption
+- [`/llms.txt`](https://www.developers.do/llms.txt) - Concise overview of all tools
+- [`/llms-full.txt`](https://www.developers.do/llms-full.txt) - Detailed documentation for AI consumption
 
 ## Prerequisites
 

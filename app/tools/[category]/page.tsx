@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   const title = `${category.name} Developer Tools`;
   const url = `/tools/${category.slug}`;
+  const hasInternalTools = getInternalCategoryTools(category.name).length > 0;
 
   return {
     title,
@@ -40,12 +41,13 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     alternates: {
       canonical: url,
     },
+    robots: hasInternalTools ? undefined : { index: false, follow: true },
     openGraph: {
       type: 'website',
       url,
       title,
       description: category.description,
-      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: `${category.name} developer tools` }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -108,7 +110,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -129,7 +131,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <p className="text-slate-600 text-lg max-w-3xl">{category.description}</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {tools.map((tool) => (
             <Card
               key={tool.id}

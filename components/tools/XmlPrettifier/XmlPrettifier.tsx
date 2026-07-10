@@ -58,7 +58,7 @@ function XmlPrettifier() {
     >
       <div className="space-y-4">
         {/* Action Buttons */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button label="Prettify" onClick={prettify} variant="primary" />
           <Button label="Minify" onClick={minify} variant="primary" />
           <Button label="Generate Sample" onClick={generateSample} variant="secondary" />
@@ -74,7 +74,7 @@ function XmlPrettifier() {
         )}
 
         {/* Side by Side Input/Output */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Input Column */}
           <div className="space-y-2">
             <TextArea

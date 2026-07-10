@@ -108,7 +108,7 @@ function FileSizeConverter() {
     >
       <div className="space-y-6">
         {/* Action buttons */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button label="Clear" onClick={handleClear} variant="secondary" />
           <Button label="Random Size" onClick={generateRandomSize} variant="primary" />
         </div>
@@ -118,7 +118,7 @@ function FileSizeConverter() {
           <label className="block text-sm font-medium text-slate-700 mb-3">
             Enter File Size
           </label>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <input
               type="number"
               value={value}
@@ -347,7 +347,7 @@ function FileSizeConverter() {
 
             {/* Info box */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <div className="text-blue-600 text-2xl">ℹ️</div>
                 <div>
                   <h4 className="text-sm font-semibold text-blue-900 mb-1">Unit Systems Explained</h4>

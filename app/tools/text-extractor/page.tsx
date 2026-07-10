@@ -4,12 +4,11 @@ import TextExtractor from '../../../components/tools/TextExtractor/TextExtractor
 export const metadata: Metadata = {
   title: 'Text Extractor - Extract Emails, URLs, IPs & More from Text',
   description: 'Free text extraction tool. Extract emails, URLs, IP addresses, phone numbers, dates, UUIDs, and more from any text using regex patterns. No AI model required - instant results.',
-  keywords: 'text extractor, extract emails, extract urls, extract ip addresses, regex extraction, data extraction, parse text, extract phone numbers, extract dates, developer tools, how to extract emails from text, pull urls from document, find all ip addresses in text, parse data from logs',
   alternates: {
     canonical: '/tools/text-extractor',
   },
   openGraph: {
-    url: 'https://developers.do/tools/text-extractor',
+    url: 'https://www.developers.do/tools/text-extractor',
     title: 'Text Extractor - Extract Emails, URLs, IPs & More',
     description: 'Extract structured data from text instantly. Find emails, URLs, IPs, phone numbers, dates, UUIDs, and 10+ other patterns. Free, private, no downloads.',
     images: [{ url: '/og/tools/text-extractor.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

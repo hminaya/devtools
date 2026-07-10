@@ -6,10 +6,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TOOLS } from '../../config/tools';
 import { copyToClipboard } from '../../utils/clipboard';
-import { getCategorySlug } from '../../config/seo';
+import { BASE_URL, getCategorySlug } from '../../config/seo';
+import { TOOL_SEO_CONTENT } from '../../config/toolSeoContent';
 import { getToolIdFromPath, trackToolEvent } from '../../utils/analytics';
-
-const BASE_URL = 'https://developers.do';
 
 interface ToolLayoutProps {
   title: string;
@@ -75,6 +74,7 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
   };
 
   const categorySlug = currentTool ? getCategorySlug(currentTool.category) : undefined;
+  const seoContent = currentTool ? TOOL_SEO_CONTENT[currentTool.id] : undefined;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -127,19 +127,92 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className={fullWidth ? 'mx-auto' : 'max-w-4xl mx-auto'}>
+        {currentTool && categorySlug && (
+          <nav className="mb-5 text-sm text-slate-500" aria-label="Breadcrumb">
+            <Link className="hover:text-slate-800" href="/">Developer Tools</Link>
+            <span className="mx-2" aria-hidden="true">/</span>
+            <Link className="hover:text-slate-800" href={`/tools/${categorySlug}`}>
+              {currentTool.category}
+            </Link>
+            <span className="mx-2" aria-hidden="true">/</span>
+            <span aria-current="page">{title}</span>
+          </nav>
+        )}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">{title}</h1>
           <p className="text-slate-600">{description}</p>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
           {children}
         </div>
+
+        {seoContent && (
+          <article className="mt-8 space-y-8 rounded-lg border border-slate-200 bg-white p-5 sm:p-7">
+            <section aria-labelledby="about-this-tool-heading">
+              <h2 id="about-this-tool-heading" className="text-2xl font-bold text-slate-900">
+                About this {title.toLowerCase()}
+              </h2>
+              <p className="mt-3 leading-7 text-slate-700">{seoContent.overview}</p>
+            </section>
+
+            <section aria-labelledby="how-to-use-heading">
+              <h2 id="how-to-use-heading" className="text-2xl font-bold text-slate-900">
+                How to use the {title.toLowerCase()}
+              </h2>
+              <ol className="mt-3 list-decimal space-y-2 pl-6 leading-7 text-slate-700">
+                {seoContent.steps.map((step) => <li key={step}>{step}</li>)}
+              </ol>
+            </section>
+
+            <section aria-labelledby="important-details-heading">
+              <h2 id="important-details-heading" className="text-2xl font-bold text-slate-900">
+                Important details
+              </h2>
+              <div className="mt-4 grid gap-5 md:grid-cols-2">
+                {seoContent.details.map((detail) => (
+                  <div key={detail.title}>
+                    <h3 className="text-lg font-semibold text-slate-900">{detail.title}</h3>
+                    <p className="mt-2 leading-7 text-slate-700">{detail.body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section aria-labelledby="frequently-asked-questions-heading">
+              <h2 id="frequently-asked-questions-heading" className="text-2xl font-bold text-slate-900">
+                Frequently asked questions
+              </h2>
+              <div className="mt-4 space-y-5">
+                {seoContent.faqs.map((faq) => (
+                  <div key={faq.question}>
+                    <h3 className="font-semibold text-slate-900">{faq.question}</h3>
+                    <p className="mt-1 leading-7 text-slate-700">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {seoContent.references && seoContent.references.length > 0 && (
+              <p className="border-t border-slate-200 pt-5 text-sm text-slate-600">
+                References:{' '}
+                {seoContent.references.map((reference, index) => (
+                  <span key={reference.href}>
+                    {index > 0 && ', '}
+                    <a className="font-medium text-blue-700 underline hover:text-blue-900" href={reference.href} target="_blank" rel="noopener noreferrer">
+                      {reference.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            )}
+          </article>
+        )}
 
         <section
           className="mt-4 flex flex-col gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"

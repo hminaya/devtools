@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TOOLS } from '../../config/tools';
 import { TOOL_CATEGORIES, getCategorySlug } from '../../config/seo';
 import Logo from '../shared/Logo';
@@ -10,6 +10,11 @@ import Logo from '../shared/Logo';
 function Sidebar() {
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [pathname]);
 
   const linkClass = (route: string) =>
     `flex items-center gap-3 px-4 py-2 rounded-md transition-colors ${
@@ -17,15 +22,6 @@ function Sidebar() {
         ? 'bg-blue-500 text-white'
         : 'text-slate-300 hover:bg-slate-700 hover:text-white'
     }`;
-
-  // Group tools by category
-  const categories = TOOLS.reduce((acc, tool) => {
-    if (!acc[tool.category]) {
-      acc[tool.category] = [];
-    }
-    acc[tool.category]!.push(tool);
-    return acc;
-  }, {} as Record<string, typeof TOOLS>);
 
   // Filter tools based on search query
   const filteredTools = searchQuery.trim() === ''
@@ -50,14 +46,14 @@ function Sidebar() {
 
   const categoryOrder = TOOL_CATEGORIES.map((category) => category.name);
 
-  return (
-    <div className="w-64 bg-slate-800 h-screen flex flex-col overflow-y-auto">
+  const navigation = (
+    <>
       {/* Logo/Title */}
       <div className="p-6 border-b border-slate-700">
-        <div className="flex items-center gap-3">
+        <Link href="/" prefetch={false} className="flex items-center gap-3" aria-label="developers.do home">
           <Logo size={36} />
-          <h1 className="text-white text-xl font-bold">Developer Tools</h1>
-        </div>
+          <span className="text-white text-xl font-bold">Developer Tools</span>
+        </Link>
 
         {/* Search Input */}
         <div className="mt-4">
@@ -74,7 +70,7 @@ function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1">
         {/* Dashboard Link */}
-        <Link href="/" className={linkClass('/')}>
+        <Link href="/" prefetch={false} className={linkClass('/')}>
           <span className="text-lg">📊</span>
           <span className="font-medium">Dashboard</span>
         </Link>
@@ -92,6 +88,7 @@ function Sidebar() {
             <div key={category} className="mt-6">
               <Link
                 href={`/tools/${getCategorySlug(category)}`}
+                prefetch={false}
                 className="block px-4 py-2 text-slate-400 text-xs font-semibold uppercase tracking-wider hover:text-slate-200"
               >
                 {category}
@@ -110,7 +107,7 @@ function Sidebar() {
                       <span className="font-medium">{tool.name}</span>
                     </a>
                   ) : (
-                    <Link key={tool.id} href={tool.route} className={linkClass(tool.route)}>
+                    <Link key={tool.id} href={tool.route} prefetch={false} className={linkClass(tool.route)}>
                       <span className="text-lg">{tool.icon}</span>
                       <span className="font-medium">{tool.name}</span>
                     </Link>
@@ -136,7 +133,46 @@ function Sidebar() {
           </div>
         )}
       </nav>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-slate-700 bg-slate-800 px-4 lg:hidden">
+        <Link href="/" prefetch={false} className="flex items-center gap-3" aria-label="developers.do home">
+          <Logo size={32} />
+          <span className="font-bold text-white">Developer Tools</span>
+        </Link>
+        <button
+          type="button"
+          className="rounded-md border border-slate-600 px-3 py-2 text-xl leading-none text-white"
+          aria-controls="mobile-navigation"
+          aria-expanded={isMobileOpen}
+          aria-label={isMobileOpen ? 'Close navigation' : 'Open navigation'}
+          onClick={() => setIsMobileOpen((open) => !open)}
+        >
+          {isMobileOpen ? '×' : '☰'}
+        </button>
+      </header>
+
+      {isMobileOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 z-40 bg-slate-950/50 lg:hidden"
+          aria-label="Close navigation"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
+      <aside
+        id="mobile-navigation"
+        className={`fixed inset-y-0 left-0 z-50 flex h-screen w-72 max-w-[85vw] flex-col overflow-y-auto bg-slate-800 transition-transform lg:static lg:z-auto lg:w-64 lg:max-w-none lg:shrink-0 lg:translate-x-0 ${
+          isMobileOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {navigation}
+      </aside>
+    </>
   );
 }
 

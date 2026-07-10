@@ -4,12 +4,11 @@ import SHA256Generator from '../../../components/tools/SHA256Generator/SHA256Gen
 export const metadata: Metadata = {
   title: 'SHA-256/SHA-512 Hash Generator - Secure Hash Tool',
   description: 'Free SHA-256 and SHA-512 hash generator. Create secure cryptographic hashes from text instantly in your browser. No data sent to servers.',
-  keywords: 'sha256 generator, sha-256 hash, sha512 generator, sha-512 hash, secure hash, cryptographic hash, hash generator, sha256 tool, sha512 tool, how to generate sha256 hash, sha-256 from text online, sha512 checksum generator, file integrity hash',
   alternates: {
     canonical: '/tools/sha256-generator',
   },
   openGraph: {
-    url: 'https://developers.do/tools/sha256-generator',
+    url: 'https://www.developers.do/tools/sha256-generator',
     title: 'SHA-256/SHA-512 Hash Generator - Free Secure Hash Tool',
     description: 'Generate SHA-256 and SHA-512 cryptographic hashes from text. Free online secure hash generator.',
     images: [{ url: '/og/tools/sha256-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

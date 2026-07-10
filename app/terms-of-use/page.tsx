@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: '/terms-of-use',
   },
   openGraph: {
-    url: 'https://developers.do/terms-of-use',
+    url: 'https://www.developers.do/terms-of-use',
     title: 'Terms of Use - Developer Tools Dashboard',
     description: 'Terms of use for the Developer Tools Dashboard.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfUsePage() {
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms of Use</h1>
         <p className="text-slate-600 mb-8">Last updated: March 8, 2025</p>

@@ -4,12 +4,11 @@ import NumberBaseConverter from '../../../components/tools/NumberBaseConverter/N
 export const metadata: Metadata = {
   title: "Number Base Converter - Binary, Octal, Decimal, Hex | DevTools",
   description: "Convert numbers between binary (base 2), octal (base 8), decimal (base 10), and hexadecimal (base 16) with two's complement for signed integers.",
-  keywords: "number base converter, binary to decimal, hex to decimal, decimal to binary, binary to hex, octal converter, twos complement, base conversion",
   alternates: {
     canonical: '/tools/number-base-converter',
   },
   openGraph: {
-    url: 'https://developers.do/tools/number-base-converter',
+    url: 'https://www.developers.do/tools/number-base-converter',
     title: "Number Base Converter - Binary, Octal, Decimal, Hex | DevTools",
     description: "Convert numbers between binary, octal, decimal, and hexadecimal with two's complement support.",
     images: [{ url: '/og/tools/number-base-converter.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

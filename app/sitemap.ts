@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export const dynamic = 'force-static';
 import { TOOLS } from '../config/tools';
-import { BASE_URL, LAST_MODIFIED, TOOL_CATEGORIES } from '../config/seo';
+import { BASE_URL, LAST_MODIFIED, TOOL_CATEGORIES, getInternalCategoryTools } from '../config/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toLastModified = (updatedAt: string) => new Date(updatedAt);
@@ -17,35 +17,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolRoutes = TOOLS.filter((tool) => !tool.external).map((tool) => ({
     url: `${BASE_URL}${tool.route}`,
     lastModified: toLastModified(tool.updatedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
   }));
 
-  const categoryRoutes = TOOL_CATEGORIES.map((category) => ({
-    url: `${BASE_URL}/tools/${category.slug}`,
-    lastModified: categoryLastModified(category.name),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  const categoryRoutes = TOOL_CATEGORIES
+    .filter((category) => getInternalCategoryTools(category.name).length > 0)
+    .map((category) => ({
+      url: `${BASE_URL}/tools/${category.slug}`,
+      lastModified: categoryLastModified(category.name),
+    }));
 
   return [
     {
       url: BASE_URL,
       lastModified: LAST_MODIFIED,
-      changeFrequency: 'weekly',
-      priority: 1,
     },
     {
       url: `${BASE_URL}/privacy-policy`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'yearly',
-      priority: 0.2,
+      lastModified: new Date('2025-03-08'),
     },
     {
       url: `${BASE_URL}/terms-of-use`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: 'yearly',
-      priority: 0.2,
+      lastModified: new Date('2025-03-08'),
     },
     ...categoryRoutes,
     ...toolRoutes,

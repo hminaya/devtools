@@ -173,7 +173,7 @@ function ColorPicker() {
       fullWidth
     >
       <div className="space-y-6">
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button label="Generate Random Color" onClick={generateRandomColor} variant="primary" />
           {colorFormats && <CopyButton text={colorFormats.hex} label="Copy HEX" />}
         </div>

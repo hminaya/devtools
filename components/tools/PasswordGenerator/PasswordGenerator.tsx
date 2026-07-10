@@ -295,8 +295,8 @@ function PasswordGenerator() {
             <h3 className="text-base font-semibold text-slate-800 mt-4">Passphrase</h3>
             <p className="text-slate-600">
               Passphrases string together random words (e.g., <code>Breeze-Canyon-Dragon-42</code>) to create passwords that
-              are both strong and easy to remember. A 4-word passphrase provides ~30+ bits of entropy per word. Passphrases
-              are especially useful for master passwords you need to type from memory.
+              are easier to remember. Four words from this tool&apos;s 200-word list provide about 30.6 bits of entropy before
+              the optional number. For a high-value master password, use more words or a full Diceware-style word list.
             </p>
 
             <h3 className="text-base font-semibold text-slate-800 mt-4">What Makes a Password Strong?</h3>

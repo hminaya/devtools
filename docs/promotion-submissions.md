@@ -14,7 +14,7 @@ The **"HL7v2 to FHIR" section is currently empty** — you'd be the first entry.
 - Entry (their format is `* [Name](url) - description`):
 
 ```markdown
-* [HL7 to FHIR Converter](https://developers.do/tools/hl7-to-fhir) - free browser-based converter from HL7 v2 messages to FHIR R4 Bundles; runs fully client-side, no PHI leaves the browser
+* [HL7 to FHIR Converter](https://www.developers.do/tools/hl7-to-fhir) - free browser-based converter from HL7 v2 messages to FHIR R4 Bundles; runs fully client-side, no PHI leaves the browser
 ```
 
 PR title: `Add HL7 to FHIR Converter to HL7v2 to FHIR section`
@@ -28,26 +28,26 @@ and it explicitly welcomes PRs. Format: `- **Name** — description. URL`
 
 ```markdown
 ## Stack Traces & Logs
-- **DevTools Stacktrace Formatter** — Format & analyze stack traces from Java, Python, C#, JS and more; 100% client-side. https://developers.do/tools/stacktrace-formatter
+- **DevTools Stacktrace Formatter** — Format & analyze stack traces from Java, Python, C#, JS and more; 100% client-side. https://www.developers.do/tools/stacktrace-formatter
 
 ## API & Webhook Debugging
-- **DevTools API Tester** — Browser-based API request tester, no signup. https://developers.do/tools/api-tester
+- **DevTools API Tester** — Browser-based API request tester, no signup. https://www.developers.do/tools/api-tester
 
 ## JSON / YAML / REGEX
-- **DevTools JSON Prettifier** — Format/validate JSON; YAML↔JSON and CSV↔JSON converters on the same site. https://developers.do/tools/json-prettifier
-- **DevTools Regex Tester** — Test regex with match highlighting, capture groups, replacement. https://developers.do/tools/regex-tester
+- **DevTools JSON Prettifier** — Format/validate JSON; YAML↔JSON and CSV↔JSON converters on the same site. https://www.developers.do/tools/json-prettifier
+- **DevTools Regex Tester** — Test regex with match highlighting, capture groups, replacement. https://www.developers.do/tools/regex-tester
 
 ## SQL
-- **DevTools SQL Formatter** — Format SQL for MySQL, PostgreSQL, SQLite and more, in-browser. https://developers.do/tools/sql-formatter
+- **DevTools SQL Formatter** — Format SQL for MySQL, PostgreSQL, SQLite and more, in-browser. https://www.developers.do/tools/sql-formatter
 
 ## Time & IDs
-- **DevTools Unix Timestamp Converter** — Epoch ↔ human-readable with timezone support. https://developers.do/tools/unix-timestamp
+- **DevTools Unix Timestamp Converter** — Epoch ↔ human-readable with timezone support. https://www.developers.do/tools/unix-timestamp
 
 ## Cookies & Tokens
-- **DevTools JWT Decoder** — Decode and inspect JWTs without sending them to a server. https://developers.do/tools/jwt-decoder
+- **DevTools JWT Decoder** — Decode and inspect JWTs without sending them to a server. https://www.developers.do/tools/jwt-decoder
 
 ## Cron Expression Helpers
-- **DevTools Cron Tester & Generator** — Explain cron expressions in plain English and build them visually. https://developers.do/tools/cron-tester
+- **DevTools Cron Tester & Generator** — Explain cron expressions in plain English and build them visually. https://www.developers.do/tools/cron-tester
 ```
 
 PR note: maybe submit 3-4 strongest entries rather than all 8, to avoid looking spammy.
@@ -63,7 +63,7 @@ File is `readme.md` on `main`. Entries use `- [Name](url) - Sentence description
 SAML section entry:
 
 ```markdown
-- [developers.do SAML tools](https://developers.do/tools/saml-decoder) - Free browser-based SAML toolbox: decode Requests/Responses, parse and generate metadata, inspect X.509 certificates, and build test assertions. Runs 100% client-side, so production SAML payloads never leave your browser.
+- [developers.do SAML tools](https://www.developers.do/tools/saml-decoder) - Free browser-based SAML toolbox: decode Requests/Responses, parse and generate metadata, inspect X.509 certificates, and build test assertions. Runs 100% client-side, so production SAML payloads never leave your browser.
 ```
 
 PR title: `Add developers.do SAML toolbox to SAML section`
@@ -78,9 +78,9 @@ Small but exact topic match. Has a `## Testing` section. Format: `- [Name](url)`
 
 ```markdown
 ## Testing
-- [developers.do SAML Decoder](https://developers.do/tools/saml-decoder) - decode SAML Requests/Responses in the browser
-- [developers.do SAML Assertion Builder](https://developers.do/tools/saml-builder) - generate test SAML Responses, AuthnRequests, LogoutRequests
-- [developers.do SAML Metadata Generator](https://developers.do/tools/saml-metadata-generator) - build SP/IdP EntityDescriptor metadata XML
+- [developers.do SAML Decoder](https://www.developers.do/tools/saml-decoder) - decode SAML Requests/Responses in the browser
+- [developers.do SAML Assertion Builder](https://www.developers.do/tools/saml-builder) - generate test SAML Responses, AuthnRequests, LogoutRequests
+- [developers.do SAML Metadata Generator](https://www.developers.do/tools/saml-metadata-generator) - build SP/IdP EntityDescriptor metadata XML
 ```
 
 ## 5. awesome-healthcare (kakoni/awesome-healthcare, 3,815⭐)
@@ -97,7 +97,7 @@ Format: `  * [Name](url) - description`. Link the GitHub repo (they prefer OSS l
 General-purpose list, `## Productivity & Misc` or `## Testing & Quality`.
 
 ```markdown
-- [developers.do](https://developers.do) - 50+ free developer tools (formatters, converters, SAML/JWT debuggers, generators) that run 100% in the browser with no backend.
+- [developers.do](https://www.developers.do) - 50+ free developer tools (formatters, converters, SAML/JWT debuggers, generators) that run 100% in the browser with no backend.
 ```
 
 ---
@@ -115,7 +115,7 @@ Body:
 ```
 I got tired of pasting JWTs, SAML responses, and HL7 messages into ad-covered
 tool sites that send everything to a server, so I built my own collection:
-https://developers.do
+https://www.developers.do
 
 - ~55 tools: formatters, converters (JSON→TypeScript/C#/Go/Rust/...), SAML
   decoder/metadata tools, JWT decoder, HL7→FHIR converter, cron tester,

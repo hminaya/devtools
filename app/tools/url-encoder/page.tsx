@@ -4,12 +4,11 @@ import UrlEncoderDecoder from '../../../components/tools/UrlEncoderDecoder/UrlEn
 export const metadata: Metadata = {
   title: 'URL Encoder / Decoder - Encode and Decode URLs Online | DevTools',
   description: 'Encode and decode URLs online using encodeURIComponent and encodeURI. See highlighted differences between the two functions with side-by-side comparison.',
-  keywords: 'url encoder, url decoder, urlencode, urldecode, encodeURIComponent, encodeURI, percent encoding, url escape',
   alternates: {
     canonical: '/tools/url-encoder',
   },
   openGraph: {
-    url: 'https://developers.do/tools/url-encoder',
+    url: 'https://www.developers.do/tools/url-encoder',
     title: 'URL Encoder / Decoder - Encode and Decode URLs Online | DevTools',
     description: 'Encode and decode URLs online using encodeURIComponent and encodeURI with side-by-side comparison.',
     images: [{ url: '/og/tools/url-encoder.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],

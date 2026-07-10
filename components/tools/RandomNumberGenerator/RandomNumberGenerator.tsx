@@ -54,7 +54,7 @@ function RandomNumberGenerator() {
     >
       <div className="space-y-6">
         {/* Action Buttons */}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Button
             label="Generate Random Number"
             onClick={handleGenerate}
@@ -66,7 +66,7 @@ function RandomNumberGenerator() {
         </div>
 
         {/* Range Controls */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
               Minimum Value

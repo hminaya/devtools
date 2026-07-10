@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: '/privacy-policy',
   },
   openGraph: {
-    url: 'https://developers.do/privacy-policy',
+    url: 'https://www.developers.do/privacy-policy',
     title: 'Privacy Policy - Developer Tools Dashboard',
     description: 'Privacy policy for the Developer Tools Dashboard.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
         <p className="text-slate-600 mb-8">Last updated: March 8, 2025</p>

@@ -3,16 +3,15 @@ import Base64EncoderDecoder from '../../../components/tools/Base64EncoderDecoder
 
 export const metadata: Metadata = {
   title: 'Base64 Encoder/Decoder - Convert Text & Base64',
-  description: 'Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 to text instantly. Supports UTF-8 encoding. Perfect for encoding data, API testing, and web development.',
-  keywords: 'base64 encoder, base64 decoder, base64 converter, encode base64, decode base64, base64 tool, base64 online, free base64, text to base64, how to encode to base64, how to decode base64, base64 encode string online, what is base64',
+  description: 'Encode UTF-8 text as Base64 or decode Base64 back to readable text. Conversion runs locally in your browser.',
   alternates: {
     canonical: '/tools/base64-encoder',
   },
   openGraph: {
-    url: 'https://developers.do/tools/base64-encoder',
+    url: 'https://www.developers.do/tools/base64-encoder',
     title: 'Base64 Encoder/Decoder - Free Online Base64 Converter',
     description: 'Encode text to Base64 or decode Base64 to text. Free online Base64 encoder and decoder with UTF-8 support.',
-    images: [{ url: '/og/tools/base64-encoder.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/base64-encoder.png', width: 1200, height: 630, alt: 'Base64 Encoder and Decoder tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

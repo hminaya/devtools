@@ -32,7 +32,7 @@ function parseTools(source) {
 }
 
 function publicUrl(route) {
-  return route.startsWith('/') ? `https://developers.do${route}` : route;
+  return route.startsWith('/') ? `https://www.developers.do${route}` : route;
 }
 
 const tools = parseTools(toolsSource);
@@ -69,7 +69,7 @@ const llmsFull = [
   '- 100% client-side: tools run in the browser using JavaScript, WebAssembly, and Web APIs.',
   '- No upload required: tool input is not transmitted to a backend.',
   '- Open source: built with Next.js, React, TypeScript, and Tailwind CSS.',
-  '- Website: https://developers.do',
+  '- Website: https://www.developers.do',
   '',
   '## Tool Categories',
   '',
@@ -79,7 +79,7 @@ const llmsFull = [
     return [
       `### ${category}`,
       '',
-      `Category URL: https://developers.do/tools/${categorySlug}`,
+      `Category URL: https://www.developers.do/tools/${categorySlug}`,
       '',
       ...tools
         .filter((tool) => tool.category === category)

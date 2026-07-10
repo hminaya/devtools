@@ -1,8 +1,8 @@
 import { TOOLS, type Tool } from './tools';
 
-export const BASE_URL = 'https://developers.do';
+export const BASE_URL = 'https://www.developers.do';
 export const DEFAULT_OG_IMAGE = '/og-image.png';
-export const LAST_MODIFIED = new Date('2026-06-19');
+export const LAST_MODIFIED = new Date('2026-07-10');
 
 export interface ToolCategory {
   name: string;

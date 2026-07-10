@@ -68,7 +68,7 @@ function JwtDecoder() {
             rows={6}
           />
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <Button label="Decode" onClick={decode} variant="primary" />
             <Button label="Load Sample" onClick={generateSample} variant="secondary" />
             <Button label="Clear" onClick={clear} variant="secondary" />
