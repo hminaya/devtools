@@ -95,6 +95,12 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **FAA Part 107 Quiz Prep:** iOS app for FAA Part 107 drone pilot certification exam preparation
 *   **Citizenship Test Prep:** iOS app for US citizenship naturalization test preparation
 *   **ClawPet:** iOS virtual desktop pet that visualizes bot activity in real-time
+*   **CCMA Exam Prep:** iOS app for Certified Clinical Medical Assistant exam preparation
+*   **ColorPop Calculator:** iOS calculator for kids ages 4-8 with visual object-based math
+*   **DownRangeHQ Shot Timer:** iOS and Apple Watch shot timer and drill tracker for competition shooters
+*   **Melody Island: Kids Piano:** iOS piano app for kids with colorful keys, adventure levels, and guided songs
+*   **Phlebotomy Technician ExamPrep:** iOS app for NHA Certified Phlebotomy Technician exam preparation
+*   **Tech - Interview Prep:** iOS app for technical interview prep with 1,400+ questions across AI, system design, and more
 
 ## View Live
 
