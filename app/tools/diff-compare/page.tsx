@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/diff-compare',
     title: 'Diff / Text Compare - Free Online Text Comparison Tool',
     description: 'Compare two texts side by side with color-coded diffs. See added, removed, and unchanged lines at a glance.',
-    images: [{ url: '/og/tools/diff-compare.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/diff-compare.png', width: 1200, height: 630, alt: 'Diff / Text Compare tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/color-picker',
     title: 'Color Picker - Free Color Converter Tool',
     description: 'Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats instantly.',
-    images: [{ url: '/og/tools/color-picker.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/color-picker.png', width: 1200, height: 630, alt: 'Color Picker tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

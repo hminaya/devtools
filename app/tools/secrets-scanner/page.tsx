@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Secrets Scanner - Browser-Only Secret Detection',
     description:
       'Find leaked API keys, tokens, and private keys in logs or configs without sending data to a server. Runs locally in your browser.',
-    images: [{ url: '/og/tools/secrets-scanner.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/secrets-scanner.png', width: 1200, height: 630, alt: 'Secrets Scanner tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

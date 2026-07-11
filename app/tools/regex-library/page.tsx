@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/regex-library',
     title: 'Regex Library - Common Regular Expressions | DevTools',
     description: 'Browse and copy common regular expressions for email, URL, IP, date, password validation, and more.',
-    images: [{ url: '/og/tools/regex-library.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/regex-library.png', width: 1200, height: 630, alt: 'Regex Library tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

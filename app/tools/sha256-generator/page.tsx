@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/sha256-generator',
     title: 'SHA-256/SHA-512 Hash Generator - Free Secure Hash Tool',
     description: 'Generate SHA-256 and SHA-512 cryptographic hashes from text. Free online secure hash generator.',
-    images: [{ url: '/og/tools/sha256-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/sha256-generator.png', width: 1200, height: 630, alt: 'SHA-256/512 Hash tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

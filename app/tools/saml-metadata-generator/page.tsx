@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/saml-metadata-generator',
     title: 'SAML Metadata Generator - Create SP & IdP Metadata XML',
     description: 'Generate SAML 2.0 EntityDescriptor metadata for SPs and IdPs from form fields. 100% client-side.',
-    images: [{ url: '/og/tools/saml-metadata-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/saml-metadata-generator.png', width: 1200, height: 630, alt: 'SAML Metadata Generator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

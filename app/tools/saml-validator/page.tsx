@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/saml-validator',
     title: 'SAML Response Validator - Debug Why SSO Login Fails',
     description: 'Paste a SAML Response and get a plain-English checklist of what passes and what would break your SSO login. 100% client-side.',
-    images: [{ url: '/og/tools/saml-validator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/saml-validator.png', width: 1200, height: 630, alt: 'SAML Response Validator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

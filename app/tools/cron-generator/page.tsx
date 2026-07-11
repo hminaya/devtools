@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/cron-generator',
     title: 'Cron Expression Generator — Build Cron Schedules Visually | DevTools',
     description: 'Build cron expressions with field-level controls. No syntax knowledge required.',
-    images: [{ url: '/og/tools/cron-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/cron-generator.png', width: 1200, height: 630, alt: 'Cron Expression Generator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

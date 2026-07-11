@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/question-answering',
     title: 'Question Answering - Free AI Document Search',
     description: 'Ask questions about any document and get AI-powered answers extracted from your text.',
-    images: [{ url: '/og/tools/question-answering.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/question-answering.png', width: 1200, height: 630, alt: 'Question Answering tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

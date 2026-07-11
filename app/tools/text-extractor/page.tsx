@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/text-extractor',
     title: 'Text Extractor - Extract Emails, URLs, IPs & More',
     description: 'Extract structured data from text instantly. Find emails, URLs, IPs, phone numbers, dates, UUIDs, and 10+ other patterns. Free, private, no downloads.',
-    images: [{ url: '/og/tools/text-extractor.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/text-extractor.png', width: 1200, height: 630, alt: 'Text Extractor tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

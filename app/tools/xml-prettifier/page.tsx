@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/xml-prettifier',
     title: 'XML Prettifier - Free Online XML Formatter with Syntax Highlighting',
     description: 'Format, validate, and beautify XML data with syntax highlighting. Free online XML prettifier tool with validation features.',
-    images: [{ url: '/og/tools/xml-prettifier.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/xml-prettifier.png', width: 1200, height: 630, alt: 'XML Prettifier tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

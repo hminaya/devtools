@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/qr-code-generator',
     title: 'QR Code Generator - Create Custom QR Codes',
     description: 'Generate custom QR codes instantly. Free QR code generator with customizable colors, sizes, and error correction levels.',
-    images: [{ url: '/og/tools/qr-code-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/qr-code-generator.png', width: 1200, height: 630, alt: 'QR Code Generator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

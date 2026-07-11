@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/http-status-codes',
     title: 'HTTP Status Code Reference - All HTTP Codes Explained | DevTools',
     description: 'Complete searchable reference for all HTTP status codes (1xx–5xx) with descriptions and use cases.',
-    images: [{ url: '/og/tools/http-status-codes.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/http-status-codes.png', width: 1200, height: 630, alt: 'HTTP Status Code Reference tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

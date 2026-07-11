@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/md5-generator',
     title: 'MD5 Hash Generator - Free MD5 Hash Tool',
     description: 'Generate MD5 hashes from text or create random MD5 hashes. Free online MD5 hash generator.',
-    images: [{ url: '/og/tools/md5-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/md5-generator.png', width: 1200, height: 630, alt: 'MD5 Hash tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

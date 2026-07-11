@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/json-to-python',
     title: 'JSON to Python - Free Dataclass & Pydantic Generator',
     description: 'Convert JSON to Python dataclasses or Pydantic models instantly with optional field detection.',
-    images: [{ url: '/og/tools/json-to-python.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/json-to-python.png', width: 1200, height: 630, alt: 'JSON to Python tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

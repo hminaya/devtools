@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/saml-cert-inspector',
     title: 'SAML Certificate Inspector - X.509 Certificate Details',
     description: 'Inspect X.509 certificates from SAML metadata, responses, or PEM files. View fingerprints, validity, and more. 100% client-side.',
-    images: [{ url: '/og/tools/saml-cert-inspector.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/saml-cert-inspector.png', width: 1200, height: 630, alt: 'SAML Certificate Inspector tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

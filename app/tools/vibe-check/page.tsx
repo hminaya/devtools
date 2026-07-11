@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Vibe Check - AI Code Review Prompt Builder',
     description:
       'Create practical prompts for checking security, tests, maintainability, and production readiness in vibe-coded apps.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Vibe Check tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

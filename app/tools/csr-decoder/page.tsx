@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/csr-decoder',
     title: 'Certificate & CSR Decoder - Inspect X.509 Certs and PKCS#10 CSRs',
     description: 'Decode X.509 certificates and PKCS#10 CSRs locally in your browser. Auto-detects type and shows subject, issuer, validity, SANs, extensions, key details, and fingerprints.',
-    images: [{ url: '/og/tools/csr-decoder.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/csr-decoder.png', width: 1200, height: 630, alt: 'Certificate & CSR Decoder tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/sha1-generator',
     title: 'SHA-1 Hash Generator - Free SHA-1 Hash Tool',
     description: 'Generate SHA-1 hashes from text or create random SHA-1 hashes. Free online SHA-1 hash generator.',
-    images: [{ url: '/og/tools/sha1-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/sha1-generator.png', width: 1200, height: 630, alt: 'SHA-1 Hash tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

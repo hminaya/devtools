@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/json-to-csharp',
     title: 'JSON to C# - Free Class Generator with Syntax Highlighting',
     description: 'Convert JSON to C# classes with JsonProperty attributes and PascalCase options. Free JSON to C# converter with nullable support.',
-    images: [{ url: '/og/tools/json-to-csharp.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/json-to-csharp.png', width: 1200, height: 630, alt: 'JSON to C# tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

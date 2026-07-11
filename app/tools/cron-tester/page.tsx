@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/cron-tester',
     title: 'Cron Expression Tester, Parser & Explainer | DevTools',
     description: 'Test cron expressions, explain them in plain English, and preview upcoming run times across timezones.',
-    images: [{ url: '/og/tools/cron-tester.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/cron-tester.png', width: 1200, height: 630, alt: 'Cron Expression Tester tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

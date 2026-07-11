@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/js-tokenizer',
     title: 'JS Tokenizers - Free AI Token Counter for GPT-4 and GPT-3.5',
     description: 'Count tokens for GPT-4, GPT-3.5 Turbo, and other OpenAI models. Free AI tokenizer tool with support for tiktoken, gpt-tokenizer, and basic text tokenization.',
-    images: [{ url: '/og/tools/js-tokenizer.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/js-tokenizer.png', width: 1200, height: 630, alt: 'JS Tokenizers tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

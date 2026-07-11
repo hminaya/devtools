@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/rag-chunker',
     title: 'RAG Chunker - Offline Token-Aware Text Chunking Tool',
     description: 'Create retrieval-ready text chunks with configurable size, overlap, and export formats. Works fully offline in the browser.',
-    images: [{ url: '/og/tools/rag-chunker.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/rag-chunker.png', width: 1200, height: 630, alt: 'RAG Chunker tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

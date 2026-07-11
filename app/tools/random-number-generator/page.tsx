@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Random Number Generator - Multi-Language Code Samples',
     description:
       'Generate random numbers with custom ranges and view implementation code in your favorite programming language.',
-    images: [{ url: '/og/tools/random-number-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/random-number-generator.png', width: 1200, height: 630, alt: 'Random Number Generator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

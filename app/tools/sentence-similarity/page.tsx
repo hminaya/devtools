@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/sentence-similarity',
     title: 'Sentence Similarity - Free AI Tool',
     description: 'Find semantically similar texts using AI embeddings. Perfect for duplicate detection and semantic search.',
-    images: [{ url: '/og/tools/sentence-similarity.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/sentence-similarity.png', width: 1200, height: 630, alt: 'Sentence Similarity tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/unix-timestamp',
     title: 'Unix Timestamp Converter - Epoch to Date | DevTools',
     description: 'Convert Unix epoch timestamps to human-readable dates. Supports seconds, milliseconds, and multiple timezones.',
-    images: [{ url: '/og/tools/unix-timestamp.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/unix-timestamp.png', width: 1200, height: 630, alt: 'Unix Timestamp Converter tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

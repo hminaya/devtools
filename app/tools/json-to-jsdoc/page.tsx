@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         url: 'https://www.developers.do/tools/json-to-jsdoc',
         title: 'JSON to JSDoc - Free Type Definition Generator with Syntax Highlighting',
         description: 'Convert JSON to JSDoc typedefs instantly. Get JavaScript type hints without TypeScript. Free JSON to JSDoc converter.',
-        images: [{ url: '/og/tools/json-to-jsdoc.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+        images: [{ url: '/og/tools/json-to-jsdoc.png', width: 1200, height: 630, alt: 'JSON to JSDoc tool preview' }],
     },
 };
 

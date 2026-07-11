@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/api-tester',
     title: 'API Tester - Free Online REST API Testing Tool',
     description: 'Test API endpoints and view responses. Generate TypeScript, C#, or Swift code from JSON responses. Free online API tester.',
-    images: [{ url: '/og/tools/api-tester.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/api-tester.png', width: 1200, height: 630, alt: 'API Tester tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/password-generator',
     title: 'Password & Passphrase Generator - Free with Strength Meter',
     description: 'Generate strong random passwords or memorable passphrases. Includes entropy calculation and crack time estimates. Free and runs in your browser.',
-    images: [{ url: '/og/tools/password-generator.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/password-generator.png', width: 1200, height: 630, alt: 'Password Generator tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

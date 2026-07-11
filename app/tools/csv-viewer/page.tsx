@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'CSV Viewer - Online Table Explorer | DevTools',
     description:
       'View CSV as a sortable, searchable table online. Auto-detects delimiters, sticky headers, type-aware sorting.',
-    images: [{ url: '/og/tools/csv-viewer.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/csv-viewer.png', width: 1200, height: 630, alt: 'CSV Viewer / Table Explorer tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

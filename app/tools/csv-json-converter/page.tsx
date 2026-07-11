@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'CSV to JSON Converter - JSON to CSV Online | DevTools',
     description:
       'Convert between CSV and JSON online with auto-detection, delimiter handling, and type inference. Supports any CSV or JSON data.',
-    images: [{ url: '/og/tools/csv-json-converter.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/csv-json-converter.png', width: 1200, height: 630, alt: 'CSV ↔ JSON Converter tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

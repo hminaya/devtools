@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/json-to-typescript',
     title: 'JSON to TypeScript - Free Interface Generator with Syntax Highlighting',
     description: 'Convert JSON to TypeScript interfaces instantly. Supports optional field detection and nested objects. Free JSON to TypeScript converter.',
-    images: [{ url: '/og/tools/json-to-typescript.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/json-to-typescript.png', width: 1200, height: 630, alt: 'JSON to TypeScript tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/beautify-stack-trace',
     title: 'Beautify Stack Trace - Free Online Stack Trace Beautifier',
     description: 'Paste messy error traces and get clean, syntax-highlighted, readable output. Auto-detects language and highlights key information.',
-    images: [{ url: '/og/tools/beautify-stack-trace.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/beautify-stack-trace.png', width: 1200, height: 630, alt: 'Beautify Stack Trace tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

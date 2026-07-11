@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/json-to-rust',
     title: 'JSON to Rust - Free Struct Generator with Serde',
     description: 'Convert JSON to Rust structs instantly with Serde support and Option detection.',
-    images: [{ url: '/og/tools/json-to-rust.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/json-to-rust.png', width: 1200, height: 630, alt: 'JSON to Rust tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

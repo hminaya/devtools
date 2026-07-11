@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/zero-shot-classification',
     title: 'Zero-Shot Classification - Free AI Text Classifier',
     description: 'Classify text into ANY custom categories without training using AI. Perfect for developers and data analysts.',
-    images: [{ url: '/og/tools/zero-shot-classification.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/zero-shot-classification.png', width: 1200, height: 630, alt: 'Zero-Shot Classification tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://www.developers.do/tools/hl7-parser',
     title: 'HL7 Parser - Free Online HL7 v2 Segment Viewer',
     description: 'Parse HL7 v2 messages into labeled segments, fields, components, warnings, and structured JSON output.',
-    images: [{ url: '/og/tools/hl7-parser.png', width: 1200, height: 630, alt: 'Developer Tools Dashboard' }],
+    images: [{ url: '/og/tools/hl7-parser.png', width: 1200, height: 630, alt: 'HL7 Parser tool preview' }],
   },
   twitter: {
     card: 'summary_large_image',
