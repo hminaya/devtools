@@ -1,9 +1,9 @@
 /**
- * SHA-256 and SHA-512 hash generation utilities
+ * SHA-256, SHA-384, and SHA-512 hash generation utilities
  * Uses the Web Crypto API for reliable, secure hashing
  */
 
-export type SHAAlgorithm = 'SHA-256' | 'SHA-512';
+export type SHAAlgorithm = 'SHA-256' | 'SHA-384' | 'SHA-512';
 
 export async function generateSHA(text: string, algorithm: SHAAlgorithm = 'SHA-256'): Promise<string> {
   // Convert string to UTF-8 bytes
@@ -22,6 +22,10 @@ export async function generateSHA(text: string, algorithm: SHAAlgorithm = 'SHA-2
 
 export async function generateSHA256(text: string): Promise<string> {
   return generateSHA(text, 'SHA-256');
+}
+
+export async function generateSHA384(text: string): Promise<string> {
+  return generateSHA(text, 'SHA-384');
 }
 
 export async function generateSHA512(text: string): Promise<string> {

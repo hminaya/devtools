@@ -24,6 +24,7 @@ SyntaxHighlighter.registerLanguage('sql', sql);
 SyntaxHighlighter.registerLanguage('swift', swift);
 SyntaxHighlighter.registerLanguage('typescript', typescript);
 SyntaxHighlighter.registerLanguage('xml', markup);
+SyntaxHighlighter.registerLanguage('html', markup);
 SyntaxHighlighter.registerLanguage('yaml', yaml);
 
 interface CodeDisplayProps {

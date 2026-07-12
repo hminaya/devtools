@@ -190,16 +190,22 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
     ],
   },
   'uuid-generator': {
-    overview: 'The UUID generator creates version 4 UUIDs with the browser’s cryptographic random-number source. You can generate between one and fifty identifiers at a time and copy the complete newline-separated list.',
+    overview: 'This generator creates Universally Unique IDentifiers across every version defined in RFC 9562: nil, v1, v2, v3, v4, v5, v6, v7, and v8. Time-based, name-based, random, and sortable variants are all supported, with optional namespace and name inputs for v3/v5 and local domain for v2. Generation uses the browser’s Web Crypto API and runs entirely in the current tab.',
     steps: [
-      'Choose how many UUIDs to create, from 1 through 50.',
-      'Select Generate UUIDs.',
-      'Copy the generated identifiers and store them in the system that needs unique random IDs.',
+      'Pick a version from nil through v8.',
+      'For v3 and v5, select a namespace and provide a name — the same inputs always produce the same UUID.',
+      'For v2, optionally enter a local identifier and domain.',
+      'Choose how many to generate (1–50) and click Generate UUIDs.',
+      'Copy any individual UUID, or use Copy All UUIDs to copy the whole list.',
     ],
     details: [
       {
-        title: 'What a version 4 UUID contains',
-        body: 'A UUID v4 is a 128-bit identifier with fixed version and variant bits and the remaining bits generated randomly. Its familiar text form uses 32 hexadecimal digits separated into five groups.',
+        title: 'Which version should I use?',
+        body: 'v4 (fully random) is the safest default for general identifiers. v7 (Unix-epoch milliseconds + random) sorts lexically and is ideal for database indexes when you want time-ordered rows. v5 (SHA-1 name+namespace) and v3 (MD5 name+namespace) produce deterministic UUIDs for the same inputs — useful for content-addressed or idempotent flows.',
+      },
+      {
+        title: 'Version 6 versus version 1',
+        body: 'Both v1 and v6 embed a Gregorian timestamp, but v6 reorders the timestamp so that lexical sort matches chronological order. This makes v6 friendlier than v1 for sorted indexes.',
       },
       {
         title: 'Uniqueness and storage',
@@ -209,7 +215,7 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
     faqs: [
       {
         question: 'Are these sequential UUIDs?',
-        answer: 'No. They are random version 4 UUIDs and do not encode a timestamp or sortable sequence.',
+        answer: 'Only v1, v6, and v7 are time-based and therefore sortable. v4 is fully random and not sequential. v2, v3, v5, and v8 derive their bits from other inputs (local id, name+namespace hash, or vendor-specific data) and are not sortable by generation time.',
       },
       {
         question: 'Are UUIDs suitable for passwords or API keys?',
@@ -274,5 +280,35 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
       },
     ],
     references: [{ label: 'OASIS SAML 2.0 technical overview', href: 'https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html' }],
+  },
+  'semver-comparator': {
+    overview: 'The SemVer comparator parses version strings according to Semantic Versioning 2.0.0 and compares them by precedence. It handles release, prerelease, and build metadata for two-version comparisons and batch sorting of version lists. All parsing and comparison run in your browser.',
+    steps: [
+      'Enter two version strings (a leading "v" is optional) for a pairwise comparison.',
+      'Inspect the parsed major.minor.patch, prerelease, and build fields for each version.',
+      'For batch sorting, paste one version per line and review the sorted output.',
+      'Invalid lines are reported separately so you can fix them and re-run the sort.',
+    ],
+    details: [
+      {
+        title: 'Precedence follows SemVer 2.0.0 §11',
+        body: 'Major, minor, and patch are compared numerically. A prerelease version has lower precedence than the same release. Prerelease identifiers are compared per-field: numeric identifiers are lower than alphanumeric identifiers, alphanumerics by ASCII sort, and a shorter prerelease list is lower when all shared identifiers are equal.',
+      },
+      {
+        title: 'Build metadata is ignored for precedence',
+        body: 'Identifiers after the plus sign — for example, 1.0.0+build.42 — are not used when comparing versions. Two versions that differ only in build metadata are considered equal for precedence purposes.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why does 1.0.0-alpha compare lower than 1.0.0?',
+        answer: 'Per SemVer 2.0.0, any prerelease version has lower precedence than its corresponding release. The prerelease identifier only adds qualification; it never raises precedence above the patch segment.',
+      },
+      {
+        question: 'Is "v" required before the version number?',
+        answer: 'No. The comparator accepts an optional leading v or V, such as "v1.2.3", but the prefix is stripped before parsing — it is not part of the SemVer 2.0.0 BNF itself.',
+      },
+    ],
+    references: [{ label: 'Semantic Versioning 2.0.0', href: 'https://semver.org' }],
   },
 };

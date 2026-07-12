@@ -1,5 +1,6 @@
 const path = require('path');
 const os = require('os');
+const webpack = require('webpack');
 
 /** @type {import('next').NextConfig} */
 const emptyModulePath = path.resolve(__dirname, 'utils/emptyModule.js');
@@ -49,6 +50,32 @@ const nextConfig = {
         module: false,
         perf_hooks: false,
       };
+
+      // onnxruntime-web (a transitive dep of @huggingface/transformers)
+      // ships emscripten-asyncify bundles that emit dynamic imports of
+      // single-character stub modules (`import('a')`, `import('b')`, ...).
+      // These are runtime placeholders that emscripten swaps at runtime;
+      // webpack's static analyzer can't resolve them and fails the build.
+      // Scope an IgnorePlugin so only requests issued from inside the
+      // onnxruntime-web package skip resolution — no other single-char
+      // imports elsewhere in the tree are affected.
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^[a-z]$/,
+          contextRegExp: /[\\/]onnxruntime-web[\\/]/,
+        })
+      );
+
+      // The asyncWebAssembly experiment emits spurious "target environment
+      // does not appear to support async/await" warnings for tiktoken and
+      // onnxruntime-web WASM bundles. All evergreen browsers DO support
+      // async/await and top-level await, so the warning is incorrect.
+      // Filter it from the dev overlay so it doesn't pollute the console.
+      config.ignoreWarnings = [
+        ...(config.ignoreWarnings || []),
+        /The generated code contains 'async\/await' because this module is using "asyncWebAssembly"/,
+      ];
     }
 
     return config;

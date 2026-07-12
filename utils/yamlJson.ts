@@ -97,6 +97,35 @@ export function convert(
   }
 }
 
+export function formatYaml(
+  input: string,
+  indent: Indent = 2
+): { output?: string; error?: string; valid: boolean } {
+  const trimmed = input.trim();
+  if (!trimmed) {
+    return { valid: false, error: 'Empty input' };
+  }
+
+  try {
+    const parsed = yaml.load(trimmed);
+    if (parsed === null || parsed === undefined) {
+      return { valid: false, error: 'Input parsed to null' };
+    }
+    const output = yaml.dump(parsed, {
+      indent,
+      lineWidth: -1,
+      noRefs: true,
+      sortKeys: false,
+    });
+    return { valid: true, output: output.trimEnd() };
+  } catch (e) {
+    return {
+      valid: false,
+      error: `YAML ${e instanceof Error ? e.message : 'parse error'}`,
+    };
+  }
+}
+
 export const SAMPLES: { label: string; format: 'yaml' | 'json'; value: string }[] = [
   {
     label: 'Docker Compose (YAML)',

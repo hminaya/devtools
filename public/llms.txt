@@ -22,20 +22,20 @@ DevTools provides utilities for developers including formatters, converters, gen
 ### Formatting
 
 - [JSON Prettifier](https://www.developers.do/tools/json-prettifier): Format and validate JSON data
-- [XML Prettifier](https://www.developers.do/tools/xml-prettifier): Format and validate XML data
+- [XML/HTML Formatter](https://www.developers.do/tools/xml-prettifier): Format, validate, prettify, and minify XML or HTML data
 - [HL7 Parser](https://www.developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
 - [HL7 to FHIR Converter](https://www.developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
 - [Diff / Text Compare](https://www.developers.do/tools/diff-compare): Compare two texts and see color-coded differences
-- [Stacktrace Formatter](https://www.developers.do/tools/stacktrace-formatter): Format and beautify stack traces from multiple programming languages
+- [Stack Trace Formatter](https://www.developers.do/tools/stacktrace-formatter): Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
 - [Beautify Stack Trace](https://www.developers.do/tools/beautify-stack-trace): Clean up and beautify messy error stack traces for readability
 - [Stack Trace Analyzer](https://www.developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 - [Base64 Encoder/Decoder](https://www.developers.do/tools/base64-encoder): Encode and decode Base64 strings
 - [File Size Converter](https://www.developers.do/tools/file-size-converter): Convert file sizes between decimal (SI) and binary (IEC) units
-- [Unix Timestamp Converter](https://www.developers.do/tools/unix-timestamp): Convert between Unix epoch timestamps and human-readable dates with timezone support
+- [Unix Timestamp Converter](https://www.developers.do/tools/unix-timestamp): Convert Unix epoch timestamps to human-readable dates — single or batch — with timezone support
 - [Cron Expression Tester](https://www.developers.do/tools/cron-tester): Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
 - [Cron Expression Generator](https://www.developers.do/tools/cron-generator): Build cron expressions visually with field controls — no syntax knowledge required
 - [URL Encoder / Decoder](https://www.developers.do/tools/url-encoder): Encode and decode URLs using encodeURIComponent and encodeURI
-- [YAML ↔ JSON Converter](https://www.developers.do/tools/yaml-json-converter): Convert between YAML and JSON with auto-detection of input format
+- [YAML/JSON Converter & Formatter](https://www.developers.do/tools/yaml-json-converter): Convert between YAML and JSON, or format and validate standalone YAML
 - [CSV ↔ JSON Converter](https://www.developers.do/tools/csv-json-converter): Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 - [CSV Viewer / Table Explorer](https://www.developers.do/tools/csv-viewer): Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 - [SQL Formatter](https://www.developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
@@ -46,6 +46,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [Regex Tester](https://www.developers.do/tools/regex-tester): Test regular expressions with match highlighting, capture groups, and string replacement
 - [Regex Library](https://www.developers.do/tools/regex-library): Browse and copy common regular expressions for validation, extraction, and text processing
 - [Number Base Converter](https://www.developers.do/tools/number-base-converter): Convert numbers between binary, octal, decimal, and hex with two's complement
+- [SemVer Comparator](https://www.developers.do/tools/semver-comparator): Compare, sort, and validate semantic version strings per SemVer 2.0.0 with prerelease and build metadata support
 
 ### Apps
 
@@ -56,11 +57,17 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [FAA Part 107 Quiz Prep](https://part107.developers.do): iOS app for FAA Part 107 drone pilot certification exam preparation
 - [Citizenship Test Prep](https://citizenshiptest.developers.do): iOS app for US citizenship naturalization test preparation
 - [ClawPet](https://clawpet.clawpantry.com): iOS virtual desktop pet that visualizes bot activity in real-time
+- [Tech - Interview Prep](https://apps.apple.com/us/app/tech-interview-prep/id6785688459): iOS app for technical interview prep with 1,400+ questions across AI, system design, and more
+- [DownRangeHQ Shot Timer](https://apps.apple.com/us/app/downrangehq-shot-timer/id6783020376): iOS and Apple Watch shot timer and drill tracker for competition shooters
+- [Melody Island: Kids Piano](https://apps.apple.com/us/app/melody-island-kids-piano/id6785279265): iOS piano app for kids with colorful keys, adventure levels, and guided songs
+- [ColorPop Calculator](https://apps.apple.com/us/app/colorpop-calculator/id6785313208): iOS calculator for kids ages 4-8 with visual object-based math
+- [Phlebotomy Technician ExamPrep](https://apps.apple.com/us/app/phlebotomy-technician-examprep/id6758586662): iOS app for NHA Certified Phlebotomy Technician exam preparation
+- [CCMA Exam Prep](https://apps.apple.com/us/app/ccma-exam-prep/id6758587083): iOS app for Certified Clinical Medical Assistant exam preparation
 
 ### Generators
 
 - [Password Generator](https://www.developers.do/tools/password-generator): Generate secure random passwords
-- [UUID Generator](https://www.developers.do/tools/uuid-generator): Generate UUIDs (v4)
+- [UUID Generator](https://www.developers.do/tools/uuid-generator): Generate UUIDs across all RFC 9562 versions — nil, v1, v2, v3, v4, v5, v6, v7, and v8
 - [Lorem Ipsum Generator](https://www.developers.do/tools/lorem-ipsum-generator): Generate placeholder text for designs
 - [Random Number Generator](https://www.developers.do/tools/random-number-generator): Generate random numbers and see code samples in multiple languages
 - [QR Code Generator](https://www.developers.do/tools/qr-code-generator): Generate QR codes from text, URLs, or any data
@@ -75,7 +82,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [JSON to Python](https://www.developers.do/tools/json-to-python): Convert JSON to Python dataclasses or Pydantic models
 - [JSON to Go](https://www.developers.do/tools/json-to-go): Convert JSON to Go structs
 - [JSON to Rust](https://www.developers.do/tools/json-to-rust): Convert JSON to Rust structs
-- [Color Picker](https://www.developers.do/tools/color-picker): Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK
+- [Color Picker](https://www.developers.do/tools/color-picker): Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)
 
 ### Security
 
@@ -83,7 +90,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [JWT Decoder](https://www.developers.do/tools/jwt-decoder): Decode and inspect JWT tokens
 - [MD5 Hash](https://www.developers.do/tools/md5-generator): Generate MD5 hashes from text
 - [SHA-1 Hash](https://www.developers.do/tools/sha1-generator): Generate SHA-1 hashes from text
-- [SHA-256/512 Hash](https://www.developers.do/tools/sha256-generator): Generate secure SHA-256 or SHA-512 hashes from text
+- [SHA-256/384/512 Hash](https://www.developers.do/tools/sha256-generator): Generate secure SHA-256, SHA-384, or SHA-512 hashes from text
 - [Clawdbot Security Scanner](https://www.developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 - [Certificate & CSR Decoder](https://www.developers.do/tools/csr-decoder): Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 

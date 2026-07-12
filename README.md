@@ -21,10 +21,11 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **Question Answering:** Answer questions based on provided context using AI
 *   **Fill-Mask Text Completion:** Complete sentences and predict missing words using AI
 *   **Text Summarization:** Summarize long text into concise overviews using AI
+*   **Vibe Check:** Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
 
 ### Formatting
 *   **JSON Prettifier:** Format and validate JSON data
-*   **XML Prettifier:** Format and validate XML data
+*   **XML/HTML Formatter:** Format, validate, prettify, and minify XML or HTML data
 *   **HL7 Parser:** Read and parse HL7 v2 messages into structured JSON
 *   **HL7 to FHIR Converter:** Convert HL7 v2 messages to FHIR R4 Bundles
 *   **Diff / Text Compare:** Compare two texts and see color-coded differences
@@ -33,11 +34,11 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **Stack Trace Analyzer:** Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 *   **Base64 Encoder/Decoder:** Encode and decode Base64 strings
 *   **File Size Converter:** Convert file sizes between decimal (SI) and binary (IEC) units
-*   **Unix Timestamp Converter:** Convert between Unix epoch timestamps and human-readable dates with timezone support
+*   **Unix Timestamp Converter:** Convert Unix epoch timestamps to human-readable dates — single or batch — with timezone support
 *   **Cron Expression Tester:** Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
 *   **Cron Expression Generator:** Build cron expressions visually with field controls — no syntax knowledge required
 *   **URL Encoder / Decoder:** Encode and decode URLs using encodeURIComponent and encodeURI
-*   **YAML ↔ JSON Converter:** Convert between YAML and JSON with auto-detection of input format
+*   **YAML/JSON Converter & Formatter:** Convert between YAML and JSON, or format and validate standalone YAML
 *   **CSV ↔ JSON Converter:** Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 *   **CSV Viewer / Table Explorer:** Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 *   **SQL Formatter:** Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
@@ -47,10 +48,11 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **Regex Tester:** Test regular expressions with match highlighting, capture groups, and string replacement
 *   **Regex Library:** Browse and copy common regular expressions for validation, extraction, and text processing
 *   **Number Base Converter:** Convert numbers between binary, octal, decimal, and hex with two's complement
+*   **SemVer Comparator:** Compare, sort, and validate semantic version strings per SemVer 2.0.0 with prerelease and build metadata support
 
 ### Generators
 *   **Password Generator:** Generate secure random passwords
-*   **UUID Generator:** Generate UUIDs (v4)
+*   **UUID Generator:** Generate UUIDs across all RFC 9562 versions — nil, v1, v2, v3, v4, v5, v6, v7, and v8
 *   **Lorem Ipsum Generator:** Generate placeholder text for designs
 *   **Random Number Generator:** Generate random numbers and see code samples in multiple languages
 *   **QR Code Generator:** Generate QR codes from text, URLs, or any data
@@ -64,14 +66,14 @@ No backend. Tool data never leaves your browser. Anonymized analytics help impro
 *   **JSON to Python:** Convert JSON to Python dataclasses or Pydantic models
 *   **JSON to Go:** Convert JSON to Go structs
 *   **JSON to Rust:** Convert JSON to Rust structs
-*   **Color Picker:** Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats
+*   **Color Picker:** Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind CSS v3, Nord, Solarized, Dracula, GitHub, Material, and One Dark)
 
 ### Security
 *   **Secrets Scanner:** Scan text, logs, or configs for leaked keys and tokens
 *   **JWT Decoder:** Decode and inspect JWT tokens
 *   **MD5 Hash:** Generate MD5 hashes from text
 *   **SHA-1 Hash:** Generate SHA-1 hashes from text
-*   **SHA-256/512 Hash:** Generate secure SHA-256 or SHA-512 hashes from text
+*   **SHA-256/384/512 Hash:** Generate secure SHA-256, SHA-384, or SHA-512 hashes from text
 *   **Clawdbot Security Scanner:** Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 *   **SAML Decoder:** Decode SAML Requests/Responses from Base64 to readable XML
 *   **SAML Metadata Parser:** Parse SAML Metadata XML and extract IdP/SP configuration

@@ -122,12 +122,12 @@ export const TOOLS: Tool[] = [
   },
   {
     id: 'xml-prettifier',
-    name: 'XML Prettifier',
-    description: 'Format and validate XML data',
+    name: 'XML/HTML Formatter',
+    description: 'Format, validate, prettify, and minify XML or HTML data',
     route: '/tools/xml-prettifier',
     icon: '📄',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'hl7-parser',
@@ -204,11 +204,11 @@ export const TOOLS: Tool[] = [
   {
     id: 'unix-timestamp',
     name: 'Unix Timestamp Converter',
-    description: 'Convert between Unix epoch timestamps and human-readable dates with timezone support',
+    description: 'Convert Unix epoch timestamps to human-readable dates — single or batch — with timezone support',
     route: '/tools/unix-timestamp',
     icon: '⏱️',
     category: 'Formatting',
-    updatedAt: '2026-07-10',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'cron-tester',
@@ -239,12 +239,12 @@ export const TOOLS: Tool[] = [
   },
   {
     id: 'yaml-json-converter',
-    name: 'YAML ↔ JSON Converter',
-    description: 'Convert between YAML and JSON with auto-detection of input format',
+    name: 'YAML/JSON Converter & Formatter',
+    description: 'Convert between YAML and JSON, or format and validate standalone YAML',
     route: '/tools/yaml-json-converter',
     icon: '🔄',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'csv-json-converter',
@@ -308,6 +308,15 @@ export const TOOLS: Tool[] = [
     icon: '🔢',
     category: 'Algorithms',
     updatedAt: '2026-06-28',
+  },
+  {
+    id: 'semver-comparator',
+    name: 'SemVer Comparator',
+    description: 'Compare, sort, and validate semantic version strings per SemVer 2.0.0 with prerelease and build metadata support',
+    route: '/tools/semver-comparator',
+    icon: '⚖️',
+    category: 'Algorithms',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'ios-app-lookup',
@@ -450,11 +459,11 @@ export const TOOLS: Tool[] = [
   {
     id: 'uuid-generator',
     name: 'UUID Generator',
-    description: 'Generate UUIDs (v4)',
+    description: 'Generate UUIDs across all RFC 9562 versions — nil, v1, v2, v3, v4, v5, v6, v7, and v8',
     route: '/tools/uuid-generator',
     icon: '🆔',
     category: 'Generators',
-    updatedAt: '2026-07-10',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'lorem-ipsum-generator',
@@ -558,11 +567,11 @@ export const TOOLS: Tool[] = [
   {
     id: 'color-picker',
     name: 'Color Picker',
-    description: 'Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK',
+    description: 'Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)',
     route: '/tools/color-picker',
     icon: '🎨',
     category: 'Code & Schemas',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'secrets-scanner',
@@ -602,12 +611,12 @@ export const TOOLS: Tool[] = [
   },
   {
     id: 'sha256-generator',
-    name: 'SHA-256/512 Hash',
-    description: 'Generate secure SHA-256 or SHA-512 hashes from text',
+    name: 'SHA-256/384/512 Hash',
+    description: 'Generate secure SHA-256, SHA-384, or SHA-512 hashes from text',
     route: '/tools/sha256-generator',
     icon: '🔒',
     category: 'Security',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-07-12',
   },
   {
     id: 'clawdbot-security-scanner',

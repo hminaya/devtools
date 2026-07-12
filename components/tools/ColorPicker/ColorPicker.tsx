@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, type MouseEvent } from 'react';
 import ToolLayout from '../ToolLayout';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
-import { getAllFormats, hsvToRgb, rgbToHex, hexToRgb, rgbToHsv, generateAllPalettes, type ColorFormats, type ColorPalette } from '../../../utils/colorConversion';
+import { getAllFormats, hsvToRgb, rgbToHex, hexToRgb, rgbToHsv, generateAllPalettes, CURATED_PALETTES, type ColorFormats, type ColorPalette } from '../../../utils/colorConversion';
 
 function ColorPicker() {
   const [hue, setHue] = useState(330);
@@ -16,6 +16,10 @@ function ColorPicker() {
   const [isDraggingHue, setIsDraggingHue] = useState(false);
   const [hexInput, setHexInput] = useState('#d44382');
   const [isValidHex, setIsValidHex] = useState(true);
+  const [paletteFilter, setPaletteFilter] = useState('');
+  const filteredCurated = paletteFilter.trim()
+    ? CURATED_PALETTES.filter((p) => p.name.toLowerCase().includes(paletteFilter.toLowerCase()))
+    : CURATED_PALETTES;
 
   const gradientRef = useRef<HTMLDivElement>(null);
   const hueSliderRef = useRef<HTMLDivElement>(null);
@@ -169,7 +173,7 @@ function ColorPicker() {
   return (
     <ToolLayout
       title="Color Picker"
-      description="Pick colors and convert between HEX, RGB, HSL, HSV, and CMYK formats"
+      description="Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, GitHub, Material, One Dark)"
       fullWidth
     >
       <div className="space-y-6">
@@ -319,6 +323,61 @@ function ColorPicker() {
             </div>
           </div>
         )}
+
+        {/* Curated design palettes (Tailwind, Nord, Solarized, Dracula, etc.) */}
+        <div className="space-y-6 border-t border-slate-200 pt-6">
+          <div className="flex flex-wrap items-baseline gap-3 justify-between">
+            <h3 className="text-lg font-semibold text-slate-800">Curated Palettes</h3>
+            <input
+              type="text"
+              value={paletteFilter}
+              onChange={(e) => setPaletteFilter(e.target.value)}
+              placeholder="Filter palettes (e.g. tailwind, nord, solarized)..."
+              className="px-3 py-1.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <p className="text-sm text-slate-500 -mt-2">
+            {filteredCurated.length} of {CURATED_PALETTES.length} palettes — Tailwind CSS v3 (22 families × 11 shades), Nord, Solarized, Dracula, GitHub, Material, and One Dark. Click any swatch to copy.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredCurated.map((palette) => (
+              <div key={palette.name} className="bg-white border border-slate-200 rounded-lg p-4">
+                <div className="flex items-baseline justify-between gap-2 mb-1">
+                  <h4 className="text-sm font-semibold text-slate-700">{palette.name}</h4>
+                  <span className="text-xs text-slate-400">{palette.colors.length} colors</span>
+                </div>
+                {palette.description && (
+                  <p className="text-xs text-slate-500 mb-3 leading-snug">{palette.description}</p>
+                )}
+                <div className="space-y-1">
+                  {palette.colors.map((color, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-2 p-1.5 rounded-md hover:bg-slate-50 transition-colors group cursor-pointer"
+                      onClick={() => {
+                        if (navigator.clipboard) navigator.clipboard.writeText(color.hex).catch(() => {});
+                      }}
+                      title={`Click to copy ${color.hex}`}
+                    >
+                      <div
+                        className="w-8 h-8 rounded-md shadow-sm border border-slate-200 flex-shrink-0"
+                        style={{ backgroundColor: color.hex }}
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs text-slate-500 truncate">{color.name}</div>
+                        <div className="font-mono text-xs text-slate-900 uppercase">{color.hex}</div>
+                      </div>
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                        <CopyButton text={color.hex} label="" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </ToolLayout>
   );

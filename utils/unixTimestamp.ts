@@ -97,6 +97,37 @@ export function getCurrentEpoch(): { seconds: number; milliseconds: number } {
   return { seconds: Math.floor(ms / 1000), milliseconds: ms };
 }
 
+export interface BatchLine {
+  raw: string;          // original token as typed
+  line: number;         // 1-based position among non-empty tokens
+  result?: HumanResult; // successful conversion
+  error?: string;       // per-line error
+}
+
+export function batchEpochToHuman(
+  input: string,
+  unit: Unit,
+  timezone: string
+): BatchLine[] {
+  // Split on any combination of newlines, commas, tabs, or whitespace.
+  // Tokens that are pure whitespace are skipped. Mixed-delimiter batches
+  // (e.g. one timestamp per line, or a comma-separated list) all work.
+  const tokens = input
+    .split(/[\n\r,]+|\s+/)
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0);
+
+  let lineNumber = 0;
+  return tokens.map((token) => {
+    lineNumber += 1;
+    const result = epochToHuman(token, unit, timezone);
+    if ('error' in result) {
+      return { raw: token, line: lineNumber, error: result.error };
+    }
+    return { raw: token, line: lineNumber, result };
+  });
+}
+
 export function getRelativeTime(ms: number): string {
   const diffMs = ms - Date.now();
   const absDiff = Math.abs(diffMs);

@@ -9,10 +9,12 @@ import {
   humanToEpoch,
   getCurrentEpoch,
   detectUnit,
+  batchEpochToHuman,
   TIMEZONES,
   type Unit,
   type HumanResult,
   type EpochResult,
+  type BatchLine,
 } from '../../../utils/unixTimestamp';
 
 function ResultRow({ label, value, mono = true }: { label: string; value: string; mono?: boolean }) {
@@ -28,13 +30,15 @@ function ResultRow({ label, value, mono = true }: { label: string; value: string
 }
 
 export default function UnixTimestamp() {
-  const [mode, setMode] = useState<'epoch-to-human' | 'human-to-epoch'>('epoch-to-human');
+  const [mode, setMode] = useState<'epoch-to-human' | 'human-to-epoch' | 'batch'>('epoch-to-human');
   const [epochInput, setEpochInput] = useState('');
+  const [batchInput, setBatchInput] = useState('');
   const [unit, setUnit] = useState<Unit>('auto');
   const [timezone, setTimezone] = useState('UTC');
   const [dateInput, setDateInput] = useState('');
   const [humanResult, setHumanResult] = useState<HumanResult | null>(null);
   const [epochResult, setEpochResult] = useState<EpochResult | null>(null);
+  const [batchResults, setBatchResults] = useState<BatchLine[]>([]);
   const [error, setError] = useState('');
   const [currentEpoch, setCurrentEpoch] = useState(getCurrentEpoch());
 
@@ -78,6 +82,18 @@ export default function UnixTimestamp() {
     }
   }, [dateInput, mode]);
 
+  // Batch conversion whenever batch input changes
+  useEffect(() => {
+    if (mode !== 'batch' || !batchInput.trim()) {
+      setBatchResults([]);
+      setError('');
+      return;
+    }
+    const results = batchEpochToHuman(batchInput, unit, timezone);
+    setBatchResults(results);
+    setError('');
+  }, [batchInput, unit, timezone, mode]);
+
   const handleUseNow = () => {
     const { seconds } = getCurrentEpoch();
     setEpochInput(seconds.toString());
@@ -88,8 +104,10 @@ export default function UnixTimestamp() {
   const handleClear = () => {
     setEpochInput('');
     setDateInput('');
+    setBatchInput('');
     setHumanResult(null);
     setEpochResult(null);
+    setBatchResults([]);
     setError('');
   };
 
@@ -147,6 +165,14 @@ export default function UnixTimestamp() {
             }`}
           >
             Human → Epoch
+          </button>
+          <button
+            onClick={() => { setMode('batch'); setError(''); }}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              mode === 'batch' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            }`}
+          >
+            Batch
           </button>
           <div className="flex-1" />
           <Button label="Clear" onClick={handleClear} variant="secondary" />
@@ -244,6 +270,94 @@ export default function UnixTimestamp() {
                 <h3 className="text-sm font-semibold text-slate-700 mb-3">Result</h3>
                 <ResultRow label="Seconds" value={epochResult.seconds} />
                 <ResultRow label="Milliseconds" value={epochResult.milliseconds} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Batch Mode */}
+        {mode === 'batch' && (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Unit</label>
+                <select
+                  value={unit}
+                  onChange={(e) => setUnit(e.target.value as Unit)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="auto">Auto-detect per token</option>
+                  <option value="seconds">Seconds</option>
+                  <option value="milliseconds">Milliseconds</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Timezone</label>
+                <select
+                  value={timezone}
+                  onChange={(e) => setTimezone(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {TIMEZONES.map((tz) => (
+                    <option key={tz} value={tz}>{tz}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                Timestamps (one per line, or comma/whitespace separated)
+              </label>
+              <textarea
+                value={batchInput}
+                onChange={(e) => setBatchInput(e.target.value)}
+                placeholder={'1710499200\n1710585600\n1710672000'}
+                rows={8}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p className="text-xs text-slate-400 mt-1">
+                Each non-empty token is converted separately. Mixed separators (newlines, commas, spaces) are accepted.
+              </p>
+            </div>
+
+            {batchResults.length > 0 && (
+              <div className="border border-slate-200 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-12 gap-2 px-4 py-2 bg-slate-100 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                  <div className="col-span-2">#</div>
+                  <div className="col-span-3">Input</div>
+                  <div className="col-span-3">ISO 8601 (UTC)</div>
+                  <div className="col-span-3">Relative</div>
+                  <div className="col-span-1 text-right">Unit</div>
+                </div>
+                <div className="max-h-96 overflow-y-auto">
+                  {batchResults.map((row) => (
+                    <div
+                      key={row.line}
+                      className={`grid grid-cols-12 gap-2 px-4 py-2 text-sm border-t border-slate-100 ${
+                        row.error ? 'bg-red-50' : 'bg-white'
+                      }`}
+                    >
+                      <div className="col-span-2 text-slate-400 font-mono">{row.line}</div>
+                      <div className="col-span-3 font-mono text-slate-800 break-all">{row.raw}</div>
+                      {row.error ? (
+                        <div className="col-span-6 text-red-600">{row.error}</div>
+                      ) : (
+                        <>
+                          <div className="col-span-3 font-mono text-slate-700 break-all">
+                            {row.result?.iso8601 ?? '—'}
+                          </div>
+                          <div className="col-span-3 text-slate-600">
+                            {row.result?.relative ?? '—'}
+                          </div>
+                          <div className="col-span-1 text-right text-xs text-slate-400 font-mono">
+                            {row.result?.detectedUnit === 'milliseconds' ? 'ms' : 's'}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>

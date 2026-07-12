@@ -3,14 +3,7 @@
  * Pure JavaScript implementation - no dependencies
  */
 
-export function generateSHA1(text: string): string {
-  // Convert string to UTF-8 bytes
-  const utf8 = unescape(encodeURIComponent(text));
-  const bytes = new Uint8Array(utf8.length);
-  for (let i = 0; i < utf8.length; i++) {
-    bytes[i]! = utf8.charCodeAt(i);
-  }
-
+export function generateSHA1FromBytes(bytes: Uint8Array): string {
   // SHA-1 implementation
   const h0 = 0x67452301;
   const h1 = 0xEFCDAB89;
@@ -97,4 +90,19 @@ export function generateSHA1(text: string): string {
 
 function rotateLeft(n: number, s: number): number {
   return ((n << s) | (n >>> (32 - s))) >>> 0;
+}
+
+/**
+ * Generate SHA-1 hash from a UTF-8 string.
+ * Provided for backward compatibility — internally delegates to
+ * generateSHA1FromBytes with UTF-8 encoded bytes.
+ */
+export function generateSHA1(text: string): string {
+  // Convert string to UTF-8 bytes
+  const utf8 = unescape(encodeURIComponent(text));
+  const bytes = new Uint8Array(utf8.length);
+  for (let i = 0; i < utf8.length; i++) {
+    bytes[i]! = utf8.charCodeAt(i);
+  }
+  return generateSHA1FromBytes(bytes);
 }

@@ -92,8 +92,8 @@ function SHA256Generator() {
 
   return (
     <ToolLayout
-      title="SHA-256/512 Hash"
-      description="Generate secure SHA-256 or SHA-512 hashes from text"
+      title="SHA-256/384/512 Hash"
+      description="Generate secure SHA-256, SHA-384, or SHA-512 hashes from text"
     >
       <div className="space-y-4">
         {/* Action Buttons */}
@@ -115,6 +115,7 @@ function SHA256Generator() {
               className="px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
               <option value="SHA-256">SHA-256 (64 chars)</option>
+              <option value="SHA-384">SHA-384 (96 chars)</option>
               <option value="SHA-512">SHA-512 (128 chars)</option>
             </select>
           </div>
@@ -123,8 +124,8 @@ function SHA256Generator() {
         {/* Info Note */}
         <div className="bg-green-50 border border-green-200 rounded-md p-4">
           <p className="text-green-800 text-sm">
-            <strong>SHA-256</strong> and <strong>SHA-512</strong> are cryptographically secure hash functions.
-            SHA-256 produces a 256-bit (64 character) hash, SHA-512 produces a 512-bit (128 character) hash.
+            <strong>SHA-256</strong>, <strong>SHA-384</strong>, and <strong>SHA-512</strong> are cryptographically secure hash functions.
+            SHA-256 produces a 256-bit (64 character) hash, SHA-384 produces a 384-bit (96 character) hash, and SHA-512 produces a 512-bit (128 character) hash.
           </p>
         </div>
 

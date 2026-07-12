@@ -6,7 +6,7 @@ import TextArea from '../../shared/TextArea';
 import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
 import CodeDisplay from '../../shared/CodeDisplay';
-import { convert, SAMPLES, type InputFormat, type Indent } from '../../../utils/yamlJson';
+import { convert, formatYaml, SAMPLES, type InputFormat, type Indent } from '../../../utils/yamlJson';
 
 const FORMAT_BADGE: Record<InputFormat, { label: string; class: string }> = {
   yaml: { label: 'YAML', class: 'bg-purple-100 text-purple-700 border-purple-200' },
@@ -21,15 +21,17 @@ const OUTPUT_LANGUAGE: Record<string, string> = {
 
 export default function YamlJsonConverter() {
   const [input, setInput] = useState('');
+  const [mode, setMode] = useState<'convert' | 'format'>('convert');
   const [manualFormat, setManualFormat] = useState<'auto' | 'yaml' | 'json'>('auto');
   const [indent, setIndent] = useState<Indent>(2);
   const [sampleIndex, setSampleIndex] = useState(0);
 
-  const result = input.trim()
+  const convertResult = input.trim()
     ? convert(input, manualFormat, indent)
     : { output: '', detectedFormat: 'unknown' as InputFormat, outputFormat: 'json' as const };
+  const formatResult = mode === 'format' && input.trim() ? formatYaml(input, indent) : null;
 
-  const badge = FORMAT_BADGE[result.detectedFormat];
+  const badge = FORMAT_BADGE[convertResult.detectedFormat];
 
   const handleLoadSample = () => {
     const sample = SAMPLES[sampleIndex % SAMPLES.length]!;
@@ -43,43 +45,75 @@ export default function YamlJsonConverter() {
     setManualFormat('auto');
   };
 
-  const arrowLabel = result.detectedFormat === 'unknown'
+  const arrowLabel = convertResult.detectedFormat === 'unknown'
     ? 'YAML ↔ JSON'
-    : result.detectedFormat === 'json'
+    : convertResult.detectedFormat === 'json'
       ? 'JSON → YAML'
       : 'YAML → JSON';
 
+  const output = mode === 'format'
+    ? (formatResult?.valid ? formatResult.output ?? '' : '')
+    : convertResult.output;
+  const outputLanguage = mode === 'format' ? 'yaml' : (OUTPUT_LANGUAGE[convertResult.outputFormat] ?? 'text');
+  const outputError = mode === 'format'
+    ? (formatResult && !formatResult.valid ? formatResult.error : null)
+    : convertResult.error;
+
   return (
     <ToolLayout
-      title="YAML ↔ JSON Converter"
-      description="Convert between YAML and JSON with auto-detection of input format"
+      title="YAML/JSON Converter & Formatter"
+      description="Convert between YAML and JSON, or format and validate standalone YAML"
       fullWidth
     >
       <div className="space-y-4">
         {/* Toolbar */}
         <div className="flex flex-wrap items-center gap-3">
-          {/* Format override */}
+          {/* Mode toggle */}
           <div className="flex items-center gap-1">
-            <span className="text-xs text-slate-500 mr-1">Input format:</span>
-            {(['auto', 'yaml', 'json'] as const).map((f) => (
+            <span className="text-xs text-slate-500 mr-1">Mode:</span>
+            {(['convert', 'format'] as const).map((m) => (
               <button
-                key={f}
-                onClick={() => setManualFormat(f)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
-                  manualFormat === f
+                key={m}
+                onClick={() => setMode(m)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors capitalize ${
+                  mode === m
                     ? 'bg-blue-600 text-white border-blue-600'
                     : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
                 }`}
               >
-                {f.charAt(0).toUpperCase() + f.slice(1)}
+                {m === 'format' ? 'Format YAML' : 'Convert YAML ↔ JSON'}
               </button>
             ))}
           </div>
 
-          {/* JSON indent (only shown when output will be JSON) */}
-          {(result.detectedFormat === 'yaml' || (result.detectedFormat === 'unknown' && manualFormat === 'yaml')) && (
+          {mode === 'convert' && (
             <div className="flex items-center gap-1">
-              <span className="text-xs text-slate-500 mr-1">JSON indent:</span>
+              <span className="text-xs text-slate-500 mr-1">Input format:</span>
+              {(['auto', 'yaml', 'json'] as const).map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setManualFormat(f)}
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
+                    manualFormat === f
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
+                  }`}
+                >
+                  {f.charAt(0).toUpperCase() + f.slice(1)}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Indent selector: shown for YAML→JSON conversion OR for Format YAML mode */}
+          {(mode === 'format' ||
+            (mode === 'convert' &&
+              (convertResult.detectedFormat === 'yaml' ||
+                (convertResult.detectedFormat === 'unknown' && manualFormat === 'yaml')))) && (
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-slate-500 mr-1">
+                {mode === 'format' ? 'Indent:' : 'JSON indent:'}
+              </span>
               {([2, 4] as Indent[]).map((n) => (
                 <button
                   key={n}
@@ -101,13 +135,27 @@ export default function YamlJsonConverter() {
           <Button label="Clear" onClick={handleClear} variant="secondary" />
         </div>
 
-        {/* Conversion direction indicator */}
+        {/* Status / direction indicator */}
         {input.trim() && (
           <div className="flex items-center gap-2">
-            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${badge.class}`}>
-              {badge.label} detected
-            </span>
-            <span className="text-slate-400 text-sm font-medium">{arrowLabel}</span>
+            {mode === 'convert' ? (
+              <>
+                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${badge.class}`}>
+                  {badge.label} detected
+                </span>
+                <span className="text-slate-400 text-sm font-medium">{arrowLabel}</span>
+              </>
+            ) : formatResult ? (
+              formatResult.valid ? (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-green-100 text-green-700 border-green-200">
+                  Valid YAML — formatted
+                </span>
+              ) : (
+                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-red-100 text-red-700 border-red-200">
+                  Invalid YAML
+                </span>
+              )
+            ) : null}
           </div>
         )}
 
@@ -127,27 +175,29 @@ export default function YamlJsonConverter() {
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-gray-700">
                 Output
-                {result.output && (
+                {output && (
                   <span className="ml-2 text-xs font-normal text-slate-400">
-                    ({result.outputFormat.toUpperCase()})
+                    ({mode === 'format' ? 'YAML' : convertResult.outputFormat.toUpperCase()})
                   </span>
                 )}
               </label>
-              {result.output && <CopyButton text={result.output} label="Copy" />}
+              {output && <CopyButton text={output} label="Copy" />}
             </div>
 
-            {result.error ? (
+            {outputError ? (
               <div className="bg-red-50 border border-red-200 rounded-md p-4">
-                <p className="text-red-700 text-sm">{result.error}</p>
+                <p className="text-red-700 text-sm">{outputError}</p>
               </div>
-            ) : result.output ? (
+            ) : output ? (
               <CodeDisplay
-                code={result.output}
-                language={OUTPUT_LANGUAGE[result.outputFormat] ?? 'text'}
+                code={output}
+                language={outputLanguage}
               />
             ) : (
               <div className="border border-dashed border-slate-300 rounded-md p-8 text-center text-slate-400 text-sm">
-                Output will appear here
+                {mode === 'format'
+                  ? 'Formatted YAML will appear here'
+                  : 'Output will appear here'}
               </div>
             )}
           </div>
