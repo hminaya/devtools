@@ -1,0 +1,10 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect x="120" y="219" width="128" height="128" rx="32" fill="#2563EB"/>
+  <path d="M151 257L177 283L151 309" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M190 309H220" stroke="white" stroke-width="11" stroke-linecap="round"/>
+  <text x="296" y="196" fill="#60A5FA" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Formatting</text>
+  <text fill="white" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="800"><tspan x="296" y="286">Morse Code Translator</tspan></text>
+  <text x="298" y="338" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">Free browser-based developer tool. No signup.</text>
+  <text x="120" y="536" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="500">developers.do/tools/morse-code-translator</text>
+</svg>

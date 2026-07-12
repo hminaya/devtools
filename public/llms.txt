@@ -23,6 +23,16 @@ DevTools provides utilities for developers including formatters, converters, gen
 
 - [JSON Prettifier](https://www.developers.do/tools/json-prettifier): Format and validate JSON data
 - [XML/HTML Formatter](https://www.developers.do/tools/xml-prettifier): Format, validate, prettify, and minify XML or HTML data
+- [XML ↔ JSON Converter](https://www.developers.do/tools/xml-json-converter): Bidirectional XML-to-JSON and JSON-to-XML converter using the familiar @attr / _text convention; repeated tags collapse into arrays
+- [JSONPath Query Engine](https://www.developers.do/tools/jsonpath-tester): Test JSONPath expressions — supports dot/bracket access, wildcards, slices, recursive descent (..), and filter [?(...)] expressions
+- [GraphQL Formatter](https://www.developers.do/tools/graphql-formatter): Format and validate GraphQL queries, mutations, subscriptions, and fragments — preserves string literals, args, blocks, lists, and comments
+- [TOML Parser](https://www.developers.do/tools/toml-parser): Parse, validate, format, and round-trip TOML to/from JSON — spec-compliant via smol-toml
+- [CSS Minifier / Beautifier](https://www.developers.do/tools/css-formatter): Minify CSS by stripping comments and whitespace, or beautify minified CSS with re-indentation — preserves spaces inside parentheses for values like rgba() and calc()
+- [JavaScript Minifier](https://www.developers.do/tools/js-minifier): Strip comments and whitespace from JavaScript while preserving strings, template literals, and regex syntax — no AST, no variable renaming, just fast cosmetic minification
+- [Data URI Converter](https://www.developers.do/tools/data-uri-converter): Convert text to a data: URI with UTF-8 Base64 encoding, or decode a data: URI back to text or binary bytes — handles any MIME type
+- [Markdown Live Preview](https://www.developers.do/tools/markdown-preview): Write Markdown on the left, see the rendered HTML preview on the right — supports headings, bold, italic, code, lists, quotes, links, autolinks, and GFM strikethrough
+- [SVG Editor](https://www.developers.do/tools/svg-editor): Edit SVG code on the left, see the live preview on the right — strips scripts and event handlers for safety, adjusts missing xmlns
+- [SVG Path Visualizer](https://www.developers.do/tools/svg-path-visualizer): Paste an SVG path d attribute and see it rendered instantly — includes presets (curve, star, arc, bezier), adjustable stroke/fill colors, and an optional grid overlay
 - [HL7 Parser](https://www.developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
 - [HL7 to FHIR Converter](https://www.developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
 - [Diff / Text Compare](https://www.developers.do/tools/diff-compare): Compare two texts and see color-coded differences
@@ -39,6 +49,14 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [CSV ↔ JSON Converter](https://www.developers.do/tools/csv-json-converter): Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 - [CSV Viewer / Table Explorer](https://www.developers.do/tools/csv-viewer): Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 - [SQL Formatter](https://www.developers.do/tools/sql-formatter): Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
+- [String Case Converter](https://www.developers.do/tools/string-case-converter): Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, title, and sentence case
+- [Text Statistics](https://www.developers.do/tools/text-statistics): Live word, character, sentence, line, and paragraph counts with reading time and average length stats
+- [Line Sorter & Deduplicator](https://www.developers.do/tools/line-sorter-dedup): Sort lines alphabetically, numerically, by length, with optional deduplication and trimming
+- [String Escape / Unescape](https://www.developers.do/tools/string-escape): Escape and unescape text for JSON, XML, CSV, regex, or POSIX shell contexts
+- [Whitespace Visualizer & Cleaner](https://www.developers.do/tools/whitespace-cleaner): Spot invisible whitespace characters (tabs, NBSP, zero-width, trailing) and clean them with batch options
+- [HTML Entity Encoder / Decoder](https://www.developers.do/tools/html-entity-encoder): Encode text to HTML entities (named, decimal, hex) and decode entities back to characters
+- [Unicode Escape / Unescape](https://www.developers.do/tools/unicode-escape): Convert text to \\uXXXX and \\u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
+- [Morse Code Translator](https://www.developers.do/tools/morse-code-translator): Convert text to ITU-R M.1677-1 Morse code and back — supports letters, digits, common punctuation, and word breaks
 
 ### Algorithms
 
@@ -71,6 +89,9 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [Lorem Ipsum Generator](https://www.developers.do/tools/lorem-ipsum-generator): Generate placeholder text for designs
 - [Random Number Generator](https://www.developers.do/tools/random-number-generator): Generate random numbers and see code samples in multiple languages
 - [QR Code Generator](https://www.developers.do/tools/qr-code-generator): Generate QR codes from text, URLs, or any data
+- [ULID Generator](https://www.developers.do/tools/ulid-generator): Generate ULIDs — 26-character lexicographically sortable identifiers (48-bit timestamp + 80-bit random) with optional monotonic mode
+- [Git Branch Name Generator](https://www.developers.do/tools/git-branch-name-generator): Convert a feature description into a clean, git-safe branch name with optional prefix (feat, fix, chore, etc.) and ticket id. Includes copy-paste checkout and push commands
+- [ASCII Art Text Generator](https://www.developers.do/tools/ascii-art-generator): Convert text to ASCII art banner with built-in block, banner, and thin fonts — no external font files, works in any browser
 
 ### Code & Schemas
 
@@ -91,6 +112,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [MD5 Hash](https://www.developers.do/tools/md5-generator): Generate MD5 hashes from text
 - [SHA-1 Hash](https://www.developers.do/tools/sha1-generator): Generate SHA-1 hashes from text
 - [SHA-256/384/512 Hash](https://www.developers.do/tools/sha256-generator): Generate secure SHA-256, SHA-384, or SHA-512 hashes from text
+- [HMAC Generator](https://www.developers.do/tools/hmac-generator): Generate HMAC signatures with SHA-1, SHA-256, SHA-384, or SHA-512 — output as hex, base64, or base64url
 - [Clawdbot Security Scanner](https://www.developers.do/tools/clawdbot-security-scanner): Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 - [Certificate & CSR Decoder](https://www.developers.do/tools/csr-decoder): Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 
@@ -107,6 +129,8 @@ DevTools provides utilities for developers including formatters, converters, gen
 
 - [API Tester](https://www.developers.do/tools/api-tester): Test and view API responses
 - [HTTP Status Code Reference](https://www.developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
+- [MIME Type Lookup](https://www.developers.do/tools/mime-type-lookup): Search common MIME types by file extension, MIME string, or category — covers images, video, audio, archives, documents, code, fonts, and data formats
+- [Common Port Number Reference](https://www.developers.do/tools/port-reference): Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
 
 ### Data
 
