@@ -2,5 +2,25 @@
   "buildCommand": "bun run build",
   "outputDirectory": "out",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\""
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\""
+        }
+      ]
+    }
+  ]
 }
