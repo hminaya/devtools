@@ -1,0 +1,18 @@
+User-Agent: OAI-SearchBot
+User-Agent: ChatGPT-User
+User-Agent: PerplexityBot
+User-Agent: Perplexity-User
+User-Agent: ClaudeBot
+User-Agent: Claude-User
+User-Agent: Claude-SearchBot
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: *
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+Sitemap: https://www.developers.do/sitemap.xml
