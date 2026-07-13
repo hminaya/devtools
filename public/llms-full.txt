@@ -437,6 +437,11 @@ URL: https://www.developers.do/tools/json-to-rust
 
 Convert JSON to Rust structs
 
+#### JSON Schema Validator & Generator
+URL: https://www.developers.do/tools/json-schema-validator
+
+Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema — supports multiple samples to detect optional fields
+
 #### Color Picker
 URL: https://www.developers.do/tools/color-picker
 
@@ -543,6 +548,11 @@ Search common MIME types by file extension, MIME string, or category — covers 
 URL: https://www.developers.do/tools/port-reference
 
 Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
+
+#### CIDR / Subnet Calculator
+URL: https://www.developers.do/tools/cidr-calculator
+
+IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
 
 ### Data
 

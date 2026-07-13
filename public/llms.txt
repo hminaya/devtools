@@ -103,6 +103,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [JSON to Python](https://www.developers.do/tools/json-to-python): Convert JSON to Python dataclasses or Pydantic models
 - [JSON to Go](https://www.developers.do/tools/json-to-go): Convert JSON to Go structs
 - [JSON to Rust](https://www.developers.do/tools/json-to-rust): Convert JSON to Rust structs
+- [JSON Schema Validator & Generator](https://www.developers.do/tools/json-schema-validator): Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema — supports multiple samples to detect optional fields
 - [Color Picker](https://www.developers.do/tools/color-picker): Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)
 
 ### Security
@@ -131,6 +132,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [HTTP Status Code Reference](https://www.developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
 - [MIME Type Lookup](https://www.developers.do/tools/mime-type-lookup): Search common MIME types by file extension, MIME string, or category — covers images, video, audio, archives, documents, code, fonts, and data formats
 - [Common Port Number Reference](https://www.developers.do/tools/port-reference): Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
+- [CIDR / Subnet Calculator](https://www.developers.do/tools/cidr-calculator): IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
 
 ### Data
 

@@ -754,6 +754,15 @@ export const TOOLS: Tool[] = [
     updatedAt: '2026-06-28',
   },
   {
+    id: 'json-schema-validator',
+    name: 'JSON Schema Validator & Generator',
+    description: 'Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema — supports multiple samples to detect optional fields',
+    route: '/tools/json-schema-validator',
+    icon: '🧬',
+    category: 'Code & Schemas',
+    updatedAt: '2026-07-13',
+  },
+  {
     id: 'color-picker',
     name: 'Color Picker',
     description: 'Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)',
@@ -923,6 +932,15 @@ export const TOOLS: Tool[] = [
     icon: '🔌',
     category: 'Networking',
     updatedAt: '2026-07-12',
+  },
+  {
+    id: 'cidr-calculator',
+    name: 'CIDR / Subnet Calculator',
+    description: 'IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting',
+    route: '/tools/cidr-calculator',
+    icon: '🌐',
+    category: 'Networking',
+    updatedAt: '2026-07-13',
   },
   {
     id: 'oss-data',
