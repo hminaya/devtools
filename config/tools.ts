@@ -490,6 +490,16 @@ export const TOOLS: Tool[] = [
     updatedAt: '2026-06-28',
   },
   {
+    id: 'agent-helper',
+    name: 'Agent Helper',
+    description: 'AI assistant for building and debugging software agents',
+    route: 'https://agenthelper.developers.do',
+    icon: '🤖',
+    category: 'Apps',
+    updatedAt: '2026-07-14',
+    external: true,
+  },
+  {
     id: 'gamewobble',
     name: 'GameWobble',
     description: 'Free bite-sized browser games you can play instantly with no downloads or signup',
