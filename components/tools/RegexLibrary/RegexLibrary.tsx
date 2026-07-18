@@ -394,6 +394,7 @@ export default function RegexLibrary() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search patterns..."
             className="flex-1 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            aria-label="Search patterns"
           />
         </div>
 
@@ -403,6 +404,7 @@ export default function RegexLibrary() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              aria-pressed={activeCategory === cat}
               className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? 'bg-blue-600 text-white'
@@ -427,7 +429,7 @@ export default function RegexLibrary() {
 
         {/* Pattern grid */}
         {filtered.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 text-sm">
+          <div className="text-center py-12 text-slate-500 text-sm" role="status">
             No patterns match your search.
           </div>
         ) : (

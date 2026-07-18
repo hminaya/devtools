@@ -74,11 +74,12 @@ function XmlPrettifier() {
       <div className="space-y-4">
         {/* Format Toggle + Action Buttons */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" role="group" aria-label="Format">
             <span className="text-xs text-slate-500 mr-1">Format:</span>
             {(['xml', 'html'] as Format[]).map((f) => (
               <button
                 key={f}
+                aria-pressed={format === f}
                 onClick={() => { setFormat(f); setOutput(''); setError(''); }}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium border uppercase transition-colors ${
                   format === f
@@ -101,7 +102,7 @@ function XmlPrettifier() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

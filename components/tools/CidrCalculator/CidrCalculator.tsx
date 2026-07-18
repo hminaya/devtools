@@ -167,7 +167,7 @@ function CidrCalculator() {
             className="w-full rounded-xl border-2 border-slate-300 bg-white px-4 py-3 font-mono text-lg text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
           />
           {result && !result.valid && result.error && (
-            <p className="text-sm text-red-600">{result.error}</p>
+            <p className="text-sm text-red-600" role="alert">{result.error}</p>
           )}
         </div>
 
@@ -225,7 +225,7 @@ function CidrCalculator() {
                     {c.label}
                   </span>
                   <div className="opacity-0 transition-opacity group-hover:opacity-100">
-                    <CopyButton text={c.value} label="" />
+                    <CopyButton text={c.value} label="Copy value" />
                   </div>
                 </div>
                 <div className="font-mono text-sm text-slate-900 break-all">
@@ -246,7 +246,7 @@ function CidrCalculator() {
               <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Binary View
               </span>
-              <CopyButton text={result.binaryView} label="" />
+              <CopyButton text={result.binaryView} label="Copy binary view" />
             </div>
             <pre className="overflow-x-auto px-1 py-1 font-mono text-xs leading-5 text-slate-700">
               {result.binaryView}
@@ -322,7 +322,7 @@ function CidrCalculator() {
                           <div className="flex items-center gap-1">
                             <span className="font-mono text-slate-900">{s.cidr}</span>
                             <span className="opacity-0 transition-opacity hover:opacity-100 group-hover:opacity-100">
-                              <CopyButton text={s.cidr} label="" />
+                              <CopyButton text={s.cidr} label="Copy CIDR" />
                             </span>
                           </div>
                         </td>
@@ -340,7 +340,7 @@ function CidrCalculator() {
             )}
 
             {splitTarget !== null && splitTarget <= result.prefix && (
-              <p className="text-xs text-red-600">
+              <p className="text-xs text-red-600" role="alert">
                 Target prefix must be larger than the source prefix (/{result.prefix}).
               </p>
             )}

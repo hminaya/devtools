@@ -45,7 +45,7 @@ function OutputCard({ label, sublabel, value, error, showDiff }: OutputCardProps
       </div>
 
       {error ? (
-        <div className="text-xs text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">
+        <div role="alert" className="text-xs text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">
           {error}
         </div>
       ) : value ? (
@@ -116,6 +116,7 @@ export default function UrlEncoderDecoder() {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setMode('encode')}
+            aria-pressed={mode === 'encode'}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === 'encode' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
@@ -124,6 +125,7 @@ export default function UrlEncoderDecoder() {
           </button>
           <button
             onClick={() => setMode('decode')}
+            aria-pressed={mode === 'decode'}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === 'decode' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}

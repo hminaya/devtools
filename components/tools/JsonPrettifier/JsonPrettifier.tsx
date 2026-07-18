@@ -133,7 +133,10 @@ function JsonPrettifier() {
           <button
             type="button"
             role="tab"
+            id="json-tab-input"
             aria-selected={mobilePane === 'input'}
+            aria-controls="json-panel-input"
+            tabIndex={mobilePane === 'input' ? 0 : -1}
             className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${mobilePane === 'input' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500'}`}
             onClick={() => setMobilePane('input')}
           >
@@ -142,16 +145,28 @@ function JsonPrettifier() {
           <button
             type="button"
             role="tab"
+            id="json-tab-output"
             aria-selected={mobilePane === 'output'}
+            aria-controls="json-panel-output"
+            tabIndex={mobilePane === 'output' ? 0 : -1}
             className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${mobilePane === 'output' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500'}`}
             onClick={() => setMobilePane('output')}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                setMobilePane(mobilePane === 'input' ? 'output' : 'input');
+                window.setTimeout(() => {
+                  document.getElementById(mobilePane === 'input' ? 'json-tab-output' : 'json-tab-input')?.focus();
+                }, 0);
+              }
+            }}
           >
             Output <span className="ml-1 text-xs font-normal text-slate-400">{output.length.toLocaleString()}</span>
           </button>
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-          <div className={mobilePane === 'input' ? 'block' : 'hidden lg:block'} role="tabpanel">
+          <div className={mobilePane === 'input' ? 'block' : 'hidden lg:block'} role="tabpanel" id="json-panel-input" aria-labelledby="json-tab-input">
             <TextArea
               value={input}
               onChange={setInput}
@@ -163,7 +178,7 @@ function JsonPrettifier() {
             <p className="mt-2 text-right text-xs tabular-nums text-slate-400">{input.length.toLocaleString()} characters</p>
           </div>
 
-          <div className={`${mobilePane === 'output' ? 'block' : 'hidden lg:block'} space-y-2`} role="tabpanel">
+          <div className={`${mobilePane === 'output' ? 'block' : 'hidden lg:block'} space-y-2`} role="tabpanel" id="json-panel-output" aria-labelledby="json-tab-output">
             {output ? (
               <>
                 <CodeDisplay

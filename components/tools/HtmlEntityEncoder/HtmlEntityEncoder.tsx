@@ -62,7 +62,7 @@ function HtmlEntityEncoder() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Encoded</label>
+              <span className="block text-sm font-medium text-slate-700">Encoded</span>
               {encoded && <CopyButton text={encoded} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[160px]">
@@ -71,7 +71,7 @@ function HtmlEntityEncoder() {
           </div>
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Decoded</label>
+              <span className="block text-sm font-medium text-slate-700">Decoded</span>
               {decoded && <CopyButton text={decoded} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[160px]">

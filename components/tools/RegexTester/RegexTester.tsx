@@ -135,6 +135,7 @@ export default function RegexTester() {
               value={pattern}
               onChange={(e) => setPattern(e.target.value)}
               placeholder="e.g. (\w+)\s(\w+)"
+              aria-label="Pattern"
               className={`flex-1 px-3 py-2 border rounded-md shadow-sm font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                 error ? 'border-red-400 bg-red-50' : 'border-gray-300'
               }`}
@@ -143,7 +144,7 @@ export default function RegexTester() {
             <span className="font-mono text-sm text-blue-700 w-8">{flagStr || ' '}</span>
           </div>
           {error && (
-            <p className="text-red-600 text-sm mt-1">Invalid regex: {error}</p>
+            <p className="text-red-600 text-sm mt-1" role="alert">Invalid regex: {error}</p>
           )}
 
           {/* Flag toggles */}
@@ -153,6 +154,7 @@ export default function RegexTester() {
                 key={flag}
                 title={description}
                 onClick={() => toggleFlag(flag)}
+                aria-pressed={flags.has(flag)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-sm border transition-colors ${
                   flags.has(flag)
                     ? 'bg-blue-600 text-white border-blue-600'
@@ -168,16 +170,30 @@ export default function RegexTester() {
 
         {/* Mode toggle + actions */}
         <div className="flex flex-wrap items-center gap-2">
-          <Button
-            label="Match"
+          <button
+            type="button"
+            aria-pressed={mode === 'match'}
             onClick={() => setMode('match')}
-            variant={mode === 'match' ? 'primary' : 'secondary'}
-          />
-          <Button
-            label="Replace"
+            className={`min-h-10 rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition focus:outline-none focus:ring-4 ${
+              mode === 'match'
+                ? 'bg-blue-600 text-white hover:-translate-y-px hover:bg-blue-700 focus:ring-blue-100'
+                : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 focus:ring-slate-100'
+            }`}
+          >
+            Match
+          </button>
+          <button
+            type="button"
+            aria-pressed={mode === 'replace'}
             onClick={() => setMode('replace')}
-            variant={mode === 'replace' ? 'primary' : 'secondary'}
-          />
+            className={`min-h-10 rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition focus:outline-none focus:ring-4 ${
+              mode === 'replace'
+                ? 'bg-blue-600 text-white hover:-translate-y-px hover:bg-blue-700 focus:ring-blue-100'
+                : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 focus:ring-slate-100'
+            }`}
+          >
+            Replace
+          </button>
           <div className="flex-1" />
           <Button label="Load Sample" onClick={handleLoadSample} variant="secondary" />
           <Button label="Clear" onClick={handleClear} variant="secondary" />
@@ -287,7 +303,7 @@ export default function RegexTester() {
 
         {/* No matches state */}
         {pattern && testString && !error && matches.length === 0 && (
-          <div className="text-center py-6 text-gray-500 text-sm">
+          <div className="text-center py-6 text-gray-500 text-sm" role="status">
             No matches found.
           </div>
         )}

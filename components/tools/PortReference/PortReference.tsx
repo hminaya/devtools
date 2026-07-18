@@ -84,6 +84,7 @@ function PortReference() {
             placeholder="Search by port (80), service (HTTP), or keyword..."
             className="flex-1 min-w-[16rem] px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             autoFocus
+            aria-label="Search ports"
           />
           <button
             onClick={() => { setQuery(''); setCategoryFilter(null); }}
@@ -97,6 +98,7 @@ function PortReference() {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setCategoryFilter(null)}
+            aria-pressed={categoryFilter === null}
             className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
               categoryFilter === null
                 ? 'bg-blue-600 text-white border-blue-600'
@@ -112,6 +114,7 @@ function PortReference() {
               <button
                 key={cat}
                 onClick={() => setCategoryFilter(cat === categoryFilter ? null : cat)}
+                aria-pressed={categoryFilter === cat}
                 className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                   categoryFilter === cat
                     ? 'bg-blue-600 text-white border-blue-600'
@@ -146,7 +149,7 @@ function PortReference() {
               ))}
               {results.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-sm text-slate-400">
+                  <td colSpan={5} className="px-4 py-8 text-center text-sm text-slate-400" role="status">
                     No entries match your search.
                   </td>
                 </tr>

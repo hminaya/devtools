@@ -63,6 +63,7 @@ function HL7ToFhirConverter() {
         <div className="flex flex-wrap gap-3">
           <Button label="Convert" onClick={convert} variant="primary" disabled={!input.trim()} />
           <select
+            aria-label="Sample message"
             value={selectedSampleId}
             onChange={(e) => setSelectedSampleId(e.target.value)}
             className="px-3 py-2 border border-slate-300 rounded-md bg-white text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -84,14 +85,14 @@ function HL7ToFhirConverter() {
         )}
 
         {result && !result.success && result.error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{result.error}</p>
           </div>
         )}
 
         {result?.warnings && result.warnings.length > 0 && (
-          <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
+          <div aria-live="polite" className="bg-amber-50 border border-amber-200 rounded-md p-4">
             <p className="text-amber-800 font-medium mb-1">Warnings:</p>
             <ul className="list-disc pl-5 text-amber-700 text-sm space-y-1">
               {result.warnings.map((warning, index) => (
@@ -159,7 +160,7 @@ function HL7ToFhirConverter() {
         />
 
         {result?.success && bundleJson ? (
-          <div className="space-y-2">
+          <div className="space-y-2" aria-live="polite">
             <div className="flex items-center gap-2">
               <CopyButton text={bundleJson} label="Copy FHIR Bundle" />
             </div>

@@ -26,12 +26,13 @@ function StringEscape() {
     >
       <div className="space-y-4">
         {/* Context selector */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Context">
           <span className="text-xs text-slate-500">Context:</span>
           {ESCAPE_CONTEXT_LABELS.map((opt) => (
             <button
               key={opt.value}
               onClick={() => setCtx(opt.value)}
+              aria-pressed={ctx === opt.value}
               className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors capitalize ${
                 ctx === opt.value
                   ? 'bg-blue-600 text-white border-blue-600'
@@ -61,7 +62,7 @@ function StringEscape() {
 
         {/* Output grids */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div>
+          <div aria-live="polite">
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-slate-700">Escaped</label>
               {escaped && <CopyButton text={escaped} label="Copy" />}
@@ -70,13 +71,13 @@ function StringEscape() {
               {escaped || <span className="text-slate-400">(empty)</span>}
             </pre>
           </div>
-          <div>
+          <div aria-live="polite">
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-slate-700">Unescaped</label>
               {unescaped.output && <CopyButton text={unescaped.output} label="Copy" />}
             </div>
             {unescaped.error ? (
-              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {unescaped.error}
               </div>
             ) : (

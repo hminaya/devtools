@@ -65,6 +65,7 @@ ${grid ? `<defs><pattern id="grid" width="10" height="10" patternUnits="userSpac
               onChange={(e) => setPathData(e.target.value)}
               rows={10}
               spellCheck={false}
+              aria-label="Path d attribute"
               className="w-full resize-y rounded-xl border px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 border-slate-300 bg-white"
               placeholder="M 10 80 C 40 10, 65 10, 95 80"
             />
@@ -85,16 +86,16 @@ ${grid ? `<defs><pattern id="grid" width="10" height="10" patternUnits="userSpac
           <div className="rounded-xl border border-slate-200 bg-white p-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Stroke color</label>
-              <input type="color" value={stroke} onChange={(e) => setStroke(e.target.value)} className="w-full" />
-              <input type="text" value={stroke} onChange={(e) => setStroke(e.target.value)} className="mt-1 w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+              <input type="color" value={stroke} onChange={(e) => setStroke(e.target.value)} aria-label="Stroke color" className="w-full" />
+              <input type="text" value={stroke} onChange={(e) => setStroke(e.target.value)} aria-label="Stroke hex" className="mt-1 w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
             </div>
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Stroke width</label>
-              <input type="number" min="0.5" max="20" step="0.5" value={strokeWidth} onChange={(e) => setStrokeWidth(Number(e.target.value))} className="w-full px-2 py-1 border border-slate-300 rounded text-sm" />
+              <input type="number" min="0.5" max="20" step="0.5" value={strokeWidth} onChange={(e) => setStrokeWidth(Number(e.target.value))} aria-label="Stroke width" className="w-full px-2 py-1 border border-slate-300 rounded text-sm" />
             </div>
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Fill color</label>
-              <input type="color" value={fill === 'none' ? '#ffffff' : fill} onChange={(e) => setFill(e.target.value)} className="w-full" disabled={fill === 'none'} />
+              <input type="color" value={fill === 'none' ? '#ffffff' : fill} onChange={(e) => setFill(e.target.value)} aria-label="Fill color" className="w-full" disabled={fill === 'none'} />
               <select value={fill} onChange={(e) => setFill(e.target.value)} className="mt-1 w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono">
                 <option value="none">none</option>
                 <option value="#3b82f6">blue</option>
@@ -104,7 +105,7 @@ ${grid ? `<defs><pattern id="grid" width="10" height="10" patternUnits="userSpac
             </div>
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">ViewBox size</label>
-              <input type="number" min="50" max="500" step="10" value={viewBoxSize} onChange={(e) => setViewBoxSize(Number(e.target.value))} className="w-full px-2 py-1 border border-slate-300 rounded text-sm" />
+              <input type="number" min="50" max="500" step="10" value={viewBoxSize} onChange={(e) => setViewBoxSize(Number(e.target.value))} aria-label="ViewBox size" className="w-full px-2 py-1 border border-slate-300 rounded text-sm" />
               <label className="flex items-center gap-2 mt-2 text-xs text-slate-700 cursor-pointer">
                 <input type="checkbox" checked={grid} onChange={(e) => setGrid(e.target.checked)} className="rounded border-slate-300" />
                 Show grid

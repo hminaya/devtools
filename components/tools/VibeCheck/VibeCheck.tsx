@@ -172,11 +172,12 @@ function VibeCheck() {
         <div className="space-y-6">
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Prompt type</label>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <div role="group" aria-label="Prompt type" className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {PROMPT_TYPES.map((item) => (
                 <button
                   key={item.value}
                   type="button"
+                  aria-pressed={promptType === item.value}
                   onClick={() => setPromptType(item.value)}
                   className={`rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
                     promptType === item.value
@@ -222,7 +223,7 @@ function VibeCheck() {
             </label>
           </div>
 
-          <div>
+          <div role="group" aria-label="Stack">
             <label className="mb-2 block text-sm font-medium text-slate-700">Stack</label>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {STACK_OPTIONS.map((item) => (
@@ -242,7 +243,7 @@ function VibeCheck() {
             </div>
           </div>
 
-          <div>
+          <div role="group" aria-label="Risk areas">
             <label className="mb-2 block text-sm font-medium text-slate-700">Risk areas</label>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {RISK_OPTIONS.map((item) => (
@@ -296,7 +297,7 @@ function VibeCheck() {
             <h2 className="text-sm font-semibold text-slate-900">Generated prompt</h2>
             <CopyButton text={generatedPrompt} label="Copy Prompt" />
           </div>
-          <TextArea value={generatedPrompt} readOnly rows={30} />
+          <TextArea value={generatedPrompt} readOnly rows={30} label="Generated prompt" />
         </div>
       </div>
     </ToolLayout>

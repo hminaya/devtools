@@ -49,8 +49,8 @@ function InputField({ label, value, onChange, placeholder }: {
   placeholder?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+    <label className="flex flex-col gap-1">
+      <span className="text-sm font-medium text-slate-700">{label}</span>
       <input
         type="text"
         value={value}
@@ -58,7 +58,7 @@ function InputField({ label, value, onChange, placeholder }: {
         placeholder={placeholder}
         className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-    </div>
+    </label>
   );
 }
 
@@ -69,8 +69,8 @@ function SelectField({ label, value, onChange, options }: {
   options: { value: string; label: string }[];
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+    <label className="flex flex-col gap-1">
+      <span className="text-sm font-medium text-slate-700">{label}</span>
       <select
         value={value}
         onChange={e => onChange(e.target.value)}
@@ -80,7 +80,7 @@ function SelectField({ label, value, onChange, options }: {
           <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
-    </div>
+    </label>
   );
 }
 
@@ -92,8 +92,8 @@ function NumberField({ label, value, onChange, min, max }: {
   max?: number;
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+    <label className="flex flex-col gap-1">
+      <span className="text-sm font-medium text-slate-700">{label}</span>
       <input
         type="number"
         value={value}
@@ -102,7 +102,7 @@ function NumberField({ label, value, onChange, min, max }: {
         max={max}
         className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-    </div>
+    </label>
   );
 }
 
@@ -110,6 +110,7 @@ function SamlBuilder() {
   const [formInput, setFormInput] = useState<SamlBuilderInput>(getDefaultInput());
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('xml');
   const [output, setOutput] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const updateField = <K extends keyof SamlBuilderInput>(key: K, value: SamlBuilderInput[K]) => {
@@ -154,8 +155,10 @@ function SamlBuilder() {
           result = xml;
       }
       setOutput(result);
+      setError('');
     } catch (e) {
-      setOutput(`Error: ${e instanceof Error ? e.message : 'Failed to generate'}`);
+      setError(e instanceof Error ? e.message : 'Failed to generate');
+      setOutput('');
     }
     setLoading(false);
   };
@@ -281,22 +284,29 @@ function SamlBuilder() {
             <div className="space-y-2">
               {formInput.attributes.map((attr, i) => (
                 <div key={i} className="flex gap-2 items-center">
-                  <input
-                    type="text"
-                    value={attr.name}
-                    onChange={e => updateAttribute(i, 'name', e.target.value)}
-                    placeholder="Attribute name"
-                    className="flex-1 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  <input
-                    type="text"
-                    value={attr.value}
-                    onChange={e => updateAttribute(i, 'value', e.target.value)}
-                    placeholder="Value"
-                    className="flex-1 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                  <label className="flex-1">
+                    <span className="sr-only">Attribute name</span>
+                    <input
+                      type="text"
+                      value={attr.name}
+                      onChange={e => updateAttribute(i, 'name', e.target.value)}
+                      placeholder="Attribute name"
+                      className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </label>
+                  <label className="flex-1">
+                    <span className="sr-only">Attribute value</span>
+                    <input
+                      type="text"
+                      value={attr.value}
+                      onChange={e => updateAttribute(i, 'value', e.target.value)}
+                      placeholder="Value"
+                      className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </label>
                   <button
                     onClick={() => removeAttribute(i)}
+                    aria-label={`Remove attribute ${i + 1}`}
                     className="px-2 py-2 text-red-500 hover:text-red-700 text-sm"
                     title="Remove attribute"
                   >
@@ -323,10 +333,17 @@ function SamlBuilder() {
         </div>
 
         {/* Output */}
+        {error && (
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
+            <p className="text-red-700 font-medium">Error:</p>
+            <p className="text-red-600 text-sm">{error}</p>
+          </div>
+        )}
+
         {output && (
-          <div>
+          <div aria-live="polite">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-medium text-slate-700">Output</label>
+              <span className="text-sm font-medium text-slate-700">Output</span>
               <CopyButton text={output} label="Copy Output" />
             </div>
             <div className="bg-slate-50 border border-slate-200 rounded-md p-4">

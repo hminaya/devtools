@@ -41,6 +41,7 @@ function LoremIpsumGenerator() {
                 min="1"
                 max="100"
                 value={count}
+                aria-label="Length"
                 onChange={(e) => setCount(Math.max(1, parseInt(e.target.value) || 1))}
                 className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -53,6 +54,7 @@ function LoremIpsumGenerator() {
               </label>
               <select
                 value={unit}
+                aria-label="Unit"
                 onChange={(e) => setUnit(e.target.value as LengthUnit)}
                 className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
@@ -92,6 +94,7 @@ function LoremIpsumGenerator() {
           <TextArea
             value={output}
             onChange={() => {}}
+            label="Generated text"
             placeholder="Click 'Generate' to create Lorem Ipsum text..."
             rows={20}
             readOnly

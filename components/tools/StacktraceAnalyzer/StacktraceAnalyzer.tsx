@@ -61,6 +61,7 @@ function StacktraceAnalyzer() {
           <Button label="Analyze" onClick={analyze} variant="primary" />
           <div className="flex items-center gap-2">
             <select
+              aria-label="Language"
               value={selectedLanguage}
               onChange={(e) => {
                 setSelectedLanguage(e.target.value as Language);
@@ -78,7 +79,7 @@ function StacktraceAnalyzer() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
@@ -94,7 +95,7 @@ function StacktraceAnalyzer() {
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {result ? (
               <>
                 {/* Error Summary */}
@@ -193,6 +194,7 @@ function StacktraceAnalyzer() {
                         {result.frameworkFrames > 0 && (
                           <button
                             onClick={() => setShowFrameworkFrames(!showFrameworkFrames)}
+                            aria-pressed={showFrameworkFrames}
                             className="text-blue-600 hover:text-blue-800 underline"
                           >
                             {showFrameworkFrames ? 'Hide' : 'Show'} framework

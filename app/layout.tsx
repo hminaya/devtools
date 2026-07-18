@@ -91,9 +91,10 @@ export default function RootLayout({
       <body className="antialiased">
         <Analytics />
         <CookieConsent />
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <div className="min-h-screen lg:flex lg:h-screen">
           <Sidebar />
-          <main className="min-w-0 flex-1 bg-slate-50 pt-16 lg:overflow-auto lg:pt-0">
+          <main id="main-content" tabIndex={-1} className="min-w-0 flex-1 bg-slate-50 pt-16 lg:overflow-auto lg:pt-0">
             <div className="min-h-full flex flex-col">
               <div className="flex-1">
                 {children}

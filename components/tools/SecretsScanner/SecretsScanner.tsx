@@ -97,13 +97,13 @@ function SecretsScanner() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
 
         {hasScanned && (
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {/* Summary */}
             <div className="bg-white border border-slate-200 rounded-md p-4 space-y-3">
               <div className="flex items-center justify-between">

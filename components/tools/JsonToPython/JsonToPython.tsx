@@ -137,6 +137,7 @@ function JsonToPython() {
               value={rootName}
               onChange={(e) => setRootName(e.target.value)}
               placeholder="Root"
+              aria-label="Class Name"
               className="w-48 px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -146,6 +147,7 @@ function JsonToPython() {
             <select
               value={style}
               onChange={(e) => setStyle(e.target.value as PythonStyle)}
+              aria-label="Style"
               className="px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="dataclass">dataclass</option>
@@ -163,7 +165,7 @@ function JsonToPython() {
         )}
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

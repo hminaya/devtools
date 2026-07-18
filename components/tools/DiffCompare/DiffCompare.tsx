@@ -70,7 +70,7 @@ function DiffCompare() {
         </div>
 
         {result && (
-          <>
+          <div aria-live="polite" className="space-y-4">
             <div className="flex gap-4 text-sm font-medium">
               <span className="text-green-700">+{result.stats.added} added</span>
               <span className="text-red-700">-{result.stats.removed} removed</span>
@@ -110,7 +110,7 @@ function DiffCompare() {
                 })}
               </pre>
             </div>
-          </>
+          </div>
         )}
       </div>
     </ToolLayout>

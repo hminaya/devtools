@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { POPULAR_TOOL_IDS, TOOLS } from '../../config/tools';
 import { TOOL_CATEGORIES, getCategoryBySlug, getCategorySlug } from '../../config/seo';
 import Logo from '../shared/Logo';
@@ -31,10 +31,24 @@ function MenuIcon({ open }: { open: boolean }) {
 function Sidebar() {
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+
+  const openSearch = useCallback(() => {
+    triggerRef.current = document.activeElement as HTMLElement;
+    setIsSearchOpen(true);
+    window.setTimeout(() => searchInputRef.current?.focus(), 0);
+  }, []);
+
+  const closeSearch = useCallback(() => {
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    window.setTimeout(() => triggerRef.current?.focus(), 0);
+  }, []);
 
   const currentTool = TOOLS.find((tool) => tool.route === pathname);
   const categorySlug = pathname.split('/')[2];
@@ -48,10 +62,6 @@ function Sidebar() {
   }, [currentCategory, pathname]);
 
   useEffect(() => {
-    const openSearch = () => {
-      setIsSearchOpen(true);
-      window.setTimeout(() => searchInputRef.current?.focus(), 0);
-    };
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
       const isTyping = target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA' || target?.isContentEditable;
@@ -74,7 +84,29 @@ function Sidebar() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('open_tool_search', openSearch);
     };
-  }, []);
+  }, [openSearch]);
+
+  useEffect(() => {
+    if (!isSearchOpen) return;
+    const handleTrap = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, a[href], input, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0]!;
+      const last = focusable[focusable.length - 1]!;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener('keydown', handleTrap);
+    return () => window.removeEventListener('keydown', handleTrap);
+  }, [isSearchOpen]);
 
   const results = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -88,11 +120,6 @@ function Sidebar() {
       `${tool.name} ${tool.description} ${tool.category}`.toLowerCase().includes(query)
     ).slice(0, 12);
   }, [searchQuery]);
-
-  const closeSearch = () => {
-    setIsSearchOpen(false);
-    setSearchQuery('');
-  };
 
   const toggleCategory = (category: string) => {
     setExpandedCategories((previous) => {
@@ -124,10 +151,7 @@ function Sidebar() {
         <button
           type="button"
           className="mt-5 flex w-full items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-left text-sm text-slate-300 transition hover:border-white/20 hover:bg-white/10"
-          onClick={() => {
-            setIsSearchOpen(true);
-            window.setTimeout(() => searchInputRef.current?.focus(), 0);
-          }}
+          onClick={() => openSearch()}
         >
           <SearchIcon />
           <span className="flex-1">Find a tool</span>
@@ -214,7 +238,7 @@ function Sidebar() {
           type="button"
           className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
           aria-label="Search tools"
-          onClick={() => setIsSearchOpen(true)}
+          onClick={() => openSearch()}
         >
           <SearchIcon />
         </button>
@@ -244,7 +268,10 @@ function Sidebar() {
       </aside>
 
       {isSearchOpen && (
-        <div className="fixed inset-0 z-[70] flex items-start justify-center bg-slate-950/55 px-4 pt-[8vh] backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Find a developer tool">
+        <div
+          ref={dialogRef}
+          className="fixed inset-0 z-[70] flex items-start justify-center bg-slate-950/55 px-4 pt-[8vh] backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Find a developer tool"
+        >
           <button type="button" className="absolute inset-0" aria-label="Close search" onClick={closeSearch} />
           <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
             <div className="flex items-center gap-3 border-b border-slate-200 px-4">

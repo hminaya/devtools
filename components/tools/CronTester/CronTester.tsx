@@ -69,6 +69,7 @@ export default function CronTester() {
             onChange={(e) => setExpression(e.target.value)}
             placeholder="* * * * *"
             spellCheck={false}
+            aria-label="Cron expression"
             className="w-full px-3 py-2 border border-gray-300 rounded-md font-mono text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <p className="text-xs text-slate-400 mt-1">
@@ -95,7 +96,7 @@ export default function CronTester() {
 
         {/* Error / Description */}
         {error ? (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
+          <div className="bg-red-50 border border-red-200 rounded-md p-3" role="alert">
             <p className="text-red-700 text-sm">
               <span className="font-medium">Error:</span> {error}
             </p>
@@ -124,6 +125,7 @@ export default function CronTester() {
               <button
                 key={preset.expr}
                 onClick={() => setExpression(preset.expr)}
+                aria-pressed={expression.trim() === preset.expr}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                   expression.trim() === preset.expr
                     ? 'bg-blue-600 text-white'
@@ -143,6 +145,7 @@ export default function CronTester() {
           <select
             value={timezone}
             onChange={(e) => setTimezone(e.target.value)}
+            aria-label="Timezone"
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {CRON_TIMEZONES.map((tz) => (

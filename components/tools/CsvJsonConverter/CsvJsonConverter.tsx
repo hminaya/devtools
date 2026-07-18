@@ -94,6 +94,7 @@ export default function CsvJsonConverter() {
             {(['auto', 'csv', 'json'] as const).map((f) => (
               <button
                 key={f}
+                aria-pressed={manualFormat === f}
                 onClick={() => setManualFormat(f)}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                   manualFormat === f
@@ -112,6 +113,7 @@ export default function CsvJsonConverter() {
             {DELIMITER_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
+                aria-pressed={delimiter === opt.value}
                 onClick={() => setDelimiter(opt.value)}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                   delimiter === opt.value
@@ -131,6 +133,7 @@ export default function CsvJsonConverter() {
               {([2, 4] as Indent[]).map((n) => (
                 <button
                   key={n}
+                  aria-pressed={indent === n}
                   onClick={() => setIndent(n)}
                   className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                     indent === n
@@ -188,7 +191,7 @@ export default function CsvJsonConverter() {
 
         {/* Conversion direction indicator */}
         {input.trim() && (
-          <div className="flex items-center gap-2">
+          <div role="status" className="flex items-center gap-2">
             <span
               className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${badge.class}`}
             >
@@ -229,7 +232,7 @@ export default function CsvJsonConverter() {
             </div>
 
             {result.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
                 <p className="text-red-700 text-sm">{result.error}</p>
               </div>
             ) : result.output ? (

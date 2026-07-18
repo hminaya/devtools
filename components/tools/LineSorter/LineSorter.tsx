@@ -25,6 +25,7 @@ function Pill<T extends string>({
   return (
     <button
       onClick={() => onSelect(value)}
+      aria-pressed={current === value}
       className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
         current === value
           ? 'bg-blue-600 text-white border-blue-600'
@@ -56,14 +57,14 @@ function LineSorter() {
       <div className="space-y-4">
         {/* Controls */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" role="group" aria-label="Sort order">
             <span className="text-xs text-slate-500 mr-1">Sort:</span>
             <Pill label="Aa→Zz" value="lexical" current={sortMode} onSelect={setSortMode} />
             <Pill label="Numeric" value="numeric" current={sortMode} onSelect={setSortMode} />
             <Pill label="Length" value="length" current={sortMode} onSelect={setSortMode} />
             <Pill label="None" value="none" current={sortMode} onSelect={setSortMode} />
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" role="group" aria-label="Deduplicate">
             <span className="text-xs text-slate-500 mr-1">Dedup:</span>
             <Pill label="Case-insens." value="case-insensitive" current={dedupMode} onSelect={setDedupMode} />
             <Pill label="Exact" value="exact" current={dedupMode} onSelect={setDedupMode} />
@@ -83,7 +84,7 @@ function LineSorter() {
 
         {/* Stats */}
         {input.trim() && (
-          <div className="flex flex-wrap gap-3 text-xs text-slate-600">
+          <div aria-live="polite" className="flex flex-wrap gap-3 text-xs text-slate-600">
             <span className="px-2.5 py-1 rounded-full bg-slate-100">Original: {originalLines}</span>
             <span className="px-2.5 py-1 rounded-full bg-slate-100">Output: {result.length}</span>
             {removedCount > 0 && (

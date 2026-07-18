@@ -135,6 +135,7 @@ function JsonToKotlin() {
             value={rootName}
             onChange={(e) => setRootName(e.target.value)}
             placeholder="Root"
+            aria-label="Data Class Name"
             className="w-48 px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -148,7 +149,7 @@ function JsonToKotlin() {
         )}
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

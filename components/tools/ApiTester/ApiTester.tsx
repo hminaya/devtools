@@ -46,6 +46,7 @@ function KeyValueEditor({
             value={pair.key}
             onChange={(e) => updatePair(i, 'key', e.target.value)}
             placeholder={keyPlaceholder}
+            aria-label={`${keyPlaceholder} ${i + 1}`}
             className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
@@ -53,10 +54,12 @@ function KeyValueEditor({
             value={pair.value}
             onChange={(e) => updatePair(i, 'value', e.target.value)}
             placeholder={valuePlaceholder}
+            aria-label={`${valuePlaceholder} ${i + 1}`}
             className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             onClick={() => removePair(i)}
+            aria-label={`Remove row ${i + 1}`}
             className="px-2 py-1.5 text-slate-400 hover:text-red-500 transition-colors"
             title="Remove"
           >
@@ -238,10 +241,11 @@ function ApiTester() {
         <div className="space-y-4">
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label htmlFor="api-url" className="block text-sm font-medium text-slate-700 mb-2">
                 API URL
               </label>
               <input
+                id="api-url"
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
@@ -256,10 +260,11 @@ function ApiTester() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label htmlFor="api-method" className="block text-sm font-medium text-slate-700 mb-2">
                 Method
               </label>
               <select
+                id="api-method"
                 value={method}
                 onChange={(e) => setMethod(e.target.value as HttpMethod)}
                 className={`px-4 py-2 border border-slate-300 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -282,31 +287,39 @@ function ApiTester() {
 
           {/* Tabs: Params / Headers / Body */}
           <div className="border border-slate-200 rounded-md">
-            <div className="flex border-b border-slate-200">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => !tab.disabled && setActiveTab(tab.id)}
-                  disabled={tab.disabled}
-                  className={`px-4 py-2 text-sm font-medium transition-colors ${
-                    tab.disabled
-                      ? 'text-slate-300 cursor-not-allowed'
-                      : activeTab === tab.id
-                        ? 'text-blue-600 border-b-2 border-blue-600 -mb-px'
-                        : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  {tab.label}
-                  {tab.badge ? (
-                    <span className="ml-1.5 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">
-                      {tab.badge}
-                    </span>
-                  ) : null}
-                </button>
-              ))}
+            <div className="flex border-b border-slate-200" role="tablist" aria-label="Request sections">
+              {tabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={`api-tabpanel-${tab.id}`}
+                    id={`api-tab-${tab.id}`}
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => !tab.disabled && setActiveTab(tab.id)}
+                    disabled={tab.disabled}
+                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                      tab.disabled
+                        ? 'text-slate-300 cursor-not-allowed'
+                        : isActive
+                          ? 'text-blue-600 border-b-2 border-blue-600 -mb-px'
+                          : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    {tab.label}
+                    {tab.badge ? (
+                      <span className="ml-1.5 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">
+                        {tab.badge}
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="p-4">
+            <div className="p-4" role="tabpanel" id={`api-tabpanel-${activeTab}`} aria-labelledby={`api-tab-${activeTab}`}>
               {activeTab === 'params' && (
                 <KeyValueEditor
                   pairs={params}
@@ -327,8 +340,8 @@ function ApiTester() {
 
               {activeTab === 'body' && supportsBody && (
                 <div className="space-y-3">
-                  <div className="flex gap-3 items-center">
-                    <label className="text-sm font-medium text-slate-700">Content Type:</label>
+                  <fieldset className="flex gap-3 items-center">
+                    <legend className="text-sm font-medium text-slate-700 sr-only">Content Type</legend>
                     {(['json', 'text', 'form-urlencoded'] as BodyType[]).map((type) => (
                       <label key={type} className="flex items-center gap-1.5 text-sm text-slate-600">
                         <input
@@ -342,8 +355,10 @@ function ApiTester() {
                         {type === 'json' ? 'JSON' : type === 'text' ? 'Text' : 'Form URL-Encoded'}
                       </label>
                     ))}
-                  </div>
+                  </fieldset>
+                  <label htmlFor="api-request-body" className="sr-only">Request body</label>
                   <textarea
+                    id="api-request-body"
                     value={requestBody}
                     onChange={(e) => setRequestBody(e.target.value)}
                     placeholder={
@@ -398,7 +413,7 @@ function ApiTester() {
 
             {/* Error Message */}
             {!response.success && response.error && (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
                 <p className="text-red-700 font-medium">Error:</p>
                 <p className="text-red-600 text-sm">{response.error}</p>
               </div>
@@ -439,10 +454,11 @@ function ApiTester() {
                   </pre>
                 </div>
                 <div className="flex gap-2 items-center mt-3">
-                  <label className="text-sm font-medium text-slate-700">
+                  <label htmlFor="api-code-lang" className="text-sm font-medium text-slate-700">
                     Generate code from response:
                   </label>
                   <select
+                    id="api-code-lang"
                     value={selectedLanguage}
                     onChange={(e) => setSelectedLanguage(e.target.value as LanguageOption)}
                     className="px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"

@@ -94,6 +94,7 @@ function QRCodeGenerator() {
             placeholder="Enter text, URL, or any data to encode..."
             className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             rows={3}
+            aria-label="Text or URL"
           />
         </div>
 
@@ -112,6 +113,7 @@ function QRCodeGenerator() {
                   errorCorrectionLevel: e.target.value as ErrorCorrectionLevel,
                 })
               }
+              aria-label="Error correction"
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="L">Low (7%)</option>
@@ -138,6 +140,7 @@ function QRCodeGenerator() {
                   width: Math.max(64, Math.min(1024, Number(e.target.value))),
                 })
               }
+              aria-label="Size (px)"
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -157,6 +160,7 @@ function QRCodeGenerator() {
                     color: { ...options.color, dark: e.target.value },
                   })
                 }
+                aria-label="Foreground color"
                 className="h-10 w-12 border border-slate-300 rounded cursor-pointer"
               />
               <input
@@ -168,6 +172,7 @@ function QRCodeGenerator() {
                     color: { ...options.color, dark: e.target.value },
                   })
                 }
+                aria-label="Foreground hex"
                 className="flex-1 px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
               />
             </div>
@@ -188,6 +193,7 @@ function QRCodeGenerator() {
                     color: { ...options.color, light: e.target.value },
                   })
                 }
+                aria-label="Background color"
                 className="h-10 w-12 border border-slate-300 rounded cursor-pointer"
               />
               <input
@@ -199,6 +205,7 @@ function QRCodeGenerator() {
                     color: { ...options.color, light: e.target.value },
                   })
                 }
+                aria-label="Background hex"
                 className="flex-1 px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
               />
             </div>
@@ -214,7 +221,7 @@ function QRCodeGenerator() {
 
         {/* Error Message */}
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+          <div className="p-3 bg-red-50 border border-red-200 rounded-md" role="alert">
             <p className="text-sm text-red-600">{error}</p>
           </div>
         )}

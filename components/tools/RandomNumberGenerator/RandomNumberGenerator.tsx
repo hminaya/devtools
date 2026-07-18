@@ -74,6 +74,7 @@ function RandomNumberGenerator() {
             <input
               type="number"
               value={minValue}
+              aria-label="Minimum value"
               onChange={(e) => handleMinChange(Number(e.target.value))}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -85,6 +86,7 @@ function RandomNumberGenerator() {
             <input
               type="number"
               value={maxValue}
+              aria-label="Maximum value"
               onChange={(e) => handleMaxChange(Number(e.target.value))}
               className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -108,6 +110,7 @@ function RandomNumberGenerator() {
           </label>
           <select
             value={selectedLanguage}
+            aria-label="Code sample language"
             onChange={(e) => setSelectedLanguage(e.target.value as Language)}
             className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >

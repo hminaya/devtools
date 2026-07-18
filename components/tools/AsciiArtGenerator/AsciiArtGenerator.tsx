@@ -31,6 +31,7 @@ function AsciiArtGenerator() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Type text to convert"
+              aria-label="Text"
               className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
               autoFocus
             />
@@ -40,6 +41,7 @@ function AsciiArtGenerator() {
             <select
               value={font}
               onChange={(e) => setFont(e.target.value as FontName)}
+              aria-label="Font"
               className="px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {FONT_NAMES.map((f) => (
@@ -55,6 +57,7 @@ function AsciiArtGenerator() {
               max="8"
               value={letterSpacing}
               onChange={(e) => setLetterSpacing(Math.max(0, Math.min(8, Number(e.target.value))))}
+              aria-label="Letter spacing"
               className="w-20 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

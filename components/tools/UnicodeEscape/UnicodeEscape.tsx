@@ -58,7 +58,7 @@ function UnicodeEscape() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Escaped</label>
+              <span className="block text-sm font-medium text-slate-700">Escaped</span>
               {escaped && <CopyButton text={escaped} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[160px]">
@@ -67,11 +67,11 @@ function UnicodeEscape() {
           </div>
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Unescaped</label>
+              <span className="block text-sm font-medium text-slate-700">Unescaped</span>
               {unescaped.output && <CopyButton text={unescaped.output} label="Copy" />}
             </div>
             {unescaped.error ? (
-              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                 {unescaped.error}
               </div>
             ) : (

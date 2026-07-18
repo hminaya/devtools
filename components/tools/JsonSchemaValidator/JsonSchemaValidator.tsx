@@ -227,6 +227,7 @@ function JsonSchemaValidator() {
           <button
             type="button"
             onClick={() => setMode('generate')}
+            aria-pressed={mode === 'generate'}
             className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
               mode === 'generate'
                 ? 'bg-blue-600 text-white shadow-sm'
@@ -238,6 +239,7 @@ function JsonSchemaValidator() {
           <button
             type="button"
             onClick={() => setMode('validate')}
+            aria-pressed={mode === 'validate'}
             className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
               mode === 'validate'
                 ? 'bg-blue-600 text-white shadow-sm'
@@ -312,7 +314,7 @@ function JsonSchemaValidator() {
             )}
 
             {genError && (
-              <div className="rounded-md border border-red-200 bg-red-50 p-4">
+              <div role="alert" className="rounded-md border border-red-200 bg-red-50 p-4">
                 <p className="font-medium text-red-700">Error:</p>
                 <p className="text-sm text-red-600">{genError}</p>
               </div>
@@ -416,6 +418,7 @@ function JsonSchemaValidator() {
             {/* Result */}
             {valResult && (
               <div
+                aria-live="polite"
                 className={`rounded-md border p-4 ${
                   valResult === 'valid'
                     ? 'border-green-200 bg-green-50'

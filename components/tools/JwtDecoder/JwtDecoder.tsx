@@ -77,7 +77,7 @@ function JwtDecoder() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>
@@ -92,11 +92,11 @@ function JwtDecoder() {
 
         {/* Decoded Output */}
         {decoded && (
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {/* Header */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-700">Header</label>
+                <span className="text-sm font-medium text-slate-700">Header</span>
                 <CopyButton text={JSON.stringify(decoded.header, null, 2)} label="Copy Header" />
               </div>
               <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
@@ -115,7 +115,7 @@ function JwtDecoder() {
             {/* Payload */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-700">Payload</label>
+                <span className="text-sm font-medium text-slate-700">Payload</span>
                 <CopyButton text={JSON.stringify(decoded.payload, null, 2)} label="Copy Payload" />
               </div>
               <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
@@ -134,7 +134,7 @@ function JwtDecoder() {
             {/* Signature */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-700">Signature (Base64 URL Encoded)</label>
+                <span className="text-sm font-medium text-slate-700">Signature (Base64 URL Encoded)</span>
                 <CopyButton text={decoded.signature} label="Copy Signature" />
               </div>
               <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
@@ -145,7 +145,7 @@ function JwtDecoder() {
             {/* Full Decoded JSON */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-700">Full Decoded Token (JSON)</label>
+                <span className="text-sm font-medium text-slate-700">Full Decoded Token (JSON)</span>
                 <CopyButton
                   text={JSON.stringify({ header: decoded.header, payload: decoded.payload }, null, 2)}
                   label="Copy JSON"

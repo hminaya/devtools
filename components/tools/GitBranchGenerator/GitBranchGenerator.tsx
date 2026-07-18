@@ -43,6 +43,7 @@ function GitBranchGenerator() {
             <input
               type="text"
               value={text}
+              aria-label="Feature description"
               onChange={(e) => setText(e.target.value)}
               placeholder="e.g. Add OAuth2 login with Google"
               className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -57,6 +58,7 @@ function GitBranchGenerator() {
               <label className="block text-sm font-medium text-slate-700 mb-1">Prefix</label>
               <select
                 value={prefix}
+                aria-label="Prefix"
                 onChange={(e) => setPrefix(e.target.value as BranchPrefix)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
@@ -70,6 +72,7 @@ function GitBranchGenerator() {
               <input
                 type="text"
                 value={ticketId}
+                aria-label="Ticket id"
                 onChange={(e) => setTicketId(e.target.value)}
                 placeholder="e.g. JIRA-456"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -80,6 +83,7 @@ function GitBranchGenerator() {
               <input
                 type="text"
                 value={suffix}
+                aria-label="Optional suffix"
                 onChange={(e) => setSuffix(e.target.value)}
                 placeholder="e.g. v2 or 1234"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -129,7 +133,7 @@ function GitBranchGenerator() {
                 >
                   <code className="font-mono text-sm text-slate-900 break-all flex-1 min-w-0">{v}</code>
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <CopyButton text={v} label="" />
+                    <CopyButton text={v} label={`Copy ${v}`} />
                   </div>
                 </div>
               ))}

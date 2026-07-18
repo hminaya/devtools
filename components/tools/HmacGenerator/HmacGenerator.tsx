@@ -55,6 +55,7 @@ function HmacGenerator() {
           <div className="flex items-center gap-2 ml-auto">
             <label className="text-sm font-medium text-slate-700">Algorithm:</label>
             <select
+              aria-label="Algorithm"
               value={algorithm}
               onChange={(e) => setAlgorithm(e.target.value as HMACAlgorithm)}
               className="px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
@@ -88,6 +89,7 @@ function HmacGenerator() {
             </label>
             <input
               type="password"
+              aria-label="Secret key"
               value={secret}
               onChange={(e) => setSecret(e.target.value)}
               placeholder="Shared secret"
@@ -100,7 +102,7 @@ function HmacGenerator() {
         </div>
 
         {result && (
-          <div className="space-y-3">
+          <div className="space-y-3" aria-live="polite">
             <h3 className="text-sm font-semibold text-slate-800">{algorithm} HMAC</h3>
             {(['hex', 'base64', 'base64url'] as const).map((enc) => (
               <div key={enc} className="rounded-lg border border-slate-200 bg-white p-3">
@@ -110,7 +112,7 @@ function HmacGenerator() {
                 </div>
                 <div className="flex items-start gap-3">
                   <code className="flex-1 font-mono text-sm text-slate-900 break-all">{result[enc]}</code>
-                  <CopyButton text={result[enc]} label="" />
+                  <CopyButton text={result[enc]} label={`Copy ${enc}`} />
                 </div>
               </div>
             ))}

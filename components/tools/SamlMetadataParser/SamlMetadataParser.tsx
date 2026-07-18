@@ -111,17 +111,17 @@ function SamlMetadataParser() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>
         )}
 
         {parsed && (
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {/* Entity Info */}
             <div>
-              <label className="text-sm font-medium text-slate-700 mb-2 block">Entity Information</label>
+              <span className="text-sm font-medium text-slate-700 mb-2 block">Entity Information</span>
               <div className="bg-slate-50 border border-slate-200 rounded-md p-4 space-y-2">
                 <div className="font-mono text-sm flex flex-wrap items-center gap-2">
                   <span className="text-blue-600">Entity ID</span>
@@ -156,7 +156,7 @@ function SamlMetadataParser() {
             {/* Organization */}
             {parsed.organization && (
               <div>
-                <label className="text-sm font-medium text-slate-700 mb-2 block">Organization</label>
+                <span className="text-sm font-medium text-slate-700 mb-2 block">Organization</span>
                 <div className="bg-slate-50 border border-slate-200 rounded-md p-4 space-y-1">
                   {parsed.organization.name && (
                     <div className="font-mono text-sm">
@@ -186,7 +186,7 @@ function SamlMetadataParser() {
             {/* Endpoints */}
             {parsed.endpoints.length > 0 && (
               <div>
-                <label className="text-sm font-medium text-slate-700 mb-2 block">Endpoints</label>
+                <span className="text-sm font-medium text-slate-700 mb-2 block">Endpoints</span>
                 <div className="bg-slate-50 border border-slate-200 rounded-md divide-y divide-slate-200">
                   {parsed.endpoints.map((ep, i) => (
                     <div key={i} className="p-3 space-y-1">
@@ -219,9 +219,9 @@ function SamlMetadataParser() {
             {/* Certificates */}
             {parsed.certificates.length > 0 && (
               <div>
-                <label className="text-sm font-medium text-slate-700 mb-2 block">
+                <span className="text-sm font-medium text-slate-700 mb-2 block">
                   Certificates ({parsed.certificates.length})
-                </label>
+                </span>
                 <div className="space-y-3">
                   {parsed.certificates.map((cert, i) => {
                     const status = getExpiryStatus(cert);
@@ -253,7 +253,7 @@ function SamlMetadataParser() {
             {/* NameID Formats */}
             {parsed.nameIdFormats.length > 0 && (
               <div>
-                <label className="text-sm font-medium text-slate-700 mb-2 block">NameID Formats</label>
+                <span className="text-sm font-medium text-slate-700 mb-2 block">NameID Formats</span>
                 <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
                   <div className="space-y-1">
                     {parsed.nameIdFormats.map((format, i) => (
@@ -272,7 +272,7 @@ function SamlMetadataParser() {
             {/* Requested Attributes */}
             {parsed.requestedAttributes.length > 0 && (
               <div>
-                <label className="text-sm font-medium text-slate-700 mb-2 block">Requested Attributes</label>
+                <span className="text-sm font-medium text-slate-700 mb-2 block">Requested Attributes</span>
                 <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
                   <div className="space-y-1">
                     {parsed.requestedAttributes.map((attr, i) => (

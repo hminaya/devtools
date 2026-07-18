@@ -45,7 +45,7 @@ function StringCaseConverter() {
                   {all[opt.value as CaseName] || <span className="text-slate-300">—</span>}
                 </code>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <CopyButton text={all[opt.value as CaseName] ?? ''} label="" />
+                  <CopyButton text={all[opt.value as CaseName] ?? ''} label={`Copy ${opt.label}`} />
                 </div>
               </div>
             </div>

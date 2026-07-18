@@ -257,25 +257,25 @@ Dark mode toggle not working`,
         {/* Model Selection */}
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-2">
-            AI Model
+            <span>AI Model</span>
+            <select
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              disabled={loading}
+              className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+            >
+              {MODELS.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label} - {model.size} - {model.description}
+                </option>
+              ))}
+            </select>
           </label>
-          <select
-            value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
-            disabled={loading}
-            className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
-          >
-            {MODELS.map((model) => (
-              <option key={model.value} value={model.value}>
-                {model.label} - {model.size} - {model.description}
-              </option>
-            ))}
-          </select>
         </div>
 
         {/* Model Status */}
         {modelDownloading && (
-          <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
+          <div role="status" className="bg-amber-50 border border-amber-200 rounded-md p-4">
             <p className="text-amber-800 text-sm">
               ⏳ Downloading AI model ({MODELS.find(m => m.value === selectedModel)?.size})... This is very fast!
             </p>
@@ -283,7 +283,7 @@ Dark mode toggle not working`,
         )}
 
         {modelReady && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4">
+          <div role="status" className="bg-green-50 border border-green-200 rounded-md p-4">
             <p className="text-green-800 text-sm">
               ✅ AI model ready ({selectedModel})
             </p>
@@ -333,7 +333,7 @@ Dark mode toggle not working`,
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

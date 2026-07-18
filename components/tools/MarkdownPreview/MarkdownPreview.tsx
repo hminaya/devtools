@@ -60,7 +60,7 @@ function MarkdownPreview() {
               <label className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Preview</label>
               <CopyButton text={html} label="Copy HTML" />
             </div>
-            <div className="prose prose-slate max-w-none rounded-xl border border-slate-300 bg-white p-6 overflow-y-auto min-h-[400px] max-h-[640px]">
+            <div aria-live="polite" className="prose prose-slate max-w-none rounded-xl border border-slate-300 bg-white p-6 overflow-y-auto min-h-[400px] max-h-[640px]">
               <div dangerouslySetInnerHTML={{ __html: html }} />
             </div>
             <details className="rounded-lg border border-slate-200 bg-slate-50 p-3">

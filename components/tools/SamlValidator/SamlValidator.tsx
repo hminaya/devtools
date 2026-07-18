@@ -132,7 +132,7 @@ function SamlValidator() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm whitespace-pre-wrap">{error}</p>
           </div>
@@ -146,7 +146,7 @@ function SamlValidator() {
         </div>
 
         {result && (
-          <div className="space-y-4">
+          <div aria-live="polite" className="space-y-4">
             {/* Verdict */}
             <div className={`rounded-md p-4 border ${result.valid ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <div className="flex items-center justify-between flex-wrap gap-2">
@@ -173,8 +173,12 @@ function SamlValidator() {
                   const meta = STATUS_META[check.status];
                   return (
                     <div key={i} className="p-3 flex gap-3">
-                      <span className={`shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${meta.badge}`} title={meta.label}>
-                        {meta.icon}
+                      <span
+                        className={`shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${meta.badge}`}
+                        aria-label={meta.label}
+                        title={meta.label}
+                      >
+                        <span aria-hidden="true">{meta.icon}</span>
                       </span>
                       <div className="min-w-0">
                         <div className="font-medium text-sm text-slate-900">{check.label}</div>

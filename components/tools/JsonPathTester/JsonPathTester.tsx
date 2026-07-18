@@ -69,6 +69,7 @@ function JsonPathTester() {
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
                 placeholder="e.g. $.store.book[?(@.price < 10)].title"
+                aria-label="JSONPath query"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 autoFocus
               />
@@ -86,7 +87,7 @@ function JsonPathTester() {
               ))}
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-4">
+            <div aria-live="polite" className="rounded-xl border border-slate-200 bg-white p-4">
               <div className="flex items-baseline justify-between mb-2">
                 <h3 className="text-sm font-semibold text-slate-800">Result</h3>
                 {!result.error && (
@@ -96,7 +97,7 @@ function JsonPathTester() {
                 )}
               </div>
               {result.error ? (
-                <div className="text-red-700 text-sm">{result.error}</div>
+                <div role="alert" className="text-red-700 text-sm">{result.error}</div>
               ) : result.matches.length === 0 ? (
                 <div className="text-slate-400 text-sm">No matches.</div>
               ) : (

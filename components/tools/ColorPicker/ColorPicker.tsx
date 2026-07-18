@@ -191,13 +191,16 @@ function ColorPicker() {
               }}
             />
             <div className="flex-1">
-              <div className="text-sm font-medium text-slate-500 mb-1">Current Color - Type to change</div>
+              <label htmlFor="color-hex-input" className="text-sm font-medium text-slate-500 mb-1">Current Color - Type to change</label>
               <input
+                id="color-hex-input"
                 type="text"
                 value={hexInput}
                 onChange={handleHexInputChange}
                 onBlur={handleHexInputBlur}
                 placeholder="#000000"
+                aria-invalid={!isValidHex}
+                aria-describedby={isValidHex ? undefined : 'color-hex-error'}
                 className={`w-full font-mono text-2xl font-bold text-slate-900 bg-white px-3 py-2 rounded-md border-2 uppercase transition-colors ${
                   isValidHex
                     ? 'border-slate-300 focus:border-blue-500 focus:outline-none'
@@ -205,7 +208,7 @@ function ColorPicker() {
                 }`}
               />
               {!isValidHex && (
-                <p className="text-red-600 text-sm mt-1">Invalid hex color. Use format: #RRGGBB or #RGB</p>
+                <p id="color-hex-error" role="alert" className="text-red-600 text-sm mt-1">Invalid hex color. Use format: #RRGGBB or #RGB</p>
               )}
             </div>
           </div>
@@ -216,13 +219,29 @@ function ColorPicker() {
             <div className="flex gap-4">
               <div
                 ref={hueSliderRef}
-                className="relative w-8 h-80 rounded-lg cursor-pointer select-none flex-shrink-0"
+                role="slider"
+                tabIndex={0}
+                aria-label="Hue"
+                aria-valuemin={0}
+                aria-valuemax={360}
+                aria-valuenow={hue}
+                aria-orientation="vertical"
+                className="relative w-8 h-80 rounded-lg cursor-pointer select-none flex-shrink-0 focus:outline-none focus:ring-4 focus:ring-blue-100"
                 style={{
                   background: 'linear-gradient(to bottom, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
                 }}
                 onMouseDown={handleHueMouseDown}
                 onMouseMove={handleHueMouseMove}
                 onMouseUp={handleHueMouseUp}
+                onKeyDown={(e) => {
+                  const step = e.shiftKey ? 10 : 1;
+                  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); setHue((h) => Math.min(360, h + step)); }
+                  else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); setHue((h) => Math.max(0, h - step)); }
+                  else if (e.key === 'Home') { e.preventDefault(); setHue(0); }
+                  else if (e.key === 'End') { e.preventDefault(); setHue(360); }
+                  else if (e.key === 'PageDown') { e.preventDefault(); setHue((h) => Math.min(360, h + 30)); }
+                  else if (e.key === 'PageUp') { e.preventDefault(); setHue((h) => Math.max(0, h - 30)); }
+                }}
               >
                 <div
                   className="absolute w-10 h-3 bg-white border-2 border-slate-400 rounded-sm shadow-lg left-1/2 -translate-x-1/2 pointer-events-none"
@@ -235,11 +254,23 @@ function ColorPicker() {
 
               <div
                 ref={gradientRef}
-                className="relative flex-1 h-80 rounded-lg cursor-crosshair select-none shadow-inner"
+                role="application"
+                tabIndex={0}
+                aria-label="Saturation and brightness"
+                className="relative flex-1 h-80 rounded-lg cursor-crosshair select-none shadow-inner focus:outline-none focus:ring-4 focus:ring-blue-100"
                 style={gradientStyle}
                 onMouseDown={handleGradientMouseDown}
                 onMouseMove={handleGradientMouseMove}
                 onMouseUp={handleGradientMouseUp}
+                onKeyDown={(e) => {
+                  const step = e.shiftKey ? 10 : 1;
+                  if (e.key === 'ArrowRight') { e.preventDefault(); setSaturation((s) => Math.min(100, s + step)); }
+                  else if (e.key === 'ArrowLeft') { e.preventDefault(); setSaturation((s) => Math.max(0, s - step)); }
+                  else if (e.key === 'ArrowUp') { e.preventDefault(); setBrightness((b) => Math.min(100, b + step)); }
+                  else if (e.key === 'ArrowDown') { e.preventDefault(); setBrightness((b) => Math.max(0, b - step)); }
+                  else if (e.key === 'Home') { e.preventDefault(); setSaturation(0); setBrightness(100); }
+                  else if (e.key === 'End') { e.preventDefault(); setSaturation(100); setBrightness(0); }
+                }}
               >
                 <div
                   className="absolute w-6 h-6 border-3 border-white rounded-full shadow-xl pointer-events-none ring-2 ring-slate-900"
@@ -313,7 +344,7 @@ function ColorPicker() {
                           <div className="font-mono text-sm text-slate-900 uppercase">{color.hex}</div>
                         </div>
                         <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                          <CopyButton text={color.hex} label="" />
+                          <CopyButton text={color.hex} label={`Copy ${color.name}`} />
                         </div>
                       </div>
                     ))}
@@ -328,7 +359,9 @@ function ColorPicker() {
         <div className="space-y-6 border-t border-slate-200 pt-6">
           <div className="flex flex-wrap items-baseline gap-3 justify-between">
             <h3 className="text-lg font-semibold text-slate-800">Curated Palettes</h3>
+            <label htmlFor="palette-filter" className="sr-only">Filter palettes</label>
             <input
+              id="palette-filter"
               type="text"
               value={paletteFilter}
               onChange={(e) => setPaletteFilter(e.target.value)}
@@ -352,9 +385,11 @@ function ColorPicker() {
                 )}
                 <div className="space-y-1">
                   {palette.colors.map((color, index) => (
-                    <div
+                    <button
                       key={index}
-                      className="flex items-center gap-2 p-1.5 rounded-md hover:bg-slate-50 transition-colors group cursor-pointer"
+                      type="button"
+                      aria-label={`Copy ${color.name} ${color.hex}`}
+                      className="flex w-full items-center gap-2 p-1.5 rounded-md hover:bg-slate-50 transition-colors group cursor-pointer"
                       onClick={() => {
                         if (navigator.clipboard) navigator.clipboard.writeText(color.hex).catch(() => {});
                       }}
@@ -363,15 +398,14 @@ function ColorPicker() {
                       <div
                         className="w-8 h-8 rounded-md shadow-sm border border-slate-200 flex-shrink-0"
                         style={{ backgroundColor: color.hex }}
+                        aria-hidden="true"
                       />
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 text-left">
                         <div className="text-xs text-slate-500 truncate">{color.name}</div>
                         <div className="font-mono text-xs text-slate-900 uppercase">{color.hex}</div>
                       </div>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <CopyButton text={color.hex} label="" />
-                      </div>
-                    </div>
+                      <span className="sr-only">Copy</span>
+                    </button>
                   ))}
                 </div>
               </div>

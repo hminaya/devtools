@@ -37,7 +37,7 @@ function CSSFormatter() {
               {minified.ok && minified.output && <CopyButton text={minified.output} label="Copy" />}
             </div>
             {minified.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{minified.error}</div>
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{minified.error}</div>
             ) : (
               <CodeDisplay code={minified.output ?? ''} language="text" />
             )}
@@ -48,7 +48,7 @@ function CSSFormatter() {
               {beautified.ok && beautified.output && <CopyButton text={beautified.output} label="Copy" />}
             </div>
             {beautified.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{beautified.error}</div>
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{beautified.error}</div>
             ) : (
               <CodeDisplay code={beautified.output ?? ''} language="javascript" />
             )}

@@ -113,8 +113,8 @@ function SHA1Generator() {
 
           {/* Output Column */}
           <div className="space-y-2">
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-slate-700">SHA-1 Hash</label>
+            <div className="flex flex-col gap-2" aria-live="polite">
+              <span className="text-sm font-medium text-slate-700">SHA-1 Hash</span>
               {output ? (
                 <div className="space-y-3">
                   <div className="bg-slate-50 border border-slate-200 rounded-md p-4">

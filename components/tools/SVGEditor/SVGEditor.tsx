@@ -66,6 +66,7 @@ function SVGEditor() {
               onChange={(e) => setCode(e.target.value)}
               rows={20}
               spellCheck={false}
+              aria-label="SVG code"
               className="w-full resize-y rounded-xl border px-4 py-3 font-mono text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 border-slate-300 bg-white"
               placeholder="<svg viewBox='0 0 100 100'>...</svg>"
             />
@@ -80,7 +81,7 @@ function SVGEditor() {
               {rendered.ok ? (
                 <div dangerouslySetInnerHTML={{ __html: rendered.html! }} className="max-w-full max-h-[480px] overflow-auto" />
               ) : (
-                <div className="text-red-700 text-sm">{rendered.error}</div>
+                <div className="text-red-700 text-sm" role="alert">{rendered.error}</div>
               )}
             </div>
           </div>

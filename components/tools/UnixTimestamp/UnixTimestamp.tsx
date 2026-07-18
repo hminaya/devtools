@@ -152,6 +152,7 @@ export default function UnixTimestamp() {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => { setMode('epoch-to-human'); setError(''); }}
+            aria-pressed={mode === 'epoch-to-human'}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === 'epoch-to-human' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
@@ -160,6 +161,7 @@ export default function UnixTimestamp() {
           </button>
           <button
             onClick={() => { setMode('human-to-epoch'); setError(''); }}
+            aria-pressed={mode === 'human-to-epoch'}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === 'human-to-epoch' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
@@ -168,6 +170,7 @@ export default function UnixTimestamp() {
           </button>
           <button
             onClick={() => { setMode('batch'); setError(''); }}
+            aria-pressed={mode === 'batch'}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === 'batch' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
@@ -179,7 +182,7 @@ export default function UnixTimestamp() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
@@ -195,6 +198,7 @@ export default function UnixTimestamp() {
                   value={epochInput}
                   onChange={(e) => setEpochInput(e.target.value)}
                   placeholder="e.g. 1710499200 or 1710499200000"
+                  aria-label="Unix Timestamp"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {epochInput && detectedUnit && unit === 'auto' && (
@@ -208,6 +212,7 @@ export default function UnixTimestamp() {
                 <select
                   value={unit}
                   onChange={(e) => setUnit(e.target.value as Unit)}
+                  aria-label="Unit"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="auto">Auto-detect</option>
@@ -222,6 +227,7 @@ export default function UnixTimestamp() {
               <select
                 value={timezone}
                 onChange={(e) => setTimezone(e.target.value)}
+                aria-label="Timezone"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {TIMEZONES.map((tz) => (
@@ -258,6 +264,7 @@ export default function UnixTimestamp() {
                 value={dateInput}
                 onChange={(e) => setDateInput(e.target.value)}
                 placeholder="e.g. 2024-03-15T14:30:00Z or March 15, 2024 2:30 PM"
+                aria-label="Date / Time String"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <p className="text-xs text-slate-400 mt-1">
@@ -284,6 +291,7 @@ export default function UnixTimestamp() {
                 <select
                   value={unit}
                   onChange={(e) => setUnit(e.target.value as Unit)}
+                  aria-label="Unit"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="auto">Auto-detect per token</option>
@@ -314,6 +322,7 @@ export default function UnixTimestamp() {
                 onChange={(e) => setBatchInput(e.target.value)}
                 placeholder={'1710499200\n1710585600\n1710672000'}
                 rows={8}
+                aria-label="Timestamps"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <p className="text-xs text-slate-400 mt-1">

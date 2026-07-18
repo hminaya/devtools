@@ -76,12 +76,13 @@ function TomlParser() {
     >
       <div className="space-y-4">
         {/* Mode selector */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Mode">
           <span className="text-xs text-slate-500 mr-1">Mode:</span>
           {(Object.keys(MODE_LABELS) as Mode[]).map((m) => (
             <button
               key={m}
               onClick={() => setMode(m)}
+              aria-pressed={mode === m}
               className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                 mode === m
                   ? 'bg-blue-600 text-white border-blue-600'
@@ -103,7 +104,7 @@ function TomlParser() {
             placeholder={mode === 'from-json' ? '{ "package": { "name": "..." } }' : '[package]\nname = "..."\n'}
             rows={20}
           />
-          <div>
+          <div aria-live="polite">
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-slate-700">
                 {mode === 'parse' ? 'Resulting JSON' :
@@ -114,7 +115,7 @@ function TomlParser() {
               {result.ok && result.output && result.output !== '✓ Valid TOML' && <CopyButton text={result.output} label="Copy" />}
             </div>
             {result.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
                 {result.error}
               </div>
             ) : result.ok && result.output ? (

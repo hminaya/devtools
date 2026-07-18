@@ -452,77 +452,77 @@ Chunking text into smaller, semantically coherent pieces helps search systems re
           <div className="flex flex-wrap gap-4">
             <div className="flex-1 min-w-[220px]">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Chunk sizing
+                <span>Chunk sizing</span>
+                <select
+                  value={sizeMode}
+                  onChange={(event) => setSizeMode(event.target.value as SizeMode)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="token">Token-based</option>
+                  <option value="character">Character-based</option>
+                </select>
               </label>
-              <select
-                value={sizeMode}
-                onChange={(event) => setSizeMode(event.target.value as SizeMode)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="token">Token-based</option>
-                <option value="character">Character-based</option>
-              </select>
             </div>
 
             <div className="flex-1 min-w-[220px]">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Chunking mode
+                <span>Chunking mode</span>
+                <select
+                  value={chunkMode}
+                  onChange={(event) => setChunkMode(event.target.value as ChunkMode)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="fixed">Fixed size</option>
+                  <option value="sentence">Sentence-aware</option>
+                  <option value="paragraph">Paragraph-aware</option>
+                  <option value="hybrid">Hybrid (paragraph → sentence → size)</option>
+                </select>
               </label>
-              <select
-                value={chunkMode}
-                onChange={(event) => setChunkMode(event.target.value as ChunkMode)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="fixed">Fixed size</option>
-                <option value="sentence">Sentence-aware</option>
-                <option value="paragraph">Paragraph-aware</option>
-                <option value="hybrid">Hybrid (paragraph → sentence → size)</option>
-              </select>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-4">
             <div className="flex-1 min-w-[200px]">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Chunk size ({sizeMode === 'token' ? 'tokens' : 'characters'})
+                <span>Chunk size ({sizeMode === 'token' ? 'tokens' : 'characters'})</span>
+                <input
+                  type="number"
+                  min={1}
+                  value={chunkSize}
+                  onChange={(event) => setChunkSize(Number(event.target.value))}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </label>
-              <input
-                type="number"
-                min={1}
-                value={chunkSize}
-                onChange={(event) => setChunkSize(Number(event.target.value))}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
             </div>
 
             <div className="flex-1 min-w-[200px]">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Overlap ({sizeMode === 'token' ? 'tokens' : 'characters'})
+                <span>Overlap ({sizeMode === 'token' ? 'tokens' : 'characters'})</span>
+                <input
+                  type="number"
+                  min={0}
+                  value={overlap}
+                  onChange={(event) => setOverlap(Number(event.target.value))}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </label>
-              <input
-                type="number"
-                min={0}
-                value={overlap}
-                onChange={(event) => setOverlap(Number(event.target.value))}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
             </div>
 
             <div className="flex-1 min-w-[240px]">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Tokenizer (for token counts)
+                <span>Tokenizer (for token counts)</span>
+                <select
+                  value={tokenizer}
+                  onChange={(event) => setTokenizer(event.target.value as TokenizerType)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {tokenizers.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </label>
-              <select
-                value={tokenizer}
-                onChange={(event) => setTokenizer(event.target.value as TokenizerType)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {tokenizers.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
               <p className="text-xs text-slate-500 mt-1">
                 {tokenizers.find((option) => option.value === tokenizer)?.description}
               </p>
@@ -551,7 +551,7 @@ Chunking text into smaller, semantically coherent pieces helps search systems re
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

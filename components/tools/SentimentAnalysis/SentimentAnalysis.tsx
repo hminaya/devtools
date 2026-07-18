@@ -198,25 +198,25 @@ function SentimentAnalysis() {
         {/* Method Selection */}
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <label className="text-sm font-medium text-slate-700">
-            Analysis Method:
+            <span>Analysis Method:</span>
+            <select
+              value={method}
+              onChange={(e) => setMethod(e.target.value as AnalysisMethod)}
+              className="px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="lexicon">Fast Mode (Lexicon-Based)</option>
+              <option value="transformers">AI Mode (Xenova/distilbert-base-uncased-finetuned-sst-2-english)</option>
+            </select>
           </label>
-          <select
-            value={method}
-            onChange={(e) => setMethod(e.target.value as AnalysisMethod)}
-            className="px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="lexicon">Fast Mode (Lexicon-Based)</option>
-            <option value="transformers">AI Mode (Xenova/distilbert-base-uncased-finetuned-sst-2-english)</option>
-          </select>
 
           {method === 'transformers' && !aiModelReady && (
-            <div className="text-sm text-amber-600 bg-amber-50 px-3 py-1 rounded-md border border-amber-200">
+            <div role="status" className="text-sm text-amber-600 bg-amber-50 px-3 py-1 rounded-md border border-amber-200">
               {modelDownloading ? '⏳ Downloading AI model (~67MB)...' : '⚠️ First use: Downloads ~67MB AI model'}
             </div>
           )}
 
           {method === 'transformers' && aiModelReady && (
-            <div className="text-sm text-green-600 bg-green-50 px-3 py-1 rounded-md border border-green-200">
+            <div role="status" className="text-sm text-green-600 bg-green-50 px-3 py-1 rounded-md border border-green-200">
               ✅ AI model ready
             </div>
           )}
@@ -257,7 +257,7 @@ function SentimentAnalysis() {
 
         {/* Error Message */}
         {result && !result.success && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{result.error}</p>
           </div>

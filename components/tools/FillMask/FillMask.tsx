@@ -169,25 +169,25 @@ function FillMask() {
         {/* Model Selection */}
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-2">
-            AI Model
+            <span>AI Model</span>
+            <select
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              disabled={loading}
+              className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+            >
+              {MODELS.map((model) => (
+                <option key={model.value} value={model.value}>
+                  {model.label} - {model.size} - {model.description}
+                </option>
+              ))}
+            </select>
           </label>
-          <select
-            value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
-            disabled={loading}
-            className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
-          >
-            {MODELS.map((model) => (
-              <option key={model.value} value={model.value}>
-                {model.label} - {model.size} - {model.description}
-              </option>
-            ))}
-          </select>
         </div>
 
         {/* Model Status */}
         {modelDownloading && (
-          <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
+          <div role="status" className="bg-amber-50 border border-amber-200 rounded-md p-4">
             <p className="text-amber-800 text-sm">
               ⏳ Downloading AI model ({MODELS.find(m => m.value === selectedModel)?.size})... This may take a moment on first use.
             </p>
@@ -195,7 +195,7 @@ function FillMask() {
         )}
 
         {modelReady && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4">
+          <div role="status" className="bg-green-50 border border-green-200 rounded-md p-4">
             <p className="text-green-800 text-sm">
               ✅ AI model ready ({selectedModel})
             </p>
@@ -216,8 +216,8 @@ function FillMask() {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
-              Text with [MASK]
-            </label>
+              <span>Text with [MASK]
+            </span>
             <div className="relative">
               <textarea
                 value={inputText}
@@ -227,6 +227,7 @@ function FillMask() {
                 className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
               />
             </div>
+            </label>
             <button
               onClick={insertMask}
               className="mt-2 text-sm text-blue-600 hover:text-blue-700 font-medium"
@@ -251,7 +252,7 @@ function FillMask() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

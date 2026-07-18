@@ -45,7 +45,7 @@ function Row({ entry }: { entry: MIMEEntry }) {
       <td className="px-3 py-2 text-xs text-slate-500 max-w-[24rem]">
         <div className="flex items-center justify-between gap-2">
           <span>{entry.description ?? '—'}</span>
-          <CopyButton text={entry.mimeType} label="" />
+          <CopyButton text={entry.mimeType} label={`Copy ${entry.mimeType}`} />
         </div>
       </td>
     </tr>
@@ -77,6 +77,7 @@ function MimeTypeLookup() {
             placeholder="Search by extension (.png), MIME type (image/jpeg), or category..."
             className="flex-1 min-w-[16rem] px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             autoFocus
+            aria-label="Search MIME types"
           />
           <button
             onClick={() => { setQuery(''); setCategoryFilter(null); }}
@@ -90,6 +91,7 @@ function MimeTypeLookup() {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setCategoryFilter(null)}
+            aria-pressed={categoryFilter === null}
             className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
               categoryFilter === null
                 ? 'bg-blue-600 text-white border-blue-600'
@@ -105,6 +107,7 @@ function MimeTypeLookup() {
               <button
                 key={cat}
                 onClick={() => setCategoryFilter(cat === categoryFilter ? null : cat)}
+                aria-pressed={categoryFilter === cat}
                 className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                   categoryFilter === cat
                     ? 'bg-blue-600 text-white border-blue-600'
@@ -139,7 +142,7 @@ function MimeTypeLookup() {
               ))}
               {results.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-sm text-slate-400">
+                  <td colSpan={4} className="px-4 py-8 text-center text-sm text-slate-400" role="status">
                     No entries match your search.
                   </td>
                 </tr>

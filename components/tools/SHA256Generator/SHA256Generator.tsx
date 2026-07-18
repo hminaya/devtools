@@ -110,6 +110,7 @@ function SHA256Generator() {
           <div className="flex items-center gap-2 ml-auto">
             <label className="text-sm font-medium text-slate-700">Algorithm:</label>
             <select
+              aria-label="Algorithm"
               value={algorithm}
               onChange={(e) => setAlgorithm(e.target.value as SHAAlgorithm)}
               className="px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
@@ -144,8 +145,8 @@ function SHA256Generator() {
 
           {/* Output Column */}
           <div className="space-y-2">
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-slate-700">{algorithm} Hash</label>
+            <div className="flex flex-col gap-2" aria-live="polite">
+              <span className="text-sm font-medium text-slate-700">{algorithm} Hash</span>
               {output ? (
                 <div className="space-y-3">
                   <div className="bg-slate-50 border border-slate-200 rounded-md p-4">

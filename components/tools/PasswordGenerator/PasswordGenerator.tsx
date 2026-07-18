@@ -93,6 +93,7 @@ function PasswordGenerator() {
         <div className="flex rounded-lg border border-slate-200 overflow-hidden">
           <button
             onClick={() => setMode('password')}
+            aria-pressed={mode === 'password'}
             className={`flex-1 px-4 py-2.5 text-sm font-medium transition-colors ${
               mode === 'password'
                 ? 'bg-blue-500 text-white'
@@ -103,6 +104,7 @@ function PasswordGenerator() {
           </button>
           <button
             onClick={() => setMode('passphrase')}
+            aria-pressed={mode === 'passphrase'}
             className={`flex-1 px-4 py-2.5 text-sm font-medium transition-colors ${
               mode === 'passphrase'
                 ? 'bg-blue-500 text-white'
@@ -125,6 +127,7 @@ function PasswordGenerator() {
                 min="8"
                 max="64"
                 value={length}
+                aria-label="Password length"
                 onChange={(e) => setLength(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
               />
@@ -171,6 +174,7 @@ function PasswordGenerator() {
                 min="3"
                 max="8"
                 value={passphraseOptions.wordCount}
+                aria-label="Number of words"
                 onChange={(e) => setPassphraseOptions(prev => ({ ...prev, wordCount: Number(e.target.value) }))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
               />
@@ -192,6 +196,7 @@ function PasswordGenerator() {
                 ].map(({ value, label }) => (
                   <button
                     key={value}
+                    aria-pressed={passphraseOptions.separator === value}
                     onClick={() => setPassphraseOptions(prev => ({ ...prev, separator: value }))}
                     className={`px-3 py-1.5 text-sm rounded-md border transition-colors ${
                       passphraseOptions.separator === value
@@ -237,7 +242,7 @@ function PasswordGenerator() {
         />
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}

@@ -54,19 +54,19 @@ function JSTokenizer() {
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1">
               <label className="block text-sm font-medium text-slate-700 mb-2">
-                Select Tokenizer
+                <span>Select Tokenizer</span>
+                <select
+                  value={selectedTokenizer}
+                  onChange={(e) => setSelectedTokenizer(e.target.value as TokenizerType)}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {tokenizers.map((tokenizer) => (
+                    <option key={tokenizer.value} value={tokenizer.value}>
+                      {tokenizer.label}
+                    </option>
+                  ))}
+                </select>
               </label>
-              <select
-                value={selectedTokenizer}
-                onChange={(e) => setSelectedTokenizer(e.target.value as TokenizerType)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {tokenizers.map((tokenizer) => (
-                  <option key={tokenizer.value} value={tokenizer.value}>
-                    {tokenizer.label}
-                  </option>
-                ))}
-              </select>
               <p className="text-sm text-slate-500 mt-1">
                 {tokenizers.find((t) => t.value === selectedTokenizer)?.description}
               </p>
@@ -87,7 +87,7 @@ function JSTokenizer() {
 
         {/* Error Message */}
         {result && !result.success && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{result.error}</p>
           </div>

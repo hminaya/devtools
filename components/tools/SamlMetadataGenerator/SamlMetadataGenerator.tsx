@@ -22,8 +22,8 @@ function InputField({ label, value, onChange, placeholder }: {
   placeholder?: string;
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+    <label className="flex flex-col gap-1">
+      <span className="text-sm font-medium text-slate-700">{label}</span>
       <input
         type="text"
         value={value}
@@ -31,7 +31,7 @@ function InputField({ label, value, onChange, placeholder }: {
         placeholder={placeholder}
         className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-    </div>
+    </label>
   );
 }
 
@@ -42,8 +42,8 @@ function SelectField({ label, value, onChange, options }: {
   options: { value: string; label: string }[];
 }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+    <label className="flex flex-col gap-1">
+      <span className="text-sm font-medium text-slate-700">{label}</span>
       <select
         value={value}
         onChange={e => onChange(e.target.value)}
@@ -53,7 +53,7 @@ function SelectField({ label, value, onChange, options }: {
           <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
-    </div>
+    </label>
   );
 }
 
@@ -135,6 +135,7 @@ function SamlMetadataGenerator() {
             {(['SP', 'IdP'] as MetadataEntityType[]).map(type => (
               <button
                 key={type}
+                aria-pressed={formInput.entityType === type}
                 onClick={() => updateField('entityType', type)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   formInput.entityType === type
@@ -160,6 +161,7 @@ function SamlMetadataGenerator() {
             <label className="text-sm font-medium text-slate-700">Validity (days, optional)</label>
             <input
               type="number"
+              aria-label="Validity (days)"
               value={formInput.validityDays}
               onChange={e => updateField('validityDays', e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value, 10) || 0))}
               min={0}
@@ -318,7 +320,7 @@ function SamlMetadataGenerator() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>

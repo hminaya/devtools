@@ -87,7 +87,7 @@ function SamlDecoder() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm whitespace-pre-wrap">{error}</p>
           </div>
@@ -100,7 +100,7 @@ function SamlDecoder() {
         </div>
 
         {decoded && (
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {/* Type Badge */}
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
@@ -112,7 +112,7 @@ function SamlDecoder() {
             {decoded.fields.length > 0 && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-medium text-slate-700">Extracted Fields</label>
+                  <span className="text-sm font-medium text-slate-700">Extracted Fields</span>
                   <CopyButton
                     text={decoded.fields.map(f => `${f.label}: ${f.value}`).join('\n')}
                     label="Copy Fields"
@@ -138,7 +138,7 @@ function SamlDecoder() {
             {decoded.attributes.length > 0 && (
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-medium text-slate-700">SAML Attributes</label>
+                  <span className="text-sm font-medium text-slate-700">SAML Attributes</span>
                   <CopyButton
                     text={decoded.attributes.map(a => `${a.name}: ${a.values.join(', ')}`).join('\n')}
                     label="Copy Attributes"
@@ -161,7 +161,7 @@ function SamlDecoder() {
             {/* Pretty XML */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-medium text-slate-700">Decoded XML</label>
+                <span className="text-sm font-medium text-slate-700">Decoded XML</span>
                 <CopyButton text={decoded.prettyXml} label="Copy XML" />
               </div>
               <div className="bg-slate-50 border border-slate-200 rounded-md p-4">

@@ -262,7 +262,7 @@ function CsrDecoder() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>
@@ -274,16 +274,22 @@ function CsrDecoder() {
           </p>
         </div>
 
-        {result && result.kind === 'csr' && <CsrView csr={result.csr} />}
+        {result && result.kind === 'csr' && (
+          <div aria-live="polite">
+            <CsrView csr={result.csr} />
+          </div>
+        )}
 
         {result && result.kind === 'certificate' && (
+          <div aria-live="polite">
           <div className="space-y-6">
             {result.certificates.length > 1 && (
               <p className="text-sm text-slate-600">{result.certificates.length} certificates found (chain).</p>
             )}
-            {result.certificates.map((cert, i) => (
-              <CertificateView key={i} cert={cert} index={i} total={result.certificates.length} />
-            ))}
+{result.certificates.map((cert, i) => (
+                <CertificateView key={i} cert={cert} index={i} total={result.certificates.length} />
+              ))}
+          </div>
           </div>
         )}
       </div>

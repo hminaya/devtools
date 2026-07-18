@@ -97,6 +97,7 @@ export default function NumberBaseConverter() {
               <button
                 key={base}
                 onClick={() => handleBaseChange(base)}
+                aria-pressed={fromBase === base}
                 className={`px-4 py-2 rounded-md text-sm font-mono font-bold border transition-colors ${
                   fromBase === base
                     ? BASE_ACTIVE_COLORS[base]
@@ -119,12 +120,13 @@ export default function NumberBaseConverter() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={`Enter a ${BASE_NAMES[fromBase].toLowerCase()} number...`}
+              aria-label="Input"
               className={`w-full px-3 py-2 border rounded-md shadow-sm font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                 result.error ? 'border-red-400 bg-red-50' : 'border-gray-300'
               }`}
             />
             {result.error ? (
-              <p className="text-red-600 text-xs mt-1">{result.error}. {getValidCharsHint(fromBase)}.</p>
+              <p role="alert" className="text-red-600 text-xs mt-1">{result.error}. {getValidCharsHint(fromBase)}.</p>
             ) : (
               <p className="text-slate-400 text-xs mt-1">{getValidCharsHint(fromBase)}</p>
             )}
@@ -146,9 +148,18 @@ export default function NumberBaseConverter() {
               return (
                 <div
                   key={base}
+                  role="button"
+                  tabIndex={isActive ? -1 : 0}
+                  aria-label={`Use ${BASE_NAMES[base]} as input base`}
                   onClick={() => handleCardClick(base)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleCardClick(base);
+                    }
+                  }}
                   className={`border rounded-lg p-4 transition-all ${BASE_COLORS[base]} ${
-                    isActive ? 'ring-2 ring-offset-1 ring-slate-400' : 'cursor-pointer hover:shadow-sm'
+                    isActive ? 'ring-2 ring-offset-1 ring-slate-400' : 'cursor-pointer hover:shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-100'
                   }`}
                   title={isActive ? 'Current input base' : `Click to use as ${BASE_NAMES[base]} input`}
                 >
@@ -160,8 +171,8 @@ export default function NumberBaseConverter() {
                       {isActive && (
                         <span className="text-xs text-slate-400 italic">active</span>
                       )}
-                      <div onClick={(e) => e.stopPropagation()}>
-                        <CopyButton text={value} label="Copy" />
+                      <div onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+                        <CopyButton text={value} label={`Copy ${BASE_NAMES[base]}`} />
                       </div>
                     </div>
                   </div>

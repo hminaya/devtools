@@ -125,9 +125,17 @@ function ClawdbotSecurityScanner() {
         <div className="flex flex-wrap gap-3">
           <Button label="Scan" onClick={handleScan} variant="primary" disabled={!input.trim()} />
           <div className="relative">
-            <Button label={showSamples ? "Hide Samples" : "Load Sample"} onClick={toggleSamples} variant="secondary" />
+            <button
+              type="button"
+              aria-expanded={showSamples}
+              aria-controls="clawdbot-samples"
+              onClick={toggleSamples}
+              className="min-h-10 rounded-xl px-4 py-2 text-sm font-semibold shadow-sm transition focus:outline-none focus:ring-4 border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 focus:ring-slate-100"
+            >
+              {showSamples ? 'Hide Samples' : 'Load Sample'}
+            </button>
             {showSamples && (
-              <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-slate-200 rounded-lg shadow-lg z-10">
+              <div id="clawdbot-samples" className="absolute top-full left-0 mt-2 w-80 bg-white border border-slate-200 rounded-lg shadow-lg z-10">
                 <div className="p-2">
                   <p className="text-xs text-slate-500 px-2 py-1 font-medium">Select a sample configuration:</p>
                   {sampleConfigs.map((sample) => (
@@ -170,13 +178,13 @@ function ClawdbotSecurityScanner() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
 
         {hasScanned && (
-          <div className="space-y-4">
+          <div className="space-y-4" aria-live="polite">
             {/* Security Score */}
             <div className="bg-white border border-slate-200 rounded-md p-4">
               <div className="flex items-center gap-4">

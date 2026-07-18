@@ -38,6 +38,7 @@ function UlidGenerator() {
               min="1"
               max="1000"
               value={quantity}
+              aria-label="Number of ULIDs"
               onChange={(e) => setQuantity(Math.max(1, Math.min(1000, Number(e.target.value))))}
               className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -74,7 +75,7 @@ function UlidGenerator() {
                       {new Date(decodeULIDTimestamp(ulid)).toISOString().slice(0, 19)}Z
                     </span>
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <CopyButton text={ulid} label="" />
+                      <CopyButton text={ulid} label={`Copy ULID ${ulid}`} />
                     </div>
                   </div>
                 ))}

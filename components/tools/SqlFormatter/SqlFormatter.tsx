@@ -76,6 +76,7 @@ export default function SqlFormatter() {
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs text-slate-500">Dialect:</span>
           <select
+            aria-label="Dialect"
             value={dialect}
             onChange={(e) => setDialect(e.target.value as SqlDialect)}
             className="px-3 py-1.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -91,7 +92,7 @@ export default function SqlFormatter() {
           <div className="flex items-center gap-1">
             <span className="text-xs text-slate-500 mr-1">Indent:</span>
             {([2, 4] as const).map((n) => (
-              <button key={n} onClick={() => setTabWidth(n)}
+              <button key={n} aria-pressed={tabWidth === n} onClick={() => setTabWidth(n)}
                 className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
                   tabWidth === n ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
                 }`}
@@ -104,7 +105,7 @@ export default function SqlFormatter() {
           <div className="flex items-center gap-1">
             <span className="text-xs text-slate-500 mr-1">Keywords:</span>
             {(['upper', 'lower', 'preserve'] as const).map((k) => (
-              <button key={k} onClick={() => setKeywordCase(k)}
+              <button key={k} aria-pressed={keywordCase === k} onClick={() => setKeywordCase(k)}
                 className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
                   keywordCase === k ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
                 }`}
@@ -117,7 +118,7 @@ export default function SqlFormatter() {
           <div className="flex items-center gap-1">
             <span className="text-xs text-slate-500 mr-1">Lines between queries:</span>
             {([1, 2] as const).map((n) => (
-              <button key={n} onClick={() => setLinesBetweenQueries(n)}
+              <button key={n} aria-pressed={linesBetweenQueries === n} onClick={() => setLinesBetweenQueries(n)}
                 className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
                   linesBetweenQueries === n ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
                 }`}
@@ -135,7 +136,7 @@ export default function SqlFormatter() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}

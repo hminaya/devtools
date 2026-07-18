@@ -72,6 +72,7 @@ function UuidGenerator() {
             {VERSIONS.map((v) => (
               <button
                 key={v}
+                aria-pressed={version === v}
                 onClick={() => { setVersion(v); setUuids([]); setError(''); }}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium border uppercase transition-colors ${
                   version === v
@@ -93,6 +94,7 @@ function UuidGenerator() {
               <label className="block text-sm font-medium text-slate-700 mb-2">Namespace</label>
               <select
                 value={namespace}
+                aria-label="Namespace"
                 onChange={(e) => setNamespace(e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
               >
@@ -109,6 +111,7 @@ function UuidGenerator() {
               <input
                 type="text"
                 value={name}
+                aria-label="Name"
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. example.com or my-idempotency-key"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -127,6 +130,7 @@ function UuidGenerator() {
               <input
                 type="number"
                 value={localId}
+                aria-label="Local identifier"
                 onChange={(e) => setLocalId(e.target.value)}
                 placeholder="e.g. 1000 (POSIX UID/GID)"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -136,6 +140,7 @@ function UuidGenerator() {
               <label className="block text-sm font-medium text-slate-700 mb-2">Local Domain</label>
               <select
                 value={localDomain}
+                aria-label="Local domain"
                 onChange={(e) => setLocalDomain(e.target.value)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
@@ -158,6 +163,7 @@ function UuidGenerator() {
               min="1"
               max="50"
               value={quantity}
+              aria-label="Number of UUIDs"
               onChange={(e) => setQuantity(Math.max(1, Math.min(50, Number(e.target.value))))}
               className="w-32 px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={version === 'nil'}
@@ -170,7 +176,7 @@ function UuidGenerator() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
@@ -186,7 +192,7 @@ function UuidGenerator() {
                   <div key={index} className="flex items-center gap-2 group">
                     <span className="font-mono text-sm text-slate-900 flex-1 break-all">{uuid}</span>
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <CopyButton text={uuid} label="" />
+                      <CopyButton text={uuid} label={`Copy UUID ${uuid}`} />
                     </div>
                   </div>
                 ))}

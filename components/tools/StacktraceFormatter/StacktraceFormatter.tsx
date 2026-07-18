@@ -131,7 +131,7 @@ function StacktraceFormatter() {
         </div>
 
         {detectedLanguage !== 'unknown' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
+          <div role="status" className="bg-blue-50 border border-blue-200 rounded-md p-3">
             <p className="text-blue-700 text-sm font-medium">
               Detected Language: {getLanguageName(detectedLanguage)}
             </p>
@@ -139,7 +139,7 @@ function StacktraceFormatter() {
         )}
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4">
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4">
             <p className="text-red-700 font-medium">Error:</p>
             <p className="text-red-600 text-sm">{error}</p>
           </div>
@@ -156,7 +156,7 @@ function StacktraceFormatter() {
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2" aria-live="polite">
             {output ? (
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-700">Formatted Output</label>

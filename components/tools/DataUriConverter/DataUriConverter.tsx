@@ -65,6 +65,7 @@ function DataUriConverter() {
             value={mimeType}
             onChange={(e) => setMimeType(e.target.value)}
             placeholder="MIME type (text/plain)"
+            aria-label="MIME type"
             className="w-64 px-3 py-2 border border-slate-300 rounded-md text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
@@ -82,7 +83,7 @@ function DataUriConverter() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{error}</div>
+          <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{error}</div>
         )}
 
         <TextArea
@@ -96,7 +97,7 @@ function DataUriConverter() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Encoded data URI</label>
+              <span className="block text-sm font-medium text-slate-700">Encoded data URI</span>
               {dataUri && <CopyButton text={dataUri} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[160px]">
@@ -108,7 +109,7 @@ function DataUriConverter() {
           </div>
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">Decoded content</label>
+              <span className="block text-sm font-medium text-slate-700">Decoded content</span>
               {decoded && <CopyButton text={decoded} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[160px]">

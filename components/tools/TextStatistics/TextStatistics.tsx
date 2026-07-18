@@ -33,7 +33,7 @@ function TextStatistics() {
           rows={10}
         />
 
-        <section className="space-y-4">
+        <section aria-live="polite" className="space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">Counts</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             <StatCard label="Characters" value={stats.characters} />
@@ -49,7 +49,7 @@ function TextStatistics() {
           </div>
         </section>
 
-        <section className="space-y-3">
+        <section aria-live="polite" className="space-y-3">
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">Averages & timing</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             <StatCard

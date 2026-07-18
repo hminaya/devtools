@@ -126,6 +126,7 @@ function FileSizeConverter() {
               min="0"
               step="any"
               placeholder="Enter size..."
+              aria-label="Enter file size"
               className={`flex-1 px-4 py-3 border-2 rounded-lg font-mono text-lg transition-colors ${
                 isValidInput
                   ? 'border-slate-300 focus:border-blue-500 focus:outline-none'
@@ -135,6 +136,7 @@ function FileSizeConverter() {
             <select
               value={unit}
               onChange={handleUnitChange}
+              aria-label="Unit"
               className="px-4 py-3 border-2 border-slate-300 rounded-lg font-medium text-slate-700 bg-white focus:border-blue-500 focus:outline-none cursor-pointer"
             >
               <optgroup label="Decimal (SI) - Base 10">
@@ -165,7 +167,7 @@ function FileSizeConverter() {
             </div>
           )}
           {!isValidInput && (
-            <p className="text-red-600 text-sm mt-2">Please enter a valid positive number</p>
+            <p role="alert" className="text-red-600 text-sm mt-2">Please enter a valid positive number</p>
           )}
         </div>
 

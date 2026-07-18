@@ -63,6 +63,7 @@ function SemVerComparator() {
                 value={a}
                 onChange={(e) => setA(e.target.value)}
                 placeholder="e.g. 1.2.3 or v2.0.0-rc.1+build.4"
+                aria-label="Version A"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {aParsed.ok ? (
@@ -72,7 +73,7 @@ function SemVerComparator() {
                   {parsedA!.build.length > 0 && <> · build <b>{parsedA!.build.join('.')}</b></>}
                 </p>
               ) : (
-                <p className="text-xs text-red-600 mt-1">{aParsed.error}</p>
+                <p role="alert" className="text-xs text-red-600 mt-1">{aParsed.error}</p>
               )}
             </div>
             <div>
@@ -82,6 +83,7 @@ function SemVerComparator() {
                 value={b}
                 onChange={(e) => setB(e.target.value)}
                 placeholder="e.g. 2.0.0"
+                aria-label="Version B"
                 className="w-full px-3 py-2 border border-slate-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               {bParsed.ok ? (
@@ -91,7 +93,7 @@ function SemVerComparator() {
                   {parsedB!.build.length > 0 && <> · build <b>{parsedB!.build.join('.')}</b></>}
                 </p>
               ) : (
-                <p className="text-xs text-red-600 mt-1">{bParsed.error}</p>
+                <p role="alert" className="text-xs text-red-600 mt-1">{bParsed.error}</p>
               )}
             </div>
           </div>
@@ -129,11 +131,12 @@ function SemVerComparator() {
             onChange={(e) => setBatchInput(e.target.value)}
             rows={6}
             placeholder={'1.0.0\n1.5.0\n2.0.0'}
+            aria-label="Versions to sort (one per line)"
             className="w-full px-3 py-2 border border-slate-300 rounded-md font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           {sortResult.errors.length > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-md p-3">
+            <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3">
               <p className="text-red-700 text-sm font-medium">Invalid entries:</p>
               <ul className="text-red-600 text-xs mt-1 space-y-1">
                 {sortResult.errors.map((e) => (

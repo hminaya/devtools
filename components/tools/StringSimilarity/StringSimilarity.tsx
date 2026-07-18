@@ -86,6 +86,7 @@ export default function StringSimilarity() {
               setAlgorithm(e.target.value as SimilarityAlgorithm);
               setResult(null);
             }}
+            aria-label="Algorithm"
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             {algorithms.map((alg) => (
@@ -123,7 +124,7 @@ export default function StringSimilarity() {
         </div>
 
         {result && (
-          <div className="bg-gray-50 border border-gray-200 rounded-md p-6">
+          <div role="status" className="bg-gray-50 border border-gray-200 rounded-md p-6">
             <div className="text-center mb-4">
               <span className={`text-5xl font-bold ${getScoreColor(result.score)}`}>
                 {result.percentage}

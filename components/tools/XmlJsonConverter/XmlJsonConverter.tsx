@@ -37,6 +37,7 @@ function XmlJsonConverter() {
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2 items-center">
           <button
+            aria-pressed={direction === 'xml-to-json'}
             onClick={() => setDirection('xml-to-json')}
             className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors ${
               direction === 'xml-to-json'
@@ -47,6 +48,7 @@ function XmlJsonConverter() {
             XML → JSON
           </button>
           <button
+            aria-pressed={direction === 'json-to-xml'}
             onClick={() => setDirection('json-to-xml')}
             className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors ${
               direction === 'json-to-xml'
@@ -66,7 +68,7 @@ function XmlJsonConverter() {
             placeholder={direction === 'xml-to-json' ? '<root><child>...</child></root>' : '{\n  "root": {\n    "child": "..."\n  }\n}'}
             rows={20}
           />
-          <div>
+          <div aria-live="polite">
             <div className="flex items-center justify-between mb-1">
               <label className="block text-sm font-medium text-slate-700">
                 {direction === 'xml-to-json' ? 'Output JSON' : 'Output XML'}
@@ -74,7 +76,7 @@ function XmlJsonConverter() {
               {result?.ok && result.output && <CopyButton text={result.output} label="Copy" />}
             </div>
             {result?.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
                 {result.error}
               </div>
             ) : result?.ok && result.output ? (

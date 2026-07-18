@@ -23,7 +23,7 @@ function JSMinifier() {
       fullWidth
     >
       <div className="space-y-4">
-        <div className="flex flex-wrap gap-4 text-xs">
+        <div role="status" className="flex flex-wrap gap-4 text-xs">
           {result.ok && (
             <span className="px-2.5 py-1 rounded-full bg-green-100 text-green-700 border border-green-200">
               Saved {savedChars} chars ({savedPct}%)
@@ -53,7 +53,7 @@ function JSMinifier() {
             {result.ok && result.output && <CopyButton text={result.output} label="Copy" />}
           </div>
           {result.error ? (
-            <div className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{result.error}</div>
+            <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-3 text-red-700 text-sm">{result.error}</div>
           ) : (
             <CodeDisplay code={result.output ?? ''} language="javascript" />
           )}

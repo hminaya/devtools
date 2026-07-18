@@ -122,7 +122,7 @@ function TextExtractor() {
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2" role="group" aria-label="Entity types to extract">
             {patterns.map(({ name, description }) => (
               <label
                 key={name}
@@ -158,6 +158,7 @@ function TextExtractor() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your text, logs, or data here..."
             className="w-full h-48 px-3 py-2 text-sm font-mono border border-slate-200 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
+            aria-label="Input text"
           />
         </div>
 
@@ -192,7 +193,7 @@ function TextExtractor() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-500" role="status">
                   No entities found matching the selected patterns.
                 </p>
               )}
@@ -231,7 +232,7 @@ function TextExtractor() {
                   <label className="text-sm font-medium text-slate-700">
                     Export Format:
                   </label>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4" role="radiogroup" aria-label="Export format">
                     {[
                       { value: 'json', label: 'JSON (All)' },
                       { value: 'csv', label: 'CSV' },

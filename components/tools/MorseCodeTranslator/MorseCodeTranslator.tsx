@@ -34,6 +34,7 @@ function MorseCodeTranslator() {
         <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={() => setDirection('encode')}
+            aria-pressed={direction === 'encode'}
             className={`px-4 py-1.5 rounded-md text-sm font-medium border transition-colors ${
               direction === 'encode'
                 ? 'bg-blue-600 text-white border-blue-600'
@@ -44,6 +45,7 @@ function MorseCodeTranslator() {
           </button>
           <button
             onClick={() => setDirection('decode')}
+            aria-pressed={direction === 'decode'}
             className={`px-4 py-1.5 rounded-md text-sm font-medium border transition-colors ${
               direction === 'decode'
                 ? 'bg-blue-600 text-white border-blue-600'
@@ -66,9 +68,9 @@ function MorseCodeTranslator() {
           />
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-slate-700">
+              <span className="block text-sm font-medium text-slate-700">
                 {direction === 'encode' ? 'Morse code' : 'Decoded text'}
-              </label>
+              </span>
               {output && <CopyButton text={output} label="Copy" />}
             </div>
             <pre className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-sm leading-6 text-slate-900 whitespace-pre-wrap break-words min-h-[200px]">

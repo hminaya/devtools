@@ -29,11 +29,11 @@ function GraphQLFormatter() {
           }} variant="primary" />
           <div className="flex-1" />
           {validation.valid ? (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
+            <span role="status" className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200">
               ✓ Valid
             </span>
           ) : (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700 border border-red-200">
+            <span role="status" className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700 border border-red-200">
               ✗ {validation.error}
             </span>
           )}
@@ -53,7 +53,7 @@ function GraphQLFormatter() {
               {formatted.ok && formatted.output && <CopyButton text={formatted.output} label="Copy" />}
             </div>
             {formatted.error ? (
-              <div className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
+              <div role="alert" className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700 text-sm">
                 {formatted.error}
               </div>
             ) : formatted.ok && formatted.output ? (

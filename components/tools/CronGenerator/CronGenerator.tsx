@@ -124,6 +124,7 @@ function FieldCard({
             <button
               key={m}
               onClick={() => onChange({ ...state, mode: m })}
+              aria-pressed={state.mode === m}
               className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
                 state.mode === m
                   ? 'bg-blue-600 text-white'
@@ -152,6 +153,7 @@ function FieldCard({
               onChange={(e) =>
                 onChange({ ...state, step: Math.max(1, parseInt(e.target.value) || 1) })
               }
+              aria-label="Step every N"
               className="w-20 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <span className="text-sm text-slate-700">
@@ -176,6 +178,7 @@ function FieldCard({
                   <button
                     key={v}
                     onClick={() => toggleValue(v)}
+                    aria-pressed={selected}
                     className={`px-1 py-1 text-xs rounded transition-colors ${
                       selected
                         ? 'bg-blue-600 text-white'
@@ -212,6 +215,7 @@ function FieldCard({
             <select
               value={state.rangeStart}
               onChange={(e) => onChange({ ...state, rangeStart: parseInt(e.target.value) })}
+              aria-label="Range start"
               className="px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {range.map((v) => (
@@ -224,6 +228,7 @@ function FieldCard({
             <select
               value={state.rangeEnd}
               onChange={(e) => onChange({ ...state, rangeEnd: parseInt(e.target.value) })}
+              aria-label="Range end"
               className="px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {range.map((v) => (
@@ -233,7 +238,7 @@ function FieldCard({
               ))}
             </select>
             {rangeInvalid && (
-              <span className="text-xs text-red-600">End must be ≥ start</span>
+              <span className="text-xs text-red-600" role="alert">End must be ≥ start</span>
             )}
           </div>
         )}
@@ -333,6 +338,7 @@ export default function CronGenerator() {
               <select
                 value={timezone}
                 onChange={(e) => setTimezone(e.target.value)}
+                aria-label="Timezone"
                 className="px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {CRON_TIMEZONES.map((tz) => (

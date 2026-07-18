@@ -39,8 +39,19 @@ const CATEGORY_TAB_ACTIVE: Record<string, string> = {
 function StatusCard({ entry }: { entry: HttpStatusCode }) {
   const [expanded, setExpanded] = useState(false);
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setExpanded((prev) => !prev);
+    }
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-expanded={expanded}
+      onKeyDown={onKeyDown}
       className="border border-slate-200 rounded-lg bg-slate-50 hover:border-slate-300 transition-colors cursor-pointer"
       onClick={() => setExpanded((e) => !e)}
     >
@@ -97,7 +108,9 @@ export default function HttpStatusCodes() {
     >
       <div className="space-y-5">
         {/* Search */}
+        <label htmlFor="http-status-search" className="sr-only">Search status codes</label>
         <input
+          id="http-status-search"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -117,6 +130,7 @@ export default function HttpStatusCodes() {
             return (
               <button
                 key={cat}
+                aria-pressed={isActive}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   isActive ? activeClass : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -139,7 +153,7 @@ export default function HttpStatusCodes() {
 
         {/* Cards */}
         {filtered.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 text-sm">
+          <div role="status" className="text-center py-12 text-slate-500 text-sm">
             No status codes match your search.
           </div>
         ) : (

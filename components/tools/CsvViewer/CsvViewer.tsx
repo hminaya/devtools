@@ -80,6 +80,7 @@ export default function CsvViewer() {
             {DELIMITER_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
+                aria-pressed={delimiter === opt.value}
                 onClick={() => setDelimiter(opt.value)}
                 className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
                   delimiter === opt.value
@@ -119,14 +120,16 @@ export default function CsvViewer() {
         {/* Search + counts */}
         {hasData && (
           <div className="flex flex-wrap items-center gap-3">
+            <label htmlFor="csv-viewer-filter" className="sr-only">Filter rows</label>
             <input
+              id="csv-viewer-filter"
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Filter rows..."
               className="flex-1 min-w-[200px] px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
-            <span className="text-sm text-slate-500">
+            <span aria-live="polite" className="text-sm text-slate-500">
               {processed.length}
               {processed.length !== table.rows.length && ` of ${table.rows.length}`}{' '}
               {processed.length === 1 ? 'row' : 'rows'} · {table.headers.length}{' '}
@@ -143,9 +146,20 @@ export default function CsvViewer() {
                 <tr>
                   {table.headers.map((header, col) => {
                     const isSorted = sort?.col === col;
+                    const ariaSort = isSorted ? (sort!.dir === 'asc' ? 'ascending' : 'descending') : 'none';
+                    const onHeaderKeyDown = (e: React.KeyboardEvent) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSort(col);
+                      }
+                    };
                     return (
                       <th
                         key={col}
+                        role="button"
+                        tabIndex={0}
+                        aria-sort={ariaSort}
+                        onKeyDown={onHeaderKeyDown}
                         onClick={() => handleSort(col)}
                         className="bg-slate-100 border-b border-slate-300 px-3 py-2 text-left font-semibold text-slate-700 whitespace-nowrap cursor-pointer select-none hover:bg-slate-200 transition-colors"
                       >
