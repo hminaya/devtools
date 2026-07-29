@@ -102,7 +102,7 @@ export default function RootLayout({
               <footer className="border-t border-slate-200 bg-white/60 px-5 py-6 text-sm text-slate-500 sm:px-8">
                 <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-2">
                   <span className="font-medium text-slate-700">developers.do</span>
-                  <span>© 2026 Mushin Code</span>
+                  <a className="hover:text-slate-900" href="https://mushin.dev" target="_blank" rel="noopener noreferrer">© 2026 Mushin Code</a>
                   <Link className="hover:text-slate-900" href="/privacy-policy" prefetch={false}>Privacy</Link>
                   <CookiePreferencesLink />
                   <Link className="hover:text-slate-900" href="/terms-of-use" prefetch={false}>Terms</Link>
