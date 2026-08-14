@@ -3,15 +3,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack -p 3000",
+    "prebuild": "npm run generate:llms",
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
     "generate:og": "node scripts/generate-og-images.cjs",
-    "generate:llms": "node scripts/generate-llms.cjs"
+    "generate:llms": "tsx scripts/generate-llms.ts"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/bun": "latest",
     "@types/js-yaml": "^4.0.9",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.2.7",
@@ -19,7 +19,8 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "tsx": "^4.23.12"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
