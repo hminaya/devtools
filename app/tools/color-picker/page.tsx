@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import ColorPicker from '../../../components/tools/ColorPicker/ColorPicker';
 
 export const metadata: Metadata = {
-  title: 'Color Picker - HEX, RGB, HSL, HSV, CMYK & Tailwind Palettes',
-  description: 'Free color picker tool to select colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes — Tailwind CSS v3, Nord, Solarized, Dracula, GitHub, Material, and One Dark.',
+  title: 'Color Picker - Free HEX, RGB, HSL, CMYK Converter & Palettes',
+  description: 'Free online color picker: paste a hex like #7c3aed or pick visually. Convert HEX/RGB/HSL/HSV/CMYK, generate harmonies, and browse Tailwind & Nord palettes.',
   alternates: {
     canonical: '/tools/color-picker',
   },

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import MimeTypeLookup from '../../../components/tools/MimeTypeLookup/MimeTypeLookup';
+import { MIME_ENTRIES } from '../../../utils/mimeTypes';
+
+const COUNT = MIME_ENTRIES.length;
 
 export const metadata: Metadata = {
-  title: 'MIME Type Lookup - File Extension & Content Type Reference',
-  description: 'Search common MIME types by file extension, MIME string, or category. Covers images, video, audio, archives, documents, code, fonts, and data formats.',
+  title: `MIME Type Lookup - ${COUNT} Content Types by File Extension (Free)`,
+  description: `Search ${COUNT} MIME types by file extension, type, or category. Covers images, video, audio, code, fonts, and data. Copy exact Content-Type values. Free.`,
   alternates: {
     canonical: '/tools/mime-type-lookup',
   },

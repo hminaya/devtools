@@ -1,8 +1,10 @@
 # DevTools by developers.do
 
-> A collection of free developer tools that run 100% client-side in your browser. No backend. All processing happens locally. Anonymized analytics used to improve the site.
+> A collection of free developer tools that run client-side in your browser. No backend. Anonymized analytics used to improve the site.
 
-DevTools provides utilities for developers including formatters, converters, generators, AI-powered text tools, SAML utilities, and security tools. User-entered data is processed locally in the browser and is not uploaded to a server.
+DevTools provides utilities for developers including formatters, converters, generators, AI-powered text tools, SAML utilities, and security tools. User-entered data is processed locally in the browser and is not uploaded to a developers.do server. A few tools exist to call an external API (iOS App Lookup, API Tester) and send input from the browser directly to that third party.
+
+Markdown mirrors of every tool page hosted on this site are available for AI consumption by appending .md to the tool URL (for example, https://www.developers.do/tools/json-prettifier.md). Tools listed below with an off-site URL have no mirror.
 
 ## Tools
 
@@ -55,7 +57,7 @@ DevTools provides utilities for developers including formatters, converters, gen
 - [String Escape / Unescape](https://www.developers.do/tools/string-escape): Escape and unescape text for JSON, XML, CSV, regex, or POSIX shell contexts
 - [Whitespace Visualizer & Cleaner](https://www.developers.do/tools/whitespace-cleaner): Spot invisible whitespace characters (tabs, NBSP, zero-width, trailing) and clean them with batch options
 - [HTML Entity Encoder / Decoder](https://www.developers.do/tools/html-entity-encoder): Encode text to HTML entities (named, decimal, hex) and decode entities back to characters
-- [Unicode Escape / Unescape](https://www.developers.do/tools/unicode-escape): Convert text to \\uXXXX and \\u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
+- [Unicode Escape / Unescape](https://www.developers.do/tools/unicode-escape): Convert text to \uXXXX and \u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
 - [Morse Code Translator](https://www.developers.do/tools/morse-code-translator): Convert text to ITU-R M.1677-1 Morse code and back — supports letters, digits, common punctuation, and word breaks
 
 ### Algorithms

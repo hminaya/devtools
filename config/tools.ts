@@ -7,6 +7,9 @@ export interface Tool {
   category: string;
   updatedAt: string;
   external?: boolean; // If true, opens in new tab
+  // Set on the few tools that are not fully client-side. The value names where
+  // input is sent, and replaces the "processed locally" line in the .md mirrors.
+  sendsDataTo?: string;
 }
 
 // Ordered from recent organic landing-page performance. Keep this list small so
@@ -82,7 +85,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/fill-mask',
     icon: '✨',
     category: 'AI Tools',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'text-summarization',
@@ -217,7 +220,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/svg-path-visualizer',
     icon: '✏️',
     category: 'Formatting',
-    updatedAt: '2026-07-12',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'hl7-parser',
@@ -235,7 +238,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/hl7-to-fhir',
     icon: '🔄',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'diff-compare',
@@ -253,7 +256,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/stacktrace-formatter',
     icon: '📋',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'beautify-stack-trace',
@@ -262,7 +265,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/beautify-stack-trace',
     icon: '✨',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'stacktrace-analyzer',
@@ -289,7 +292,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/file-size-converter',
     icon: '💾',
     category: 'Formatting',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'unix-timestamp',
@@ -442,7 +445,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/string-similarity',
     icon: '🔀',
     category: 'Algorithms',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'regex-tester',
@@ -487,7 +490,8 @@ export const TOOLS: Tool[] = [
     route: '/tools/ios-app-lookup',
     icon: '🍎',
     category: 'Apps',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
+    sendsDataTo: "Apple's public iTunes Search API",
   },
   {
     id: 'agent-helper',
@@ -653,7 +657,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/random-number-generator',
     icon: '🎲',
     category: 'Generators',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'qr-code-generator',
@@ -779,7 +783,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/color-picker',
     icon: '🎨',
     category: 'Code & Schemas',
-    updatedAt: '2026-07-12',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'secrets-scanner',
@@ -860,7 +864,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-metadata-parser',
     icon: '📋',
     category: 'SAML',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'saml-cert-inspector',
@@ -869,7 +873,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-cert-inspector',
     icon: '📜',
     category: 'SAML',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'csr-decoder',
@@ -887,7 +891,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/saml-builder',
     icon: '🏗️',
     category: 'SAML',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'saml-metadata-generator',
@@ -915,6 +919,7 @@ export const TOOLS: Tool[] = [
     icon: '🌐',
     category: 'Networking',
     updatedAt: '2026-06-28',
+    sendsDataTo: 'the API endpoint you enter',
   },
   {
     id: 'http-status-codes',
@@ -923,7 +928,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/http-status-codes',
     icon: '📡',
     category: 'Networking',
-    updatedAt: '2026-06-28',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'mime-type-lookup',
@@ -932,7 +937,7 @@ export const TOOLS: Tool[] = [
     route: '/tools/mime-type-lookup',
     icon: '📎',
     category: 'Networking',
-    updatedAt: '2026-07-12',
+    updatedAt: '2026-08-13',
   },
   {
     id: 'port-reference',

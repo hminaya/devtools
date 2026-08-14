@@ -1,13 +1,13 @@
 # DevTools by developers.do - Complete Documentation
 
-> A collection of free developer tools that run 100% client-side in your browser. No backend. All tool processing happens locally on the user device. Anonymized analytics are used to improve the site.
+> A collection of free developer tools that run client-side in your browser. No backend. Anonymized analytics are used to improve the site.
 
 ## About DevTools
 
 DevTools is a suite of browser-based utilities for software developers built with privacy as a core principle.
 
-- 100% client-side: tools run in the browser using JavaScript, WebAssembly, and Web APIs.
-- No upload required: tool input is not transmitted to a backend.
+- Client-side: tools run in the browser using JavaScript, WebAssembly, and Web APIs.
+- No backend: tool input is never transmitted to a developers.do server. The few tools whose purpose is to call an external API (iOS App Lookup, API Tester) send input directly from the browser to that third party.
 - Open source: built with Next.js, React, TypeScript, and Tailwind CSS.
 - Website: https://www.developers.do
 
@@ -19,51 +19,85 @@ Category URL: https://www.developers.do/tools/ai-tools
 
 #### JS Tokenizers
 URL: https://www.developers.do/tools/js-tokenizer
+Markdown: https://www.developers.do/tools/js-tokenizer.md
 
 Tokenize text using various AI tokenizers
 
 #### RAG Chunker
 URL: https://www.developers.do/tools/rag-chunker
+Markdown: https://www.developers.do/tools/rag-chunker.md
 
 Split text into retrieval-friendly chunks with overlap and token counts
 
 #### Sentiment Analysis
 URL: https://www.developers.do/tools/sentiment-analysis
+Markdown: https://www.developers.do/tools/sentiment-analysis.md
 
 Analyze emotional tone of text using AI
 
 #### Zero-Shot Classification
 URL: https://www.developers.do/tools/zero-shot-classification
+Markdown: https://www.developers.do/tools/zero-shot-classification.md
 
 Classify text into custom categories without training using AI
 
 #### Sentence Similarity
 URL: https://www.developers.do/tools/sentence-similarity
+Markdown: https://www.developers.do/tools/sentence-similarity.md
 
 Generate embeddings and find semantic similarity between texts using AI
 
 #### Question Answering
 URL: https://www.developers.do/tools/question-answering
+Markdown: https://www.developers.do/tools/question-answering.md
 
 Answer questions based on provided context using AI
 
 #### Fill-Mask Text Completion
 URL: https://www.developers.do/tools/fill-mask
+Markdown: https://www.developers.do/tools/fill-mask.md
 
 Complete sentences and predict missing words using AI
 
+Type a sentence with [MASK] where a word is missing, and a BERT-style language model predicts the most likely tokens to fill the blank, ranked with confidence scores. Three models run fully in your browser via Hugging Face Transformers.js: DistilBERT (~66 MB, the fast default), BERT Base (~110 MB, more accurate), and ALBERT (~45 MB, lightest). The model downloads once and is cached by the browser; your text never leaves the tab.
+
+How to use:
+1. Write a sentence containing a [MASK] token, such as “The [MASK] barks at the mail carrier.”
+2. Pick a model — DistilBERT is the best starting point.
+3. Wait for the one-time model download and initialization, then run the prediction.
+4. Review the ranked completions with their probability scores.
+
+What the model actually learned: BERT-style models are pretrained with masked language modeling: hide a share of tokens in billions of sentences and learn to predict each one from both left and right context. Unlike left-to-right autocomplete, fill-mask uses what follows the blank too — in “The capital of France is [MASK]”, the period and everything before it both inform the prediction of “paris”.
+
+One mask, one token: Each [MASK] predicts a single WordPiece token, not a whole phrase. Common words are one token (“dog”), but rarer words split into pieces (“unbelievable” becomes un + ##belie + ##vable). Multi-word completions need multiple masks, and the combinations multiply quickly.
+
+What “uncased” means: All three models are uncased: input is lowercased and accents are stripped before prediction, so they do not distinguish “Apple” from “apple”. They were trained mostly on English Wikipedia and BookCorpus, so they are strongest on general English text.
+
+FAQs:
+- Q: Why is the first run slow?
+  A: The model weights — 45 to 110 MB depending on your choice — download on first use and the runtime initializes. After that the browser cache serves the model and predictions are fast.
+- Q: Why do unusual words get odd predictions?
+  A: Rare words are split into subword pieces, and a single [MASK] can only stand for one piece. Names, jargon, and coined terms are the hardest cases for these small models.
+- Q: Is my text sent to a server?
+  A: No. Inference runs locally in your browser with Transformers.js; no API call carries your text.
+
+References: BERT: Pre-training of Deep Bidirectional Transformers (https://arxiv.org/abs/1810.04805), Hugging Face Transformers.js (https://huggingface.co/docs/transformers.js)
+
 #### Text Summarization
 URL: https://www.developers.do/tools/text-summarization
+Markdown: https://www.developers.do/tools/text-summarization.md
 
 Summarize long text into concise overviews using AI
 
 #### Text Extractor
 URL: https://www.developers.do/tools/text-extractor
+Markdown: https://www.developers.do/tools/text-extractor.md
 
 Extract emails, URLs, IPs, dates, and patterns from text
 
 #### Vibe Check
 URL: https://www.developers.do/tools/vibe-check
+Markdown: https://www.developers.do/tools/vibe-check.md
 
 Generate AI code review, test plan, and production readiness prompts for vibe-coded apps
 
@@ -73,181 +107,428 @@ Category URL: https://www.developers.do/tools/formatting
 
 #### JSON Prettifier
 URL: https://www.developers.do/tools/json-prettifier
+Markdown: https://www.developers.do/tools/json-prettifier.md
 
 Format and validate JSON data
 
+This formatter parses JSON with the browser’s built-in JSON parser, then serializes it with consistent two-space indentation. It can also remove insignificant whitespace for compact storage or transport. Your input is processed in the current browser tab and is not uploaded by this tool.
+
+How to use:
+1. Paste a JSON object, array, string, number, boolean, or null value into the input field.
+2. Choose Prettify to format and validate the value, or Minify to produce compact JSON.
+3. Review any parser error or suggestion, then copy the output when the input is valid.
+
+JSON versus JavaScript objects: Valid JSON requires double-quoted property names and strings. It does not allow comments, trailing commas, undefined values, functions, or single-quoted strings. The prettifier can repair simple unquoted property names, but it deliberately reports other syntax problems instead of silently changing data.
+
+Formatting does not change values: Prettifying changes whitespace only after parsing succeeds. Object keys, array order, strings, numbers, booleans, and null values are preserved according to JSON.parse and JSON.stringify behavior.
+
+FAQs:
+- Q: Why is my JSON invalid even though it works in JavaScript?
+  A: JavaScript object literals support syntax that JSON does not, including comments, trailing commas, single quotes, and unquoted keys. Convert those constructs to strict JSON syntax first.
+- Q: Does the formatter send JSON to a server?
+  A: No. Formatting, validation, minification, and the sample generator run in your browser.
+
+References: RFC 8259: The JSON Data Interchange Format (https://www.rfc-editor.org/rfc/rfc8259)
+
 #### XML/HTML Formatter
 URL: https://www.developers.do/tools/xml-prettifier
+Markdown: https://www.developers.do/tools/xml-prettifier.md
 
 Format, validate, prettify, and minify XML or HTML data
 
 #### XML ↔ JSON Converter
 URL: https://www.developers.do/tools/xml-json-converter
+Markdown: https://www.developers.do/tools/xml-json-converter.md
 
 Bidirectional XML-to-JSON and JSON-to-XML converter using the familiar @attr / _text convention; repeated tags collapse into arrays
 
 #### JSONPath Query Engine
 URL: https://www.developers.do/tools/jsonpath-tester
+Markdown: https://www.developers.do/tools/jsonpath-tester.md
 
 Test JSONPath expressions — supports dot/bracket access, wildcards, slices, recursive descent (..), and filter [?(...)] expressions
 
 #### GraphQL Formatter
 URL: https://www.developers.do/tools/graphql-formatter
+Markdown: https://www.developers.do/tools/graphql-formatter.md
 
 Format and validate GraphQL queries, mutations, subscriptions, and fragments — preserves string literals, args, blocks, lists, and comments
 
 #### TOML Parser
 URL: https://www.developers.do/tools/toml-parser
+Markdown: https://www.developers.do/tools/toml-parser.md
 
 Parse, validate, format, and round-trip TOML to/from JSON — spec-compliant via smol-toml
 
 #### CSS Minifier / Beautifier
 URL: https://www.developers.do/tools/css-formatter
+Markdown: https://www.developers.do/tools/css-formatter.md
 
 Minify CSS by stripping comments and whitespace, or beautify minified CSS with re-indentation — preserves spaces inside parentheses for values like rgba() and calc()
 
 #### JavaScript Minifier
 URL: https://www.developers.do/tools/js-minifier
+Markdown: https://www.developers.do/tools/js-minifier.md
 
 Strip comments and whitespace from JavaScript while preserving strings, template literals, and regex syntax — no AST, no variable renaming, just fast cosmetic minification
 
 #### Data URI Converter
 URL: https://www.developers.do/tools/data-uri-converter
+Markdown: https://www.developers.do/tools/data-uri-converter.md
 
 Convert text to a data: URI with UTF-8 Base64 encoding, or decode a data: URI back to text or binary bytes — handles any MIME type
 
 #### Markdown Live Preview
 URL: https://www.developers.do/tools/markdown-preview
+Markdown: https://www.developers.do/tools/markdown-preview.md
 
 Write Markdown on the left, see the rendered HTML preview on the right — supports headings, bold, italic, code, lists, quotes, links, autolinks, and GFM strikethrough
 
 #### SVG Editor
 URL: https://www.developers.do/tools/svg-editor
+Markdown: https://www.developers.do/tools/svg-editor.md
 
 Edit SVG code on the left, see the live preview on the right — strips scripts and event handlers for safety, adjusts missing xmlns
 
 #### SVG Path Visualizer
 URL: https://www.developers.do/tools/svg-path-visualizer
+Markdown: https://www.developers.do/tools/svg-path-visualizer.md
 
 Paste an SVG path d attribute and see it rendered instantly — includes presets (curve, star, arc, bezier), adjustable stroke/fill colors, and an optional grid overlay
 
+Paste just the d attribute of an SVG path — the string of commands and coordinates — and watch it render live as you type. All commands are supported: M, L, H, V, C, S, Q, T, A, Z and their lowercase relative variants. One-click presets (curve, star, rectangle, arc, Bézier) give you shapes to experiment with, and the options panel exposes stroke color and width, fill, a grid overlay, and viewBox size. Copy SVG exports a complete, valid document wrapping your path.
+
+How to use:
+1. Paste the d attribute value into the editor — for example M 10 80 C 40 10, 65 10, 95 80.
+2. The preview re-renders on every keystroke; keep the grid on to read off coordinates.
+3. Open the options panel to tune stroke, width, fill, and viewBox size.
+4. Use Copy SVG to get a standalone <svg> document containing your path.
+
+The command cheat sheet: M moves the pen, L draws a line, H and V draw horizontal and vertical lines, C is a cubic Bézier with two control points, S is a smooth cubic that mirrors the previous control point, Q is a quadratic Bézier, T its smooth variant, A draws an elliptical arc, and Z closes the path. Uppercase commands take absolute coordinates; lowercase are relative to the current point.
+
+Demystifying the arc command: A rx ry x-axis-rotation large-arc-flag sweep-flag x y — the two flags are the confusing part. Between any two points there are four possible arcs of a given ellipse: large-arc-flag picks the longer or shorter way around, and sweep-flag picks the direction. Experiment on the Arc preset to build intuition.
+
+Why relative commands exist: Lowercase commands express geometry relative to the pen, so an entire shape can be moved by changing only its initial M. Icon and font paths are often exported relative to make them position-independent; this viewer accepts both dialects interchangeably.
+
+FAQs:
+- Q: Why is my path invisible?
+  A: The usual suspects: coordinates outside the viewBox (increase the viewBox size in options), a fill of none with no visible stroke, or a malformed command. The note under the editor lists the supported command set.
+- Q: Can I paste a whole SVG file?
+  A: This page takes only the d attribute. To preview and edit a complete SVG document, use the SVG Editor tool instead.
+- Q: Does it support curves exported from Figma or Illustrator?
+  A: Yes. Export as SVG, copy the d value from the <path> element, and paste it here to inspect or tweak the geometry command by command.
+
+References: MDN: SVG d attribute (https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d)
+
 #### HL7 Parser
 URL: https://www.developers.do/tools/hl7-parser
+Markdown: https://www.developers.do/tools/hl7-parser.md
 
 Read and parse HL7 v2 messages into structured JSON
 
 #### HL7 to FHIR Converter
 URL: https://www.developers.do/tools/hl7-to-fhir
+Markdown: https://www.developers.do/tools/hl7-to-fhir.md
 
 Convert HL7 v2 messages to FHIR R4 Bundles
 
+Converts pipe-delimited HL7 v2 messages into FHIR R4 Bundles you can inspect or post to a server. Supported messages include ADT^A01/A02/A03/A04/A08 (admit, transfer, discharge, registration, update), ORM^O01 orders, ORU^R01 lab results, SIU scheduling messages, and VXU^V04 immunization updates. The output is a transaction Bundle containing Patient, Encounter, DiagnosticReport, Observation, ServiceRequest, Appointment, or Immunization resources as applicable, with a summary of what was generated and warnings for anything that did not map. Sample messages are built in.
+
+How to use:
+1. Paste an HL7 v2 message with segments on separate lines (MSH, PID, PV1, and so on).
+2. Choose Convert — or load a sample message first to see the mapping.
+3. Check the summary card for the message type, resource count, and bundle type.
+4. Review warnings for unmapped segments, then copy the FHIR R4 Bundle JSON.
+
+How segments become resources: The MSH-9 message type drives the mapping. PID becomes a Patient, PV1 an Encounter, OBR a DiagnosticReport, each OBX an Observation under its report, an ORM order becomes a ServiceRequest, SCH an Appointment, and RXA an Immunization. Segments with no FHIR R4 counterpart are reported as warnings rather than silently dropped.
+
+v2 and FHIR think differently: HL7 v2 is event messaging — “something happened, here is a snapshot”. FHIR is resource-based — discrete, addressable clinical objects. One ADT message can expand into several linked resources, and some v2 content — like site-specific Z-segments — has no standard R4 home at all.
+
+The bundle is a transaction: Entries carry PUT requests with stable fullUrls, giving upsert semantics: posting the bundle to a FHIR R4 server’s base URL creates or updates the resources. For production feeds, validate against your server’s implementation guide first — real deployments enforce profiles beyond base R4.
+
+FAQs:
+- Q: Which FHIR version does this produce?
+  A: FHIR R4 (4.0.1), the most widely deployed version and the one the US Core implementation guides are built on.
+- Q: What format does the input need?
+  A: Standard ER7 pipe format: segments separated by carriage returns or newlines, fields separated by | — exactly as produced by integration engines like Mirth or Rhapsody.
+- Q: Why did I get warnings alongside a successful conversion?
+  A: The converter maps what it knows and lists what it skipped — typically Z-segments or fields without an R4 equivalent. The bundle is still usable; the warnings tell you what to review.
+
+References: HL7 FHIR R4 (https://hl7.org/fhir/R4/)
+
 #### Diff / Text Compare
 URL: https://www.developers.do/tools/diff-compare
+Markdown: https://www.developers.do/tools/diff-compare.md
 
 Compare two texts and see color-coded differences
 
 #### Stack Trace Formatter
 URL: https://www.developers.do/tools/stacktrace-formatter
+Markdown: https://www.developers.do/tools/stacktrace-formatter.md
 
 Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
 
+This formatter takes a raw stack trace from JavaScript (including Node.js), Python, Java, C#, Go, PHP, or Ruby, detects the language automatically, and re-renders it with aligned frames and syntax highlighting: error types in red, function names in green, file paths in blue, and line numbers in purple. An optional anonymizer strips local user directories before you paste the trace into a bug report. Everything runs in your browser — the trace is never uploaded.
+
+How to use:
+1. Paste the raw trace into the input panel. The language is detected automatically from its frame syntax.
+2. Choose Format to re-render the trace with aligned indentation and color-coded frames.
+3. Enable Remove Sensitive Data first if the trace contains local paths you should not share.
+4. Copy the formatted output, or click Next Example to cycle through sample traces for each language.
+
+Every runtime prints frames differently: JavaScript prints “at fn (file.js:10:5)”, Python prints File "app.py", line 10, in fn, Java prints at com.example.Class.method(File.java:42), Go prints goroutine headers, Ruby prints from file.rb:10:in `fn’ frames, and PHP prints numbered #0 frames. The formatter recognizes each dialect and normalizes indentation without changing the original frame order.
+
+Python reads bottom-up, Java reads top-down: Java, JavaScript, C#, PHP, and Ruby print the most recent call first, so the crash site is near the top of the trace. Python tracebacks print the most recent call last, so the failing line is at the bottom. The formatter preserves each language’s native order — knowing which direction to read saves real time during an incident.
+
+Formatting is not symbolication: Production JavaScript traces from minified bundles still show short names like t.a; mapping those back to original sources requires source maps. iOS crash logs similarly need dSYM symbolication. This tool beautifies the structure of the trace you already have — it does not resolve symbols.
+
+FAQs:
+- Q: Why does the formatter say my trace is invalid?
+  A: Validation requires at least one recognizable frame pattern. Log lines with timestamps, log-level prefixes, or hard-wrapped lines break detection — strip the log decorations and paste just the trace itself.
+- Q: Can I format a trace copied from a browser console?
+  A: Yes. V8-style frames (Chrome, Edge, Node.js) in the form at fn (file:line:column) are fully supported, including async frames.
+- Q: Is my stack trace uploaded anywhere?
+  A: No. Language detection, formatting, highlighting, and the optional path anonymization all run locally in the browser tab.
+
+References: V8 stack trace API (https://v8.dev/docs/stack-trace-api), Python traceback module (https://docs.python.org/3/library/traceback.html)
+
 #### Beautify Stack Trace
 URL: https://www.developers.do/tools/beautify-stack-trace
+Markdown: https://www.developers.do/tools/beautify-stack-trace.md
 
 Clean up and beautify messy error stack traces for readability
 
+Stack traces copied out of terminals, CI logs, Docker output, or crash reporters arrive mangled: wrapped lines, stripped indentation, and log prefixes on every line. This beautifier rebuilds clean one-frame-per-line structure for JavaScript, Python, Java, C#, Go, PHP, and Ruby traces, color-codes the result — error header in red, functions in green, files in blue, line numbers in purple — and can anonymize local user paths like /Users/alice or C:\Users\alice before you share the output. It runs locally; nothing is uploaded.
+
+How to use:
+1. Paste the messy trace exactly as copied from your log, terminal, or ticket.
+2. The language is auto-detected. Choose Format to rebuild clean, indented, highlighted output.
+3. Turn on Remove Sensitive Data to replace home-directory paths with placeholders.
+4. Copy the beautified trace into your bug report, pull request, or chat message.
+
+Why traces from logs look broken: Log shippers and terminals wrap long lines, strip leading whitespace, and prepend timestamps or container IDs to every line. That destroys the visual nesting that makes traces scannable. Beautifying restores consistent indentation so you can follow the call chain at a glance.
+
+Clean traces get faster answers: A trace posted to an issue tracker is read by people who were not there when it crashed. Highlighting separates the error header and your application frames from runtime noise, and removing machine-specific paths (/home/deploy, /Users/alice) keeps internal details out of public tickets.
+
+Where the error actually is: In Java, JavaScript, C#, PHP, and Ruby traces, read from the top — the first frames are where the exception surfaced. In Python, read from the bottom — the traceback ends with the failing line. Framework and library frames in between are usually context, not cause.
+
+FAQs:
+- Q: How is this different from the Stack Trace Formatter?
+  A: Both pages run the same parsing and highlighting engine, so use whichever you landed on. This page emphasizes the cleanup-and-sharing workflow: paste a mangled trace, anonymize local paths, and copy readable output.
+- Q: Will beautifying change what the trace means?
+  A: No. Only whitespace, alignment, coloring, and the optional path anonymization change. Frame order, function names, file names, and line numbers are preserved exactly.
+- Q: Does it work on .NET or Unity traces?
+  A: Yes. C#-style at Namespace.Class.Method() frames are supported, including traces copied from Unity and .NET application logs.
+
+References: MDN: Error.prototype.stack (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack)
+
 #### Stack Trace Analyzer
 URL: https://www.developers.do/tools/stacktrace-analyzer
+Markdown: https://www.developers.do/tools/stacktrace-analyzer.md
 
 Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 
 #### Base64 Encoder/Decoder
 URL: https://www.developers.do/tools/base64-encoder
+Markdown: https://www.developers.do/tools/base64-encoder.md
 
 Encode and decode Base64 strings
 
+The Base64 encoder converts Unicode text to UTF-8 bytes and then represents those bytes with standard Base64 characters. The decoder reverses that process and requires the decoded bytes to be valid UTF-8 text. Processing happens locally in the browser.
+
+How to use:
+1. Enter ordinary text to encode, or a standard Base64 string to decode.
+2. Choose Encode to Base64 or Decode from Base64.
+3. Copy the result, or correct the input if the decoder reports invalid Base64 or non-UTF-8 bytes.
+
+Base64 is not encryption: Base64 is a reversible representation for binary data. It provides no confidentiality, authenticity, hashing, or tamper protection and should never be used as a security control.
+
+Text and Base64url differences: This page is intended for UTF-8 text and standard Base64. URL-safe Base64 commonly replaces + and / with - and _ and may omit padding, so Base64url values may require normalization before decoding here.
+
+FAQs:
+- Q: Why is the Base64 output longer than the input?
+  A: Base64 represents each three bytes with four text characters, plus possible padding, so encoded data is normally about one-third larger.
+- Q: Can I encode a file with this page?
+  A: This interface accepts text. It does not currently read arbitrary file bytes.
+
+References: RFC 4648: Base-N Encodings (https://www.rfc-editor.org/rfc/rfc4648)
+
 #### File Size Converter
 URL: https://www.developers.do/tools/file-size-converter
+Markdown: https://www.developers.do/tools/file-size-converter.md
 
 Convert file sizes between decimal (SI) and binary (IEC) units
 
+Type a size once and read it in every unit at once: decimal SI units (bytes, KB, MB, GB, TB, PB — powers of 1,000) on one side and binary IEC units (KiB, MiB, GiB, TiB, PiB — powers of 1,024) on the other. Results update live as you type, each value has its own copy button, and the Random Size button loads familiar reference objects — a CD at 700 MB, a DVD at 4.7 GB, a 1 TB hard drive — to sanity-check magnitudes.
+
+How to use:
+1. Enter a number and pick the unit it is measured in, from bytes up to pebibytes.
+2. Read the equivalent decimal (SI) and binary (IEC) values side by side.
+3. Copy any individual result with its copy button.
+4. Use Random Size to load the typical size of a real-world object for comparison.
+
+Why your 1 TB drive shows 931 GB: Drive manufacturers sell capacity in decimal units: 1 TB = 1,000,000,000,000 bytes. Operating systems report binary units: 1,000,000,000,000 ÷ 1,073,741,824 ≈ 931 GiB — often displayed with the wrong “GB” label. No capacity is missing; the two unit systems simply differ by about 7.4% at terabyte scale.
+
+KB versus KiB in practice: Memory is always binary — 16 GiB of RAM is 2^34 bytes. Network bandwidth is decimal and measured in bits: 100 Mbps is 100,000,000 bits per second, roughly 11.9 MiB/s of real transfer. Storage marketing is decimal; OS file dialogs are usually binary. When a number matters, write the exact unit.
+
+The 1,000 versus 1,024 gap grows with scale: At kilobyte scale the difference between the systems is 2.4%, at gigabyte scale 7.4%, and at terabyte scale about 10%. The bigger the numbers, the further the two systems drift — which is why ambiguous units cause real capacity-planning bugs.
+
+FAQs:
+- Q: How many bytes are in a megabyte?
+  A: In SI units, 1 MB = 1,000,000 bytes. In IEC binary units, 1 MiB = 1,048,576 bytes (1,024 × 1,024). The converter shows both so you never have to guess which one a tool or spec meant.
+- Q: Should my code use 1,000 or 1,024?
+  A: Match the domain: memory and OS-level sizes are conventionally binary (1,024); storage devices and networks are decimal (1,000). Document whichever you choose — an ambiguous “MB” has caused many off-by-7% bugs.
+- Q: What comes after terabytes?
+  A: Decimal: petabytes (PB), exabytes (EB), zettabytes (ZB). Binary: pebibytes (PiB), exbibytes (EiB), zebibytes (ZiB). This converter covers bytes through PB and PiB.
+
+References: NIST: prefixes for binary multiples (https://physics.nist.gov/cuu/Units/binary.html)
+
 #### Unix Timestamp Converter
 URL: https://www.developers.do/tools/unix-timestamp
+Markdown: https://www.developers.do/tools/unix-timestamp.md
 
 Convert Unix epoch timestamps to human-readable dates — single or batch — with timezone support
 
+The Unix timestamp converter translates between an epoch value and readable dates. It accepts seconds or milliseconds, can auto-detect the likely unit, formats results in a selected timezone, and also converts date strings back to epoch seconds and milliseconds.
+
+How to use:
+1. Choose Epoch to Human or Human to Epoch.
+2. Enter a timestamp or date string and select the unit and timezone when applicable.
+3. Review the ISO 8601, UTC, localized, relative, seconds, and milliseconds representations.
+
+Seconds versus milliseconds: Unix time is traditionally measured in seconds since 1970-01-01T00:00:00Z, while JavaScript and many APIs use milliseconds. A unit mismatch produces a date that is thousands of years away or unexpectedly close to 1970.
+
+Be explicit about timezones: An ISO 8601 value ending in Z is UTC, and an explicit numeric offset identifies another zone. A date string without a timezone may be interpreted using the browser’s local timezone, so include Z or an offset when the instant must be unambiguous.
+
+FAQs:
+- Q: Do Unix timestamps contain timezone information?
+  A: No. A timestamp identifies an instant. A timezone is applied only when that instant is formatted for display.
+- Q: Why does my date appear in 1970?
+  A: The value may be milliseconds interpreted as seconds, seconds interpreted as milliseconds, or a small relative duration rather than a complete epoch timestamp.
+
+References: ISO 8601 date and time format (https://www.iso.org/iso-8601-date-and-time-format.html)
+
 #### Cron Expression Tester
 URL: https://www.developers.do/tools/cron-tester
+Markdown: https://www.developers.do/tools/cron-tester.md
 
 Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
 
+The cron tester parses traditional five-field cron expressions, explains the schedule in plain English, and calculates the next seven run times in a selected timezone. It supports lists, ranges, steps, month and weekday names, and common macros such as @daily.
+
+How to use:
+1. Enter a five-field expression in minute, hour, day-of-month, month, and day-of-week order.
+2. Choose the timezone used to preview the schedule.
+3. Review each parsed field, the plain-language explanation, and the upcoming run times.
+
+Cron implementations differ: This tester uses the common five-field format. Quartz, AWS EventBridge, Kubernetes, systemd timers, and vendor schedulers may use a seconds or year field, different weekday numbering, or special characters that this parser does not support.
+
+Timezone and daylight-saving behavior: A local wall-clock time may occur twice or not at all during a daylight-saving transition. Confirm the scheduler’s configured timezone and DST behavior before relying on a production schedule.
+
+FAQs:
+- Q: Does this tester run a job?
+  A: No. It parses and previews a schedule only; it does not register or execute tasks.
+- Q: Why does my six-field cron expression fail?
+  A: This parser expects five fields and does not include a leading seconds field. Remove it only if the target scheduler also uses five-field cron syntax.
+
 #### Cron Expression Generator
 URL: https://www.developers.do/tools/cron-generator
+Markdown: https://www.developers.do/tools/cron-generator.md
 
 Build cron expressions visually with field controls — no syntax knowledge required
 
 #### URL Encoder / Decoder
 URL: https://www.developers.do/tools/url-encoder
+Markdown: https://www.developers.do/tools/url-encoder.md
 
 Encode and decode URLs using encodeURIComponent and encodeURI
 
 #### YAML/JSON Converter & Formatter
 URL: https://www.developers.do/tools/yaml-json-converter
+Markdown: https://www.developers.do/tools/yaml-json-converter.md
 
 Convert between YAML and JSON, or format and validate standalone YAML
 
 #### CSV ↔ JSON Converter
 URL: https://www.developers.do/tools/csv-json-converter
+Markdown: https://www.developers.do/tools/csv-json-converter.md
 
 Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
 
 #### CSV Viewer / Table Explorer
 URL: https://www.developers.do/tools/csv-viewer
+Markdown: https://www.developers.do/tools/csv-viewer.md
 
 Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
 
 #### SQL Formatter
 URL: https://www.developers.do/tools/sql-formatter
+Markdown: https://www.developers.do/tools/sql-formatter.md
 
 Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 
+The SQL formatter restructures queries with consistent indentation and keyword casing. It supports generic SQL plus MySQL, MariaDB, PostgreSQL, SQLite, SQL Server T-SQL, and Oracle PL/SQL formatting rules. Queries are formatted in your browser.
+
+How to use:
+1. Paste one or more SQL statements and choose the closest database dialect.
+2. Select indentation, keyword case, and spacing preferences.
+3. Format the query, inspect any syntax error, and copy the resulting SQL.
+
+Formatting is not database validation: A formatter can identify some tokenization or syntax problems, but it does not connect to a database, resolve table names, check types, explain a query plan, or prove that a statement is safe to execute.
+
+Choose the correct dialect: Quoting, functions, procedural blocks, limit clauses, and vendor extensions differ across databases. Selecting the correct dialect improves formatting and reduces false errors for database-specific syntax.
+
+FAQs:
+- Q: Will formatting change what a query does?
+  A: The formatter is designed to change layout and keyword case, not query semantics. Always review generated output before running important statements.
+- Q: Does the tool execute my SQL?
+  A: No. It does not connect to a database or run queries.
+
 #### String Case Converter
 URL: https://www.developers.do/tools/string-case-converter
+Markdown: https://www.developers.do/tools/string-case-converter.md
 
 Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, title, and sentence case
 
 #### Text Statistics
 URL: https://www.developers.do/tools/text-statistics
+Markdown: https://www.developers.do/tools/text-statistics.md
 
 Live word, character, sentence, line, and paragraph counts with reading time and average length stats
 
 #### Line Sorter & Deduplicator
 URL: https://www.developers.do/tools/line-sorter-dedup
+Markdown: https://www.developers.do/tools/line-sorter-dedup.md
 
 Sort lines alphabetically, numerically, by length, with optional deduplication and trimming
 
 #### String Escape / Unescape
 URL: https://www.developers.do/tools/string-escape
+Markdown: https://www.developers.do/tools/string-escape.md
 
 Escape and unescape text for JSON, XML, CSV, regex, or POSIX shell contexts
 
 #### Whitespace Visualizer & Cleaner
 URL: https://www.developers.do/tools/whitespace-cleaner
+Markdown: https://www.developers.do/tools/whitespace-cleaner.md
 
 Spot invisible whitespace characters (tabs, NBSP, zero-width, trailing) and clean them with batch options
 
 #### HTML Entity Encoder / Decoder
 URL: https://www.developers.do/tools/html-entity-encoder
+Markdown: https://www.developers.do/tools/html-entity-encoder.md
 
 Encode text to HTML entities (named, decimal, hex) and decode entities back to characters
 
 #### Unicode Escape / Unescape
 URL: https://www.developers.do/tools/unicode-escape
+Markdown: https://www.developers.do/tools/unicode-escape.md
 
-Convert text to \\uXXXX and \\u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
+Convert text to \uXXXX and \u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
 
 #### Morse Code Translator
 URL: https://www.developers.do/tools/morse-code-translator
+Markdown: https://www.developers.do/tools/morse-code-translator.md
 
 Convert text to ITU-R M.1677-1 Morse code and back — supports letters, digits, common punctuation, and word breaks
 
@@ -257,28 +538,96 @@ Category URL: https://www.developers.do/tools/algorithms
 
 #### String Similarity
 URL: https://www.developers.do/tools/string-similarity
+Markdown: https://www.developers.do/tools/string-similarity.md
 
 Compare strings using Jaro-Winkler, Levenshtein, Dice, and Hamming algorithms
 
+Measures how alike two strings are, as a 0–100% score, using four classic algorithms: Jaro-Winkler, Levenshtein edit distance, Dice bigram coefficient, and Hamming distance. Pick an algorithm to read a plain-language description of its behavior, and compare the same pair across algorithms to understand their biases. Scores are color-coded from red (dissimilar) to green (near-identical).
+
+How to use:
+1. Enter the two strings to compare.
+2. Choose an algorithm — the note under the selector explains its strengths.
+3. Choose Compare to get the percentage score and bar.
+4. Re-run with a different algorithm to see how the same pair scores under a different definition of “similar”.
+
+Choosing the right algorithm: Jaro-Winkler excels at short strings like person or place names and boosts matches that share a prefix — great for deduplicating records. Levenshtein counts the minimum insertions, deletions, and substitutions between the strings — a solid general default. Dice compares two-character bigram overlap and tolerates word reordering in longer text. Hamming counts differing positions and only applies to equal-length strings like fixed-width codes.
+
+Edit distance as a similarity score: Raw Levenshtein output is a distance — a count of edits — which is hard to compare across strings of different lengths. This tool normalizes it to similarity = 1 − distance ÷ maximum length, so 100% always means identical and 0% means nothing in common, whichever algorithm you pick.
+
+Typical uses — and the limit: Fuzzy duplicate detection in imports and CRM data, “did you mean” suggestions, matching user input against known commands, and rough rename detection. For semantic similarity — “car” versus “automobile” — you need embeddings (see the Sentence Similarity tool); these algorithms compare characters, not meaning.
+
+FAQs:
+- Q: Which algorithm should I use for names?
+  A: Jaro-Winkler. It was designed for short strings and record linkage, and its prefix bonus matches how names typically vary (Jon versus John).
+- Q: Why does Hamming score 0 for different lengths?
+  A: Hamming distance is only defined for equal-length strings, so the tool reports 0 rather than a misleading number. Pad or align the strings first if your data is fixed-width.
+- Q: Is the comparison case-sensitive?
+  A: Yes — the algorithms compare exact characters. Lowercase both strings yourself if case should not matter.
+
+References: Jaro–Winkler distance (https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance), Levenshtein distance (https://en.wikipedia.org/wiki/Levenshtein_distance)
+
 #### Regex Tester
 URL: https://www.developers.do/tools/regex-tester
+Markdown: https://www.developers.do/tools/regex-tester.md
 
 Test regular expressions with match highlighting, capture groups, and string replacement
 
+The regex tester runs patterns with the JavaScript RegExp engine and updates matches as you edit. It highlights matched text, reports match indexes and capture groups, and can preview replacement output without sending the test string anywhere.
+
+How to use:
+1. Enter a pattern without surrounding slash delimiters.
+2. Enable the global, case-insensitive, multiline, or dotAll flags you need.
+3. Paste a test string and inspect highlighted matches, capture groups, or replacement output.
+
+Supported regular-expression flavor: Patterns use the JavaScript regular-expression syntax supported by your browser. A pattern copied from PCRE, Python, .NET, Java, or another engine may need changes because features and escaping rules differ between engines.
+
+Flags and replacement behavior: The g flag finds every match; i ignores case; m changes the behavior of line anchors; and s allows a dot to match newline characters. Replacement syntax follows JavaScript String.replace conventions, including numbered capture references such as $1.
+
+FAQs:
+- Q: Should I include / characters around the pattern?
+  A: No. Enter only the pattern body. Choose flags with the controls next to the pattern field.
+- Q: Why does a regex work in another language but fail here?
+  A: Regular-expression engines are not identical. Check whether the pattern uses engine-specific groups, flags, escapes, or lookaround behavior.
+
+References: MDN: JavaScript regular expressions (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions)
+
 #### Regex Library
 URL: https://www.developers.do/tools/regex-library
+Markdown: https://www.developers.do/tools/regex-library.md
 
 Browse and copy common regular expressions for validation, extraction, and text processing
 
 #### Number Base Converter
 URL: https://www.developers.do/tools/number-base-converter
+Markdown: https://www.developers.do/tools/number-base-converter.md
 
 Convert numbers between binary, octal, decimal, and hex with two's complement
 
 #### SemVer Comparator
 URL: https://www.developers.do/tools/semver-comparator
+Markdown: https://www.developers.do/tools/semver-comparator.md
 
 Compare, sort, and validate semantic version strings per SemVer 2.0.0 with prerelease and build metadata support
+
+The SemVer comparator parses version strings according to Semantic Versioning 2.0.0 and compares them by precedence. It handles release, prerelease, and build metadata for two-version comparisons and batch sorting of version lists. All parsing and comparison run in your browser.
+
+How to use:
+1. Enter two version strings (a leading "v" is optional) for a pairwise comparison.
+2. Inspect the parsed major.minor.patch, prerelease, and build fields for each version.
+3. For batch sorting, paste one version per line and review the sorted output.
+4. Invalid lines are reported separately so you can fix them and re-run the sort.
+
+Precedence follows SemVer 2.0.0 §11: Major, minor, and patch are compared numerically. A prerelease version has lower precedence than the same release. Prerelease identifiers are compared per-field: numeric identifiers are lower than alphanumeric identifiers, alphanumerics by ASCII sort, and a shorter prerelease list is lower when all shared identifiers are equal.
+
+Build metadata is ignored for precedence: Identifiers after the plus sign — for example, 1.0.0+build.42 — are not used when comparing versions. Two versions that differ only in build metadata are considered equal for precedence purposes.
+
+FAQs:
+- Q: Why does 1.0.0-alpha compare lower than 1.0.0?
+  A: Per SemVer 2.0.0, any prerelease version has lower precedence than its corresponding release. The prerelease identifier only adds qualification; it never raises precedence above the patch segment.
+- Q: Is "v" required before the version number?
+  A: No. The comparator accepts an optional leading v or V, such as "v1.2.3", but the prefix is stripped before parsing — it is not part of the SemVer 2.0.0 BNF itself.
+
+References: Semantic Versioning 2.0.0 (https://semver.org)
 
 ### Apps
 
@@ -286,8 +635,33 @@ Category URL: https://www.developers.do/tools/apps
 
 #### iOS App Lookup
 URL: https://www.developers.do/tools/ios-app-lookup
+Markdown: https://www.developers.do/tools/ios-app-lookup.md
 
 Look up iOS app metadata from the App Store using bundle ID
+
+Enter an iOS bundle ID — the reverse-DNS identifier like com.company.appname — and this tool queries Apple’s public iTunes Search API for the app’s current App Store metadata: icon, name, developer, seller, price, average rating and rating count, current version, release and update dates, file size, minimum iOS version, content rating, genres, supported languages, description, release notes, and screenshots. The raw JSON response is shown next to the formatted card for inspection or copying.
+
+How to use:
+1. Paste or type a bundle ID such as com.example.appname, then press Enter or choose Lookup App.
+2. Review the formatted card: icon, ratings, version history, file size, languages, and screenshots.
+3. Copy the raw JSON response if you need it for documentation or debugging.
+4. Click one of the popular-app chips to see what a complete result looks like.
+
+Bundle ID versus App Store ID: These are different identifiers. The bundle ID (com.company.app) is the reverse-DNS string you set in Xcode. The numeric App Store ID — the trackId, visible as id123456789 in an App Store URL — is assigned by Apple at publication. This tool searches by bundle ID and returns the numeric track ID in the result.
+
+Where to find a bundle ID: For your own apps: in Xcode under target settings, or in App Store Connect under App Information. For third-party apps: from an MDM inventory or a device management profile. Only apps currently published on the App Store resolve.
+
+The data comes straight from Apple: Results are whatever Apple returns from the iTunes Search API — the same feed behind App Store listings — so versions, prices, and ratings reflect the live storefront. TestFlight builds, enterprise apps, unlisted apps, and apps removed from sale are not returned.
+
+FAQs:
+- Q: Why was my app not found?
+  A: The usual causes: a typo in the bundle ID, or the app is not currently on the App Store — TestFlight, enterprise, and removed apps are excluded from the search API. Verify the ID in App Store Connect.
+- Q: Can I search by app name instead?
+  A: This tool looks up exact bundle IDs. For name-based discovery, use the App Store first, then come back with the bundle ID for the full metadata view.
+- Q: Is this an official Apple tool?
+  A: No. It is an independent interface over Apple’s public iTunes Search API, which requires no authentication or developer account.
+
+References: Apple: iTunes Search API (https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/)
 
 #### Agent Helper
 URL: https://agenthelper.developers.do
@@ -360,41 +734,95 @@ Category URL: https://www.developers.do/tools/generators
 
 #### Password Generator
 URL: https://www.developers.do/tools/password-generator
+Markdown: https://www.developers.do/tools/password-generator.md
 
 Generate secure random passwords
 
 #### UUID Generator
 URL: https://www.developers.do/tools/uuid-generator
+Markdown: https://www.developers.do/tools/uuid-generator.md
 
 Generate UUIDs across all RFC 9562 versions — nil, v1, v2, v3, v4, v5, v6, v7, and v8
 
+This generator creates Universally Unique IDentifiers across every version defined in RFC 9562: nil, v1, v2, v3, v4, v5, v6, v7, and v8. Time-based, name-based, random, and sortable variants are all supported, with optional namespace and name inputs for v3/v5 and local domain for v2. Generation uses the browser’s Web Crypto API and runs entirely in the current tab.
+
+How to use:
+1. Pick a version from nil through v8.
+2. For v3 and v5, select a namespace and provide a name — the same inputs always produce the same UUID.
+3. For v2, optionally enter a local identifier and domain.
+4. Choose how many to generate (1–50) and click Generate UUIDs.
+5. Copy any individual UUID, or use Copy All UUIDs to copy the whole list.
+
+Which version should I use?: v4 (fully random) is the safest default for general identifiers. v7 (Unix-epoch milliseconds + random) sorts lexically and is ideal for database indexes when you want time-ordered rows. v5 (SHA-1 name+namespace) and v3 (MD5 name+namespace) produce deterministic UUIDs for the same inputs — useful for content-addressed or idempotent flows.
+
+Version 6 versus version 1: Both v1 and v6 embed a Gregorian timestamp, but v6 reorders the timestamp so that lexical sort matches chronological order. This makes v6 friendlier than v1 for sorted indexes.
+
+Uniqueness and storage: Random UUID collisions are extraordinarily unlikely, but a database should still enforce a unique constraint when uniqueness is a correctness requirement. Store UUIDs in a native UUID or compact binary type when your database supports one.
+
+FAQs:
+- Q: Are these sequential UUIDs?
+  A: Only v1, v6, and v7 are time-based and therefore sortable. v4 is fully random and not sequential. v2, v3, v5, and v8 derive their bits from other inputs (local id, name+namespace hash, or vendor-specific data) and are not sortable by generation time.
+- Q: Are UUIDs suitable for passwords or API keys?
+  A: Use a purpose-built secret generator for credentials. UUIDs are identifiers and should not automatically be treated as authentication secrets.
+
+References: RFC 9562: Universally Unique IDentifiers (https://www.rfc-editor.org/rfc/rfc9562)
+
 #### Lorem Ipsum Generator
 URL: https://www.developers.do/tools/lorem-ipsum-generator
+Markdown: https://www.developers.do/tools/lorem-ipsum-generator.md
 
 Generate placeholder text for designs
 
 #### Random Number Generator
 URL: https://www.developers.do/tools/random-number-generator
+Markdown: https://www.developers.do/tools/random-number-generator.md
 
 Generate random numbers and see code samples in multiple languages
 
+Generates a random integer in your chosen range — both endpoints included — using the browser’s crypto.getRandomValues(), the same cryptographically secure randomness source used for keys and tokens, rather than Math.random(). Min and max swap automatically if you enter them backwards. Below the result, a ready-to-paste code sample shows how to generate the same range in TypeScript, JavaScript, C#, Swift, Kotlin, Go, or Rust, updating live as you change the bounds.
+
+How to use:
+1. Set the minimum and maximum values; both ends of the range are inclusive.
+2. Choose Generate Random Number and copy the result.
+3. Pick a language to see the equivalent code sample, which tracks your current range.
+
+Math.random() versus crypto.getRandomValues(): Math.random() is a fast pseudorandom generator seeded invisibly by the engine — fine for games and shuffles, unsuitable for security. crypto.getRandomValues() draws from the operating system’s CSPRNG and is appropriate for tokens, raffles, and anything an attacker might try to predict. This tool uses the latter.
+
+A note on perfect uniformity: Mapping a 32-bit random value onto an arbitrary range with modulo can introduce measurable bias when the range is enormous — a significant fraction of 2^32. For everyday ranges like dice, raffles, sampling, or load distribution, the skew is far below anything observable. If you need provable uniformity over huge ranges, use rejection sampling instead.
+
+Integers only, both ends included: The result is always a whole number, and min and max themselves are possible outcomes — a 1–6 range is a fair die. For floating-point values, scale an integer result or adapt the code samples, which use each language’s idiomatic random API.
+
+FAQs:
+- Q: Is this safe to use for security purposes?
+  A: The randomness source is the OS-level CSPRNG, so values are unpredictable. For passwords, keys, and tokens, prefer a dedicated generator — like the Password Generator here — that is designed for those formats.
+- Q: Can the range include negative numbers?
+  A: Yes. Min and max accept any integers, including negatives, and reversed input is swapped automatically.
+- Q: How do I reproduce this in my own code?
+  A: Copy the sample for your language below the result. Each sample generates an inclusive integer in exactly the range you configured, using that language’s standard random API.
+
+References: MDN: Crypto.getRandomValues() (https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)
+
 #### QR Code Generator
 URL: https://www.developers.do/tools/qr-code-generator
+Markdown: https://www.developers.do/tools/qr-code-generator.md
 
 Generate QR codes from text, URLs, or any data
 
 #### ULID Generator
 URL: https://www.developers.do/tools/ulid-generator
+Markdown: https://www.developers.do/tools/ulid-generator.md
 
 Generate ULIDs — 26-character lexicographically sortable identifiers (48-bit timestamp + 80-bit random) with optional monotonic mode
 
 #### Git Branch Name Generator
 URL: https://www.developers.do/tools/git-branch-name-generator
+Markdown: https://www.developers.do/tools/git-branch-name-generator.md
 
 Convert a feature description into a clean, git-safe branch name with optional prefix (feat, fix, chore, etc.) and ticket id. Includes copy-paste checkout and push commands
 
 #### ASCII Art Text Generator
 URL: https://www.developers.do/tools/ascii-art-generator
+Markdown: https://www.developers.do/tools/ascii-art-generator.md
 
 Convert text to ASCII art banner with built-in block, banner, and thin fonts — no external font files, works in any browser
 
@@ -404,53 +832,87 @@ Category URL: https://www.developers.do/tools/code-and-schemas
 
 #### JSON to TypeScript
 URL: https://www.developers.do/tools/json-to-typescript
+Markdown: https://www.developers.do/tools/json-to-typescript.md
 
 Convert JSON to TypeScript interfaces
 
 #### JSON to JSDoc
 URL: https://www.developers.do/tools/json-to-jsdoc
+Markdown: https://www.developers.do/tools/json-to-jsdoc.md
 
 Convert JSON to JSDoc type definitions
 
 #### JSON to C#
 URL: https://www.developers.do/tools/json-to-csharp
+Markdown: https://www.developers.do/tools/json-to-csharp.md
 
 Convert JSON to C# classes
 
 #### JSON to Swift
 URL: https://www.developers.do/tools/json-to-swift
+Markdown: https://www.developers.do/tools/json-to-swift.md
 
 Convert JSON to Swift structs
 
 #### JSON to Kotlin
 URL: https://www.developers.do/tools/json-to-kotlin
+Markdown: https://www.developers.do/tools/json-to-kotlin.md
 
 Convert JSON to Kotlin data classes
 
 #### JSON to Python
 URL: https://www.developers.do/tools/json-to-python
+Markdown: https://www.developers.do/tools/json-to-python.md
 
 Convert JSON to Python dataclasses or Pydantic models
 
 #### JSON to Go
 URL: https://www.developers.do/tools/json-to-go
+Markdown: https://www.developers.do/tools/json-to-go.md
 
 Convert JSON to Go structs
 
 #### JSON to Rust
 URL: https://www.developers.do/tools/json-to-rust
+Markdown: https://www.developers.do/tools/json-to-rust.md
 
 Convert JSON to Rust structs
 
 #### JSON Schema Validator & Generator
 URL: https://www.developers.do/tools/json-schema-validator
+Markdown: https://www.developers.do/tools/json-schema-validator.md
 
 Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema — supports multiple samples to detect optional fields
 
 #### Color Picker
 URL: https://www.developers.do/tools/color-picker
+Markdown: https://www.developers.do/tools/color-picker.md
 
 Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)
+
+Pick a color visually on the saturation/brightness field with a hue slider, or type a hex value directly — with or without the #, in 3- or 6-digit form. The tool instantly converts to RGB, HSL, HSV, and CMYK with one-click copy, and generates full harmony palettes from your pick: complementary, analogous, split-complementary, triadic, tetradic, monochromatic, tints, and shades, plus a ready-made web development scale. You can also search and browse curated palettes including Tailwind, Nord, Solarized, and Dracula.
+
+How to use:
+1. Drag on the gradient field for saturation and brightness; drag the hue slider for the base hue.
+2. Or type a hex value like 7c3aed — shorthand (#abc) and a missing # are handled automatically.
+3. Copy any format: HEX, RGB, HSL, HSV, or CMYK.
+4. Scroll the generated harmonies and curated palettes for variations and ready-made scales.
+
+Which format to use in CSS: HEX (#7c3aed) is compact and universal. rgb(124, 58, 237) is the same value with room for an alpha channel via rgb(124 58 237 / 0.5). hsl(262, 83%, 58%) is the easiest to adjust by hand — nudge lightness for hover states without touching the hue. CMYK is not a CSS color; it is included for print handoff.
+
+How the harmony palettes are built: Harmonies rotate the hue wheel by fixed angles: complementary adds 180°, analogous steps ±30°, triadic +120°, split-complementary ±150°, and tetradic +90° steps. Tints mix the color with white, shades with black, and monochromatic varies saturation and lightness at a fixed hue — the same math behind design-system color scales.
+
+Identifying a hex you found in the wild: Paste any value — say #7c3aed — to see exactly what it is (a violet, and incidentally Tailwind CSS’s violet-600) and to generate matching colors around it. Filtering the curated list by name is a fast way to grab a complete Tailwind, Nord, Solarized, or Dracula ramp.
+
+FAQs:
+- Q: What color is #7c3aed?
+  A: A medium-bright violet: rgb(124, 58, 237) or hsl(262, 83%, 58%). It is also the exact value of Tailwind CSS’s violet-600 utility class.
+- Q: Is the CMYK conversion exact?
+  A: No. It is a mathematical RGB-to-CMYK transform without an ICC profile, so treat it as an estimate. Production print values depend on paper, ink, and the profile your print shop specifies.
+- Q: Does the picker support transparency?
+  A: The picker works in opaque color space. Add alpha in CSS yourself — rgb(124 58 237 / 0.5) or an 8-digit hex like #7c3aed80 — after copying the base value.
+
+References: MDN: CSS <color> data type (https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
 
 ### Security
 
@@ -458,41 +920,68 @@ Category URL: https://www.developers.do/tools/security
 
 #### Secrets Scanner
 URL: https://www.developers.do/tools/secrets-scanner
+Markdown: https://www.developers.do/tools/secrets-scanner.md
 
 Scan text, logs, or configs for leaked keys and tokens
 
 #### JWT Decoder
 URL: https://www.developers.do/tools/jwt-decoder
+Markdown: https://www.developers.do/tools/jwt-decoder.md
 
 Decode and inspect JWT tokens
 
+This JWT decoder separates a three-part token into its Base64url-encoded header, payload, and signature segments. It displays JSON claims and converts common NumericDate claims such as exp, iat, and nbf into readable timestamps. Decoding is local to your browser.
+
+How to use:
+1. Paste the complete compact JWT, including both period separators.
+2. Select Decode to inspect the header, payload claims, and encoded signature.
+3. Use the decoded values for debugging only, then verify the original token in trusted server-side code.
+
+Decoding is not verification: Anyone can create or modify a decodable JWT. This page does not verify the cryptographic signature, issuer, audience, expiry policy, or key provenance. Never treat the displayed claims as trusted authorization data.
+
+JWTs are encoded, not necessarily encrypted: The header and payload of a typical signed JWT are readable by anyone who has the token. Do not place passwords, secrets, or unnecessary personal data in those claims.
+
+FAQs:
+- Q: Can this tool tell me whether a JWT is valid?
+  A: No. Validity requires signature verification with an appropriate trusted key plus checks for issuer, audience, time claims, and application policy.
+- Q: Does decoding change the token?
+  A: No. The decoder reads the three compact segments and presents their contents without modifying the pasted token.
+
+References: RFC 7519: JSON Web Token (https://www.rfc-editor.org/rfc/rfc7519)
+
 #### MD5 Hash
 URL: https://www.developers.do/tools/md5-generator
+Markdown: https://www.developers.do/tools/md5-generator.md
 
 Generate MD5 hashes from text
 
 #### SHA-1 Hash
 URL: https://www.developers.do/tools/sha1-generator
+Markdown: https://www.developers.do/tools/sha1-generator.md
 
 Generate SHA-1 hashes from text
 
 #### SHA-256/384/512 Hash
 URL: https://www.developers.do/tools/sha256-generator
+Markdown: https://www.developers.do/tools/sha256-generator.md
 
 Generate secure SHA-256, SHA-384, or SHA-512 hashes from text
 
 #### HMAC Generator
 URL: https://www.developers.do/tools/hmac-generator
+Markdown: https://www.developers.do/tools/hmac-generator.md
 
 Generate HMAC signatures with SHA-1, SHA-256, SHA-384, or SHA-512 — output as hex, base64, or base64url
 
 #### Clawdbot Security Scanner
 URL: https://www.developers.do/tools/clawdbot-security-scanner
+Markdown: https://www.developers.do/tools/clawdbot-security-scanner.md
 
 Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
 
 #### Certificate & CSR Decoder
 URL: https://www.developers.do/tools/csr-decoder
+Markdown: https://www.developers.do/tools/csr-decoder.md
 
 Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
 
@@ -502,31 +991,128 @@ Category URL: https://www.developers.do/tools/saml
 
 #### SAML Decoder
 URL: https://www.developers.do/tools/saml-decoder
+Markdown: https://www.developers.do/tools/saml-decoder.md
 
 Decode SAML Requests/Responses from Base64 to readable XML
 
+The SAML decoder converts Base64-encoded SAML Requests and Responses into readable XML. It can handle the optional DEFLATE encoding commonly used with HTTP-Redirect binding and extracts useful fields and assertion attributes for troubleshooting.
+
+How to use:
+1. Copy the SAMLRequest or SAMLResponse value, without the surrounding form field name.
+2. Paste it into the decoder and select Decode.
+3. Inspect the message type, issuer, destination, audience, timestamps, attributes, and decoded XML.
+
+Decoding is not signature verification: Readable XML is not proof that a SAML message is authentic. A service provider must verify the XML signature with a trusted IdP certificate and enforce destination, recipient, audience, InResponseTo, time, and replay protections.
+
+Treat assertions as sensitive: SAML assertions can contain names, email addresses, group membership, session identifiers, and other security-sensitive attributes. This tool processes input locally, but you should still avoid sharing decoded production assertions unnecessarily.
+
+FAQs:
+- Q: Why does a SAMLRequest sometimes need decompression?
+  A: HTTP-Redirect binding commonly DEFLATE-compresses the XML before Base64 and URL encoding. HTTP-POST binding generally sends Base64-encoded XML without DEFLATE.
+- Q: Can this page prove that a SAML response is safe?
+  A: No. Use a SAML library configured with trusted metadata and strict validation rules for authentication decisions.
+
+References: OASIS SAML 2.0 technical overview (https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html)
+
 #### SAML Metadata Parser
 URL: https://www.developers.do/tools/saml-metadata-parser
+Markdown: https://www.developers.do/tools/saml-metadata-parser.md
 
 Parse SAML Metadata XML and extract IdP/SP configuration
 
+Paste a SAML EntityDescriptor — the metadata XML published by an Identity Provider or Service Provider — and this parser extracts everything needed for SSO configuration: the entityID, whether it describes an IdP or SP, signing requirements (AuthnRequestsSigned, WantAuthnRequestsSigned), all SSO, SLO, and ACS endpoints with their bindings and indexes, embedded X.509 certificates with fingerprints and expiry status, supported NameID formats, requested attributes, and organization details. Sample IdP and SP documents are included. Parsing happens in your browser; the XML is never uploaded.
+
+How to use:
+1. Paste the metadata XML — the document rooted at <EntityDescriptor>.
+2. Choose Parse, or load the Sample IdP / Sample SP first to see a complete result.
+3. Review the endpoint list: each entry shows its type, binding (HTTP-Redirect, HTTP-POST, and so on), index, and default flag.
+4. Check the certificate cards for expiry badges, and copy a PEM when you need to configure a trust store.
+
+IdP metadata versus SP metadata: An IdP descriptor (IDPSSODescriptor) lists the SingleSignOnService endpoints your app redirects users to, plus the IdP’s signing certificate. An SP descriptor (SPSSODescriptor) lists AssertionConsumerService URLs — where the IdP posts responses — and declares whether the SP signs its AuthnRequests. Mixing these up is a classic first-integration mistake.
+
+Why metadata often shows two certificates: During certificate rollover, an entity publishes both the old and new signing certificates so partners can switch without downtime. Both appear here with their own fingerprints and expiry dates. An expired old certificate lingering in metadata is common after a cutover and should be removed.
+
+Parsing is not signature verification: This tool checks that the XML is well-formed and extracts its fields, which catches most configuration mistakes — that structural check is what most people mean by a SAML metadata validator. It does not verify an XML signature on signed metadata; production trust must come from fetching metadata over a trusted channel or validating its signature in your SAML library.
+
+FAQs:
+- Q: Where do I get my IdP’s metadata?
+  A: Identity providers publish it at a well-known URL — Okta, Microsoft Entra ID, Google Workspace, and ADFS all expose it in their SSO configuration screens. Download the XML and paste it here instead of copying values field by field.
+- Q: What is the entityID used for?
+  A: It is the unique name of the IdP or SP, usually a URL or URN. The IdP puts the SP’s entityID in the Audience restriction, and the SP trusts assertions whose Issuer matches the IdP’s entityID. A mismatch is a common cause of “invalid audience” errors.
+- Q: Can I paste a metadata URL instead of XML?
+  A: This tool parses the XML document itself. Download the metadata from its URL (it is a public endpoint) and paste the contents here.
+
+References: OASIS: SAML 2.0 Metadata specification (https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf)
+
 #### SAML Certificate Inspector
 URL: https://www.developers.do/tools/saml-cert-inspector
+Markdown: https://www.developers.do/tools/saml-cert-inspector.md
 
 Inspect X.509 certificates from SAML metadata, responses, or PEM
 
+Paste certificate material in almost any wrapper — PEM text, Base64 DER, a full SAML metadata document, or a SAML response — and the inspector auto-detects the format and extracts every X.509 certificate it contains. For each one you get the subject and common name, issuer, serial number, validity window with an expiry badge that turns amber inside 30 days and red after expiry, signature algorithm, public key algorithm and size, key usage and extended key usage, subject alternative names, the CA flag, and SHA-1 / SHA-256 fingerprints, with one-click PEM copy.
+
+How to use:
+1. Paste the certificate material — a PEM block, Base64 blob, metadata XML, or response XML.
+2. Choose Inspect; the detected format and certificate count appear above the results.
+3. Read the expiry badge first: Valid, Expiring Soon (under 30 days), or Expired.
+4. Copy the SHA-256 fingerprint or PEM when configuring trust in your SAML stack.
+
+Expired SAML certificates are a top SSO outage cause: Unlike public HTTPS, nothing warns you when a SAML signing certificate approaches its notAfter date — logins simply start failing. Check the expiry badge before every change window, and publish the replacement certificate in metadata alongside the old one during rollover so partners can switch cleanly.
+
+Self-signed is normal in SAML: SAML trust is established by exchanging metadata out of band, not by public CA chains, so most SAML signing certificates are self-signed. Seeing Issuer equal to Subject is expected, not a warning sign. What matters is that the fingerprint in your configuration matches the one shown here.
+
+Signing versus encryption keys: In metadata, a KeyDescriptor with use="signing" protects assertion authenticity, while use="encryption" protects confidentiality. A KeyDescriptor with no use attribute serves both. The key usage and extended key usage fields shown here tell you what the certificate itself permits.
+
+FAQs:
+- Q: Which fingerprint should I record?
+  A: SHA-256. SHA-1 is shown for legacy platforms that still require it, but SHA-1 collision attacks make it unsuitable for new configurations.
+- Q: My metadata has two certificates — which one is active?
+  A: Usually both are trusted during a rollover window; compare the Not Before dates to see which is newer. IdPs sign with one key at a time, so partners must trust all published signing certificates during the overlap.
+- Q: Can this verify a SAML response signature?
+  A: No. It extracts and describes certificates; signature verification requires your SAML library with configured trust. For response-level debugging, use the SAML Response Validator.
+
+References: RFC 5280: Internet X.509 PKI profile (https://www.rfc-editor.org/rfc/rfc5280)
+
 #### SAML Assertion Builder
 URL: https://www.developers.do/tools/saml-builder
+Markdown: https://www.developers.do/tools/saml-builder.md
 
 Generate test SAML Responses, AuthnRequests, and LogoutRequests
 
+Builds test SAML messages from form fields instead of hand-editing XML: full SAML Responses, AuthnRequests, and LogoutRequests. Set the issuer, destination, NameID and its format (email, persistent, transient, unspecified), audience, ACS URL, InResponseTo, and authentication context; attach custom attributes; then export as raw XML, Base64 for HTTP-POST binding, or Base64 + DEFLATE for HTTP-Redirect binding. Generated assertions are unsigned and intended for development, testing, and learning only.
+
+How to use:
+1. Pick a template: SAML Response, AuthnRequest, or LogoutRequest.
+2. Fill in issuer, destination, NameID, and — for responses — audience, ACS URL, and attributes.
+3. Adjust the timing controls to reproduce clock-skew or expiry scenarios.
+4. Choose an output format and Generate: raw XML to read, Base64 for POST binding, or Base64 + DEFLATE for Redirect binding.
+
+POST versus Redirect encoding: HTTP-POST binding sends the XML Base64-encoded in an HTML form field, with no compression. HTTP-Redirect binding must DEFLATE-compress the XML first, then Base64, then URL-encode it into the query string. Choosing the wrong transform for your binding is a frequent cause of “malformed request” errors at the receiving end.
+
+Why the timing fields matter: NotBefore and NotOnOrAfter define the validity window; SessionNotOnOrAfter bounds the session. Real IdPs set NotBefore slightly in the past to tolerate clock skew between servers — a response valid only “from now” can fail against an SP whose clock is 60 seconds behind. Reproduce those conditions here on purpose.
+
+Unsigned by design: Signing requires a private key and a partner that trusts the matching certificate. This builder deliberately produces unsigned assertions: use it to test parsing, attribute mapping, and error handling — never to authenticate. A correctly configured service provider must reject these messages.
+
+FAQs:
+- Q: Can I sign the assertion here?
+  A: No — by design. For signed test assertions, use your identity provider’s preview feature or a SAML library in your own codebase with a throwaway key pair.
+- Q: Will my application accept what this generates?
+  A: Only if its SAML stack has signature verification disabled, which should only ever happen on a local or throwaway test environment.
+- Q: What should I put in InResponseTo?
+  A: The ID of the AuthnRequest the response answers. For unsolicited (IdP-initiated) responses, leave it empty — that is exactly what IdP-initiated SSO means in practice.
+
+References: OASIS: SAML 2.0 Core specification (https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf)
+
 #### SAML Metadata Generator
 URL: https://www.developers.do/tools/saml-metadata-generator
+Markdown: https://www.developers.do/tools/saml-metadata-generator.md
 
 Generate SAML 2.0 EntityDescriptor metadata XML for SPs and IdPs
 
 #### SAML Response Validator
 URL: https://www.developers.do/tools/saml-validator
+Markdown: https://www.developers.do/tools/saml-validator.md
 
 Debug a SAML Response and find out why SSO login is failing
 
@@ -536,26 +1122,77 @@ Category URL: https://www.developers.do/tools/networking
 
 #### API Tester
 URL: https://www.developers.do/tools/api-tester
+Markdown: https://www.developers.do/tools/api-tester.md
 
 Test and view API responses
 
 #### HTTP Status Code Reference
 URL: https://www.developers.do/tools/http-status-codes
+Markdown: https://www.developers.do/tools/http-status-codes.md
 
 Searchable reference of all HTTP status codes with descriptions and use cases
 
+A searchable reference of HTTP response status codes across all five classes — 1xx informational, 2xx success, 3xx redirection, 4xx client errors, and 5xx server errors. Search by code, name, or concept; filter by class with the tab counts; expand any card for a longer explanation and typical use cases. Deprecated codes are flagged so you do not build on them.
+
+How to use:
+1. Search by number (404), name (Not Found), or concept (redirect, rate limit).
+2. Filter by class with the 1xx–5xx tabs, which show how many codes each class contains.
+3. Expand a card for the deeper explanation, and copy the code with one click.
+
+The five classes in one line each: 1xx: the request was received, keep waiting — rarely seen directly. 2xx: success — 200 OK, 201 Created, 204 No Content. 3xx: the resource lives elsewhere — follow the Location header. 4xx: the client sent something wrong — fix the request, do not retry as-is. 5xx: the server failed — retrying later may succeed.
+
+The redirects developers mix up: 301 and 308 are permanent; 302, 303, and 307 are temporary. 307 and 308 guarantee the method and body are preserved across the redirect; with 301 and 302, browsers historically rewrote POST to GET. For APIs, prefer 307 or 308 when method preservation matters. Search engines transfer ranking signals on 301 but not on 302.
+
+Debugging staples: 401 means unauthenticated — no valid credentials, look for a WWW-Authenticate header; 403 means authenticated but not allowed. 404 is “not here”, 410 is “gone forever”. 429 is rate limiting — honor Retry-After. On the server side: 502 is a bad upstream response, 503 is temporary overload or maintenance, 504 is an upstream timeout.
+
+FAQs:
+- Q: What is the difference between 401 and 403?
+  A: 401 Unauthorized means the request lacks valid authentication — the client should sign in or send credentials. 403 Forbidden means the server knows who you are and still refuses; re-authenticating will not help.
+- Q: Is 418 a real status code?
+  A: Yes — “I’m a teapot” comes from RFC 2324, an April Fools’ protocol from 1998. It was never meant for real use and is effectively reserved by tradition, so do not use it for actual errors.
+- Q: Which code should a successful API delete return?
+  A: 204 No Content is the common choice when nothing is returned; 200 OK with a small body is also fine. Both are 2xx, so clients treat either as success.
+
+References: MDN: HTTP response status codes (https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status), RFC 9110: HTTP Semantics (https://www.rfc-editor.org/rfc/rfc9110)
+
 #### MIME Type Lookup
 URL: https://www.developers.do/tools/mime-type-lookup
+Markdown: https://www.developers.do/tools/mime-type-lookup.md
 
 Search common MIME types by file extension, MIME string, or category — covers images, video, audio, archives, documents, code, fonts, and data formats
 
+A searchable reference of 131 common MIME types (media types). Search by file extension (.png, .woff2), by MIME string (image/jpeg), or filter by category — images, video, audio, archives, documents, code, fonts, text, data, and application. Each row shows known extension aliases, a short practical note, and a one-click copy of the exact Content-Type value.
+
+How to use:
+1. Type an extension, a MIME type, or a keyword into the search box.
+2. Narrow the results with the category pills, which show how many entries each category holds.
+3. Click the copy button on any row to copy the exact MIME string for your header or server config.
+
+MIME type versus file extension: An extension is just a filename hint; the MIME type is what a server actually declares in the Content-Type header, and browsers honor the header over the extension. A .jpg served as text/plain will not render as an image. When the two disagree, the header wins.
+
+When the wrong type breaks things: WebAssembly modules need application/wasm for streaming compilation, web fonts need font/woff2 to load under strict policies, and JSON APIs should send application/json so clients parse instead of display. Unknown binary content falls back to application/octet-stream, which browsers download instead of opening.
+
+Use nosniff deliberately: When a response lacks a Content-Type, browsers guess — historically a source of security bugs. Sending X-Content-Type-Options: nosniff disables that guessing, which makes serving the correct type from this table mandatory rather than optional.
+
+FAQs:
+- Q: What MIME type forces a file download?
+  A: application/octet-stream is the generic binary type; browsers save it instead of displaying it. Combine it with a Content-Disposition: attachment header to suggest a filename.
+- Q: Is there an official list of MIME types?
+  A: Yes. IANA maintains the canonical media type registry. This table covers the commonly used subset developers actually look up, with aliases and notes.
+- Q: What is the correct MIME type for JSON?
+  A: application/json, per RFC 8259. The legacy text/json is obsolete and some strict clients reject it.
+
+References: IANA media type registry (https://www.iana.org/assignments/media-types/media-types.xhtml), MDN: MIME types (https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types)
+
 #### Common Port Number Reference
 URL: https://www.developers.do/tools/port-reference
+Markdown: https://www.developers.do/tools/port-reference.md
 
 Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
 
 #### CIDR / Subnet Calculator
 URL: https://www.developers.do/tools/cidr-calculator
+Markdown: https://www.developers.do/tools/cidr-calculator.md
 
 IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
 

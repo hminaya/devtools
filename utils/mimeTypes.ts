@@ -160,7 +160,6 @@ export const MIME_ENTRIES: MIMEEntry[] = [
   { extension: 'graphql', mimeType: 'application/graphql', category: 'Code', aliases: ['gql'] },
   { extension: 'proto', mimeType: 'application/x-protobuf', category: 'Code' },
   { extension: 'wasm', mimeType: 'application/wasm',     category: 'Code' },
-  { extension: 'java', mimeType: 'text/x-java',            category: 'Code' },
 
   // ─── Application / Data ───
   { extension: 'bin',  mimeType: 'application/octet-stream', category: 'Application', aliases: ['dat'] },
@@ -174,11 +173,9 @@ export const MIME_ENTRIES: MIMEEntry[] = [
   { extension: 'rpm',  mimeType: 'application/x-rpm',        category: 'Application' },
   { extension: 'pkg',  mimeType: 'application/x-newton-compatible-pkg', category: 'Application' },
   { extension: 'torrent', mimeType: 'application/x-bittorrent', category: 'Application' },
-  { extension: 'wasm', mimeType: 'application/wasm',  category: 'Application' },
   { extension: 'cbor', mimeType: 'application/cbor', category: 'Data' },
   { extension: 'msgpack', mimeType: 'application/x-msgpack', category: 'Data' },
   { extension: 'bson', mimeType: 'application/bson', category: 'Data' },
-  { extension: 'xml',  mimeType: 'application/xml',    category: 'Data', description: 'Also for structured data' },
   { extension: 'xhtml', mimeType: 'application/xhtml+xml', category: 'Application' },
 ];
 

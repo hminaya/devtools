@@ -123,6 +123,30 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
           },
         ],
       },
+      ...(seoContent
+        ? [
+            {
+              '@type': 'HowTo',
+              name: `How to use the ${title.toLowerCase()}`,
+              step: seoContent.steps.map((step, index) => ({
+                '@type': 'HowToStep',
+                position: index + 1,
+                text: step,
+              })),
+            },
+            {
+              '@type': 'FAQPage',
+              mainEntity: seoContent.faqs.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.answer,
+                },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -130,7 +154,7 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
     <div className="px-4 py-5 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <div className={fullWidth ? 'mx-auto max-w-[1500px]' : 'mx-auto max-w-5xl'}>
         {currentTool && categorySlug && (
@@ -186,23 +210,23 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
         </div>
 
         {seoContent && (
-          <article className="mx-auto mt-12 max-w-4xl space-y-10 border-t border-slate-200 py-10">
+          <article className="mx-auto mt-12 max-w-4xl space-y-8 border-t border-slate-200 py-8">
             <section aria-labelledby="about-this-tool-heading">
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-600">Guide</p>
-              <h2 id="about-this-tool-heading" className="text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+              <h2 id="about-this-tool-heading" className="text-lg font-bold tracking-tight text-slate-950">
                 About this {title.toLowerCase()}
               </h2>
-              <p className="mt-4 text-base leading-8 text-slate-600">{seoContent.overview}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{seoContent.overview}</p>
             </section>
 
             <section aria-labelledby="how-to-use-heading">
-              <h2 id="how-to-use-heading" className="text-2xl font-black tracking-tight text-slate-950">
+              <h2 id="how-to-use-heading" className="text-lg font-bold tracking-tight text-slate-950">
                 How to use the {title.toLowerCase()}
               </h2>
-              <ol className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+              <ol className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
                 {seoContent.steps.map((step, index) => (
-                  <li key={step} className="flex gap-3 py-4 leading-7 text-slate-600">
-                    <span className="w-5 shrink-0 text-sm font-bold text-slate-400">{index + 1}.</span>
+                  <li key={step} className="flex gap-3 py-3 text-sm leading-6 text-slate-600">
+                    <span className="w-5 shrink-0 text-xs font-bold leading-6 text-slate-400">{index + 1}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
@@ -210,35 +234,35 @@ function ToolLayout({ title, description, children, fullWidth = false }: ToolLay
             </section>
 
             <section aria-labelledby="important-details-heading">
-              <h2 id="important-details-heading" className="text-2xl font-black tracking-tight text-slate-950">
+              <h2 id="important-details-heading" className="text-lg font-bold tracking-tight text-slate-950">
                 Important details
               </h2>
-              <div className="mt-5 grid gap-8 md:grid-cols-2">
+              <div className="mt-4 grid gap-6 md:grid-cols-2">
                 {seoContent.details.map((detail) => (
                   <div key={detail.title}>
-                    <h3 className="text-lg font-bold text-slate-950">{detail.title}</h3>
-                    <p className="mt-2 leading-7 text-slate-600">{detail.body}</p>
+                    <h3 className="text-sm font-bold text-slate-950">{detail.title}</h3>
+                    <p className="mt-1.5 text-sm leading-6 text-slate-600">{detail.body}</p>
                   </div>
                 ))}
               </div>
             </section>
 
             <section aria-labelledby="frequently-asked-questions-heading">
-              <h2 id="frequently-asked-questions-heading" className="text-2xl font-black tracking-tight text-slate-950">
+              <h2 id="frequently-asked-questions-heading" className="text-lg font-bold tracking-tight text-slate-950">
                 Frequently asked questions
               </h2>
-              <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+              <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
                 {seoContent.faqs.map((faq) => (
-                  <div key={faq.question} className="py-5">
-                    <h3 className="font-bold text-slate-950">{faq.question}</h3>
-                    <p className="mt-2 leading-7 text-slate-600">{faq.answer}</p>
+                  <div key={faq.question} className="py-4">
+                    <h3 className="text-sm font-bold text-slate-950">{faq.question}</h3>
+                    <p className="mt-1.5 text-sm leading-6 text-slate-600">{faq.answer}</p>
                   </div>
                 ))}
               </div>
             </section>
 
             {seoContent.references && seoContent.references.length > 0 && (
-              <p className="border-t border-slate-200 pt-5 text-sm text-slate-600">
+              <p className="border-t border-slate-200 pt-4 text-xs text-slate-500">
                 References:{' '}
                 {seoContent.references.map((reference, index) => (
                   <span key={reference.href}>

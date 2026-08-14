@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import UuidGenerator from '../../../components/tools/UuidGenerator/UuidGenerator';
 
 export const metadata: Metadata = {
-  title: 'UUID Generator - nil, v1, v2, v3, v4, v5, v6, v7, v8 (RFC 9562)',
+  title: 'UUID Generator - All RFC 9562 Versions (nil, v1–v8), Free Online',
   description: 'Generate UUIDs across all RFC 9562 versions: nil, time-based v1/v6/v7, DCE security v2, MD5/SHA name-based v3/v5, random v4, and vendor v8. Batch generate up to 50 at a time.',
   alternates: {
     canonical: '/tools/uuid-generator',

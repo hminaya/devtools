@@ -5,7 +5,8 @@
 # DevTools
 
 A collection of 100+ essential developer tools built with privacy in mind.
-No backend. Tool data never leaves your browser. Anonymized analytics help improve the site.
+No backend. Tool data never reaches a developers.do server. Anonymized analytics help improve the site.
+The few tools that exist to call an external API — iOS App Lookup and API Tester — send input from your browser directly to that third party.
 
 ![DevTools Dashboard Screenshot](./docs/dashboard-screenshot.png)
 
@@ -144,13 +145,15 @@ This site supports the [llms.txt](https://llmstxt.org/) standard for AI discover
 
 - [`/llms.txt`](https://www.developers.do/llms.txt) - Concise overview of all tools
 - [`/llms-full.txt`](https://www.developers.do/llms-full.txt) - Detailed documentation for AI consumption
+- Per-tool markdown mirrors at `/tools/<id>.md` (e.g. [`/tools/json-prettifier.md`](https://www.developers.do/tools/json-prettifier.md)) - full guide, FAQs, and references for every tool hosted on this site, linked from `llms.txt`
+- `Link` response headers advertising `llms.txt` and `llms-full.txt` on every page (via `vercel.json` for Vercel, `nginx.conf` for self-hosting)
 
 ## Prerequisites
 
 Ensure you have the following installed on your system:
 
 *   **Git:** For cloning the repository.
-*   **Bun:** The JavaScript runtime and package manager.
+*   **Node.js 20 or later:** The JavaScript runtime. npm ships with it and is the package manager used here.
 
 ## Getting Started
 
@@ -166,13 +169,13 @@ cd devtools
 ### 2. Install Dependencies
 
 ```bash
-bun install
+npm install
 ```
 
 ### 3. Run the Application
 
 ```bash
-bun run dev
+npm run dev
 ```
 
 The application will typically be accessible at `http://localhost:3000` in your web browser.
@@ -182,7 +185,7 @@ The application will typically be accessible at `http://localhost:3000` in your 
 By default, the application runs on port `3000`, which is hardcoded in the `dev` script. To use a different port, run the dev server directly:
 
 ```bash
-bunx next dev -p 8080
+npx next dev -p 8080
 ```
 
 Alternatively, edit the `dev` script in `package.json` to change the port permanently.
@@ -191,16 +194,16 @@ Alternatively, edit the `dev` script in `package.json` to change the port perman
 
 In the project directory, you can run:
 
-*   `bun run dev`: Runs the app in development mode.
-*   `bun run build`: Builds the application for production.
-*   `bun run start`: Starts the production server (after building).
-*   `bun run lint`: Type-checks the codebase with TypeScript.
-*   `bun run generate:og`: Generates Open Graph images for tools.
-*   `bun run generate:llms`: Regenerates the `/llms.txt` and `/llms-full.txt` files.
+*   `npm run dev`: Runs the app in development mode.
+*   `npm run build`: Builds the application for production. Runs `generate:llms` first via the `prebuild` hook.
+*   `npm run start`: Starts the production server (after building).
+*   `npm run lint`: Type-checks the codebase with TypeScript.
+*   `npm run generate:og`: Generates Open Graph images for tools.
+*   `npm run generate:llms`: Regenerates the `/llms.txt` and `/llms-full.txt` files plus per-tool markdown mirrors in `/public/tools/`.
 
 ## Docker
 
-You can build and run the app locally using Docker — no Bun or Node.js installation required.
+You can build and run the app locally using Docker — no Node.js installation required.
 
 ### Build the image
 
@@ -220,8 +223,8 @@ The app will be available at `http://localhost:8080`.
 
 The Docker build uses a two-stage process:
 
-1. **Builder** — installs dependencies with Bun and runs `bun run build`, producing static HTML/CSS/JS in the `out/` directory.
-2. **Runner** — copies the static files into an nginx image for serving. No Node.js or Bun is needed at runtime.
+1. **Builder** — installs dependencies with `npm ci` and runs `npm run build`, producing static HTML/CSS/JS in the `out/` directory.
+2. **Runner** — copies the static files into an nginx image for serving. No Node.js is needed at runtime.
 
 ## License
 

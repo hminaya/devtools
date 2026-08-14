@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import HttpStatusCodes from '../../../components/tools/HttpStatusCodes/HttpStatusCodes';
 
 export const metadata: Metadata = {
-  title: 'HTTP Status Code Reference - All HTTP Codes Explained | DevTools',
-  description: 'Complete searchable reference for all HTTP status codes (1xx–5xx) with descriptions, use cases, and examples. Filter by category or search by code number.',
+  title: 'HTTP Status Codes - Complete Searchable Reference (1xx–5xx)',
+  description: 'Searchable reference of every HTTP status code (1xx–5xx): descriptions, use cases, and debugging tips. Filter by class or search by code. Free, no signup.',
   alternates: {
     canonical: '/tools/http-status-codes',
   },

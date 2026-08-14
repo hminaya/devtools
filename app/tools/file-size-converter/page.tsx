@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import FileSizeConverter from '../../../components/tools/FileSizeConverter/FileSizeConverter';
 
 export const metadata: Metadata = {
-  title: 'File Size Converter - Bytes, KB, MB, GB, TB, KiB, MiB & GiB',
-  description: 'Convert file sizes between bytes, KB, MB, GB, TB and binary units like KiB, MiB, GiB, and TiB. Compare decimal SI and binary IEC storage values instantly.',
+  title: 'File Size Converter - Bytes, KB, MB, GB, TB, KiB & MiB (Free)',
+  description: 'Convert between bytes, KB, MB, GB, TB and binary KiB, MiB, GiB, TiB instantly. See why your 1 TB drive shows 931 GB. Free, no signup.',
   alternates: {
     canonical: '/tools/file-size-converter',
   },

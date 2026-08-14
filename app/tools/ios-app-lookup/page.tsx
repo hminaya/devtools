@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import IosAppLookup from '../../../components/tools/IosAppLookup/IosAppLookup';
 
 export const metadata: Metadata = {
-  title: 'iOS App Lookup - Find App Store Metadata by Bundle ID',
-  description: 'Look up an iOS app by bundle ID and view App Store metadata, version, ratings, file size, seller, genres, release dates, and raw Apple Search API JSON.',
+  title: 'iOS App Lookup by Bundle ID - App Store Metadata Viewer (Free)',
+  description: 'Free App Store lookup by bundle ID: view icon, ratings, version, file size, languages, screenshots, and raw iTunes Search API JSON. No login required.',
   alternates: {
     canonical: '/tools/ios-app-lookup',
   },

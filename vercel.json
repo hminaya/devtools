@@ -1,26 +1,37 @@
 {
-  "buildCommand": "bun run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/",
+      "source": "/tools/(.*)\\.md",
       "headers": [
         {
-          "key": "Link",
-          "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\""
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
         }
       ]
     },
     {
+      "source": "/",
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\"" }]
+    },
+    {
       "source": "/index.html",
-      "headers": [
-        {
-          "key": "Link",
-          "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\""
-        }
-      ]
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\"" }]
+    },
+    {
+      "source": "/privacy-policy",
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\"" }]
+    },
+    {
+      "source": "/terms-of-use",
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\"" }]
+    },
+    {
+      "source": "/tools/(.*)",
+      "headers": [{ "key": "Link", "value": "</llms.txt>; rel=\"service-desc\"; type=\"text/plain\", </llms-full.txt>; rel=\"service-doc describedby\"; type=\"text/plain\", </privacy-policy>; rel=\"privacy-policy\"; type=\"text/html\", </terms-of-use>; rel=\"terms-of-service\"; type=\"text/html\"" }]
     }
   ]
 }
