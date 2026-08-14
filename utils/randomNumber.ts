@@ -26,13 +26,19 @@ export function generateRandomNumber(min: number, max: number): number {
 
   const range = max - min + 1;
   const array = new Uint32Array(1);
-  crypto.getRandomValues(array);
 
-  // Use modulo to get a number in the range
-  const randomValue = array[0];
-  if (randomValue === undefined) {
-    throw new Error('Failed to generate random value');
-  }
+  // Reject draws from the final partial bucket, otherwise the low end of the
+  // range would come up more often than the high end.
+  const limit = Math.floor(2 ** 32 / range) * range;
+  let randomValue: number | undefined;
+  do {
+    crypto.getRandomValues(array);
+    randomValue = array[0];
+    if (randomValue === undefined) {
+      throw new Error('Failed to generate random value');
+    }
+  } while (randomValue >= limit);
+
   return min + (randomValue % range);
 }
 
@@ -46,7 +52,16 @@ export function generateCodeTemplate(
 ): string {
   const templates: Record<Language, (min: number, max: number) => string> = {
     typescript: (min, max) => `function getRandomNumber(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const range = max - min + 1;
+  // Reject the final partial bucket so every value in the range is equally likely.
+  const limit = Math.floor(2 ** 32 / range) * range;
+  const bytes = new Uint32Array(1);
+  let value: number;
+  do {
+    crypto.getRandomValues(bytes);
+    value = bytes[0]!;
+  } while (value >= limit);
+  return min + (value % range);
 }
 
 // Usage: Generate a random number between ${min} and ${max}
@@ -54,7 +69,16 @@ const randomNumber = getRandomNumber(${min}, ${max});
 console.log(randomNumber);`,
 
     javascript: (min, max) => `function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const range = max - min + 1;
+  // Reject the final partial bucket so every value in the range is equally likely.
+  const limit = Math.floor(2 ** 32 / range) * range;
+  const bytes = new Uint32Array(1);
+  let value;
+  do {
+    crypto.getRandomValues(bytes);
+    value = bytes[0];
+  } while (value >= limit);
+  return min + (value % range);
 }
 
 // Usage: Generate a random number between ${min} and ${max}
@@ -62,11 +86,13 @@ const randomNumber = getRandomNumber(${min}, ${max});
 console.log(randomNumber);`,
 
     csharp: (min, max) => `using System;
+using System.Security.Cryptography;
 
+// RandomNumberGenerator.GetInt32 is the CSPRNG. System.Random is not and must
+// not be used where the value has to be unguessable.
 int GetRandomNumber(int min, int max)
 {
-    Random random = new Random();
-    return random.Next(min, max + 1);
+    return RandomNumberGenerator.GetInt32(min, max + 1);
 }
 
 // Usage: Generate a random number between ${min} and ${max}
@@ -74,19 +100,34 @@ int randomNumber = GetRandomNumber(${min}, ${max});
 Console.WriteLine(randomNumber);`,
 
     swift: (min, max) => `import Foundation
+import Security
 
 func getRandomNumber(min: Int, max: Int) -> Int {
-    return Int.random(in: min...max)
+    let range = UInt32(max - min + 1)
+    // Reject the final partial bucket so every value in the range is equally likely.
+    let limit = UInt32.max - (UInt32.max % range)
+    var value: UInt32 = 0
+    repeat {
+        let status = SecRandomCopyBytes(kSecRandomDefault, MemoryLayout<UInt32>.size, &value)
+        guard status == errSecSuccess else {
+            fatalError("Unable to read secure random bytes")
+        }
+    } while value >= limit
+    return min + Int(value % range)
 }
 
 // Usage: Generate a random number between ${min} and ${max}
 let randomNumber = getRandomNumber(min: ${min}, max: ${max})
 print(randomNumber)`,
 
-    kotlin: (min, max) => `import kotlin.random.Random
+    kotlin: (min, max) => `import java.security.SecureRandom
+
+// SecureRandom is the CSPRNG. kotlin.random.Random is not and must not be used
+// where the value has to be unguessable.
+private val secureRandom = SecureRandom()
 
 fun getRandomNumber(min: Int, max: Int): Int {
-    return Random.nextInt(min, max + 1)
+    return min + secureRandom.nextInt(max - min + 1)
 }
 
 // Usage: Generate a random number between ${min} and ${max}
@@ -96,25 +137,36 @@ println(randomNumber)`,
     go: (min, max) => `package main
 
 import (
+    "crypto/rand"
     "fmt"
-    "math/rand"
+    "math/big"
 )
 
-func getRandomNumber(min, max int) int {
-    return rand.Intn(max-min+1) + min
+// crypto/rand is the CSPRNG. math/rand is not and must not be used where the
+// value has to be unguessable.
+func getRandomNumber(min, max int64) (int64, error) {
+    n, err := rand.Int(rand.Reader, big.NewInt(max-min+1))
+    if err != nil {
+        return 0, err
+    }
+    return min + n.Int64(), nil
 }
 
 // Usage: Generate a random number between ${min} and ${max}
 func main() {
-    randomNumber := getRandomNumber(${min}, ${max})
+    randomNumber, err := getRandomNumber(${min}, ${max})
+    if err != nil {
+        panic(err)
+    }
     fmt.Println(randomNumber)
 }`,
 
-    rust: (min, max) => `use rand::Rng;
+    rust: (min, max) => `// rand 0.8. OsRng reads straight from the operating system CSPRNG.
+use rand::rngs::OsRng;
+use rand::Rng;
 
 fn get_random_number(min: i32, max: i32) -> i32 {
-    let mut rng = rand::thread_rng();
-    rng.gen_range(min..=max)
+    OsRng.gen_range(min..=max)
 }
 
 // Usage: Generate a random number between ${min} and ${max}
