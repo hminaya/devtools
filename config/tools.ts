@@ -19,7 +19,6 @@ export const POPULAR_TOOL_IDS = [
   'stacktrace-formatter',
   'file-size-converter',
   'ios-app-lookup',
-  'beautify-stack-trace',
   'random-number-generator',
 ] as const;
 
@@ -252,20 +251,11 @@ export const TOOLS: Tool[] = [
   {
     id: 'stacktrace-formatter',
     name: 'Stack Trace Formatter',
-    description: 'Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces',
+    description: 'Format, clean up, and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces',
     route: '/tools/stacktrace-formatter',
     icon: '📋',
     category: 'Formatting',
-    updatedAt: '2026-08-13',
-  },
-  {
-    id: 'beautify-stack-trace',
-    name: 'Beautify Stack Trace',
-    description: 'Clean up and beautify messy error stack traces for readability',
-    route: '/tools/beautify-stack-trace',
-    icon: '✨',
-    category: 'Formatting',
-    updatedAt: '2026-08-13',
+    updatedAt: '2026-08-16',
   },
   {
     id: 'stacktrace-analyzer',

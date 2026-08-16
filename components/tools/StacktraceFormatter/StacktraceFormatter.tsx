@@ -109,7 +109,7 @@ function StacktraceFormatter() {
   return (
     <ToolLayout
       title="Stack Trace Formatter"
-      description="Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces"
+      description="Clean up, format, and beautify messy JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces"
       fullWidth
     >
       <div className="space-y-4">

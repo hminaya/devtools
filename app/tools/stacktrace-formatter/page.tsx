@@ -3,14 +3,14 @@ import StacktraceFormatter from '../../../components/tools/StacktraceFormatter/S
 
 export const metadata: Metadata = {
   title: 'Stack Trace Formatter - Free Online Beautifier (No Upload)',
-  description: 'Format JavaScript, Python, Java, C#, Go, PHP & Ruby stack traces into clean, highlighted output. Auto-detects language. Free, no upload or signup.',
+  description: 'Clean up, format, and beautify messy JavaScript, Python, Java, C#, Go, PHP & Ruby stack traces from logs, CI, or terminals. Free, private, no upload.',
   alternates: {
     canonical: '/tools/stacktrace-formatter',
   },
   openGraph: {
     url: 'https://www.developers.do/tools/stacktrace-formatter',
     title: 'Stack Trace Formatter - Free Online Stack Trace Beautifier',
-    description: 'Format messy stack traces from JavaScript, Python, Java, C#, Go, PHP, and Ruby. Auto-detects language and can remove sensitive data.',
+    description: 'Clean up and format messy stack traces from logs, CI, and terminals. Supports JavaScript, Python, Java, C#, Go, PHP, and Ruby.',
     images: [{ url: '/og/tools/stacktrace-formatter.png', width: 1200, height: 630, alt: 'Stack Trace Formatter tool preview' }],
   },
   twitter: {

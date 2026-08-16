@@ -3,6 +3,18 @@
   "outputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/tools/beautify-stack-trace",
+      "destination": "/tools/stacktrace-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/beautify-stack-trace.md",
+      "destination": "/tools/stacktrace-formatter.md",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/tools/(.*)\\.md",

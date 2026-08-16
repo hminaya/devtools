@@ -1,6 +1,6 @@
 # Stack Trace Formatter
 
-> Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
+> Format, clean up, and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
 
 Live tool: https://www.developers.do/tools/stacktrace-formatter
 Category: Formatting
@@ -9,14 +9,14 @@ Free and browser-based: input data is processed locally on the user device and i
 
 ## Overview
 
-This formatter takes a raw stack trace from JavaScript (including Node.js), Python, Java, C#, Go, PHP, or Ruby, detects the language automatically, and re-renders it with aligned frames and syntax highlighting: error types in red, function names in green, file paths in blue, and line numbers in purple. An optional anonymizer strips local user directories before you paste the trace into a bug report. Everything runs in your browser — the trace is never uploaded.
+This formatter cleans up raw or messy stack traces copied from terminals, CI logs, Docker output, browser consoles, and crash reporters. It detects JavaScript (including Node.js), Python, Java, C#, Go, PHP, or Ruby automatically, then rebuilds readable one-frame-per-line output with aligned frames and syntax highlighting: error types in red, function names in green, file paths in blue, and line numbers in purple. An optional anonymizer strips local user directories before you paste the trace into a bug report. Everything runs in your browser — the trace is never uploaded.
 
 ## How to use
 
-1. Paste the raw trace into the input panel. The language is detected automatically from its frame syntax.
-2. Choose Format to re-render the trace with aligned indentation and color-coded frames.
+1. Paste a raw or messy trace from a terminal, log, crash reporter, or browser console. The language is detected automatically from its frame syntax.
+2. Choose Format to rebuild clean, aligned, color-coded output.
 3. Enable Remove Sensitive Data first if the trace contains local paths you should not share.
-4. Copy the formatted output, or click Next Example to cycle through sample traces for each language.
+4. Copy the beautified output into a bug report, pull request, or chat message, or click Next Example to cycle through sample traces.
 
 ## Important details
 
@@ -32,6 +32,10 @@ Java, JavaScript, C#, PHP, and Ruby print the most recent call first, so the cra
 
 Production JavaScript traces from minified bundles still show short names like t.a; mapping those back to original sources requires source maps. iOS crash logs similarly need dSYM symbolication. This tool beautifies the structure of the trace you already have — it does not resolve symbols.
 
+### Why traces copied from logs look broken
+
+Log shippers and terminals can wrap long lines, strip leading whitespace, and prepend timestamps or container IDs. That damages the visual nesting that makes traces scannable. Formatting restores consistent indentation so you can follow the call chain, while preserving the original frame order and diagnostic content.
+
 ## Frequently asked questions
 
 ### Why does the formatter say my trace is invalid?
@@ -46,10 +50,19 @@ Yes. V8-style frames (Chrome, Edge, Node.js) in the form at fn (file:line:column
 
 No. Language detection, formatting, highlighting, and the optional path anonymization all run locally in the browser tab.
 
+### Will beautifying change what the stack trace means?
+
+No. Only whitespace, alignment, coloring, and the optional path anonymization change. Frame order, function names, file names, and line numbers are preserved.
+
+### Does the formatter work on .NET or Unity traces?
+
+Yes. C#-style at Namespace.Class.Method() frames are supported, including stack traces copied from Unity and .NET application logs.
+
 ## References
 
 - [V8 stack trace API](https://v8.dev/docs/stack-trace-api)
 - [Python traceback module](https://docs.python.org/3/library/traceback.html)
+- [MDN: Error.prototype.stack](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack)
 
 
 ## Related tools

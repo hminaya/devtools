@@ -55,8 +55,7 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **HL7 Parser:** Read and parse HL7 v2 messages into structured JSON
 *   **HL7 to FHIR Converter:** Convert HL7 v2 messages to FHIR R4 Bundles
 *   **Diff / Text Compare:** Compare two texts and see color-coded differences
-*   **Stack Trace Formatter:** Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
-*   **Beautify Stack Trace:** Clean up and beautify messy error stack traces for readability
+*   **Stack Trace Formatter:** Format, clean up, and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
 *   **Stack Trace Analyzer:** Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 *   **Base64 Encoder/Decoder:** Encode and decode Base64 strings
 *   **File Size Converter:** Convert file sizes between decimal (SI) and binary (IEC) units

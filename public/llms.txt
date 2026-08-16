@@ -38,8 +38,7 @@ Markdown mirrors of every tool page hosted on this site are available for AI con
 - [HL7 Parser](https://www.developers.do/tools/hl7-parser): Read and parse HL7 v2 messages into structured JSON
 - [HL7 to FHIR Converter](https://www.developers.do/tools/hl7-to-fhir): Convert HL7 v2 messages to FHIR R4 Bundles
 - [Diff / Text Compare](https://www.developers.do/tools/diff-compare): Compare two texts and see color-coded differences
-- [Stack Trace Formatter](https://www.developers.do/tools/stacktrace-formatter): Format and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
-- [Beautify Stack Trace](https://www.developers.do/tools/beautify-stack-trace): Clean up and beautify messy error stack traces for readability
+- [Stack Trace Formatter](https://www.developers.do/tools/stacktrace-formatter): Format, clean up, and beautify JavaScript, Python, Java, C#, Go, PHP, and Ruby stack traces
 - [Stack Trace Analyzer](https://www.developers.do/tools/stacktrace-analyzer): Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 - [Base64 Encoder/Decoder](https://www.developers.do/tools/base64-encoder): Encode and decode Base64 strings
 - [File Size Converter](https://www.developers.do/tools/file-size-converter): Convert file sizes between decimal (SI) and binary (IEC) units
