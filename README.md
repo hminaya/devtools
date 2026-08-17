@@ -195,7 +195,7 @@ In the project directory, you can run:
 
 *   `npm run dev`: Runs the app in development mode.
 *   `npm run build`: Builds the application for production. Runs `generate:llms` first via the `prebuild` hook.
-*   `npm run start`: Starts the production server (after building).
+*   `npm run start`: Serves the production static export from `out/` (after building).
 *   `npm run lint`: Type-checks the codebase with TypeScript.
 *   `npm run generate:og`: Generates Open Graph images for tools.
 *   `npm run generate:llms`: Regenerates the `/llms.txt` and `/llms-full.txt` files plus per-tool markdown mirrors in `/public/tools/`.

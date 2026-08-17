@@ -5,7 +5,7 @@
     "dev": "next dev --webpack -p 3000",
     "prebuild": "npm run generate:llms",
     "build": "next build",
-    "start": "next start",
+    "start": "serve out",
     "lint": "tsc --noEmit",
     "generate:og": "node scripts/generate-og-images.cjs",
     "generate:llms": "tsx scripts/generate-llms.ts"
@@ -37,6 +37,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-syntax-highlighter": "^16.1.0",
+    "serve": "^14.2.6",
     "smol-toml": "^1.7.0",
     "sql-formatter": "^15.7.2",
     "tiktoken": "^1.0.22"
