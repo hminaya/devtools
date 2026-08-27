@@ -6,7 +6,7 @@
 
 A collection of 100+ essential developer tools built with privacy in mind.
 No backend. Tool data never reaches a developers.do server. Anonymized analytics help improve the site.
-The few tools that exist to call an external API — iOS App Lookup and API Tester — send input from your browser directly to that third party.
+The few tools that call an external API (iOS App Lookup and API Tester) send input from your browser directly to that third party.
 
 ![DevTools Dashboard Screenshot](./docs/dashboard-screenshot.png)
 
@@ -43,15 +43,15 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **JSON Prettifier:** Format and validate JSON data
 *   **XML/HTML Formatter:** Format, validate, prettify, and minify XML or HTML data
 *   **XML ↔ JSON Converter:** Bidirectional XML-to-JSON and JSON-to-XML converter using the familiar @attr / _text convention; repeated tags collapse into arrays
-*   **JSONPath Query Engine:** Test JSONPath expressions — supports dot/bracket access, wildcards, slices, recursive descent (..), and filter [?(...)] expressions
-*   **GraphQL Formatter:** Format and validate GraphQL queries, mutations, subscriptions, and fragments — preserves string literals, args, blocks, lists, and comments
-*   **TOML Parser:** Parse, validate, format, and round-trip TOML to/from JSON — spec-compliant via smol-toml
-*   **CSS Minifier / Beautifier:** Minify CSS by stripping comments and whitespace, or beautify minified CSS with re-indentation — preserves spaces inside parentheses for values like rgba() and calc()
-*   **JavaScript Minifier:** Strip comments and whitespace from JavaScript while preserving strings, template literals, and regex syntax — no AST, no variable renaming, just fast cosmetic minification
-*   **Data URI Converter:** Convert text to a data: URI with UTF-8 Base64 encoding, or decode a data: URI back to text or binary bytes — handles any MIME type
-*   **Markdown Live Preview:** Write Markdown on the left, see the rendered HTML preview on the right — supports headings, bold, italic, code, lists, quotes, links, autolinks, and GFM strikethrough
-*   **SVG Editor:** Edit SVG code on the left, see the live preview on the right — strips scripts and event handlers for safety, adjusts missing xmlns
-*   **SVG Path Visualizer:** Paste an SVG path d attribute and see it rendered instantly — includes presets (curve, star, arc, bezier), adjustable stroke/fill colors, and an optional grid overlay
+*   **JSONPath Query Engine:** Test JSONPath expressions. Supports dot/bracket access, wildcards, slices, recursive descent (..), and filter [?(...)] expressions
+*   **GraphQL Formatter:** Format and validate GraphQL queries, mutations, subscriptions, and fragments while preserving string literals, args, blocks, lists, and comments
+*   **TOML Parser:** Parse, validate, format, and round-trip TOML to/from JSON. Spec-compliant via smol-toml
+*   **CSS Minifier / Beautifier:** Minify CSS by stripping comments and whitespace, or beautify minified CSS with re-indentation. Preserves spaces inside parentheses for values like rgba() and calc()
+*   **JavaScript Minifier:** Strip comments and whitespace from JavaScript while preserving strings, template literals, and regex syntax. No AST, no variable renaming, just fast cosmetic minification
+*   **Data URI Converter:** Convert text to a data: URI with UTF-8 Base64 encoding, or decode a data: URI back to text or binary bytes. Handles any MIME type
+*   **Markdown Live Preview:** Write Markdown on the left and see the rendered HTML preview on the right. Supports headings, bold, italic, code, lists, quotes, links, autolinks, and GFM strikethrough
+*   **SVG Editor:** Edit SVG code on the left and see the live preview on the right. Strips scripts and event handlers for safety and adjusts missing xmlns
+*   **SVG Path Visualizer:** Paste an SVG path d attribute and see it rendered instantly. Includes presets (curve, star, arc, bezier), adjustable stroke/fill colors, and an optional grid overlay
 *   **HL7 Parser:** Read and parse HL7 v2 messages into structured JSON
 *   **HL7 to FHIR Converter:** Convert HL7 v2 messages to FHIR R4 Bundles
 *   **Diff / Text Compare:** Compare two texts and see color-coded differences
@@ -59,13 +59,13 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **Stack Trace Analyzer:** Analyze stack traces to identify root causes, explain errors, and separate app from framework code
 *   **Base64 Encoder/Decoder:** Encode and decode Base64 strings
 *   **File Size Converter:** Convert file sizes between decimal (SI) and binary (IEC) units
-*   **Unix Timestamp Converter:** Convert Unix epoch timestamps to human-readable dates — single or batch — with timezone support
+*   **Unix Timestamp Converter:** Convert Unix epoch timestamps to human-readable dates, individually or in batches, with timezone support
 *   **Cron Expression Tester:** Test and parse cron expressions, explain them in plain English, and preview upcoming run times across timezones
-*   **Cron Expression Generator:** Build cron expressions visually with field controls — no syntax knowledge required
+*   **Cron Expression Generator:** Build cron expressions visually with field controls; no syntax knowledge required
 *   **URL Encoder / Decoder:** Encode and decode URLs using encodeURIComponent and encodeURI
 *   **YAML/JSON Converter & Formatter:** Convert between YAML and JSON, or format and validate standalone YAML
 *   **CSV ↔ JSON Converter:** Convert between CSV and JSON with auto-detection, delimiter handling, type inference, and nested-object flattening
-*   **CSV Viewer / Table Explorer:** Paste CSV and explore it as a sortable, searchable table with sticky headers — no spreadsheet required
+*   **CSV Viewer / Table Explorer:** Paste CSV and explore it as a sortable, searchable table with sticky headers; no spreadsheet required
 *   **SQL Formatter:** Format and prettify SQL queries with support for MySQL, PostgreSQL, SQLite, and more
 *   **String Case Converter:** Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, title, and sentence case
 *   **Text Statistics:** Live word, character, sentence, line, and paragraph counts with reading time and average length stats
@@ -73,18 +73,18 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **String Escape / Unescape:** Escape and unescape text for JSON, XML, CSV, regex, or POSIX shell contexts
 *   **Whitespace Visualizer & Cleaner:** Spot invisible whitespace characters (tabs, NBSP, zero-width, trailing) and clean them with batch options
 *   **HTML Entity Encoder / Decoder:** Encode text to HTML entities (named, decimal, hex) and decode entities back to characters
-*   **Unicode Escape / Unescape:** Convert text to \uXXXX and \u{XXXXX} Unicode escapes and back — handles emoji and surrogate pairs
-*   **Morse Code Translator:** Convert text to ITU-R M.1677-1 Morse code and back — supports letters, digits, common punctuation, and word breaks
+*   **Unicode Escape / Unescape:** Convert text to \uXXXX and \u{XXXXX} Unicode escapes and back, including emoji and surrogate pairs
+*   **Morse Code Translator:** Convert text to ITU-R M.1677-1 Morse code and back. Supports letters, digits, common punctuation, and word breaks
 
 ### Generators
 *   **Password Generator:** Generate secure random passwords
-*   **UUID Generator:** Generate UUIDs across all RFC 9562 versions — nil, v1, v2, v3, v4, v5, v6, v7, and v8
+*   **UUID Generator:** Generate UUIDs across all RFC 9562 versions: nil, v1, v2, v3, v4, v5, v6, v7, and v8
 *   **Lorem Ipsum Generator:** Generate placeholder text for designs
 *   **Random Number Generator:** Generate random numbers and see code samples in multiple languages
 *   **QR Code Generator:** Generate QR codes from text, URLs, or any data
-*   **ULID Generator:** Generate ULIDs — 26-character lexicographically sortable identifiers (48-bit timestamp + 80-bit random) with optional monotonic mode
+*   **ULID Generator:** Generate ULIDs, which are 26-character lexicographically sortable identifiers (48-bit timestamp + 80-bit random), with optional monotonic mode
 *   **Git Branch Name Generator:** Convert a feature description into a clean, git-safe branch name with optional prefix (feat, fix, chore, etc.) and ticket id. Includes copy-paste checkout and push commands
-*   **ASCII Art Text Generator:** Convert text to ASCII art banner with built-in block, banner, and thin fonts — no external font files, works in any browser
+*   **ASCII Art Text Generator:** Convert text to an ASCII art banner with built-in block, banner, and thin fonts. No external font files are needed, and it works in any browser
 
 ### Code & Schemas
 *   **JSON to TypeScript:** Convert JSON to TypeScript interfaces
@@ -95,15 +95,15 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **JSON to Python:** Convert JSON to Python dataclasses or Pydantic models
 *   **JSON to Go:** Convert JSON to Go structs
 *   **JSON to Rust:** Convert JSON to Rust structs
-*   **JSON Schema Validator & Generator:** Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema — supports multiple samples to detect optional fields
+*   **JSON Schema Validator & Generator:** Infer a JSON Schema (draft 2020-12 or draft-07) from JSON and validate JSON against a schema. Supports multiple samples to detect optional fields
 *   **Color Picker:** Pick colors, convert between HEX/RGB/HSL/HSV/CMYK, and browse curated palettes (Tailwind, Nord, Solarized, Dracula, and more)
 
 ### Networking
 *   **API Tester:** Test and view API responses
 *   **HTTP Status Code Reference:** Searchable reference of all HTTP status codes with descriptions and use cases
-*   **MIME Type Lookup:** Search common MIME types by file extension, MIME string, or category — covers images, video, audio, archives, documents, code, fonts, and data formats
+*   **MIME Type Lookup:** Search common MIME types by file extension, MIME string, or category. Covers images, video, audio, archives, documents, code, fonts, and data formats
 *   **Common Port Number Reference:** Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
-*   **CIDR / Subnet Calculator:** IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
+*   **CIDR / Subnet Calculator:** IPv4 and IPv6 CIDR calculator with network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
 
 ### Security
 *   **Secrets Scanner:** Scan text, logs, or configs for leaked keys and tokens
@@ -111,9 +111,9 @@ The few tools that exist to call an external API — iOS App Lookup and API Test
 *   **MD5 Hash:** Generate MD5 hashes from text
 *   **SHA-1 Hash:** Generate SHA-1 hashes from text
 *   **SHA-256/384/512 Hash:** Generate secure SHA-256, SHA-384, or SHA-512 hashes from text
-*   **HMAC Generator:** Generate HMAC signatures with SHA-1, SHA-256, SHA-384, or SHA-512 — output as hex, base64, or base64url
+*   **HMAC Generator:** Generate HMAC signatures with SHA-1, SHA-256, SHA-384, or SHA-512 and output them as hex, base64, or base64url
 *   **Clawdbot Security Scanner:** Audit Clawdbot/Moltbot/OpenClaw configs for security vulnerabilities
-*   **Certificate & CSR Decoder:** Decode X.509 certificates and PKCS#10 CSRs — subject, issuer, expiry, SANs, extensions, and key details
+*   **Certificate & CSR Decoder:** Decode X.509 certificates and PKCS#10 CSRs, including subject, issuer, expiry, SANs, extensions, and key details
 
 ### Data
 *   **OSS Data:** Open-source data tools for developers
@@ -202,7 +202,7 @@ In the project directory, you can run:
 
 ## Docker
 
-You can build and run the app locally using Docker — no Node.js installation required.
+You can build and run the app locally using Docker; no Node.js installation is required.
 
 ### Build the image
 
@@ -222,8 +222,8 @@ The app will be available at `http://localhost:8080`.
 
 The Docker build uses a two-stage process:
 
-1. **Builder** — installs dependencies with `npm ci` and runs `npm run build`, producing static HTML/CSS/JS in the `out/` directory.
-2. **Runner** — copies the static files into an nginx image for serving. No Node.js is needed at runtime.
+1. **Builder:** Installs dependencies with `npm ci` and runs `npm run build`, producing static HTML/CSS/JS in the `out/` directory.
+2. **Runner:** Copies the static files into an nginx image for serving. No Node.js is needed at runtime.
 
 ## License
 
