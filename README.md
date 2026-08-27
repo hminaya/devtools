@@ -152,7 +152,7 @@ This site supports the [llms.txt](https://llmstxt.org/) standard for AI discover
 Ensure you have the following installed on your system:
 
 *   **Git:** For cloning the repository.
-*   **Node.js 20 or later:** The JavaScript runtime. npm ships with it and is the package manager used here.
+*   **Node.js 20.9 or later:** The JavaScript runtime. npm ships with it and is the package manager used here.
 
 ## Getting Started
 
