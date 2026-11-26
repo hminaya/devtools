@@ -21,7 +21,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.12",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
@@ -39,5 +39,8 @@
     "smol-toml": "^1.7.0",
     "sql-formatter": "^15.7.2",
     "tiktoken": "^1.0.22"
+  },
+  "engines": {
+    "node": "26.x"
   }
 }
