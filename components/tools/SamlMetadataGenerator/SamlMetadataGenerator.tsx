@@ -342,7 +342,7 @@ function SamlMetadataGenerator() {
               </pre>
             </div>
             <p className="text-sm text-slate-500 mt-2">
-              Validate the result with the{' '}
+              Choose Validate in the{' '}
               <a href="/tools/saml-metadata-parser" className="text-blue-600 hover:text-blue-800 underline">SAML Metadata Parser</a>
               {' '}or inspect certificates with the{' '}
               <a href="/tools/saml-cert-inspector" className="text-blue-600 hover:text-blue-800 underline">SAML Certificate Inspector</a>.

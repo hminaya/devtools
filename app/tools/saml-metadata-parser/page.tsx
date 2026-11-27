@@ -3,7 +3,7 @@ import SamlMetadataParser from '../../../components/tools/SamlMetadataParser/Sam
 
 export const metadata: Metadata = {
   title: 'SAML Metadata Parser - Inspect IdP/SP XML, Endpoints & Certificates',
-  description: 'Parse SAML metadata XML in your browser. Extract entityID, IdP SSO endpoints, SP ACS URLs, bindings, NameID formats, X.509 certificates, and organization details.',
+  description: 'Parse and validate SAML metadata XML in your browser. Inspect IdP and SP endpoints and certificates, and check for missing fields, duplicate ACS indexes, and expiration.',
   alternates: {
     canonical: '/tools/saml-metadata-parser',
   },

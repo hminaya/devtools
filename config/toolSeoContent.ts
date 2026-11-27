@@ -521,10 +521,10 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
     references: [{ label: 'MDN: Crypto.getRandomValues()', href: 'https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues' }],
   },
   'saml-metadata-parser': {
-    overview: 'Paste a SAML EntityDescriptor — the metadata XML published by an Identity Provider or Service Provider — and this parser extracts everything needed for SSO configuration: the entityID, whether it describes an IdP or SP, signing requirements (AuthnRequestsSigned, WantAuthnRequestsSigned), all SSO, SLO, and ACS endpoints with their bindings and indexes, embedded X.509 certificates with fingerprints and expiry status, supported NameID formats, requested attributes, and organization details. Sample IdP and SP documents are included. Parsing happens in your browser; the XML is never uploaded.',
+    overview: 'Inspect SAML metadata XML from an Identity Provider (IdP) or Service Provider (SP). Parse extracts entity IDs, endpoints, signing requirements, X.509 certificates, NameID formats, and attributes. Validate checks common SSO configuration issues and suggests fixes. Both actions process the XML in your browser.',
     steps: [
-      'Paste the metadata XML — the document rooted at <EntityDescriptor>.',
-      'Choose Parse, or load the Sample IdP / Sample SP first to see a complete result.',
+      'Paste your SAML metadata XML or load the Sample IdP or Sample SP.',
+      'Choose Parse to inspect the metadata or Validate for a report with XML locations and suggested fixes.',
       'Review the endpoint list: each entry shows its type, binding (HTTP-Redirect, HTTP-POST, and so on), index, and default flag.',
       'Check the certificate cards for expiry badges, and copy a PEM when you need to configure a trust store.',
     ],
@@ -538,8 +538,8 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
         body: 'During certificate rollover, an entity publishes both the old and new signing certificates so partners can switch without downtime. Both appear here with their own fingerprints and expiry dates. An expired old certificate lingering in metadata is common after a cutover and should be removed.',
       },
       {
-        title: 'Parsing is not signature verification',
-        body: 'This tool checks that the XML is well-formed and extracts its fields, which catches most configuration mistakes — that structural check is what most people mean by a SAML metadata validator. It does not verify an XML signature on signed metadata; production trust must come from fetching metadata over a trusted channel or validating its signature in your SAML library.',
+        title: 'What the SAML metadata validator checks',
+        body: 'Validate checks EntityDescriptor documents and nested EntitiesDescriptor groups for missing entity IDs, missing SSO or ACS endpoints, invalid or duplicate ACS indexes, expired metadata, and unreadable or expired signing certificates. Use your SAML library for full schema and signature verification.',
       },
     ],
     faqs: [

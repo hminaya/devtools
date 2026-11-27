@@ -7,6 +7,7 @@ import Button from '../../shared/Button';
 import CopyButton from '../../shared/CopyButton';
 import {
   parseMetadata,
+  validateMetadata,
   getBindingLabel,
   getNameIdLabel,
   SAMPLE_IDP_METADATA,
@@ -14,7 +15,7 @@ import {
 } from '../../../utils/samlMetadata';
 import { getExpiryStatus } from '../../../utils/x509';
 import { trackToolEvent } from '../../../utils/analytics';
-import type { ParsedMetadata } from '../../../utils/samlMetadata';
+import type { MetadataFinding, ParsedMetadata } from '../../../utils/samlMetadata';
 
 function expiryBadge(status: string): string {
   switch (status) {
@@ -42,14 +43,48 @@ function expiryLabel(status: string): string {
   }
 }
 
+function ValidationReport({ findings }: { findings: MetadataFinding[] }) {
+  const errors = findings.filter((finding) => finding.severity === 'error').length;
+  const warnings = findings.length - errors;
+  const summary = findings.length === 0
+    ? 'No issues found in the checks performed.'
+    : `${errors} ${errors === 1 ? 'error' : 'errors'}, ${warnings} ${warnings === 1 ? 'warning' : 'warnings'}`;
+
+  return (
+    <section aria-labelledby="saml-metadata-validation" className="space-y-3">
+      <div>
+        <h2 id="saml-metadata-validation" className="font-semibold text-slate-900">SAML Metadata Validation</h2>
+        <p className="mt-1 text-sm text-slate-700">{summary}</p>
+      </div>
+      {findings.length > 0 && (
+        <ul className="space-y-2">
+          {findings.map(({ severity, location, message, fix }) => (
+            <li key={`${location}-${message}`} className={`rounded-md border p-3 text-sm ${severity === 'error' ? 'border-red-200 bg-red-50' : 'border-amber-200 bg-amber-50'}`}>
+              <p className="font-semibold text-slate-900 break-words">
+                <span className={severity === 'error' ? 'mr-2 text-red-800' : 'mr-2 text-amber-900'}>{severity === 'error' ? 'Error' : 'Warning'}</span>
+                {message}
+              </p>
+              <code className="mt-1 block break-all text-xs text-slate-600">{location}</code>
+              <p className="mt-1 text-slate-700">{fix}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="text-xs text-slate-600">These checks cover common IdP and SP configuration issues. Use your SAML library for full schema and signature verification.</p>
+    </section>
+  );
+}
+
 function SamlMetadataParser() {
   const [input, setInput] = useState('');
   const [parsed, setParsed] = useState<ParsedMetadata | null>(null);
+  const [findings, setFindings] = useState<MetadataFinding[] | null>(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [running, setRunning] = useState<'parse' | 'validate' | null>(null);
 
   const parse = async () => {
-    setLoading(true);
+    setRunning('parse');
+    setFindings(null);
     try {
       const result = await parseMetadata(input);
       if (result.success && result.data) {
@@ -64,7 +99,7 @@ function SamlMetadataParser() {
         trackToolEvent('tool_error', {
           tool_id: 'saml-metadata-parser',
           action: 'Parse SAML metadata',
-          label: result.error || 'Failed to parse metadata',
+          label: 'Failed to parse metadata',
         });
         setError(result.error || 'Failed to parse metadata');
         setParsed(null);
@@ -73,40 +108,58 @@ function SamlMetadataParser() {
       trackToolEvent('tool_error', {
         tool_id: 'saml-metadata-parser',
         action: 'Parse SAML metadata',
-        label: e instanceof Error ? e.message : 'Unexpected error',
+        label: 'Unexpected error',
       });
       setError(e instanceof Error ? e.message : 'Unexpected error');
       setParsed(null);
+    } finally {
+      setRunning(null);
     }
-    setLoading(false);
   };
 
-  const clear = () => {
-    setInput('');
+  const validate = async () => {
+    setRunning('validate');
     setParsed(null);
+    setError('');
+    setFindings(null);
+    try {
+      setFindings(await validateMetadata(input));
+    } catch {
+      setError('Unable to complete validation. Try loading the metadata again.');
+    } finally {
+      setRunning(null);
+    }
+  };
+
+  const replaceInput = (value: string) => {
+    setInput(value);
+    setParsed(null);
+    setFindings(null);
     setError('');
   };
 
   return (
     <ToolLayout
       title="SAML Metadata Parser"
-      description="Parse SAML Metadata XML and extract IdP/SP configuration, endpoints, certificates, and NameID formats"
+      description="Parse SAML metadata XML and validate IdP or SP configuration in your browser"
     >
       <div className="space-y-6">
         <div className="space-y-4">
           <TextArea
             value={input}
-            onChange={setInput}
+            onChange={(value) => { setInput(value); setFindings(null); }}
             label="SAML Metadata XML"
             placeholder="Paste your SAML metadata XML here..."
             rows={8}
+            readOnly={running !== null}
           />
 
           <div className="flex flex-wrap gap-3">
-            <Button label={loading ? 'Parsing...' : 'Parse'} onClick={parse} variant="primary" disabled={loading} />
-            <Button label="Sample IdP" onClick={() => { setInput(SAMPLE_IDP_METADATA); setParsed(null); setError(''); }} variant="secondary" />
-            <Button label="Sample SP" onClick={() => { setInput(SAMPLE_SP_METADATA); setParsed(null); setError(''); }} variant="secondary" />
-            <Button label="Clear" onClick={clear} variant="secondary" />
+            <Button label={running === 'parse' ? 'Parsing...' : 'Parse'} onClick={parse} disabled={running !== null} />
+            <Button label={running === 'validate' ? 'Validating...' : 'Validate'} onClick={validate} disabled={running !== null} />
+            <Button label="Sample IdP" onClick={() => replaceInput(SAMPLE_IDP_METADATA)} variant="secondary" disabled={running !== null} />
+            <Button label="Sample SP" onClick={() => replaceInput(SAMPLE_SP_METADATA)} variant="secondary" disabled={running !== null} />
+            <Button label="Clear" onClick={() => replaceInput('')} variant="secondary" disabled={running !== null} />
           </div>
         </div>
 
@@ -116,6 +169,10 @@ function SamlMetadataParser() {
             <p className="text-red-600 text-sm">{error}</p>
           </div>
         )}
+
+        <div aria-live="polite" className={findings === null ? 'sr-only' : undefined}>
+          {findings !== null && <ValidationReport findings={findings} />}
+        </div>
 
         {parsed && (
           <div className="space-y-4" aria-live="polite">

@@ -36,6 +36,13 @@ export interface ParsedMetadata {
   authnRequestsSigned: boolean;
 }
 
+export interface MetadataFinding {
+  severity: 'error' | 'warning';
+  location: string;
+  message: string;
+  fix: string;
+}
+
 const BINDING_LABELS: Record<string, string> = {
   'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect': 'HTTP-Redirect',
   'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST': 'HTTP-POST',
@@ -73,23 +80,26 @@ function getElements(parent: Element | Document, ns: string, localName: string):
   return result;
 }
 
+function readMetadataXml(xml: string): Document {
+  if (!xml.trim()) throw new Error('Input is empty');
+
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  const parseError = doc.querySelector('parsererror');
+  if (parseError) throw new Error('Invalid XML: ' + (parseError.textContent || 'Parse error'));
+  return doc;
+}
+
+function parseMetadataCertificate(base64: string): Promise<X509Certificate> {
+  const pem = `-----BEGIN CERTIFICATE-----\n${base64}\n-----END CERTIFICATE-----`;
+  const der = pemToDer(pem);
+  return parseX509(der, derToPem(der));
+}
+
 export async function parseMetadata(
   xmlString: string
 ): Promise<{ success: boolean; data?: ParsedMetadata; error?: string }> {
   try {
-    if (!xmlString.trim()) {
-      return { success: false, error: 'Input is empty' };
-    }
-
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(xmlString, 'text/xml');
-    const parseError = doc.querySelector('parsererror');
-    if (parseError) {
-      return {
-        success: false,
-        error: 'Invalid XML: ' + (parseError.textContent || 'Parse error'),
-      };
-    }
+    const doc = readMetadataXml(xmlString);
 
     // Entity ID
     const entityDescriptors = getElements(doc, NS_MD, 'EntityDescriptor');
@@ -165,10 +175,7 @@ export async function parseMetadata(
     const certStrings = extractBase64Certificates(doc);
     for (const certBase64 of certStrings) {
       try {
-        const pem = `-----BEGIN CERTIFICATE-----\n${certBase64}\n-----END CERTIFICATE-----`;
-        const derBytes = pemToDer(pem);
-        const cert = await parseX509(derBytes, derToPem(derBytes));
-        certificates.push(cert);
+        certificates.push(await parseMetadataCertificate(certBase64));
       } catch {
         // Skip unparseable certificates
       }
@@ -228,6 +235,138 @@ export async function parseMetadata(
       error: error instanceof Error ? error.message : 'Failed to parse metadata',
     };
   }
+}
+
+function metadataChildren(parent: Element, ...names: string[]): Element[] {
+  return Array.from(parent.children).filter((child) => child.namespaceURI === NS_MD && names.includes(child.localName));
+}
+
+function checkMetadataExpiry(element: Element, path: string, now: number, findings: MetadataFinding[]) {
+  const value = element.getAttribute('validUntil')?.trim();
+  if (value === undefined) return;
+
+  const location = `${path}/@validUntil`;
+  const dateTime = /^(\d{4}-\d{2}-\d{2})T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?|24:00:00(?:\.0+)?)(Z|[+-](?:(?:0\d|1[0-3]):[0-5]\d|14:00))?$/.exec(value);
+  const [, calendarDate, zone] = dateTime ?? [];
+  const timestamp = Date.parse(zone ? value : `${value}Z`);
+  const calendarDay = new Date(`${calendarDate}T00:00:00Z`).getUTCDate();
+  if (!Number.isFinite(timestamp) || calendarDay !== Number(calendarDate?.slice(-2))) {
+    findings.push({ severity: 'error', location, message: 'Invalid metadata expiration date.', fix: 'Use a date and time with a timezone, such as 2030-01-01T00:00:00Z.' });
+  } else if (!zone) {
+    findings.push({ severity: 'warning', location, message: 'The metadata expiration date has no timezone.', fix: 'Add Z for UTC or an explicit timezone offset.' });
+  } else if (timestamp <= now) {
+    findings.push({ severity: 'error', location, message: `Metadata expired on ${value}.`, fix: 'Export fresh metadata from your provider and replace the expired document.' });
+  }
+}
+
+function checkRoleEndpoints(role: Element, path: string, findings: MetadataFinding[]) {
+  const isSp = role.localName === 'SPSSODescriptor';
+  const name = isSp ? 'AssertionConsumerService' : 'SingleSignOnService';
+  const endpoints = metadataChildren(role, name);
+  if (endpoints.length === 0) {
+    findings.push({ severity: 'error', location: path, message: `Missing ${name} endpoint.`, fix: `Add a ${name} element with the binding and URL configured in your SSO provider.` });
+  }
+
+  const indexes = new Map<number, number>();
+  endpoints.forEach((endpoint, position) => {
+    const location = `${path}/${name}[${position + 1}]`;
+    for (const attribute of ['Binding', 'Location']) {
+      if (!endpoint.getAttribute(attribute)?.trim()) {
+        findings.push({ severity: 'error', location: `${location}/@${attribute}`, message: `Missing endpoint ${attribute}.`, fix: `Set ${attribute} to the value configured for this endpoint.` });
+      }
+    }
+
+    if (!isSp) return;
+    const value = endpoint.getAttribute('index')?.trim() ?? '';
+    const index = Number(value);
+    if (!/^[+-]?\d+$/.test(value) || index < 0 || index > 65535) {
+      findings.push({ severity: 'error', location: `${location}/@index`, message: 'Missing or invalid ACS index.', fix: 'Set index to an unused integer from 0 through 65535 in this SP descriptor.' });
+      return;
+    }
+
+    const previous = indexes.get(index);
+    if (previous !== undefined) {
+      findings.push({ severity: 'error', location: `${location}/@index`, message: `Duplicate ACS index ${index}, already used by ${name}[${previous}].`, fix: 'Assign a unique index to each ACS endpoint and update any configuration that references it.' });
+    } else {
+      indexes.set(index, position + 1);
+    }
+  });
+}
+
+async function checkSigningCertificates(role: Element, path: string, now: number, findings: MetadataFinding[]) {
+  const keys = metadataChildren(role, 'KeyDescriptor');
+  for (const [keyIndex, key] of keys.entries()) {
+    const use = key.getAttribute('use')?.trim();
+    if (use && use !== 'signing') continue;
+
+    const certificates = getElements(key, NS_DS, 'X509Certificate');
+    for (const [certIndex, element] of certificates.entries()) {
+      const location = `${path}/KeyDescriptor[${keyIndex + 1}]/…/X509Certificate[${certIndex + 1}]`;
+      try {
+        const certificate = await parseMetadataCertificate(element.textContent?.trim() ?? '');
+        if (certificate.notAfter.getTime() < now) {
+          findings.push({ severity: 'warning', location, message: `Signing certificate expired on ${certificate.notAfter.toISOString().slice(0, 10)}.`, fix: 'Publish a current signing certificate and remove the expired certificate after confirming rollover is complete.' });
+        }
+      } catch {
+        findings.push({ severity: 'error', location, message: 'The signing certificate could not be read.', fix: 'Export fresh metadata or replace the certificate value with the base64-encoded X.509 certificate.' });
+      }
+    }
+  }
+}
+
+export async function validateMetadata(xml: string, now = Date.now()): Promise<MetadataFinding[]> {
+  let root: Element;
+  try {
+    root = readMetadataXml(xml).documentElement;
+  } catch (error) {
+    return [{ severity: 'error', location: 'XML document', message: error instanceof Error ? error.message : 'Unable to read XML.', fix: 'Paste the complete metadata XML and correct any XML syntax errors.' }];
+  }
+
+  if (root.namespaceURI !== NS_MD || !['EntityDescriptor', 'EntitiesDescriptor'].includes(root.localName)) {
+    return [{ severity: 'error', location: 'Document root', message: 'Expected a SAML metadata document.', fix: `Use an EntityDescriptor or EntitiesDescriptor in the ${NS_MD} namespace.` }];
+  }
+
+  const findings: MetadataFinding[] = [];
+  const pending = [{ element: root, path: root.localName }];
+  let hasSsoRole = false;
+  while (pending.length > 0) {
+    const { element, path } = pending.pop()!;
+    checkMetadataExpiry(element, path, now, findings);
+    if (element.localName === 'EntitiesDescriptor') {
+      const children = metadataChildren(element, 'EntityDescriptor', 'EntitiesDescriptor');
+      if (children.length === 0) {
+        findings.push({ severity: 'error', location: path, message: 'This metadata group is empty.', fix: 'Include at least one EntityDescriptor or a nested EntitiesDescriptor.' });
+      }
+      const counts = new Map<string, number>();
+      const entries = children.map((child) => {
+        const index = (counts.get(child.localName) ?? 0) + 1;
+        counts.set(child.localName, index);
+        return { element: child, path: `${path}/${child.localName}[${index}]` };
+      });
+      for (const entry of entries.reverse()) pending.push(entry);
+      continue;
+    }
+
+    if (!element.getAttribute('entityID')?.trim()) {
+      findings.push({ severity: 'error', location: `${path}/@entityID`, message: 'Missing entity ID.', fix: 'Set entityID to the identifier configured for this IdP or SP.' });
+    }
+
+    for (const name of ['IDPSSODescriptor', 'SPSSODescriptor']) {
+      const roles = metadataChildren(element, name);
+      for (const [index, role] of roles.entries()) {
+        hasSsoRole = true;
+        const rolePath = `${path}/${name}[${index + 1}]`;
+        checkMetadataExpiry(role, rolePath, now, findings);
+        checkRoleEndpoints(role, rolePath, findings);
+        await checkSigningCertificates(role, rolePath, now, findings);
+      }
+    }
+  }
+
+  if (!hasSsoRole) {
+    findings.push({ severity: 'error', location: root.localName, message: 'No IdP or SP SSO descriptors found.', fix: 'Use metadata exported for a SAML identity provider or service provider.' });
+  }
+  return findings;
 }
 
 export const SAMPLE_IDP_METADATA = `<?xml version="1.0" encoding="UTF-8"?>
