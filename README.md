@@ -104,6 +104,7 @@ The few tools that call an external API (iOS App Lookup and API Tester) send inp
 *   **MIME Type Lookup:** Search common MIME types by file extension, MIME string, or category. Covers images, video, audio, archives, documents, code, fonts, and data formats
 *   **Common Port Number Reference:** Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
 *   **CIDR / Subnet Calculator:** IPv4 and IPv6 CIDR calculator with network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
+*   **cURL Converter & Parser:** Parse cURL commands locally and convert them to JavaScript fetch, TypeScript, Axios, Python requests/httpx, Go, Rust, or formatted cURL
 
 ### Security
 *   **Secrets Scanner:** Scan text, logs, or configs for leaked keys and tokens

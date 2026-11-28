@@ -13,3 +13,4 @@ Free and browser-based: input data is processed locally on the user device and i
 - [HTTP Status Code Reference](https://www.developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
 - [MIME Type Lookup](https://www.developers.do/tools/mime-type-lookup): Search common MIME types by file extension, MIME string, or category — covers images, video, audio, archives, documents, code, fonts, and data formats
 - [Common Port Number Reference](https://www.developers.do/tools/port-reference): Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
+- [cURL Converter & Parser](https://www.developers.do/tools/curl-converter): Parse cURL commands locally and convert them to JavaScript fetch, TypeScript, Axios, Python requests/httpx, Go, Rust, or formatted cURL

@@ -948,6 +948,15 @@ export const TOOLS: Tool[] = [
     updatedAt: '2026-07-13',
   },
   {
+    id: 'curl-converter',
+    name: 'cURL Converter & Parser',
+    description: 'Parse cURL commands locally and convert them to JavaScript fetch, TypeScript, Axios, Python requests/httpx, Go, Rust, or formatted cURL',
+    route: '/tools/curl-converter',
+    icon: '🔁',
+    category: 'Networking',
+    updatedAt: '2026-11-27',
+  },
+  {
     id: 'oss-data',
     name: 'OSS Data',
     description: 'Open-source data tools for developers',

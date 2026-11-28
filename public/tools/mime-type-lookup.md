@@ -57,3 +57,4 @@ application/json, per RFC 8259. The legacy text/json is obsolete and some strict
 - [HTTP Status Code Reference](https://www.developers.do/tools/http-status-codes): Searchable reference of all HTTP status codes with descriptions and use cases
 - [Common Port Number Reference](https://www.developers.do/tools/port-reference): Searchable reference of common TCP/UDP ports for web, database, email, file transfer, remote access, messaging, networking, DevOps, and security services
 - [CIDR / Subnet Calculator](https://www.developers.do/tools/cidr-calculator): IPv4 and IPv6 CIDR calculator — network address, broadcast, subnet mask, host range, RFC 1918 / ULA private range detection, reverse DNS PTR, and subnet splitting
+- [cURL Converter & Parser](https://www.developers.do/tools/curl-converter): Parse cURL commands locally and convert them to JavaScript fetch, TypeScript, Axios, Python requests/httpx, Go, Rust, or formatted cURL

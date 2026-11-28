@@ -870,4 +870,45 @@ export const TOOL_SEO_CONTENT: Partial<Record<string, ToolSeoContent>> = {
     ],
     references: [{ label: 'MDN: SVG d attribute', href: 'https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/d' }],
   },
+  'curl-converter': {
+    overview: 'Paste any cURL command from API documentation or Chrome DevTools ("Copy as cURL") to inspect the parsed HTTP method, base URL, query parameters, headers, cookies, basic auth, and body payload. Convert the command into clean, copy-ready code for JavaScript fetch, TypeScript, Node Axios, Python requests or httpx, Go net/http, Rust reqwest, or formatted multiline cURL. Everything runs 100% locally in your browser without executing the request or sending credentials to any server.',
+    steps: [
+      'Paste a cURL command into the input area or load one of the built-in samples.',
+      'Review the Parsed Request inspector on the right to verify the method, query parameters, headers, cookies, and body.',
+      'Choose a target language tab on the left (JS fetch, TS fetch, Axios, Python, Go, Rust, or Formatted cURL).',
+      'Optionally enable "Redact secrets in output" to replace tokens, API keys, cookies, and passwords with <REDACTED> before copying.',
+    ],
+    details: [
+      {
+        title: 'Supported shell dialects and flags',
+        body: 'The tokenizer supports Bash/Zsh single quotes, double quotes, ANSI-C $\'...\' escapes used by Chrome DevTools, PowerShell backtick continuations, and Windows cmd caret (^) escaping. Common cURL flags including -X/--request, -H/--header, -d/--data/--data-raw/--data-urlencode, --json, -F/--form, -G/--get, -I/--head, -u/--user, -b/--cookie, -A/--user-agent, -L, -k, --compressed, and --max-time are parsed automatically.',
+      },
+      {
+        title: '100% local and never executes requests',
+        body: 'Unlike an HTTP client that fires live network calls, this converter only parses the command text in-memory and generates source code. Authorization headers, bearer tokens, session cookies, and request bodies stay on your device.',
+      },
+      {
+        title: 'Automatic credential detection and redaction',
+        body: 'When Authorization headers, API keys, cookies, basic auth credentials, or common token patterns are detected, the tool highlights them and lets you toggle redaction so you can share generated snippets safely in issues or chat.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does this tool execute the cURL request or send my API keys anywhere?',
+        answer: 'No. Parsing and code generation happen entirely in your browser tab. No HTTP requests are sent and no input is uploaded to a server.',
+      },
+      {
+        question: 'Does it work with Chrome DevTools "Copy as cURL"?',
+        answer: 'Yes. Both "Copy as cURL (bash)" (including $\'...\' ANSI-C escapes) and "Copy as cURL (cmd)" are supported.',
+      },
+      {
+        question: 'How does -G / --get affect -d / --data flags?',
+        answer: 'Matching curl behavior, when -G or --get is present, data arguments are appended to the URL query parameters rather than sent in the request body.',
+      },
+    ],
+    references: [
+      { label: 'curl manpage', href: 'https://curl.se/docs/manpage.html' },
+      { label: 'MDN: Using the Fetch API', href: 'https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch' },
+    ],
+  },
 };

@@ -1,4 +1,5 @@
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import csharp from 'react-syntax-highlighter/dist/esm/languages/prism/csharp';
 import go from 'react-syntax-highlighter/dist/esm/languages/prism/go';
 import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
@@ -13,6 +14,7 @@ import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typesc
 import yaml from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('csharp', csharp);
 SyntaxHighlighter.registerLanguage('go', go);
 SyntaxHighlighter.registerLanguage('javascript', javascript);
